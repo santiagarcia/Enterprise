@@ -6,14 +6,15 @@ Establishing the correspondence
 
 with correct conventions, stated realizability limits, and verification.
 
-> **Status: B2 abstract inverse design complete. B1 20/20, B1C-S23 42/42,
-> B1C-S456 36/36, aggregate B1C 53/53, B2 33/33 -- 0 failures across the whole
-> repository, with the OTIlib backend both enabled (22/22 CTest) and disabled
-> (21/21 CTest, HyPAD-only skips).**
+> **Status: B3 physical admissibility complete. B1 20/20, B1C-S23 42/42,
+> B1C-S456 36/36, aggregate B1C 53/53, B2 33/33, B3 38/38 -- 0 failures across
+> the whole repository, with the OTIlib backend both enabled (24/24 CTest) and
+> disabled (23/23 CTest, HyPAD-only skips).**
 >
-> B2 works entirely in an abstract constitutive-design space. It is NOT a
-> hardware optimizer: no Maxwell solver, no coils or antennas, no metamaterial
-> unit cells, no dispersion fitting, no experimental control model.
+> B3 produces a **passive, causal parametric constitutive model** approximating a
+> target response over a stated frequency band. It is NOT a fabricated medium or
+> an experimental device: no unit cells, no antennas, no coils, no fabrication
+> geometry, no full-wave Maxwell simulation.
 >
 > Forward (Plebanski-Tamm) map implemented and verified; inverse implemented for
 > the non-magnetoelectric case with the conformal ambiguity explicit in the API;
@@ -31,7 +32,11 @@ with correct conventions, stated realizability limits, and verification.
 
 ```
 constitutive/       Mat3, ConstitutiveResponse, metricity classification
-inverse_design/     design_space      21-parameter reciprocal design space
+inverse_design/     complex_scalar    paired-real Complex<Scalar>, AD-safe
+                    dispersion        Fourier convention, Lorentz/Drude models
+                    passivity         C(w), Hermitian loss matrix, spectrum
+                    band_objective    Z(w), J_band, hard-feasible L-BFGS
+                    design_space      21-parameter reciprocal design space
                     design_target     target definition and classification
                     design_objective  norms, smooth constraints, evaluate_design
                     design_gradient   finite-difference and manufactured cases
@@ -51,6 +56,7 @@ verification/       b1_verify        B1 gate           (20 cases)
                     b1c_s456_verify  B1C-S456 gate     (36 cases)
                     b1c_verify       full B1C gate     (53 cases)
                     b2_verify        B2-ABSTRACT-INVERSE (33 cases)
+                    b3_verify        B3-PHYSICAL-ADMISSIBILITY (38 cases)
 python/             figures, regenerated from saved CSV alone
 docs/               theory review, conventions, claims register
 examples/           (empty; the gates exercise everything)
@@ -117,3 +123,4 @@ anywhere near realizable — remains open and is not claimed here.
 | [docs/b1c_source_equations.md](docs/b1c_source_equations.md) | Schuster & Visser equations as retrieved, with every derived normalisation and how it was measured |
 | [docs/b1c_aggregate_gate_audit.md](docs/b1c_aggregate_gate_audit.md) | the six failed aggregate-gate assertions, classified, with withdrawals and replacements |
 | [docs/b2_abstract_inverse_design.md](docs/b2_abstract_inverse_design.md) | B2 conventions, design space, objectives, constraints, test plan and measured results |
+| [docs/b3_physical_admissibility.md](docs/b3_physical_admissibility.md) | B3 Fourier convention, dispersive models, passivity, causality, hard feasibility and measured results |

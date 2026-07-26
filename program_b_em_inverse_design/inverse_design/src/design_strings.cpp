@@ -1,3 +1,4 @@
+#include "program_b/inverse_design/band_objective.hpp"
 #include "program_b/inverse_design/design_objective.hpp"
 #include "program_b/inverse_design/optimizer.hpp"
 
@@ -80,6 +81,22 @@ const char* to_string(TerminationReason r) {
         case TerminationReason::LineSearchFailed: return "LineSearchFailed";
         case TerminationReason::MaxIterationsReached: return "MaxIterationsReached";
         case TerminationReason::NonFiniteEncountered: return "NonFiniteEncountered";
+    }
+    return "unknown";
+}
+
+const char* to_string(ParameterMode m) {
+    switch (m) {
+        case ParameterMode::Direct: return "Direct";
+        case ParameterMode::BoundedTransform: return "BoundedTransform";
+    }
+    return "unknown";
+}
+
+const char* to_string(FeasibilityMode m) {
+    switch (m) {
+        case FeasibilityMode::SoftPenalty: return "soft penalized approximation";
+        case FeasibilityMode::HardFeasible: return "hard feasible approximation";
     }
     return "unknown";
 }

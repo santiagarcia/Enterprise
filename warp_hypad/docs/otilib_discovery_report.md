@@ -122,23 +122,33 @@ location     warp_hypad/external/otilib   (2,737 files)
 The commit SHA was read from the GitHub API *before* cloning and re-verified
 against `git rev-parse HEAD` after. The clone is pinned, not tracking master.
 
-## 4. Licence — UNRESOLVED, needs your decision
+## 4. Licence — DECIDED
 
-**OTIlib is GPL-3.0.** Linking warp_hypad against it makes the combined work
-GPL-3.0 and requires source release on distribution. warp_hypad currently
-declares no licence at all.
+**OTIlib is GPL-3.0, and GPL-3.0 is accepted for the research prototype.** That
+is the project owner's decision and it is settled; nothing downstream should be
+written as though it were still open.
 
-This is not mine to decide, so the backend is **OFF by default**:
+What the decision does *not* do is make the backend mandatory. It stays **OFF by
+default**, which is now an ARCHITECTURAL choice rather than a licensing hold:
 
 ```sh
 cmake -S . -B build -DWARP_HYPAD_WITH_OTILIB=ON   # explicit opt-in
 ```
 
-The core library and the Milestone 1 gate remain licence-clean and do not link
-OTIlib. Three options if GPL-3.0 is unacceptable: adopt GPL-3.0 for warp_hypad;
-ask the author about alternative licensing (he is at UTSA, and this is a UTSA
-group project); or isolate OTI behind a separate process. Do not let this drift —
-the longer the pipeline is built against it, the more expensive a reversal gets.
+Three properties are maintained deliberately:
+
+* **Optional.** The core library and every non-sensitivity gate build and pass
+  without it, so a contributor who does not want the dependency can still run
+  most of the suite. Verified continuously: the OTIlib-disabled configuration is
+  part of the release check.
+* **Isolated.** Nothing outside `include/warp_hypad/sensitivity/` may include an
+  `oti/` header or name an `onumm3n2` symbol. Substituting a different AD
+  backend means writing one more directory there and nothing else.
+* **Externally pinned.** The checkout is not vendored into this tree. It is
+  fetched by `scripts/bootstrap_otilib.sh` / `.ps1` at the recorded revision, and
+  CMake verifies the SHA at configure time and fails hard on a mismatch. This
+  keeps the repository free of a large upstream history while making the pin
+  machine-checked rather than a comment.
 
 ## 5. Windows / MSVC compatibility — better than upstream documents
 
@@ -277,7 +287,10 @@ no regression.
 
 ## 10. Unresolved limitations
 
-1. **Licence (§4) — the blocker.** GPL-3.0, unresolved, needs your call.
+1. ~~Licence — the blocker.~~ **Resolved (§4).** GPL-3.0 is accepted for the
+   research prototype. The backend remains optional, isolated behind the
+   adapter, and externally pinned, which is an architectural choice and not a
+   residual licensing question.
 2. **Upstream test suite not run.** It requires the conda/WSL build. Upstream's
    own C example was run instead and verified against analytic values through
    order 3. Recorded honestly in `upstream_tests.txt` as a gap, not a pass.
@@ -305,6 +318,6 @@ Hessian for the exact warp parameter set in one evaluation, and it passes the
 matrix-inverse derivative identity at machine precision — the specific gate that
 governs every curvature quantity in this project.
 
-**Resolve the GPL-3.0 question before Milestone 4**, when the metric code starts
-being written against the scalar seam in earnest. Everything else here is done
-and verified.
+The GPL-3.0 question is **resolved** (§4): accepted for the research prototype,
+with the backend optional, isolated behind the adapter, and externally pinned at
+a CMake-verified revision. Everything else here is done and verified.

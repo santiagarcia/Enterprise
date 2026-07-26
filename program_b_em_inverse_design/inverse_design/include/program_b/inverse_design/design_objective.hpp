@@ -134,13 +134,26 @@ Scalar mat4_norm_squared(const Mat4<Scalar>& A, const Mat4<Scalar>& G,
 // --- Smooth one-sided penalty ------------------------------------------------
 
 // hinge(x) ~ max(x, 0), smooth everywhere, no comparison on a Scalar.
-// hinge(0) = 0 exactly, and hinge(x) -> x for x >> tau.
+//
+//     hinge(x) = ( x + sqrt(x^2 + tau^2) ) / 2
+//
+// Properties that matter for a penalty: hinge >= 0 always; hinge -> 0+ as
+// x -> -inf, so a design DEEP INSIDE the feasible region is charged nothing;
+// hinge -> x for x >> tau; and hinge(0) = tau/2, a deliberately tiny offset
+// right at the boundary.
+//
+// AN EARLIER VERSION SUBTRACTED tau/2 to make hinge(0) exactly zero. That was
+// wrong, and wrong in the worst direction: it sent hinge -> -tau/2 as
+// x -> -inf, so hinge^2 tended to tau^2/4 FAR INSIDE the feasible set instead of
+// to zero. Summed over terms and frequencies it produced a constant penalty
+// floor -- 1.5e-11 for the B3 band, identical across unrelated problems, which
+// is what exposed it: three different recovery problems cannot legitimately
+// converge to the same objective value to five figures.
 template <typename Scalar>
 Scalar smooth_hinge(const Scalar& x, double tau) {
     using std::sqrt;
     const Scalar t2 = scalar_cast<Scalar>(tau * tau);
-    const Scalar half = scalar_cast<Scalar>(0.5);
-    return half * (x + sqrt(x * x + t2)) - scalar_cast<Scalar>(0.5 * tau);
+    return scalar_cast<Scalar>(0.5) * (x + sqrt(x * x + t2));
 }
 
 // --- Constraints -------------------------------------------------------------

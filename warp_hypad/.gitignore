@@ -9,16 +9,19 @@ cmake-build-*/
 # Committing it would also import GPL-3.0 sources into this tree, which is
 # exactly the decision docs/otilib_discovery_report.md asks to be made first.
 #
+# GPL-3.0 is ACCEPTED for the research prototype. Keeping the checkout external
+# is an architectural choice, not a residual licensing question: it keeps a large
+# upstream history out of this repository while the dependency stays optional and
+# isolated behind include/warp_hypad/sensitivity/.
+#
 # The pin is ENFORCED, not merely documented: CMake compares
 # `git -C external/otilib rev-parse HEAD` against WARP_HYPAD_OTILIB_PIN at
-# configure time and fails hard on a mismatch. Ignoring the checkout used to mean
-# the revision lived only in this comment, so a different clone would have
-# produced a green sensitivity gate against an unknown dependency.
+# configure time and fails hard on a mismatch. Fetch it with
+# scripts/bootstrap_otilib.sh or scripts/bootstrap_otilib.ps1.
 #
-# A git SUBMODULE would also record the pin, and would not import any GPL source
-# into this repository either -- only a URL and a SHA. It was not adopted because
-# the licence decision above has not been made yet and a submodule changes how
-# the dependency is presented; it remains the natural next step once it has.
+# A git submodule would record the same pin and is an equally valid choice; the
+# external checkout plus bootstrap script was kept because it needs no submodule
+# ceremony from contributors who never enable the backend.
 external/otilib/
 
 # Python

@@ -356,6 +356,20 @@ if(EXISTS "${PROGRAM_B_ROOT}/effective_metric/src/metric_medium_map.cpp")
     target_compile_options(b2_verify PRIVATE -Wall -Wextra -Wpedantic -Werror)
   endif()
 
+  # --- Program B, Milestone B3: physical admissibility ----------------------
+  add_executable(b3_verify
+    "${PROGRAM_B_ROOT}/inverse_design/verification/b3_verify.cpp"
+    "${PROGRAM_B_ROOT}/inverse_design/verification/b3_checks.cpp"
+  )
+  target_include_directories(b3_verify PRIVATE
+    "${PROGRAM_B_ROOT}/inverse_design/verification")
+  target_link_libraries(b3_verify PRIVATE program_b_em)
+  if(MSVC)
+    target_compile_options(b3_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+  else()
+    target_compile_options(b3_verify PRIVATE -Wall -Wextra -Wpedantic -Werror)
+  endif()
+
   set(WARP_HYPAD_B1_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_b1")
   set(WARP_HYPAD_B1C_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_b1c")
   add_test(NAME programb1.gate COMMAND b1_verify --out "${WARP_HYPAD_B1_RESULTS}")
@@ -379,6 +393,11 @@ if(EXISTS "${PROGRAM_B_ROOT}/effective_metric/src/metric_medium_map.cpp")
   # successive set_tests_properties calls replace it rather than appending.
   set_tests_properties(programb2.gate PROPERTIES
     DEPENDS "programb1c_s23.gate;programb1c_s456.gate;programb1c.gate")
+
+  set(WARP_HYPAD_B3_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_b3")
+  add_test(NAME programb3.gate COMMAND b3_verify --out "${WARP_HYPAD_B3_RESULTS}")
+  set_tests_properties(programb3.gate PROPERTIES
+    DEPENDS "programb1c.gate;programb2.gate")
   message(STATUS "  program B: B1 enabled")
 else()
   message(STATUS "  program B: not present, skipped")
@@ -386,11 +405,14 @@ endif()
 
 # --- OTIlib sensitivity backend (opt-in) ------------------------------------
 #
-# OFF by default, and that is a licence decision rather than a technical one:
-# OTIlib is GPL-3.0, so linking warp_hypad against it makes the combined work
-# GPL-3.0. warp_hypad itself declares no licence yet. Keeping this opt-in means
-# the core library and the Milestone 1 gate stay licence-clean, and enabling the
-# backend is an explicit, recorded act.
+# OFF by default, and that is an ARCHITECTURAL choice, not an open licensing
+# question. GPL-3.0 is accepted for the research prototype; the decision is made.
+#
+# What opt-in buys is that the core library and every non-sensitivity gate build
+# and pass without the dependency, so the suite stays runnable for anyone who
+# does not want it, and the OTIlib-disabled configuration is checked on every
+# release. The backend is isolated behind include/warp_hypad/sensitivity/ and
+# pinned externally rather than vendored.
 #
 #   cmake -S . -B build -DWARP_HYPAD_WITH_OTILIB=ON
 #
@@ -404,8 +426,9 @@ option(WARP_HYPAD_WITH_OTILIB "Build the OTIlib (GPL-3.0) sensitivity backend" O
 
 # The pin. OTIlib is a pinned external dependency, NOT vendored source: the
 # checkout is git-ignored (see .gitignore, and docs/otilib_discovery_report.md
-# for why -- committing GPL-3.0 sources into a tree that declares no licence is a
-# decision that has to be made deliberately, and it has not been).
+# for why: GPL-3.0 is accepted, and the checkout is kept external so a large
+# upstream history stays out of this repository. Fetch it with
+# scripts/bootstrap_otilib.sh or .ps1).
 #
 # The consequence of ignoring it is that the pin used to live only in a comment,
 # so a silently different checkout would have produced a green gate against the
@@ -498,6 +521,8 @@ if(WARP_HYPAD_WITH_OTILIB)
     target_compile_definitions(b1c_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
     target_link_libraries(b2_verify PRIVATE warp_hypad_otilib)
     target_compile_definitions(b2_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
+    target_link_libraries(b3_verify PRIVATE warp_hypad_otilib)
+    target_compile_definitions(b3_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   endif()
 
   message(STATUS "  otilib:   ENABLED (GPL-3.0 -- see docs/otilib_discovery_report.md)")
@@ -530,4 +555,10 @@ if(TARGET b1_verify AND Python3_FOUND)
                    "${PROGRAM_B_ROOT}/python/plot_b2.py"
                    "${WARP_HYPAD_B2_RESULTS}")
   set_tests_properties(programb2.figures PROPERTIES DEPENDS "programb2.gate")
+
+  add_test(NAME programb3.figures
+           COMMAND ${Python3_EXECUTABLE}
+                   "${PROGRAM_B_ROOT}/python/plot_b3.py"
+                   "${WARP_HYPAD_B3_RESULTS}")
+  set_tests_properties(programb3.figures PROPERTIES DEPENDS "programb3.gate")
 endif()

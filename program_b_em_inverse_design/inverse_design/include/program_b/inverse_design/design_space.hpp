@@ -111,6 +111,43 @@ ObserverFrame<Scalar> build_observer_frame(const LaboratoryMetric<Scalar>& g_lab
     return f;
 }
 
+// Push a frame forward through a linear coordinate change x'^a = L^a_b x^b.
+//
+// WHY THIS EXISTS, and why rebuilding the frame by Gram-Schmidt in the new
+// coordinates is NOT the same thing. A design is specified by coefficients in a
+// triad. The isotropic parts survive any triad -- sum_i e_(i)^a e_(i)^b = h^{ab}
+// whatever the triad -- but an ANISOTROPIC shape does not: the magnetoelectric
+// K, with K_23 = +1, singles out particular triad directions. Rebuilding the
+// triad from g' and V' by Gram-Schmidt picks a different set of spatial
+// directions, so "the same coefficients" then describe a medium with a
+// different physical ORIENTATION, and its tensor is legitimately not the
+// pushforward of the original.
+//
+// Transforming the setup therefore means transforming the FRAME too. That is
+// what this does, and the result is orthonormal with respect to the transformed
+// metric automatically, because L preserves the inner product by construction.
+template <typename Scalar>
+ObserverFrame<Scalar> push_frame_forward(const ObserverFrame<Scalar>& frame,
+                                         const Mat4<Scalar>& L,
+                                         const LaboratoryMetric<Scalar>& g_prime) {
+    ObserverFrame<Scalar> out;
+    for (int a = 0; a < 4; ++a) {
+        Scalar acc = scalar_cast<Scalar>(0.0);
+        for (int b = 0; b < 4; ++b) acc = acc + L(a, b) * frame.V[b];
+        out.V[a] = acc;
+    }
+    for (int i = 0; i < 3; ++i)
+        for (int a = 0; a < 4; ++a) {
+            Scalar acc = scalar_cast<Scalar>(0.0);
+            for (int b = 0; b < 4; ++b) acc = acc + L(a, b) * frame.e[i][b];
+            out.e[i][a] = acc;
+        }
+    for (int i = 0; i < 3; ++i) lower_vector(g_prime.value, out.e[i], out.e_dn[i]);
+    out.ok = frame.ok;
+    out.message = "pushed forward through a linear coordinate change";
+    return out;
+}
+
 // --- Families ----------------------------------------------------------------
 
 enum class DesignFamily {
