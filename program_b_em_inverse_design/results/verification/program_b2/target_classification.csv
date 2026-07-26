@@ -1,0 +1,5 @@
+target,metric_induced,reciprocal,pair_antisymmetric,finite,observer_decomposable,real_lossless,reciprocity_residual,antisymmetry_residual,max_component
+isotropic,0,1,1,1,1,1,0.0000000000e+00,0.0000000000e+00,1.3750000000e+00
+anisotropic,0,1,1,1,1,1,0.0000000000e+00,0.0000000000e+00,1.5500000000e+00
+magnetoelectric,0,1,1,1,1,1,0.0000000000e+00,0.0000000000e+00,1.5500000000e+00
+alcubierre_v0.4,1,1,1,1,1,1,0.0000000000e+00,0.0000000000e+00,5.0000000000e-01

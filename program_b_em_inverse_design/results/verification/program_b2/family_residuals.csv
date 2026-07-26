@@ -1,0 +1,5 @@
+family,parameters,least_squares_J_Z
+UnrestrictedReciprocal,21,6.5123082759e-34
+ZeroMagnetoelectric,12,7.5053103611e-02
+DiagonalAnisotropic,6,8.7480256350e-02
+Isotropic,2,1.3566686637e-01

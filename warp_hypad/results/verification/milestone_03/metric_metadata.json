@@ -5,7 +5,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "018cf5de355b1ab9785cf9f8bfce3046e4929fd6",
+    "git_commit": "611053f22b136ad570115f0535ab02e677e46fef",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -16,5 +16,5 @@
   "temporal_derivatives": "set to zero, explicitly",
   "time_treatment": "frozen_time_spatial_slice_DIAGNOSTIC_ONLY",
   "time_treatment_meaning": "The bubble centre is held at a fixed coordinate and d_t g_{mu nu} == 0 by construction. These results are a SPATIAL SLICE of a moving spacetime, not the moving spacetime. Curvature computed from this slice alone is NOT the complete physical Alcubierre spacetime curvature.",
-  "timestamp_utc": "2026-07-26T13:59:57Z"
+  "timestamp_utc": "2026-07-26T14:25:39Z"
 }

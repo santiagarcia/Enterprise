@@ -5,7 +5,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "018cf5de355b1ab9785cf9f8bfce3046e4929fd6",
+    "git_commit": "611053f22b136ad570115f0535ab02e677e46fef",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -25,7 +25,7 @@
       "passed": true,
       "reference": "d/dx of a constant is exactly 0 on every axis",
       "relative_error": null,
-      "runtime_seconds": 0.0027275,
+      "runtime_seconds": 0.0023697,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -44,7 +44,7 @@
       "passed": true,
       "reference": "second derivative of a constant field is exactly 0",
       "relative_error": null,
-      "runtime_seconds": 0.0028356,
+      "runtime_seconds": 0.0024913,
       "skipped": false,
       "tolerance": 1e-11
     },
@@ -63,7 +63,7 @@
       "passed": true,
       "reference": "d/dx of a linear field is exact on every axis",
       "relative_error": null,
-      "runtime_seconds": 0.0028141,
+      "runtime_seconds": 0.003093,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -82,7 +82,7 @@
       "passed": true,
       "reference": "second derivative of a linear field is exactly 0",
       "relative_error": null,
-      "runtime_seconds": 0.002834,
+      "runtime_seconds": 0.003121,
       "skipped": false,
       "tolerance": 1e-11
     },
@@ -97,7 +97,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed interior convergence order approaches 2",
-      "runtime_seconds": 2.73e-05,
+      "runtime_seconds": 2.76e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -112,7 +112,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed boundary convergence order approaches 2, i.e. the one-sided stencils are the same order as the interior ones",
-      "runtime_seconds": 3.73e-05,
+      "runtime_seconds": 4.06e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -127,7 +127,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed interior convergence order approaches 2",
-      "runtime_seconds": 2.26e-05,
+      "runtime_seconds": 2.94e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -142,7 +142,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed boundary convergence order approaches 2, i.e. the one-sided stencils are the same order as the interior ones",
-      "runtime_seconds": 3.43e-05,
+      "runtime_seconds": 4.36e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -157,7 +157,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed interior convergence order approaches 2",
-      "runtime_seconds": 2.56e-05,
+      "runtime_seconds": 2.84e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -172,7 +172,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed boundary convergence order approaches 2, i.e. the one-sided stencils are the same order as the interior ones",
-      "runtime_seconds": 3.24e-05,
+      "runtime_seconds": 3.71e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -191,7 +191,7 @@
       "passed": true,
       "reference": "the stencil is exact for this field (the derivative it truncates against vanishes identically), so the error stays at roundoff on every grid",
       "relative_error": null,
-      "runtime_seconds": 3.5e-06,
+      "runtime_seconds": 4.1e-06,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -210,7 +210,7 @@
       "passed": true,
       "reference": "the stencil is exact for this field (the derivative it truncates against vanishes identically), so the error stays at roundoff on every grid",
       "relative_error": null,
-      "runtime_seconds": 1.5e-06,
+      "runtime_seconds": 1.6e-06,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -229,7 +229,7 @@
       "passed": true,
       "reference": "the stencil is exact for this field (the derivative it truncates against vanishes identically), so the error stays at roundoff on every grid",
       "relative_error": null,
-      "runtime_seconds": 1.8e-06,
+      "runtime_seconds": 2.4e-06,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -248,7 +248,7 @@
       "passed": true,
       "reference": "the stencil is exact for this field (the derivative it truncates against vanishes identically), so the error stays at roundoff on every grid",
       "relative_error": null,
-      "runtime_seconds": 2e-06,
+      "runtime_seconds": 5.6e-06,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -267,7 +267,7 @@
       "passed": true,
       "reference": "the stencil is exact for this field (the derivative it truncates against vanishes identically), so the error stays at roundoff on every grid",
       "relative_error": null,
-      "runtime_seconds": 2.9e-06,
+      "runtime_seconds": 3.9e-06,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -286,7 +286,7 @@
       "passed": true,
       "reference": "the stencil is exact for this field (the derivative it truncates against vanishes identically), so the error stays at roundoff on every grid",
       "relative_error": null,
-      "runtime_seconds": 2.4e-06,
+      "runtime_seconds": 2.6e-06,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -301,7 +301,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed interior convergence order approaches 2",
-      "runtime_seconds": 2.32e-05,
+      "runtime_seconds": 2.8e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -316,7 +316,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed boundary convergence order approaches 2, i.e. the one-sided stencils are the same order as the interior ones",
-      "runtime_seconds": 2.93e-05,
+      "runtime_seconds": 3.4e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -331,7 +331,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed interior convergence order approaches 2",
-      "runtime_seconds": 2.42e-05,
+      "runtime_seconds": 2.51e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -346,7 +346,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed boundary convergence order approaches 2, i.e. the one-sided stencils are the same order as the interior ones",
-      "runtime_seconds": 2.98e-05,
+      "runtime_seconds": 3.28e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -361,7 +361,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed interior convergence order approaches 2",
-      "runtime_seconds": 3.17e-05,
+      "runtime_seconds": 2.95e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -376,7 +376,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed boundary convergence order approaches 2, i.e. the one-sided stencils are the same order as the interior ones",
-      "runtime_seconds": 4.03e-05,
+      "runtime_seconds": 3.93e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -391,7 +391,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed interior convergence order approaches 2",
-      "runtime_seconds": 4.09e-05,
+      "runtime_seconds": 3.59e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -406,7 +406,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed boundary convergence order approaches 2, i.e. the one-sided stencils are the same order as the interior ones",
-      "runtime_seconds": 5.16e-05,
+      "runtime_seconds": 4.48e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -421,7 +421,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed interior convergence order approaches 2",
-      "runtime_seconds": 2.36e-05,
+      "runtime_seconds": 3.05e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -436,7 +436,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed boundary convergence order approaches 2, i.e. the one-sided stencils are the same order as the interior ones",
-      "runtime_seconds": 4.03e-05,
+      "runtime_seconds": 4.32e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -451,7 +451,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed interior convergence order approaches 2",
-      "runtime_seconds": 3.07e-05,
+      "runtime_seconds": 2.92e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -466,7 +466,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed boundary convergence order approaches 2, i.e. the one-sided stencils are the same order as the interior ones",
-      "runtime_seconds": 3.74e-05,
+      "runtime_seconds": 3.79e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -481,7 +481,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed interior convergence order approaches 2",
-      "runtime_seconds": 2.88e-05,
+      "runtime_seconds": 3.02e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -496,7 +496,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed boundary convergence order approaches 2, i.e. the one-sided stencils are the same order as the interior ones",
-      "runtime_seconds": 0.0004833,
+      "runtime_seconds": 0.0002558,
       "skipped": false,
       "tolerance": 0
     },
@@ -511,7 +511,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed interior convergence order approaches 2",
-      "runtime_seconds": 2.36e-05,
+      "runtime_seconds": 3.35e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -526,7 +526,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed boundary convergence order approaches 2, i.e. the one-sided stencils are the same order as the interior ones",
-      "runtime_seconds": 2.98e-05,
+      "runtime_seconds": 4.13e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -541,7 +541,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed interior convergence order approaches 2",
-      "runtime_seconds": 2.61e-05,
+      "runtime_seconds": 2.54e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -556,7 +556,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "observed boundary convergence order approaches 2, i.e. the one-sided stencils are the same order as the interior ones",
-      "runtime_seconds": 3.24e-05,
+      "runtime_seconds": 3.18e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -575,7 +575,7 @@
       "passed": true,
       "reference": "D_a(D_b f) == D_b(D_a f) at every point, including corners",
       "relative_error": null,
-      "runtime_seconds": 0.0037174,
+      "runtime_seconds": 0.0029152,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -594,7 +594,7 @@
       "passed": true,
       "reference": "every rank-2 component is differentiated against its own analytic derivative (interior points)",
       "relative_error": null,
-      "runtime_seconds": 0.2194944,
+      "runtime_seconds": 0.2102764,
       "skipped": false,
       "tolerance": 0.0025000000000000005
     },
@@ -613,7 +613,7 @@
       "passed": true,
       "reference": "same, at boundary points using one-sided stencils",
       "relative_error": null,
-      "runtime_seconds": 0.2195227,
+      "runtime_seconds": 0.2103114,
       "skipped": false,
       "tolerance": 0.005000000000000001
     },
@@ -632,7 +632,7 @@
       "passed": true,
       "reference": "with no time-derivative field supplied, d_0 g_{mu nu} is exactly 0",
       "relative_error": null,
-      "runtime_seconds": 0.2195257,
+      "runtime_seconds": 0.2103183,
       "skipped": false,
       "tolerance": 0
     },
@@ -651,7 +651,7 @@
       "passed": true,
       "reference": "the derivative operators give bit-identical results for double and a custom scalar with no ordering and no implicit double conversion",
       "relative_error": null,
-      "runtime_seconds": 0.0019291,
+      "runtime_seconds": 0.0014356,
       "skipped": false,
       "tolerance": 0
     },
@@ -670,7 +670,7 @@
       "passed": true,
       "reference": "long double agrees with double to double precision",
       "relative_error": null,
-      "runtime_seconds": 0.0021641,
+      "runtime_seconds": 0.0014611,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -685,7 +685,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a 3-point axis is accepted for first derivatives and rejected for second derivatives, whose one-sided stencil needs 4 points",
-      "runtime_seconds": 6.64e-05,
+      "runtime_seconds": 2.22e-05,
       "skipped": false,
       "tolerance": 0
     }
@@ -695,6 +695,6 @@
   "num_failed": 0,
   "num_passed": 41,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T13:59:56Z",
+  "timestamp_utc": "2026-07-26T14:25:38Z",
   "title": "Finite-difference operators: first, second and mixed derivatives at second order, interior and boundary"
 }

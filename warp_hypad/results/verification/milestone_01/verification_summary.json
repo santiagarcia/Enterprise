@@ -5,7 +5,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "018cf5de355b1ab9785cf9f8bfce3046e4929fd6",
+    "git_commit": "611053f22b136ad570115f0535ab02e677e46fef",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -25,7 +25,7 @@
       "passed": true,
       "reference": "x(0) == x_min for every axis",
       "relative_error": null,
-      "runtime_seconds": 4e-07,
+      "runtime_seconds": 6e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -63,7 +63,7 @@
       "passed": true,
       "reference": "max_i |(x_{i+1} - x_i) - dx| / dx == 0",
       "relative_error": null,
-      "runtime_seconds": 3.7e-06,
+      "runtime_seconds": 3.5e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -82,7 +82,7 @@
       "passed": true,
       "reference": "x((n-1)/2) == (x_min + x_max)/2 for odd n",
       "relative_error": null,
-      "runtime_seconds": 2.3e-06,
+      "runtime_seconds": 2e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -101,7 +101,7 @@
       "passed": true,
       "reference": "(i,j,k) -> flat -> (i,j,k) is the identity at every point",
       "relative_error": null,
-      "runtime_seconds": 0.0011428,
+      "runtime_seconds": 0.0007756,
       "skipped": false,
       "tolerance": 0
     },
@@ -120,7 +120,7 @@
       "passed": true,
       "reference": "flat -> (i,j,k) -> flat is the identity for every flat index",
       "relative_error": null,
-      "runtime_seconds": 0.000923,
+      "runtime_seconds": 0.0008188,
       "skipped": false,
       "tolerance": 0
     },
@@ -139,7 +139,7 @@
       "passed": true,
       "reference": "flat() is a bijection from the index box onto [0, N)",
       "relative_error": null,
-      "runtime_seconds": 0.0003309,
+      "runtime_seconds": 0.0003731,
       "skipped": false,
       "tolerance": 0
     },
@@ -158,7 +158,7 @@
       "passed": true,
       "reference": "stride_a() == flat(...+1...) - flat(...) for each axis",
       "relative_error": null,
-      "runtime_seconds": 3e-07,
+      "runtime_seconds": 2e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -234,7 +234,7 @@
       "passed": true,
       "reference": "x(0) == x_min for every axis",
       "relative_error": null,
-      "runtime_seconds": 2e-07,
+      "runtime_seconds": 3e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -272,7 +272,7 @@
       "passed": true,
       "reference": "max_i |(x_{i+1} - x_i) - dx| / dx == 0",
       "relative_error": null,
-      "runtime_seconds": 1.1e-06,
+      "runtime_seconds": 6e-07,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -291,7 +291,7 @@
       "passed": true,
       "reference": "x((n-1)/2) == (x_min + x_max)/2 for odd n",
       "relative_error": null,
-      "runtime_seconds": 3.7e-06,
+      "runtime_seconds": 1.9e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -310,7 +310,7 @@
       "passed": true,
       "reference": "(i,j,k) -> flat -> (i,j,k) is the identity at every point",
       "relative_error": null,
-      "runtime_seconds": 8.7e-06,
+      "runtime_seconds": 8.6e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -329,7 +329,7 @@
       "passed": true,
       "reference": "flat -> (i,j,k) -> flat is the identity for every flat index",
       "relative_error": null,
-      "runtime_seconds": 9.3e-06,
+      "runtime_seconds": 9.1e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -348,7 +348,7 @@
       "passed": true,
       "reference": "flat() is a bijection from the index box onto [0, N)",
       "relative_error": null,
-      "runtime_seconds": 4e-06,
+      "runtime_seconds": 3.1e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -367,7 +367,7 @@
       "passed": true,
       "reference": "stride_a() == flat(...+1...) - flat(...) for each axis",
       "relative_error": null,
-      "runtime_seconds": 2e-07,
+      "runtime_seconds": 1e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -386,7 +386,7 @@
       "passed": true,
       "reference": "dx == (x_max - x_min) / (nx - 1)",
       "relative_error": 0,
-      "runtime_seconds": 1e-07,
+      "runtime_seconds": 0,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -439,7 +439,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "validate_grid_spec rejects n<1, inverted bounds, non-finite bounds and unallocatable sizes",
-      "runtime_seconds": 1.54e-05,
+      "runtime_seconds": 9.7e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -454,7 +454,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "validate_grid_spec accepts both reference specs",
-      "runtime_seconds": 4.2e-06,
+      "runtime_seconds": 1.7e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -473,7 +473,7 @@
       "passed": true,
       "reference": "every rank-2 component stores and retrieves its own index tag exactly",
       "relative_error": null,
-      "runtime_seconds": 0.0001002,
+      "runtime_seconds": 6.32e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -492,7 +492,7 @@
       "passed": true,
       "reference": "raw()[16*p + 4*mu + nu] holds component (mu,nu) at point p",
       "relative_error": null,
-      "runtime_seconds": 6.34e-05,
+      "runtime_seconds": 4.1e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -511,7 +511,7 @@
       "passed": true,
       "reference": "rank-3 accessor and raw()[64*p + 16*a + 4*b + c] agree with the index tag everywhere",
       "relative_error": null,
-      "runtime_seconds": 0.0003616,
+      "runtime_seconds": 0.0002099,
       "skipped": false,
       "tolerance": 0
     },
@@ -530,7 +530,7 @@
       "passed": true,
       "reference": "rank-4 accessor and raw()[256*p + 64*a + 16*b + 4*c + d] agree with the index tag everywhere",
       "relative_error": null,
-      "runtime_seconds": 0.0012614,
+      "runtime_seconds": 0.000893,
       "skipped": false,
       "tolerance": 0
     },
@@ -549,7 +549,7 @@
       "passed": true,
       "reference": "ScalarField (i,j,k) and flat accessors agree and store exactly",
       "relative_error": null,
-      "runtime_seconds": 2.8e-06,
+      "runtime_seconds": 3e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -568,7 +568,7 @@
       "passed": true,
       "reference": "set_matrix followed by matrix_at is the identity, with no transposition",
       "relative_error": null,
-      "runtime_seconds": 4.8e-05,
+      "runtime_seconds": 4.66e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -587,7 +587,7 @@
       "passed": true,
       "reference": "set_tensor followed by tensor_at is the identity for rank 3",
       "relative_error": null,
-      "runtime_seconds": 9e-05,
+      "runtime_seconds": 8.68e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -606,7 +606,7 @@
       "passed": true,
       "reference": "diag(1,2,3,4)*B scales rows; B*diag(1,2,3,4) scales columns",
       "relative_error": null,
-      "runtime_seconds": 6.5e-06,
+      "runtime_seconds": 1.06e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -625,7 +625,7 @@
       "passed": true,
       "reference": "mat_mul agrees with an independently written naive triple loop",
       "relative_error": null,
-      "runtime_seconds": 0.0001778,
+      "runtime_seconds": 0.0001758,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -644,7 +644,7 @@
       "passed": true,
       "reference": "det of Minkowski (-1), identity (1), diag(2,3,5,7) (210), an upper-triangular matrix (24) and a rank-deficient matrix (0)",
       "relative_error": null,
-      "runtime_seconds": 6e-07,
+      "runtime_seconds": 5e-07,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -663,7 +663,7 @@
       "passed": true,
       "reference": "the paired-2x2-minor determinant agrees with recursive Laplace expansion along row 0",
       "relative_error": null,
-      "runtime_seconds": 0.0021017,
+      "runtime_seconds": 0.0020038,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -682,7 +682,7 @@
       "passed": true,
       "reference": "A * A^-1 == I",
       "relative_error": null,
-      "runtime_seconds": 0.0035738,
+      "runtime_seconds": 0.0022195,
       "skipped": false,
       "tolerance": 1e-09
     },
@@ -701,7 +701,7 @@
       "passed": true,
       "reference": "A^-1 * A == I",
       "relative_error": null,
-      "runtime_seconds": 0.0035942,
+      "runtime_seconds": 0.0022261,
       "skipped": false,
       "tolerance": 1e-09
     },
@@ -720,7 +720,7 @@
       "passed": true,
       "reference": "A * A^-1 == I",
       "relative_error": null,
-      "runtime_seconds": 0.0035721,
+      "runtime_seconds": 0.0022147,
       "skipped": false,
       "tolerance": 1e-09
     },
@@ -739,7 +739,7 @@
       "passed": true,
       "reference": "A^-1 * A == I",
       "relative_error": null,
-      "runtime_seconds": 0.003581,
+      "runtime_seconds": 0.0022181,
       "skipped": false,
       "tolerance": 1e-09
     },
@@ -758,7 +758,7 @@
       "passed": true,
       "reference": "A * A^-1 == I",
       "relative_error": null,
-      "runtime_seconds": 0.0022806,
+      "runtime_seconds": 0.0033047,
       "skipped": false,
       "tolerance": 1e-09
     },
@@ -777,7 +777,7 @@
       "passed": true,
       "reference": "A^-1 * A == I",
       "relative_error": null,
-      "runtime_seconds": 0.0022852,
+      "runtime_seconds": 0.0033319,
       "skipped": false,
       "tolerance": 1e-09
     },
@@ -796,7 +796,7 @@
       "passed": true,
       "reference": "A * A^-1 == I",
       "relative_error": null,
-      "runtime_seconds": 0.0036689,
+      "runtime_seconds": 0.0026983,
       "skipped": false,
       "tolerance": 1e-09
     },
@@ -815,7 +815,7 @@
       "passed": true,
       "reference": "A^-1 * A == I",
       "relative_error": null,
-      "runtime_seconds": 0.0036842,
+      "runtime_seconds": 0.0027068,
       "skipped": false,
       "tolerance": 1e-09
     },
@@ -834,7 +834,7 @@
       "passed": true,
       "reference": "the adjugate inverse agrees with Gauss-Jordan elimination",
       "relative_error": null,
-      "runtime_seconds": 0.0002338,
+      "runtime_seconds": 0.0001791,
       "skipped": false,
       "tolerance": 1e-09
     },
@@ -853,7 +853,7 @@
       "passed": true,
       "reference": "eta^{mu nu} == eta_{mu nu} == diag(-1,1,1,1)",
       "relative_error": null,
-      "runtime_seconds": 6e-07,
+      "runtime_seconds": 1.2e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -868,7 +868,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "inverse() reports ok == false for exactly singular matrices (row 3 = 2*row 0 - 3*row 1)",
-      "runtime_seconds": 5.75e-05,
+      "runtime_seconds": 4.18e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -883,7 +883,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a near-singular matrix is either rejected or flagged ill-conditioned; it is never quietly accepted with a bad residual",
-      "runtime_seconds": 8.15e-05,
+      "runtime_seconds": 5.08e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -898,7 +898,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "across perturbations from 1e-4 to 1e-14 the ill_conditioned flag is set for at least one accepted matrix, and no matrix at any scale is quietly accepted with a bad residual",
-      "runtime_seconds": 0.0002847,
+      "runtime_seconds": 0.0001742,
       "skipped": false,
       "tolerance": 0
     },
@@ -917,7 +917,7 @@
       "passed": true,
       "reference": "cond1 == ||A||_1 * ||A^-1||_1, and cond1 >= 1",
       "relative_error": null,
-      "runtime_seconds": 0.0001592,
+      "runtime_seconds": 0.0001925,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -936,7 +936,7 @@
       "passed": true,
       "reference": "trace of diag(1,2,3,4) == 10",
       "relative_error": 0,
-      "runtime_seconds": 6e-07,
+      "runtime_seconds": 4e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -993,7 +993,7 @@
       "passed": true,
       "reference": "eta^{mu nu} eta_{mu nu} == 4 (dimension of spacetime)",
       "relative_error": 0,
-      "runtime_seconds": 2.2e-06,
+      "runtime_seconds": 2e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -1012,7 +1012,7 @@
       "passed": true,
       "reference": "eta^{mu a} eta_{a b} T^{b}{}_{nu} == T^{mu}{}_{nu}",
       "relative_error": null,
-      "runtime_seconds": 6e-07,
+      "runtime_seconds": 4e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -1031,7 +1031,7 @@
       "passed": true,
       "reference": "for diagonal a, (a . d)(r,m,n) == a(r,r) * d(r,m,n) at all 64 components; spot value out(1,2,3) == 369",
       "relative_error": null,
-      "runtime_seconds": 1.1e-06,
+      "runtime_seconds": 1e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -1050,7 +1050,7 @@
       "passed": true,
       "reference": "out(1,2,3) == 3 * 123 == 369",
       "relative_error": 0,
-      "runtime_seconds": 2e-07,
+      "runtime_seconds": 8e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -1069,7 +1069,7 @@
       "passed": true,
       "reference": "out(s,n) == sum_r t(r,s,r,n); with the constructed t this is 4*(10s+n), so out(2,3) == 92",
       "relative_error": null,
-      "runtime_seconds": 8e-07,
+      "runtime_seconds": 9e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -1107,7 +1107,7 @@
       "passed": true,
       "reference": "for diagonal g, (g . t)(a,b,c,d) == g(a,a) * t(a,b,c,d) at all 256 components",
       "relative_error": null,
-      "runtime_seconds": 4.1e-06,
+      "runtime_seconds": 4.5e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -1122,7 +1122,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "lower_pair_symmetry_residual returns 0 for a b<->c symmetric tensor and 1 for a deliberately antisymmetric one",
-      "runtime_seconds": 6e-07,
+      "runtime_seconds": 5e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -1152,7 +1152,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "Mat4, Rank3, Rank4 and every contraction instantiate with double, long double and a custom scalar that has no ordering, no equality and no implicit conversion to double",
-      "runtime_seconds": 3e-07,
+      "runtime_seconds": 2e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -1167,7 +1167,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the singularity verdict does not depend on the scalar type",
-      "runtime_seconds": 1e-07,
+      "runtime_seconds": 0,
       "skipped": false,
       "tolerance": 0
     },
@@ -1201,7 +1201,7 @@
       "passed": true,
       "reference": "the determinant computed in long double agrees with the double result to double precision",
       "relative_error": null,
-      "runtime_seconds": 4e-07,
+      "runtime_seconds": 5e-07,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -1235,7 +1235,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "Rank2Field instantiates with a custom scalar and produces bit-identical results to double",
-      "runtime_seconds": 8.8e-06,
+      "runtime_seconds": 1.37e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -1269,7 +1269,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the specified reference configuration parses, validates and produces no warnings",
-      "runtime_seconds": 8.98e-05,
+      "runtime_seconds": 9.09e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -1288,7 +1288,7 @@
       "passed": true,
       "reference": "every field of the reference configuration parses to its specified value, exactly",
       "relative_error": null,
-      "runtime_seconds": 5e-07,
+      "runtime_seconds": 4e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -1303,7 +1303,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "dump(to_json(from_json(dump(to_json(cfg))))) reproduces the identical byte stream",
-      "runtime_seconds": 0.0001587,
+      "runtime_seconds": 0.0001536,
       "skipped": false,
       "tolerance": 0
     },
@@ -1322,7 +1322,7 @@
       "passed": true,
       "reference": "0.1+0.2, 1/3, a subnormal-scale value and -DBL_MAX all survive write-then-read bit for bit",
       "relative_error": null,
-      "runtime_seconds": 0.0001134,
+      "runtime_seconds": 0.0001141,
       "skipped": false,
       "tolerance": 0
     },
@@ -1337,7 +1337,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a misspelled key produces a warning rather than silently taking the default value",
-      "runtime_seconds": 1.32e-05,
+      "runtime_seconds": 1.33e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -1352,7 +1352,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "unknown metric type, wrong value types, a non-integer grid size, a non-object root and malformed JSON are all rejected",
-      "runtime_seconds": 1.81e-05,
+      "runtime_seconds": 1.83e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -1401,7 +1401,7 @@
       "passed": true,
       "reference": "the parser accepts well-formed JSON and rejects trailing commas, trailing content, unquoted keys and unterminated strings",
       "relative_error": null,
-      "runtime_seconds": 2.03e-05,
+      "runtime_seconds": 1.99e-05,
       "skipped": false,
       "tolerance": 0
     }
@@ -1411,6 +1411,6 @@
   "num_failed": 0,
   "num_passed": 77,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T13:59:55Z",
+  "timestamp_utc": "2026-07-26T14:25:37Z",
   "title": "Grid, contiguous storage, fixed-size tensors and 4x4 matrix algebra"
 }

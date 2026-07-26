@@ -5,7 +5,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "018cf5de355b1ab9785cf9f8bfce3046e4929fd6",
+    "git_commit": "611053f22b136ad570115f0535ab02e677e46fef",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -25,7 +25,7 @@
       "passed": true,
       "reference": "H^{ab} = Z^{abcd}F_{cd} computed directly equals H^{ab} rebuilt from (D,H) obtained by applying eps, mu^-1, zeta and zeta_adjoint to (E,B)",
       "relative_error": null,
-      "runtime_seconds": 0.0002179,
+      "runtime_seconds": 0.0002437,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -44,7 +44,7 @@
       "passed": true,
       "reference": "H^{ab} = Z^{abcd}F_{cd} computed directly equals H^{ab} rebuilt from (D,H) obtained by applying eps, mu^-1, zeta and zeta_adjoint to (E,B)",
       "relative_error": null,
-      "runtime_seconds": 0.0002085,
+      "runtime_seconds": 0.000204,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -63,7 +63,7 @@
       "passed": true,
       "reference": "H^{ab} = Z^{abcd}F_{cd} computed directly equals H^{ab} rebuilt from (D,H) obtained by applying eps, mu^-1, zeta and zeta_adjoint to (E,B)",
       "relative_error": null,
-      "runtime_seconds": 0.0002244,
+      "runtime_seconds": 0.0002029,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -82,7 +82,7 @@
       "passed": true,
       "reference": "H^{ab} = Z^{abcd}F_{cd} computed directly equals H^{ab} rebuilt from (D,H) obtained by applying eps, mu^-1, zeta and zeta_adjoint to (E,B)",
       "relative_error": null,
-      "runtime_seconds": 0.0002246,
+      "runtime_seconds": 0.0002033,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -101,7 +101,7 @@
       "passed": true,
       "reference": "H^{ab} = Z^{abcd}F_{cd} computed directly equals H^{ab} rebuilt from (D,H) obtained by applying eps, mu^-1, zeta and zeta_adjoint to (E,B)",
       "relative_error": null,
-      "runtime_seconds": 0.0002244,
+      "runtime_seconds": 0.0002036,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -120,7 +120,7 @@
       "passed": true,
       "reference": "V_a E^a = V_a B^a = V_a D^a = V_a H^a = 0",
       "relative_error": null,
-      "runtime_seconds": 2e-07,
+      "runtime_seconds": 3e-07,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -177,7 +177,7 @@
       "passed": true,
       "reference": "H^{ab} = -H^{ba}",
       "relative_error": null,
-      "runtime_seconds": 5.8e-06,
+      "runtime_seconds": 5.9e-06,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -196,7 +196,7 @@
       "passed": true,
       "reference": "H[alpha F1 + beta F2] = alpha H[F1] + beta H[F2] through the block path",
       "relative_error": null,
-      "runtime_seconds": 0.0010466,
+      "runtime_seconds": 0.0009214,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -215,7 +215,7 @@
       "passed": true,
       "reference": "in vacuum H^{ab} = F^{ab}, hence D = E and the magnetic excitation equals B",
       "relative_error": null,
-      "runtime_seconds": 8e-06,
+      "runtime_seconds": 5.2e-06,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -230,7 +230,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "every non-vacuum medium responds measurably differently from vacuum, so the reconstruction cases are not trivially satisfied",
-      "runtime_seconds": 3.33e-05,
+      "runtime_seconds": 2.75e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -249,7 +249,7 @@
       "passed": true,
       "reference": "zeta^{ac} = 2 V_a V_c (Z*)^{abcd} equals the closed form (B17) zeta_W^{ac} = (eps - mu^-1)(V.W) eps^{acef} W_e V_f",
       "relative_error": null,
-      "runtime_seconds": 6e-07,
+      "runtime_seconds": 3e-07,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -264,7 +264,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the extracted zeta matches (B17) with the POSITIVE sign, and is far from the negated reference",
-      "runtime_seconds": 1.04e-05,
+      "runtime_seconds": 5.5e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -283,7 +283,7 @@
       "passed": true,
       "reference": "(B17) gives an antisymmetric zeta, so its transpose is its negative",
       "relative_error": null,
-      "runtime_seconds": 2.25e-05,
+      "runtime_seconds": 1.37e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -302,7 +302,7 @@
       "passed": true,
       "reference": "zeta_adjoint^{ac} = 2 V_a V_c (*Z)^{abcd} equals the transpose of the (B17) closed form, i.e. -(B17)",
       "relative_error": null,
-      "runtime_seconds": 2.72e-05,
+      "runtime_seconds": 1.68e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -321,7 +321,7 @@
       "passed": true,
       "reference": "zeta_adjoint = zeta^T for the moving isotropic medium, as required by the pair symmetry Z^{abcd} = Z^{cdab} of equation (13)",
       "relative_error": null,
-      "runtime_seconds": 3.52e-05,
+      "runtime_seconds": 2.22e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -336,7 +336,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "for V = (1,0,0,0), a medium with eps > mu^-1 boosted along +x, and B = +B0 z-hat with E = 0, the induced displacement points along -y",
-      "runtime_seconds": 5.17e-05,
+      "runtime_seconds": 3.68e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -355,7 +355,7 @@
       "passed": true,
       "reference": "D_y = -(eps - mu^-1) gamma^2 beta B0, the exact (B17) value",
       "relative_error": 0,
-      "runtime_seconds": 5.43e-05,
+      "runtime_seconds": 3.89e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -374,7 +374,7 @@
       "passed": true,
       "reference": "at beta = 1e-3 the computed D_y agrees with D = eps E + (eps - mu^-1)(v x B), the first-order form of Minkowski's moving-medium relations D + v x H = eps(E + v x B)",
       "relative_error": null,
-      "runtime_seconds": 9.81e-05,
+      "runtime_seconds": 7.16e-05,
       "skipped": false,
       "tolerance": 1e-05
     },
@@ -393,7 +393,7 @@
       "passed": true,
       "reference": "Z -> (eps, mu^-1, zeta, zeta_adjoint) -> Zhat via (A11) returns the original Z",
       "relative_error": null,
-      "runtime_seconds": 4.02e-05,
+      "runtime_seconds": 2.85e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -412,7 +412,7 @@
       "passed": true,
       "reference": "Z -> (eps, mu^-1, zeta, zeta_adjoint) -> Zhat via (A11) returns the original Z",
       "relative_error": null,
-      "runtime_seconds": 3.9e-05,
+      "runtime_seconds": 2.8e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -431,7 +431,7 @@
       "passed": true,
       "reference": "Z -> (eps, mu^-1, zeta, zeta_adjoint) -> Zhat via (A11) returns the original Z",
       "relative_error": null,
-      "runtime_seconds": 3.93e-05,
+      "runtime_seconds": 2.77e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -450,7 +450,7 @@
       "passed": true,
       "reference": "Z -> (eps, mu^-1, zeta, zeta_adjoint) -> Zhat via (A11) returns the original Z",
       "relative_error": null,
-      "runtime_seconds": 3.87e-05,
+      "runtime_seconds": 3.57e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -469,7 +469,7 @@
       "passed": true,
       "reference": "Z -> (eps, mu^-1, zeta, zeta_adjoint) -> Zhat via (A11) returns the original Z",
       "relative_error": null,
-      "runtime_seconds": 3.84e-05,
+      "runtime_seconds": 3.95e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -488,7 +488,7 @@
       "passed": true,
       "reference": "(A11) returns the original Z for random constitutive tensors carrying only the symmetries (12) and (13)",
       "relative_error": null,
-      "runtime_seconds": 0.0007716,
+      "runtime_seconds": 0.0010926,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -507,7 +507,7 @@
       "passed": true,
       "reference": "direct and block excitation agree for random reciprocal media",
       "relative_error": null,
-      "runtime_seconds": 0.0007816,
+      "runtime_seconds": 0.0011275,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -526,7 +526,7 @@
       "passed": true,
       "reference": "zeta_adjoint = zeta^T for every random reciprocal Z",
       "relative_error": null,
-      "runtime_seconds": 0.0007841,
+      "runtime_seconds": 0.0011306,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -541,7 +541,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the magnetoelectric slot of (A11) is filled by zeta_adjoint and not by zeta: substituting zeta destroys the reconstruction",
-      "runtime_seconds": 0.0007863,
+      "runtime_seconds": 0.0011335,
       "skipped": false,
       "tolerance": 0
     },
@@ -556,7 +556,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "two admissible laboratory observers of the SAME Z see genuinely different eps, mu^-1 and zeta",
-      "runtime_seconds": 5.39e-05,
+      "runtime_seconds": 5.85e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -575,7 +575,7 @@
       "passed": true,
       "reference": "Zhat[V] = Z, Zhat[U] = Z and Zhat[V] = Zhat[U]: the blocks are observer dependent, the tensor they rebuild is not",
       "relative_error": null,
-      "runtime_seconds": 5.8e-05,
+      "runtime_seconds": 6.33e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -590,7 +590,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the coordinate map is invertible and takes g_lab away from Minkowski, so the covariance test is not performed in disguise on eta itself",
-      "runtime_seconds": 0.0011804,
+      "runtime_seconds": 0.0009058,
       "skipped": false,
       "tolerance": 0
     },
@@ -609,7 +609,7 @@
       "passed": true,
       "reference": "H'^{ab} = Z'^{abcd}F'_{cd} equals L^a_c L^b_d H^{cd}",
       "relative_error": null,
-      "runtime_seconds": 0.0012003,
+      "runtime_seconds": 0.0009112,
       "skipped": false,
       "tolerance": 1e-11
     },
@@ -628,7 +628,7 @@
       "passed": true,
       "reference": "the block path, rebuilt entirely in the primed coordinates from the primed observer and the primed g_lab, gives the same H'^{ab}",
       "relative_error": null,
-      "runtime_seconds": 0.001207,
+      "runtime_seconds": 0.0009143,
       "skipped": false,
       "tolerance": 1e-11
     },
@@ -647,7 +647,7 @@
       "passed": true,
       "reference": "(A11) in the primed coordinates returns Z'",
       "relative_error": null,
-      "runtime_seconds": 0.0012175,
+      "runtime_seconds": 0.0009195,
       "skipped": false,
       "tolerance": 1e-11
     },
@@ -662,7 +662,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the same raw four-velocity normalised as a laboratory observer and as an effective-geometry diagnostic gives genuinely different vectors, each unit-timelike in its OWN metric",
-      "runtime_seconds": 4.4e-06,
+      "runtime_seconds": 3.5e-06,
       "skipped": false,
       "tolerance": 0
     }
@@ -672,6 +672,6 @@
   "num_failed": 0,
   "num_passed": 36,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T13:59:54Z",
+  "timestamp_utc": "2026-07-26T14:25:39Z",
   "title": "B1C-S456: full electromagnetic field reconstruction H^{ab} = Z^{abcd}F_{cd}, the magnetoelectric remainder (zeta_adjoint, reciprocity, handedness), and reconstruction of Z from the observer blocks via Schuster & Visser (A11)"
 }
