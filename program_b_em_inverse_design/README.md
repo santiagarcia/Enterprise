@@ -16,7 +16,7 @@ with correct conventions, stated realizability limits, and verification.
 > metamaterial, unit cell, antenna, coil or experimental device.
 >
 > Causality is **global** and structural. Passivity is verified **over the tested
-> band only** \-- the adaptive scan of B4 narrows the unverified region but does
+> band only** -- the adaptive scan of B4 narrows the unverified region but does
 > not close it, and global passivity is not claimed.
 >
 > Forward (Plebanski-Tamm) map implemented and verified; inverse implemented for
