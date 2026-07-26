@@ -271,6 +271,10 @@ if(EXISTS "${PROGRAM_B_ROOT}/effective_metric/src/metric_medium_map.cpp")
   target_include_directories(program_b_em PUBLIC
     $<BUILD_INTERFACE:${PROGRAM_B_ROOT}/constitutive/include>
     $<BUILD_INTERFACE:${PROGRAM_B_ROOT}/effective_metric/include>
+    $<BUILD_INTERFACE:${PROGRAM_B_ROOT}/inverse_design/include>
+  )
+  target_sources(program_b_em PRIVATE
+    "${PROGRAM_B_ROOT}/inverse_design/src/design_strings.cpp"
   )
   target_link_libraries(program_b_em PUBLIC warp_hypad_core)
   if(MSVC)
@@ -334,6 +338,24 @@ if(EXISTS "${PROGRAM_B_ROOT}/effective_metric/src/metric_medium_map.cpp")
     target_compile_options(b1c_verify PRIVATE -Wall -Wextra -Wpedantic -Werror)
   endif()
 
+  # --- Program B, Milestone B2: abstract constitutive inverse design ---------
+  #
+  # Optimizes over the A11 reconstruction verified at B1C-S456. It carries no new
+  # physics conventions, so it depends on the B1C gates through CTest rather than
+  # repeating their cases.
+  add_executable(b2_verify
+    "${PROGRAM_B_ROOT}/inverse_design/verification/b2_verify.cpp"
+    "${PROGRAM_B_ROOT}/inverse_design/verification/b2_checks.cpp"
+  )
+  target_include_directories(b2_verify PRIVATE
+    "${PROGRAM_B_ROOT}/inverse_design/verification")
+  target_link_libraries(b2_verify PRIVATE program_b_em)
+  if(MSVC)
+    target_compile_options(b2_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+  else()
+    target_compile_options(b2_verify PRIVATE -Wall -Wextra -Wpedantic -Werror)
+  endif()
+
   set(WARP_HYPAD_B1_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_b1")
   set(WARP_HYPAD_B1C_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_b1c")
   add_test(NAME programb1.gate COMMAND b1_verify --out "${WARP_HYPAD_B1_RESULTS}")
@@ -350,6 +372,13 @@ if(EXISTS "${PROGRAM_B_ROOT}/effective_metric/src/metric_medium_map.cpp")
   # being silently dropped.
   set_tests_properties(programb1c.gate PROPERTIES
     DEPENDS "programb1.gate;programb1c_s23.gate;programb1c_s456.gate")
+
+  set(WARP_HYPAD_B2_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_b2")
+  add_test(NAME programb2.gate COMMAND b2_verify --out "${WARP_HYPAD_B2_RESULTS}")
+  # One assignment, listing every dependency: DEPENDS is a property, so
+  # successive set_tests_properties calls replace it rather than appending.
+  set_tests_properties(programb2.gate PROPERTIES
+    DEPENDS "programb1c_s23.gate;programb1c_s456.gate;programb1c.gate")
   message(STATUS "  program B: B1 enabled")
 else()
   message(STATUS "  program B: not present, skipped")
@@ -467,6 +496,8 @@ if(WARP_HYPAD_WITH_OTILIB)
     target_compile_definitions(b1_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
     target_link_libraries(b1c_verify PRIVATE warp_hypad_otilib)
     target_compile_definitions(b1c_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
+    target_link_libraries(b2_verify PRIVATE warp_hypad_otilib)
+    target_compile_definitions(b2_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   endif()
 
   message(STATUS "  otilib:   ENABLED (GPL-3.0 -- see docs/otilib_discovery_report.md)")
@@ -493,4 +524,10 @@ if(TARGET b1_verify AND Python3_FOUND)
                    "${PROGRAM_B_ROOT}/python/plot_b1.py"
                    "${WARP_HYPAD_B1_RESULTS}")
   set_tests_properties(programb1.figures PROPERTIES DEPENDS "programb1.gate")
+
+  add_test(NAME programb2.figures
+           COMMAND ${Python3_EXECUTABLE}
+                   "${PROGRAM_B_ROOT}/python/plot_b2.py"
+                   "${WARP_HYPAD_B2_RESULTS}")
+  set_tests_properties(programb2.figures PROPERTIES DEPENDS "programb2.gate")
 endif()
