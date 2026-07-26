@@ -5,8 +5,8 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "1e21491be38531830c46bbd923aac3f04860b087",
-    "git_dirty": true,
+    "git_commit": "9cb6db3c7ee525ba593c94874cb34180e63456ea",
+    "git_dirty": false,
     "platform": "Windows-AMD64"
   },
   "cases": [
@@ -21,7 +21,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "every committed fixture is tagged SYNTHETIC or LITERATURE_FROM_MEMORY, and none claims to be retrieved catalogue data",
-      "runtime_seconds": 1.7e-06,
+      "runtime_seconds": 1.8e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -40,7 +40,7 @@
       "passed": true,
       "reference": "every boundary conversion round-trips, and 1 arcsec/yr at 1 pc is 4.740470446 km/s",
       "relative_error": null,
-      "runtime_seconds": 2.7e-06,
+      "runtime_seconds": 2.3e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -59,7 +59,7 @@
       "passed": true,
       "reference": "1 pc corresponds to 3.261563777 light-years, so c = 0.3066 pc/yr",
       "relative_error": 5.133551819285777e-11,
-      "runtime_seconds": 2.24e-05,
+      "runtime_seconds": 1.69e-05,
       "skipped": false,
       "tolerance": 1e-06
     },
@@ -78,7 +78,7 @@
       "passed": true,
       "reference": "the ICRS unit vector is correct at the cardinal directions, and the tangent basis (p_hat, q_hat) is orthonormal and orthogonal to r_hat",
       "relative_error": null,
-      "runtime_seconds": 2.8e-06,
+      "runtime_seconds": 2.3e-06,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -93,7 +93,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a parallax of 100 mas with signal-to-noise 200 yields exactly 10 pc by inverse parallax, with the estimator recorded",
-      "runtime_seconds": 1.3e-06,
+      "runtime_seconds": 9e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -108,7 +108,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a source with parallax signal-to-noise 2 and one with a NEGATIVE parallax both get estimator None, with distinct reasons, and are RETAINED with a flag rather than deleted",
-      "runtime_seconds": 1.24e-05,
+      "runtime_seconds": 8e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -127,7 +127,7 @@
       "passed": true,
       "reference": "the catalogued pm_ra is mu_alpha* = mu_alpha cos(dec): at dec = 60 the coordinate rate d(ra)/dt comes out at mu_alpha*/cos(dec), twice the physical rate",
       "relative_error": null,
-      "runtime_seconds": 1.12e-05,
+      "runtime_seconds": 8.3e-06,
       "skipped": false,
       "tolerance": 0.001
     },
@@ -142,7 +142,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a star with zero proper motion and positive radial velocity moves only along the line of sight",
-      "runtime_seconds": 4.2e-06,
+      "runtime_seconds": 3.2e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -161,7 +161,7 @@
       "passed": true,
       "reference": "observables -> barycentric Cartesian -> observables is the identity, for every fixture with a defensible distance",
       "relative_error": null,
-      "runtime_seconds": 1.38e-05,
+      "runtime_seconds": 9.1e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -180,7 +180,7 @@
       "passed": true,
       "reference": "a source with zero proper motion and zero radial velocity has exactly zero displacement after 10 000 yr",
       "relative_error": null,
-      "runtime_seconds": 3.4e-06,
+      "runtime_seconds": 2.1e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -195,7 +195,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a 5000 mas/yr source at 4 pc moves a measurable distance in 1000 yr, and the rectilinear validity warning fires past 1e5 yr while staying silent within it",
-      "runtime_seconds": 1.08e-05,
+      "runtime_seconds": 7e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -210,7 +210,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the light-time fixed point converges for every nearby source, and for a stationary star at 10 pc gives 32.6 yr",
-      "runtime_seconds": 1.92e-05,
+      "runtime_seconds": 1.1e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -225,7 +225,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "Sigma_y = J Sigma_x J^T reproduces the expected radial uncertainty for a source on the +x axis, sigma_x = d * sigma_parallax/parallax",
-      "runtime_seconds": 1.28e-05,
+      "runtime_seconds": 8.1e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -240,7 +240,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the propagated position uncertainty grows with the propagation interval, as Sigma_xx + dt(Sigma_xv + Sigma_vx) + dt^2 Sigma_vv",
-      "runtime_seconds": 2.33e-05,
+      "runtime_seconds": 1.4e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -255,7 +255,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a missing radial velocity and a missing covariance are expressed by CLEAR VALIDITY BITS and quality flags, and the covariance path refuses to report an uncertainty it does not have",
-      "runtime_seconds": 1.8e-06,
+      "runtime_seconds": 1.2e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -270,7 +270,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the snapshot writes and reads back with every identifier, validity bitmask, quality bitmask, estimator and float preserved",
-      "runtime_seconds": 0.0194824,
+      "runtime_seconds": 0.0215007,
       "skipped": false,
       "tolerance": 0
     },
@@ -285,7 +285,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "serialising twice gives byte-identical output and the checksum in the file matches a recomputation",
-      "runtime_seconds": 0.0195973,
+      "runtime_seconds": 0.021523,
       "skipped": false,
       "tolerance": 0
     },
@@ -300,7 +300,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the ValidField and QualityFlag bit values are fixed, because the snapshot stores them as integers that external tools must decode",
-      "runtime_seconds": 0.0207082,
+      "runtime_seconds": 0.0230384,
       "skipped": false,
       "tolerance": 0
     },
@@ -315,7 +315,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "fnv1a() reproduces the published FNV-1a 64-bit test vectors, so an independent implementation can read what this one writes",
-      "runtime_seconds": 0.0207114,
+      "runtime_seconds": 0.023043,
       "skipped": false,
       "tolerance": 0
     },
@@ -330,7 +330,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "every record still carries its source catalogue, release, table, timestamp, licence and original identifier after a write and read",
-      "runtime_seconds": 0.0207226,
+      "runtime_seconds": 0.0230553,
       "skipped": false,
       "tolerance": 0
     },
@@ -345,7 +345,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the snapshot records the pinned catalogue, table and reference epoch, so a silent migration to a later release fails here",
-      "runtime_seconds": 0.020728,
+      "runtime_seconds": 0.023062,
       "skipped": false,
       "tolerance": 0
     },
@@ -360,7 +360,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the 5 pc and 50 pc volume queries, the nearest-N query and the exoplanet-host query all run against the LOADED snapshot with no network access",
-      "runtime_seconds": 0.0207432,
+      "runtime_seconds": 0.0230814,
       "skipped": false,
       "tolerance": 0
     },
@@ -375,7 +375,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a source is findable by an alias as well as its primary name, and a planet record is associated with its host",
-      "runtime_seconds": 0.0207473,
+      "runtime_seconds": 0.0230873,
       "skipped": false,
       "tolerance": 0
     },
@@ -390,7 +390,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the same source_id offered twice yields one record, and the collapse is counted rather than silent",
-      "runtime_seconds": 0.0006803,
+      "runtime_seconds": 0.0007047,
       "skipped": false,
       "tolerance": 0
     },
@@ -405,7 +405,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "rows in equals accepted plus rejected plus duplicates collapsed, and every rejection carries a reason",
-      "runtime_seconds": 0.0006959,
+      "runtime_seconds": 0.0007141,
       "skipped": false,
       "tolerance": 0
     },
@@ -420,7 +420,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "all five coordinate frames declare frame, origin, orientation, epoch, units and velocity convention",
-      "runtime_seconds": 2.7e-06,
+      "runtime_seconds": 1.9e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -435,7 +435,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the unit types are not implicitly constructible from double and do not implicitly interconvert",
-      "runtime_seconds": 7.8e-06,
+      "runtime_seconds": 6.3e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -454,7 +454,7 @@
       "passed": true,
       "reference": "inverse parallax reproduces the recalled approximate distances of three well-known nearby stars",
       "relative_error": null,
-      "runtime_seconds": 1.2e-06,
+      "runtime_seconds": 9e-07,
       "skipped": false,
       "tolerance": 0.01
     }
@@ -464,6 +464,6 @@
   "num_failed": 0,
   "num_passed": 28,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T23:09:06Z",
+  "timestamp_utc": "2026-07-26T23:10:42Z",
   "title": "C0-CATALOGUE-UNIVERSE: astronomical data schema, catalogue ingestion, typed coordinate frames, epoch propagation, light time, uncertainty and a deterministic offline snapshot"
 }
