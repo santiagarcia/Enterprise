@@ -4,7 +4,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "1208b5c04d3bd81a382921faef75f1eb71a3365e",
+    "git_commit": "976ef4960578d7eece4aa22a861cbeb1c63c9144",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -23,5 +23,5 @@
   "reciprocity": "zeta_adjoint = zeta^T, unconjugated transpose",
   "scope": "A passing result is a passive, causal parametric constitutive model that approximates the target response over a stated frequency band. It is NOT a fabricated medium or an experimental device. No unit-cell geometry, no hardware control model, no Maxwell propagation.",
   "time_derivative": "d/dt -> -i*omega",
-  "timestamp_utc": "2026-07-26T16:50:23Z"
+  "timestamp_utc": "2026-07-26T18:04:38Z"
 }

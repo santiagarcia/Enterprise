@@ -5,7 +5,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "1208b5c04d3bd81a382921faef75f1eb71a3365e",
+    "git_commit": "976ef4960578d7eece4aa22a861cbeb1c63c9144",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -25,7 +25,7 @@
       "passed": true,
       "reference": "eta_{mu nu} maps to eps = mu = I and zero magnetoelectric coupling",
       "relative_error": null,
-      "runtime_seconds": 3.56e-05,
+      "runtime_seconds": 3.32e-05,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -44,7 +44,7 @@
       "passed": true,
       "reference": "g = diag(-1,a,a,a) gives eps = mu = sqrt(a) I",
       "relative_error": null,
-      "runtime_seconds": 5e-06,
+      "runtime_seconds": 4.4e-06,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -63,7 +63,7 @@
       "passed": true,
       "reference": "the static isotropic Gordon metric diag(-1/n^2,1,1,1) has null coordinate speed 1/n",
       "relative_error": null,
-      "runtime_seconds": 6e-07,
+      "runtime_seconds": 4e-07,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -78,7 +78,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a non-magnetic dielectric (eps = 4I, mu = I) is rejected as metric-representable, despite having a well-defined Gordon optical metric",
-      "runtime_seconds": 4.3e-06,
+      "runtime_seconds": 4.4e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -116,7 +116,7 @@
       "passed": true,
       "reference": "the medium is unchanged under g -> Omega^2 g, for Omega^2 = 0.25, 0.5, 2, 7",
       "relative_error": null,
-      "runtime_seconds": 3.1e-06,
+      "runtime_seconds": 2.8e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -135,7 +135,7 @@
       "passed": true,
       "reference": "g -> (eps,mu) -> ghat recovers the CONFORMAL CLASS of g",
       "relative_error": null,
-      "runtime_seconds": 6.8e-06,
+      "runtime_seconds": 7.3e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -150,7 +150,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "at least one round trip returns a representative with Omega^2 != 1, confirming the conformal test is not a disguised equality test",
-      "runtime_seconds": 1.05e-05,
+      "runtime_seconds": 2.36e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -169,7 +169,7 @@
       "passed": true,
       "reference": "the reconstructed metric has the same null coordinate speeds along each axis as the original",
       "relative_error": null,
-      "runtime_seconds": 2.9e-06,
+      "runtime_seconds": 3.1e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -184,7 +184,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "constitutive tensors that no single pseudo-Riemannian metric can produce -- birefringent, axion/Tellegen, and skewon-like -- are each REPORTED rather than fitted",
-      "runtime_seconds": 1.06e-05,
+      "runtime_seconds": 1.04e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -199,7 +199,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "an impedance-matched symmetric medium with no magnetoelectric coupling is accepted and reconstructed",
-      "runtime_seconds": 7e-07,
+      "runtime_seconds": 6e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -214,7 +214,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "for v_s = 0.2 the Alcubierre metric has an equivalent medium at every sampled point",
-      "runtime_seconds": 1.34e-05,
+      "runtime_seconds": 1.3e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -229,7 +229,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the warp medium has a nonzero magnetoelectric vector w, i.e. it is bianisotropic, not a simple dielectric",
-      "runtime_seconds": 1.7e-05,
+      "runtime_seconds": 1.63e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -244,7 +244,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "reconstructing a metric from a magnetoelectric medium is reported as unsupported in B1 rather than approximated",
-      "runtime_seconds": 2.06e-05,
+      "runtime_seconds": 1.99e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -259,7 +259,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "for v_s = 2 there are points where g_00 >= 0 and NO equivalent medium exists, and the map reports this instead of returning a value",
-      "runtime_seconds": 7.61e-05,
+      "runtime_seconds": 7.46e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -297,7 +297,7 @@
       "passed": true,
       "reference": "d eps_yy / d(v, R, sigma) through the Plebanski map matches centred finite differences",
       "relative_error": null,
-      "runtime_seconds": 5.09e-05,
+      "runtime_seconds": 4.76e-05,
       "skipped": false,
       "tolerance": 1e-06
     },
@@ -316,7 +316,7 @@
       "passed": true,
       "reference": "for eps = mu = n^2 I the reconstruction gives h = n^4 I and dh/dn = 4n^3, both matched by HyPAD",
       "relative_error": null,
-      "runtime_seconds": 4.8e-06,
+      "runtime_seconds": 4.9e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -335,7 +335,7 @@
       "passed": true,
       "reference": "d eps / d Omega == 0: the differential form of conformal invariance of the forward map",
       "relative_error": null,
-      "runtime_seconds": 4.5e-06,
+      "runtime_seconds": 4.2e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -354,7 +354,7 @@
       "passed": true,
       "reference": "the null coordinate speed 1/n^2 of the reconstructed medium, and its derivative -2/n^3, both match HyPAD",
       "relative_error": null,
-      "runtime_seconds": 4.6e-06,
+      "runtime_seconds": 4.7e-06,
       "skipped": false,
       "tolerance": 1e-12
     }
@@ -364,6 +364,6 @@
   "num_failed": 0,
   "num_passed": 20,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T16:48:56Z",
+  "timestamp_utc": "2026-07-26T18:03:11Z",
   "title": "Metric to electromagnetic constitutive response: Plebanski-Tamm forward map, conformal-class inverse, and non-metric detection"
 }

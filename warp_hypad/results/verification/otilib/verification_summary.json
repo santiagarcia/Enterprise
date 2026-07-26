@@ -5,7 +5,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "1208b5c04d3bd81a382921faef75f1eb71a3365e",
+    "git_commit": "976ef4960578d7eece4aa22a861cbeb1c63c9144",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -25,7 +25,7 @@
       "passed": true,
       "reference": "first and second derivatives against the closed form",
       "relative_error": null,
-      "runtime_seconds": 0.000186,
+      "runtime_seconds": 9.32e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -44,7 +44,7 @@
       "passed": true,
       "reference": "first and second derivatives against the closed form",
       "relative_error": null,
-      "runtime_seconds": 1.14e-05,
+      "runtime_seconds": 6.8e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -63,7 +63,7 @@
       "passed": true,
       "reference": "first and second derivatives against the closed form",
       "relative_error": null,
-      "runtime_seconds": 9.9e-06,
+      "runtime_seconds": 5.7e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -82,7 +82,7 @@
       "passed": true,
       "reference": "first and second derivatives against the closed form",
       "relative_error": null,
-      "runtime_seconds": 6.3e-06,
+      "runtime_seconds": 3.9e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -101,7 +101,7 @@
       "passed": true,
       "reference": "first and second derivatives against the closed form",
       "relative_error": null,
-      "runtime_seconds": 6.8e-06,
+      "runtime_seconds": 3.9e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -120,7 +120,7 @@
       "passed": true,
       "reference": "first and second derivatives against the closed form",
       "relative_error": null,
-      "runtime_seconds": 1.13e-05,
+      "runtime_seconds": 7.5e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -139,7 +139,7 @@
       "passed": true,
       "reference": "first and second derivatives against the closed form",
       "relative_error": null,
-      "runtime_seconds": 1.01e-05,
+      "runtime_seconds": 6e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -158,7 +158,7 @@
       "passed": true,
       "reference": "first and second derivatives against the closed form",
       "relative_error": null,
-      "runtime_seconds": 5.6e-06,
+      "runtime_seconds": 2.8e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -177,7 +177,7 @@
       "passed": true,
       "reference": "first and second derivatives against the closed form",
       "relative_error": null,
-      "runtime_seconds": 9.3e-06,
+      "runtime_seconds": 5.5e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -196,7 +196,7 @@
       "passed": true,
       "reference": "d(a/b)/da == 1/b and d2(a/b)/da2 == 0",
       "relative_error": null,
-      "runtime_seconds": 3.4e-06,
+      "runtime_seconds": 2.3e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -215,7 +215,7 @@
       "passed": true,
       "reference": "f(a,b,c) = a^2 sin(b) + exp(ac), real part",
       "relative_error": 0,
-      "runtime_seconds": 3.8e-06,
+      "runtime_seconds": 2.6e-06,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -234,7 +234,7 @@
       "passed": true,
       "reference": "all three first derivatives of a^2 sin(b) + exp(ac)",
       "relative_error": null,
-      "runtime_seconds": 1.5e-06,
+      "runtime_seconds": 9e-07,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -253,7 +253,7 @@
       "passed": true,
       "reference": "all six independent second derivatives of a^2 sin(b) + exp(ac)",
       "relative_error": null,
-      "runtime_seconds": 6.6e-06,
+      "runtime_seconds": 2.2e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -272,7 +272,7 @@
       "passed": true,
       "reference": "H(i,j) == H(j,i)",
       "relative_error": null,
-      "runtime_seconds": 5e-07,
+      "runtime_seconds": 3e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -291,7 +291,7 @@
       "passed": true,
       "reference": "seeding direction k leaves every other derivative channel exactly 0",
       "relative_error": null,
-      "runtime_seconds": 1.6e-06,
+      "runtime_seconds": 1.1e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -310,7 +310,7 @@
       "passed": true,
       "reference": "3 directions seeded at once give the same derivatives as 3 single-seed runs",
       "relative_error": null,
-      "runtime_seconds": 4.4e-06,
+      "runtime_seconds": 2.6e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -329,7 +329,7 @@
       "passed": true,
       "reference": "with all seeds zero the OTI real part equals the double result",
       "relative_error": null,
-      "runtime_seconds": 7e-07,
+      "runtime_seconds": 4e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -344,7 +344,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "OTIlib *_to functions produce different results when the output aliases an input, confirming the wrapper's no-alias rule is needed",
-      "runtime_seconds": 4e-07,
+      "runtime_seconds": 3e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -363,7 +363,7 @@
       "passed": true,
       "reference": "Mat4/inverse/identity_residual instantiate and run with OTIScalar",
       "relative_error": null,
-      "runtime_seconds": 2.15e-05,
+      "runtime_seconds": 1.28e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -382,7 +382,7 @@
       "passed": true,
       "reference": "d(A^-1)/dp == -A^-1 (dA/dp) A^-1 for all three parameters",
       "relative_error": null,
-      "runtime_seconds": 1.36e-05,
+      "runtime_seconds": 8.1e-06,
       "skipped": false,
       "tolerance": 1e-11
     },
@@ -401,7 +401,7 @@
       "passed": true,
       "reference": "the best centered-FD first derivative agrees with OTI",
       "relative_error": null,
-      "runtime_seconds": 5.3e-06,
+      "runtime_seconds": 3.8e-06,
       "skipped": false,
       "tolerance": 1e-09
     },
@@ -420,7 +420,7 @@
       "passed": true,
       "reference": "the best centered-FD second derivative agrees with OTI",
       "relative_error": null,
-      "runtime_seconds": 2.9e-06,
+      "runtime_seconds": 2.2e-06,
       "skipped": false,
       "tolerance": 1e-05
     },
@@ -435,7 +435,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "FD error falls then rises as h shrinks (truncation then roundoff), confirming FD is a genuinely independent method",
-      "runtime_seconds": 4.4e-06,
+      "runtime_seconds": 3.9e-06,
       "skipped": false,
       "tolerance": 0
     }
@@ -445,6 +445,6 @@
   "num_failed": 0,
   "num_passed": 23,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T16:48:55Z",
+  "timestamp_utc": "2026-07-26T18:03:11Z",
   "title": "OTIlib onumm3n2 adapter: 3 imaginary directions, truncation order 2"
 }

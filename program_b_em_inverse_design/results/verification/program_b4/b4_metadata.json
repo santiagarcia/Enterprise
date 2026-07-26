@@ -1,0 +1,25 @@
+{
+  "ampere": "curl H = -i*omega*D + J",
+  "build": {
+    "build_type": "RelWithDebInfo",
+    "compiler_id": "MSVC",
+    "compiler_version": "19.44.35223.0",
+    "cxx_standard": "C++17",
+    "git_commit": "976ef4960578d7eece4aa22a861cbeb1c63c9144",
+    "git_dirty": false,
+    "platform": "Windows-AMD64"
+  },
+  "faraday": "curl E = +i*omega*B",
+  "fourier_kernel": "exp(-i*omega*t)",
+  "fresnel": "adj(W) = lambda k (x) k with W^{bd} = Z^{abcd}k_a k_c; lambda is the quartic Fresnel scalar, and det W vanishes identically",
+  "gauss_electric": "div D = rho",
+  "gauss_magnetic": "div B = 0",
+  "milestone": "B4",
+  "passivity_scope": "Causality is global and structural. Passivity is verified over the tested band only, now narrowed by the adaptive scan. Global passivity is NOT claimed.",
+  "plane_wave": "grad -> i*k, so k x E = omega*B and k x H = -omega*D",
+  "poynting": "<S> = (1/2) Re[E x conj(H)]",
+  "scope": "A passing result demonstrates that the B3 constitutive model reproduces selected electromagnetic propagation observables of the target effective metric. It still does not establish a fabricated metamaterial, unit cell, antenna, coil, or experimental device.",
+  "sign_provenance": "derived from the project's own e^{-i omega t} kernel; signs from a source using e^{+i omega t} are NOT copied",
+  "solver": "1D frequency-domain layered medium, scattering matrices with Redheffer star product; only decaying exponentials appear, so thick evanescent stacks do not overflow",
+  "timestamp_utc": "2026-07-26T18:04:39Z"
+}

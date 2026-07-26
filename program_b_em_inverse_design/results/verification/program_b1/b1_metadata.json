@@ -4,7 +4,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "1208b5c04d3bd81a382921faef75f1eb71a3365e",
+    "git_commit": "976ef4960578d7eece4aa22a861cbeb1c63c9144",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -13,7 +13,7 @@
   "inverse_map": "closed form h = det(eps) eps^-1 in the g_00 = -1 gauge, valid for w = 0 only",
   "metric_signature": "-+++",
   "milestone": "B1",
-  "timestamp_utc": "2026-07-26T16:48:56Z",
+  "timestamp_utc": "2026-07-26T18:03:11Z",
   "units": "Heaviside-Lorentz, c = 1; vacuum is eps = mu = I",
   "validity_condition": "g_00 < 0 required; fails where v_s f > 1"
 }
