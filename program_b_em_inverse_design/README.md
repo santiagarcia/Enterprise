@@ -7,7 +7,7 @@ Establishing the correspondence
 with correct conventions, stated realizability limits, and verification.
 
 > **Status: B4 Maxwell propagation complete. B1 20/20, B1C-S23 42/42,
-> B1C-S456 36/36, aggregate B1C 53/53, B2 33/33, B3 38/38, B4 23/23 -- 0 failures
+> B1C-S456 36/36, aggregate B1C 53/53, B2 33/33, B3 38/38, B4 23/23, B4C 18/18 -- 0 failures
 > across the whole repository, with the OTIlib backend both enabled and disabled
 > (26/26 and 25/25 CTest, HyPAD-only skips).**
 >
@@ -36,6 +36,8 @@ with correct conventions, stated realizability limits, and verification.
 ```
 constitutive/       Mat3, ConstitutiveResponse, metricity classification
 inverse_design/     maxwell           Maxwell signs, plane-wave op, Fresnel
+                    polynomial_roots  Durand-Kerner: repeated + complex roots
+                    constitutive_decomposition  principal/skewon/axion
                     layered           1D scattering-matrix layered solver
                     adaptive_scan     adaptive passivity / resonance search
                     complex_scalar    paired-real Complex<Scalar>, AD-safe
@@ -64,6 +66,7 @@ verification/       b1_verify        B1 gate           (20 cases)
                     b2_verify        B2-ABSTRACT-INVERSE (33 cases)
                     b3_verify        B3-PHYSICAL-ADMISSIBILITY (38 cases)
                     b4_verify        B4-MAXWELL-PROPAGATION (23 cases)
+                    b4c_verify       B4C-PROPAGATION-CORRECTION (18 cases)
 python/             figures, regenerated from saved CSV alone
 docs/               theory review, conventions, claims register
 examples/           (empty; the gates exercise everything)
@@ -132,3 +135,4 @@ anywhere near realizable — remains open and is not claimed here.
 | [docs/b2_abstract_inverse_design.md](docs/b2_abstract_inverse_design.md) | B2 conventions, design space, objectives, constraints, test plan and measured results |
 | [docs/b3_physical_admissibility.md](docs/b3_physical_admissibility.md) | B3 Fourier convention, dispersive models, passivity, causality, hard feasibility and measured results |
 | [docs/b4_maxwell_propagation.md](docs/b4_maxwell_propagation.md) | B4 Maxwell signs, Fresnel polynomial, layered solver, energy balance, adaptive scan |
+| [docs/b4c_propagation_correction.md](docs/b4c_propagation_correction.md) | B4C withdrawn metricity claim, axion invisibility, premetric classification, robust roots, differentiation through the solver |

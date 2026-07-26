@@ -384,6 +384,20 @@ if(EXISTS "${PROGRAM_B_ROOT}/effective_metric/src/metric_medium_map.cpp")
     target_compile_options(b4_verify PRIVATE -Wall -Wextra -Wpedantic -Werror)
   endif()
 
+  # --- Program B, Milestone B4C: propagation correction ---------------------
+  add_executable(b4c_verify
+    "${PROGRAM_B_ROOT}/inverse_design/verification/b4c_verify.cpp"
+    "${PROGRAM_B_ROOT}/inverse_design/verification/b4c_checks.cpp"
+  )
+  target_include_directories(b4c_verify PRIVATE
+    "${PROGRAM_B_ROOT}/inverse_design/verification")
+  target_link_libraries(b4c_verify PRIVATE program_b_em)
+  if(MSVC)
+    target_compile_options(b4c_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+  else()
+    target_compile_options(b4c_verify PRIVATE -Wall -Wextra -Wpedantic -Werror)
+  endif()
+
   set(WARP_HYPAD_B1_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_b1")
   set(WARP_HYPAD_B1C_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_b1c")
   add_test(NAME programb1.gate COMMAND b1_verify --out "${WARP_HYPAD_B1_RESULTS}")
@@ -417,6 +431,10 @@ if(EXISTS "${PROGRAM_B_ROOT}/effective_metric/src/metric_medium_map.cpp")
   add_test(NAME programb4.gate COMMAND b4_verify --out "${WARP_HYPAD_B4_RESULTS}")
   set_tests_properties(programb4.gate PROPERTIES
     DEPENDS "programb2.gate;programb3.gate")
+
+  set(WARP_HYPAD_B4C_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_b4c")
+  add_test(NAME programb4c.gate COMMAND b4c_verify --out "${WARP_HYPAD_B4C_RESULTS}")
+  set_tests_properties(programb4c.gate PROPERTIES DEPENDS "programb4.gate")
   message(STATUS "  program B: B1 enabled")
 else()
   message(STATUS "  program B: not present, skipped")
@@ -544,6 +562,8 @@ if(WARP_HYPAD_WITH_OTILIB)
     target_compile_definitions(b3_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
     target_link_libraries(b4_verify PRIVATE warp_hypad_otilib)
     target_compile_definitions(b4_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
+    target_link_libraries(b4c_verify PRIVATE warp_hypad_otilib)
+    target_compile_definitions(b4c_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   endif()
 
   message(STATUS "  otilib:   ENABLED (GPL-3.0 -- see docs/otilib_discovery_report.md)")

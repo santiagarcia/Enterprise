@@ -82,18 +82,43 @@ adjugate, which must then be rank one:
 with `lambda` a homogeneous **quartic** in `k`: the Tamm–Rubilar scalar.
 `lambda(k) = 0` is the propagation condition.
 
+**The root finder was replaced at B4C.** B4 located branches by bracketing sign
+changes, which is blind to roots of **even multiplicity** — precisely the
+metric-induced case. The doubled root was never actually recovered; the
+factorization test passed only because it compared `lambda` against a separately
+computed cone. B4C uses Durand–Kerner with Newton polish, clustering for
+multiplicity, and a per-root residual and conditioning warning, and it recovers
+the metric double root directly at separation **0.0**.
+
 | test | result |
 |---|---|
 | vacuum factorizes as `(eta^{ab}k_a k_b)²`, one constant for all `k` | **2.63e-16** |
 | conformal invariance of the cone, `Omega² = 2.7` | 1.21e-15 |
 | metric medium branch split (must vanish) | **0.0** |
+| axion term: change in Fresnel coefficients | **0.0** (B4C) |
+| axion term: change in Z, and in the zeta block | 3.7e-1, 7.4e-1 (B4C) |
 | generic anisotropic branch split (must not) | **2.43e-1** |
 
-**Not every reciprocal medium is metric-induced**, and the gate asserts it in
-both directions. `eps = diag(2, 3.5, 5)` is reciprocal, passive and perfectly
-respectable, and its quartic does **not** factorize into a doubled quadric: its
-two branches split by 24%. Metricity ⟺ no birefringence, and that is the
-consistency condition B1C deferred.
+**Not every reciprocal medium is metric-induced.** `eps = diag(2, 3.5, 5)` is
+reciprocal, passive and perfectly respectable, and its quartic does **not**
+factorize into a doubled quadric: its two branches split by 24%.
+
+**CORRECTED at B4C.** An earlier draft of this section claimed *metricity ⟺ no
+birefringence*. That is withdrawn. What the tests establish is one direction
+only:
+
+> Metric-induced constitutive tensors are non-birefringent. Generic reciprocal
+> constitutive tensors need not be. The converse requires additional assumptions
+> and is subject to conformal/dilaton freedom and constitutive pieces that do not
+> affect the Fresnel polynomial.
+
+**The Fresnel polynomial does not uniquely reconstruct `Z^{abcd}`.** Two
+independent reasons, both demonstrated at B4C: an axion term `alpha eps^{abcd}`
+changes `Z` and changes the `zeta` block by exactly `2 alpha h` while leaving the
+Fresnel coefficients **bit-identical**, because `W^{bd} = Z^{abcd}k_a k_c`
+annihilates it outright; and the cone is conformally invariant, so `g_eff` is
+fixed only up to a factor. See
+[b4c_propagation_correction.md](b4c_propagation_correction.md).
 
 ---
 

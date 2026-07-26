@@ -451,7 +451,7 @@ void run_b4_checks(VerificationReport& report, const std::string& out_dir,
 
         // In a magnetoelectric medium the forward and backward phase velocities
         // differ, so wavevector and energy flow are NOT symmetric under k -> -k.
-        const LayerMode m = layer_modes(C(2.5, 0.0), C(1.0 / 1.2, 0.0), C(0.35, 0.0));
+        const LayerMode<double> m = layer_modes(C(2.5, 0.0), C(1.0 / 1.2, 0.0), C(0.35, 0.0));
         const double kf = std::fabs(m.kappa_forward.re);
         const double kb = std::fabs(m.kappa_backward.re);
         report.check_predicate(
@@ -475,8 +475,8 @@ void run_b4_checks(VerificationReport& report, const std::string& out_dir,
         Stopwatch sw;
         // Lossless slab: R + T = 1 exactly, and the absorption computed by
         // integrating the local dissipated power is zero.
-        std::vector<Layer> stack;
-        Layer L;
+        std::vector<Layer<double>> stack;
+        Layer<double> L;
         L.epsilon = C(4.0, 0.0);
         L.mu_inverse = C(1.0, 0.0);
         L.zeta = C(0.0, 0.0);
@@ -485,7 +485,7 @@ void run_b4_checks(VerificationReport& report, const std::string& out_dir,
 
         double worst = 0.0, worst_abs = 0.0;
         for (double w : {0.7, 1.3, 2.9}) {
-            const StackResult r = solve_stack(stack, w);
+            const StackResult<double> r = solve_stack(stack, w);
             worst = std::fmax(worst, std::fabs(r.reflection + r.transmission - 1.0));
             worst_abs = std::fmax(worst_abs, std::fabs(r.absorption_from_dissipation));
         }
@@ -507,8 +507,8 @@ void run_b4_checks(VerificationReport& report, const std::string& out_dir,
     {
         Stopwatch sw;
         // Lossy slab: R + T + A = 1, with A from the dissipation integral.
-        std::vector<Layer> stack;
-        Layer L;
+        std::vector<Layer<double>> stack;
+        Layer<double> L;
         L.epsilon = C(4.0, 0.35);
         L.mu_inverse = C(1.0, 0.0);
         L.zeta = C(0.0, 0.0);
@@ -516,9 +516,9 @@ void run_b4_checks(VerificationReport& report, const std::string& out_dir,
         stack.push_back(L);
 
         double worst = 0.0;
-        StackResult last;
+        StackResult<double> last;
         for (double w : {0.7, 1.3, 2.9}) {
-            const StackResult r = solve_stack(stack, w, 6000);
+            const StackResult<double> r = solve_stack(stack, w, 6000);
             worst = std::fmax(worst, r.energy_balance_residual);
             last = r;
         }
@@ -552,14 +552,14 @@ void run_b4_checks(VerificationReport& report, const std::string& out_dir,
         Stopwatch sw;
         // An ACTIVE slab must show negative absorption. The solver has to be
         // able to report gain, or its verdict on passive media is worthless.
-        std::vector<Layer> stack;
-        Layer L;
+        std::vector<Layer<double>> stack;
+        Layer<double> L;
         L.epsilon = C(4.0, -0.35);
         L.mu_inverse = C(1.0, 0.0);
         L.zeta = C(0.0, 0.0);
         L.thickness = 1.7;
         stack.push_back(L);
-        const StackResult r = solve_stack(stack, 1.3);
+        const StackResult<double> r = solve_stack(stack, 1.3);
 
         report.check_predicate(
             "b4.layered.active_slab_is_detected",
@@ -580,14 +580,14 @@ void run_b4_checks(VerificationReport& report, const std::string& out_dir,
         Stopwatch sw;
         // Thick evanescent stack: the scattering formulation must not overflow
         // where a transfer matrix would.
-        std::vector<Layer> stack;
-        Layer L;
+        std::vector<Layer<double>> stack;
+        Layer<double> L;
         L.epsilon = C(-2.0, 0.01);   // below plasma frequency: evanescent
         L.mu_inverse = C(1.0, 0.0);
         L.zeta = C(0.0, 0.0);
         L.thickness = 40.0;          // many decay lengths
         stack.push_back(L);
-        const StackResult r = solve_stack(stack, 1.0);
+        const StackResult<double> r = solve_stack(stack, 1.0);
 
         report.check_predicate(
             "b4.layered.thick_evanescent_stack_is_stable",
@@ -616,7 +616,7 @@ void run_b4_checks(VerificationReport& report, const std::string& out_dir,
         const double vs = 0.3;
         const double omega = 1.0;
 
-        std::vector<Layer> exact, restricted;
+        std::vector<Layer<double>> exact, restricted;
         std::ofstream prof(out_dir + "/b4_profile.csv", std::ios::binary);
         if (prof) prof << "x,eps,mu_inverse,zeta\n";
 
@@ -632,7 +632,7 @@ void run_b4_checks(VerificationReport& report, const std::string& out_dir,
             const double mui = d.mu_inverse(2, 2);
             const double zt = d.zeta(2, 3);
 
-            Layer Le, Lr;
+            Layer<double> Le, Lr;
             Le.epsilon = C(eps, 0.0);
             Le.mu_inverse = C(mui, 0.0);
             Le.zeta = C(zt, 0.0);
@@ -644,13 +644,13 @@ void run_b4_checks(VerificationReport& report, const std::string& out_dir,
             if (prof) prof << x << ',' << eps << ',' << mui << ',' << zt << '\n';
         }
 
-        const StackResult re = solve_stack(exact, omega);
-        const StackResult rr = solve_stack(restricted, omega);
+        const StackResult<double> re = solve_stack(exact, omega);
+        const StackResult<double> rr = solve_stack(restricted, omega);
 
         metrics.phase_mismatch = std::fabs(re.phase - rr.phase);
         const double h = 1e-4;
-        const StackResult re2 = solve_stack(exact, omega + h);
-        const StackResult rr2 = solve_stack(restricted, omega + h);
+        const StackResult<double> re2 = solve_stack(exact, omega + h);
+        const StackResult<double> rr2 = solve_stack(restricted, omega + h);
         const double tg_e = (re2.phase - re.phase) / h;
         const double tg_r = (rr2.phase - rr.phase) / h;
         metrics.group_delay_mismatch = std::fabs(tg_e - tg_r);
@@ -793,15 +793,15 @@ void run_b4_checks(VerificationReport& report, const std::string& out_dir,
     // =======================================================================
     {
         Stopwatch sw;
-        std::vector<Layer> stack;
-        Layer L;
+        std::vector<Layer<double>> stack;
+        Layer<double> L;
         L.epsilon = C(3.2, 0.12);
         L.mu_inverse = C(0.9, 0.0);
         L.zeta = C(0.2, 0.03);
         L.thickness = 2.3;
         stack.push_back(L);
-        const StackResult a = solve_stack(stack, 1.1);
-        const StackResult b = solve_stack(stack, 1.1);
+        const StackResult<double> a = solve_stack(stack, 1.1);
+        const StackResult<double> b = solve_stack(stack, 1.1);
         const bool identical = a.reflection == b.reflection &&
                                a.transmission == b.transmission &&
                                a.absorption_from_dissipation ==
