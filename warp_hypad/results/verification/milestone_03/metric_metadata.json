@@ -1,0 +1,20 @@
+{
+  "bubble_center_x": "fixed coordinate, not a differentiated parameter",
+  "build": {
+    "build_type": "RelWithDebInfo",
+    "compiler_id": "MSVC",
+    "compiler_version": "19.44.35223.0",
+    "cxx_standard": "C++17",
+    "git_commit": "unknown",
+    "git_dirty": true,
+    "platform": "Windows-AMD64"
+  },
+  "future_path": "metric.evaluate(t, x, y, z, params) already accepts t; TimeTreatment::MovingBubble is the unimplemented branch that will use x_s(t)",
+  "metric": "alcubierre",
+  "milestone": "A3",
+  "parameters_differentiated": "velocity, radius, sigma",
+  "temporal_derivatives": "set to zero, explicitly",
+  "time_treatment": "frozen_time_spatial_slice",
+  "time_treatment_meaning": "The bubble centre is held at a fixed coordinate and d_t g_{mu nu} == 0 by construction. These results are a SPATIAL SLICE of a moving spacetime, not the moving spacetime. Curvature computed from this slice alone is NOT the complete physical Alcubierre spacetime curvature.",
+  "timestamp_utc": "2026-07-25T01:52:43Z"
+}

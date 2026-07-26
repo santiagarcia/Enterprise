@@ -1,0 +1,26 @@
+# Normalise line endings in the repository to LF, and let checkout use the
+# platform convention. Without this the first commit from Windows records CRLF
+# and every later diff from another platform is whole-file noise.
+* text=auto eol=lf
+
+# Verification records are text and must diff line by line: they are the
+# evidence a gate passed, and a reviewer has to be able to see which case
+# changed.
+*.md   text eol=lf
+*.csv  text eol=lf
+*.json text eol=lf
+
+# Sources.
+*.c    text eol=lf
+*.h    text eol=lf
+*.cpp  text eol=lf
+*.hpp  text eol=lf
+*.py   text eol=lf
+*.txt  text eol=lf
+*.cmake text eol=lf
+
+# Binary. Never touch, never diff.
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.pyc  binary

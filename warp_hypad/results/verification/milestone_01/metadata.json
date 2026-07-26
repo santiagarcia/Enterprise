@@ -1,0 +1,72 @@
+{
+  "build": {
+    "build_type": "RelWithDebInfo",
+    "compiler_id": "MSVC",
+    "compiler_version": "19.44.35223.0",
+    "cxx_standard": "C++17",
+    "git_commit": "unknown",
+    "git_dirty": true,
+    "platform": "Windows-AMD64"
+  },
+  "config": {
+    "conventions": {
+      "metric_signature": "-+++",
+      "riemann_convention": "documented_internal",
+      "units": "geometrized"
+    },
+    "derivatives": {
+      "boundary_scheme": "one_sided",
+      "interior_order": 2
+    },
+    "grid": {
+      "nx": 41,
+      "ny": 41,
+      "nz": 41,
+      "x_max": 10,
+      "x_min": -10,
+      "y_max": 10,
+      "y_min": -10,
+      "z_max": 10,
+      "z_min": -10
+    },
+    "metric": {
+      "radius": 3,
+      "sigma": 2,
+      "type": "alcubierre",
+      "velocity": 0.2
+    },
+    "objective": {
+      "epsilon": 1e-08,
+      "type": "smooth_negative_energy"
+    }
+  },
+  "grid_derived": {
+    "bounds": {
+      "x_max": 10,
+      "x_min": -10,
+      "y_max": 10,
+      "y_min": -10,
+      "z_max": 10,
+      "z_min": -10
+    },
+    "cell_volume": 0.125,
+    "dx": 0.5,
+    "dy": 0.5,
+    "dz": 0.5,
+    "num_points": 68921,
+    "nx": 41,
+    "ny": 41,
+    "nz": 41
+  },
+  "layout": {
+    "coordinate_index_map": "0=t, 1=x, 2=y, 3=z",
+    "grid_index_order": "flat = (i*ny + j)*nz + k",
+    "rank2_offset": "16*p + 4*mu + nu",
+    "rank3_offset": "64*p + 16*a + 4*b + c",
+    "rank4_offset": "256*p + 64*a + 16*b + 4*c + d",
+    "tensor_layout": "point-major; component index fastest"
+  },
+  "milestone_status": "Milestone 1 complete; Milestones 2-10 not implemented",
+  "run_name": "milestone_01_verification",
+  "timestamp_utc": "2026-07-25T00:06:11Z"
+}

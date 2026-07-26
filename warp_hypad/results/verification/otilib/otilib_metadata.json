@@ -1,0 +1,24 @@
+{
+  "build": {
+    "build_type": "RelWithDebInfo",
+    "compiler_id": "MSVC",
+    "compiler_version": "19.44.35223.0",
+    "cxx_standard": "C++17",
+    "git_commit": "unknown",
+    "git_dirty": true,
+    "platform": "Windows-AMD64"
+  },
+  "derivative_channel_order": [
+    "velocity",
+    "radius",
+    "sigma"
+  ],
+  "imaginary_directions": 3,
+  "integration_route": "thin C++ wrapper over the C API; scalar-only unity translation unit compiled natively with MSVC",
+  "oti_type": "onumm3n2_t",
+  "timestamp_utc": "2026-07-25T01:09:35Z",
+  "truncation_order": 2,
+  "upstream_commit": "de3f7fa2b1ba667dff054ad5ba1f6f41f4ba8b54",
+  "upstream_license": "GPL-3.0",
+  "upstream_repository": "https://github.com/mauriaristi/otilib"
+}

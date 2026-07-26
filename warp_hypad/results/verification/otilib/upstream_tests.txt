@@ -1,0 +1,51 @@
+﻿OTIlib upstream test artefacts
+==============================
+
+Repository : https://github.com/mauriaristi/otilib
+Commit     : de3f7fa2b1ba667dff054ad5ba1f6f41f4ba8b54
+Date       : 2025-08-25
+Accessed   : 2026-07-24
+Licence    : GPL-3.0
+
+1. UPSTREAM TEST SUITE: NOT RUN
+-------------------------------
+Upstream's test suite is driven by its full CMake/conda build, which
+requires: a conda environment from environment.yml, Cython, NumPy/SciPy,
+and a 'make gendata' step that generates precomputed sparse-direction
+tables. The upstream README states the library is tested on Unix, macOS
+and 'Windows (only working under WSL)'.
+
+This machine has no conda on PATH and no WSL distribution installed
+(wsl.exe reports 'no installed distributions'). The full build was
+therefore NOT attempted, and the upstream suite is NOT run. This is an
+honest gap, not a pass.
+
+2. UPSTREAM-PROVIDED C EXAMPLE: RUN AND VERIFIED
+------------------------------------------------
+Instead, upstream's own unmodified example examples/c/basic_scalar.c was
+compiled and run natively with MSVC against the static onumm1n3 type
+(1 imaginary direction, truncation order 3). No source was modified.
+
+It computes sin(x) at x = 3.5 with a unit first-order seed.
+
+Output:
+  -0.35078323 -0.93645669*e1 +0.17539161*e11 +0.15607611*e111
+
+Analytic Taylor coefficients (d^k/dx^k / k!):
+  k=0  sin(3.5)        = -0.35078322768961984
+  k=1  cos(3.5)        = -0.93645668729079630
+  k=2  -sin(3.5)/2!    =  0.17539161384480992
+  k=3  -cos(3.5)/3!    =  0.15607611454846607
+
+All four coefficients agree to every digit printed by upstream's
+formatter. This exercises orders 1-3, confirming order truncation
+behaves correctly beyond the order 2 used by the warp adapter.
+
+3. NATIVE MSVC BUILD OF THE STATIC SCALAR SUBSET
+------------------------------------------------
+The scalar-only subset compiles and links with cl.exe with no source
+changes and no precomputed data, contradicting the 'WSL only' note for
+this subset specifically. Verified by grep: no dHelp/precompute
+references exist anywhere under the static sources.
+
+Compiler: MSVC 19.44.35223.0 (x64), /O2 /fp:precise

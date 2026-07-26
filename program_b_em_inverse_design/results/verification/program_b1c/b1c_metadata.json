@@ -1,0 +1,17 @@
+{
+  "build": {
+    "build_type": "RelWithDebInfo",
+    "compiler_id": "MSVC",
+    "compiler_version": "19.44.35223.0",
+    "cxx_standard": "C++17",
+    "git_commit": "unknown",
+    "git_dirty": true,
+    "platform": "Windows-AMD64"
+  },
+  "corrected_statement": "The Alcubierre metric is Lorentzian with det g = -1 everywhere for every v_s, so Z^abcd exists everywhere. The v_s f = 1 surface is an ERGOSURFACE: the coordinate-time observer of g_eff ceases to be timelike there. For the laboratory observer the PERMEABILITY diverges -- the transverse eigenvalue of mu^-1 equals -g_00 and reaches zero -- while eps = h and the covariant tensor stay bounded. cond(eps) does NOT diverge and the assertion that it must has been withdrawn; see docs/b1c_aggregate_gate_audit.md.",
+  "corrects": "B1's claim that no equivalent medium exists where g_00 >= 0",
+  "milestone": "B1C",
+  "primary_source": "S. Schuster and M. Visser, Phys. Rev. D 96, 124019 (2017), DOI 10.1103/PhysRevD.96.124019 (verified)",
+  "sub_gates": "B1C-S23 (Hodge duals, A7 extraction, projector, zeta normalisation) and B1C-S456 (F->H reconstruction, zeta_adjoint, handedness, A11) are separate binaries and separate CTest tests. This gate depends on them through CTest rather than repeating their cases.",
+  "timestamp_utc": "2026-07-26T13:57:08Z"
+}

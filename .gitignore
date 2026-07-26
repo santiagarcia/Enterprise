@@ -1,0 +1,74 @@
+# ---------------------------------------------------------------------------
+# Enterprise: warp_hypad (Program A) + program_b_em_inverse_design (Program B)
+#
+# WHAT IS DELIBERATELY TRACKED, and why it looks like generated output but is
+# not: results/verification/**. Those are the verification RECORDS -- the
+# report, the machine-readable summary, the CSVs a figure is redrawn from. The
+# project's policy is that every figure must be reproducible from saved output
+# without rerunning the solver, and that a milestone's evidence travels with the
+# revision that produced it. They are evidence, not artefacts.
+#
+# The duplicates of those same records that a build tree writes under
+# build/results/** ARE artefacts, and are excluded by the build/ rule below.
+# ---------------------------------------------------------------------------
+
+# Build trees. build_nooti/ is the OTIlib-disabled configuration.
+build/
+build-*/
+build_*/
+cmake-build-*/
+out/
+
+# Compiler and linker output, wherever it lands.
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.ilk
+*.pdb
+*.idb
+*.exp
+*.gcda
+*.gcno
+
+# CMake scratch, if a configure is ever run in place.
+CMakeCache.txt
+CMakeFiles/
+CMakeUserPresets.json
+cmake_install.cmake
+CTestTestfile.cmake
+compile_commands.json
+Testing/
+*.ninja
+.ninja_deps
+.ninja_log
+
+# Python caches from the plotting scripts.
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Configure logs and other transient build chatter.
+*_configure.log
+compile.log
+
+# Editor and OS noise.
+.vs/
+.vscode/
+.idea/
+*.swp
+*~
+Thumbs.db
+.DS_Store
+
+# Agent scratch. The session scratchpad lives outside the tree, but a stray
+# local copy must never be committed. Deliberately NOT a wildcard on source
+# names: an over-broad pattern here would silently drop a real file later.
+.claude/
+scratchpad/
