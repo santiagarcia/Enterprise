@@ -85,11 +85,14 @@ void run_c0_checks(VerificationReport& report, const std::string& out_dir,
             "snapshot data_kind = " + snap50.release.data_kind + "; " +
                 std::to_string(snap50.objects.size()) + " objects, all tagged",
             sw.seconds(),
-            "this milestone had no network access, so no Gaia DR3 record was "
-            "retrieved. Writing plausible numbers under a real catalogue's name "
-            "would be fabricating records and the gate would be verifying a "
-            "fiction. tools/import_gaia.py is what produces fixtures with genuine "
-            "provenance, as a separate optional step");
+            "THIS gate is deliberately synthetic: closed-form fixtures are the "
+            "right way to verify machinery, because the expected answer is known "
+            "exactly rather than measured. Writing plausible numbers under a real "
+            "catalogue's name would be fabricating records and the gate would be "
+            "verifying a fiction, so the fixtures say SYNTHETIC and this case "
+            "asserts it. Agreement with the real sky is a SEPARATE gate, "
+            "C0-REAL-CATALOGUE, which reads the committed Gaia DR3 snapshot "
+            "produced by tools/import_gaia.py");
     }
 
     // =======================================================================
@@ -900,9 +903,10 @@ void run_c0_checks(VerificationReport& report, const std::string& out_dir,
             os << "program_c C0 catalogue manifest\n\n";
             os << "DATA KIND: " << snap50.release.data_kind << "\n";
             os << "  This snapshot contains NO retrieved catalogue data. Every\n"
-                  "  record is SYNTHETIC or LITERATURE_FROM_MEMORY. Run\n"
-                  "  tools/import_gaia.py to produce a snapshot with genuine\n"
-                  "  provenance.\n\n";
+                  "  record is SYNTHETIC or LITERATURE_FROM_MEMORY, by design:\n"
+                  "  this gate verifies the machinery against closed-form answers.\n"
+                  "  Real Gaia DR3 snapshots are committed under snapshots/ and are\n"
+                  "  checked by the separate C0-REAL-CATALOGUE gate.\n\n";
             os << "catalogue          " << snap50.release.catalogue << "\n";
             os << "release            " << snap50.release.release << "\n";
             os << "source table       " << snap50.release.source_table << "\n";

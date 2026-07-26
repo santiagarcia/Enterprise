@@ -9,11 +9,16 @@
 
 // Gate C0-CATALOGUE-UNIVERSE.
 //
-// SCOPE. C0 verifies the MACHINERY of a catalogue-grounded star database. It does
-// NOT verify agreement with Gaia DR3: this milestone had no network access, so no
-// Gaia record was retrieved and every fixture is SYNTHETIC or
-// LITERATURE_FROM_MEMORY. Run tools/import_gaia.py to produce a snapshot with
-// genuine provenance.
+// SCOPE. This gate verifies the MACHINERY of a catalogue-grounded star database
+// against SYNTHETIC fixtures whose correct answers are known in closed form. That
+// is deliberate and is the right way to verify machinery; it says nothing about
+// agreement with the sky.
+//
+// Agreement with the sky is the SEPARATE C0-REAL-CATALOGUE gate (c0_real_verify),
+// which reads the committed Gaia DR3 snapshots under snapshots/ and checks them
+// against independently published astronomy. Both gates are offline, deterministic
+// and required. Retrieval itself happens only in tools/import_gaia.py, which no
+// gate invokes.
 
 int main(int argc, char** argv) {
     using namespace warp_hypad;
@@ -50,11 +55,15 @@ int main(int argc, char** argv) {
         meta.set("milestone", JsonValue("C0"));
         meta.set("data_kind", JsonValue(m.data_kind));
         meta.set("data_honesty",
-                 JsonValue("No Gaia DR3 record was retrieved: this milestone had "
-                           "no network access. Every fixture is SYNTHETIC or "
-                           "LITERATURE_FROM_MEMORY and is tagged as such. The "
-                           "gate verifies the machinery, not agreement with the "
-                           "catalogue."));
+                 JsonValue("Every fixture in THIS gate is SYNTHETIC or "
+                           "LITERATURE_FROM_MEMORY and is tagged as such, by "
+                           "design: closed-form fixtures verify the machinery "
+                           "because their expected answers are exact. This gate "
+                           "therefore makes no claim of agreement with Gaia DR3. "
+                           "That claim belongs to the separate C0-REAL-CATALOGUE "
+                           "gate, which reads the committed real snapshots under "
+                           "snapshots/."));
+        meta.set("real_data_gate", JsonValue("program_c0_real"));
         meta.set("pinned_catalogue", JsonValue(program_c::kPinnedCatalogue));
         meta.set("pinned_table", JsonValue(program_c::kPinnedTable));
         meta.set("reference_epoch_jyear",
@@ -122,7 +131,11 @@ int main(int argc, char** argv) {
                  "simulate a warp\n"
                  "  bubble, optimize a voyage, render a cockpit, or claim "
                  "Galactic dynamics.\n"
-                 "  No Gaia DR3 record was retrieved; fixtures are SYNTHETIC.\n";
+                 "  THIS gate's fixtures are SYNTHETIC by design, so it verifies "
+                 "the machinery\n"
+                 "  and claims nothing about the sky. Agreement with real Gaia DR3 "
+                 "records is\n"
+                 "  the separate C0-REAL-CATALOGUE gate (c0_real_verify).\n";
 
     if (!report.all_passed()) {
         std::cout << "\nC0 GATE: FAIL (" << report.num_failed() << " of "

@@ -25,10 +25,23 @@ using namespace program_c;
 
 int main(int argc, char** argv) {
     std::string out_dir = "results/verification/program_c0";
+    std::string snapshot_path;
+    std::string report_name = "c0_demonstration.txt";
     for (int i = 1; i < argc; ++i) {
         const std::string a = argv[i];
         if (a == "--out" && i + 1 < argc) out_dir = argv[++i];
-        else { std::cerr << "usage: c0_demo [--out <dir>]\n"; return 2; }
+        // Point the demonstration at any snapshot, in particular one written by
+        // tools/import_gaia.py from the live archive. The demonstration reads the
+        // FILE and reports the file's own data_kind, so real and synthetic runs
+        // are distinguishable in the output rather than by remembering which was
+        // which.
+        else if (a == "--snapshot" && i + 1 < argc) snapshot_path = argv[++i];
+        else if (a == "--report" && i + 1 < argc) report_name = argv[++i];
+        else {
+            std::cerr << "usage: c0_demo [--out <dir>] [--snapshot <file>] "
+                         "[--report <name>]\n";
+            return 2;
+        }
     }
 
     std::error_code ec;
@@ -36,7 +49,8 @@ int main(int argc, char** argv) {
 
     // Build and write a snapshot if the gate has not already, then read it back:
     // the demonstration works only from the file, never from memory.
-    const std::string path = out_dir + "/c0_snapshot_50pc.txt";
+    const std::string path =
+        snapshot_path.empty() ? out_dir + "/c0_snapshot_50pc.txt" : snapshot_path;
     if (!std::filesystem::exists(path)) {
         const Snapshot s = fixtures::build_snapshot(50.0);
         std::string err;
@@ -58,7 +72,13 @@ int main(int argc, char** argv) {
     if (snap.release.data_kind != "Gaia DR3")
         o << "  These are NOT retrieved catalogue records. Every position below is\n"
              "  computed from SYNTHETIC fixtures, so the geometry is exercised and\n"
-             "  the astronomy is not. Run tools/import_gaia.py for real data.\n";
+             "  the astronomy is not. For real records, pass\n"
+             "    --snapshot snapshots/gaia_dr3_10pc.txt\n"
+             "  or regenerate one with tools/import_gaia.py.\n";
+    else
+        o << "  Real Gaia DR3 records, retrieved "
+          << snap.release.retrieval_timestamp << ".\n  " << snap.release.licence
+          << "\n";
     o << "\nsnapshot            " << path << "\n";
     o << "schema version      " << snap.schema_version << "\n";
     o << "checksum verified   " << (snap.checksum_ok ? "yes" : "NO") << "\n";
@@ -182,7 +202,7 @@ int main(int argc, char** argv) {
          "route optimisation, no warp bubble and no rendering: those are C1 to C3.\n";
 
     std::cout << o.str();
-    std::ofstream f(out_dir + "/c0_demonstration.txt", std::ios::binary);
+    std::ofstream f(out_dir + "/" + report_name, std::ios::binary);
     if (f) f << o.str();
     return 0;
 }

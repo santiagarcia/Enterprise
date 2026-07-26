@@ -477,10 +477,25 @@ if(EXISTS "${PROGRAM_C_ROOT}/verification/c0_verify.cpp")
     target_compile_options(c0_demo PRIVATE -Wall -Wextra -Wpedantic -Werror)
   endif()
 
+  # The real-data gate. Reads the COMMITTED Gaia DR3 snapshot -- offline and
+  # deterministic, like every other gate here. Live retrieval lives only in
+  # tools/import_gaia.py, which no test invokes.
+  add_executable(c0_real_verify "${PROGRAM_C_ROOT}/verification/c0_real_verify.cpp")
+  target_include_directories(c0_real_verify PRIVATE "${PROGRAM_C_ROOT}/include")
+  target_link_libraries(c0_real_verify PRIVATE warp_hypad_core)
+  if(MSVC)
+    target_compile_options(c0_real_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+  else()
+    target_compile_options(c0_real_verify PRIVATE -Wall -Wextra -Wpedantic -Werror)
+  endif()
+
   set(WARP_HYPAD_C0_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_c0")
   add_test(NAME programc0.gate COMMAND c0_verify --out "${WARP_HYPAD_C0_RESULTS}")
   add_test(NAME programc0.demo COMMAND c0_demo --out "${WARP_HYPAD_C0_RESULTS}")
   set_tests_properties(programc0.demo PROPERTIES DEPENDS "programc0.gate")
+  add_test(NAME programc0.real COMMAND c0_real_verify
+    --snapshot "${PROGRAM_C_ROOT}/snapshots/gaia_dr3_5pc.txt"
+    --out "${CMAKE_BINARY_DIR}/results/verification/program_c0_real")
   message(STATUS "  program C: C0 enabled")
 else()
   message(STATUS "  program C: not present, skipped")

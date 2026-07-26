@@ -44,8 +44,7 @@ Usage
     python import_gaia.py --radius-pc 10 --no-simbad --no-exoplanets
     python import_gaia.py --print-query --radius-pc 50      # no network
 
-Dependencies (none are needed for any gate):
-    pip install requests
+Dependencies: NONE. Standard library only, urllib for HTTP.
 """
 
 import argparse
@@ -54,7 +53,11 @@ import datetime
 import io
 import json
 import math
+import ssl
 import sys
+import urllib.error
+import urllib.parse
+import urllib.request
 
 # --- Pinned provenance. Must match program_c/catalogue.hpp -------------------
 PINNED_CATALOGUE = "Gaia DR3"
@@ -127,24 +130,73 @@ def adql_for_radius(radius_pc: float, min_snr: float) -> str:
     )
 
 
-def tap_query(endpoint: str, query: str, timeout: float = 300.0) -> str:
-    """Run a synchronous TAP query and return the CSV body.
+def _ssl_context():
+    """A verifying TLS context, falling back to certifi's CA bundle.
 
-    requests is imported lazily so that merely importing this module cannot fail
-    on a machine that only ever runs the offline gate.
+    Some archives -- CDS/SIMBAD among them -- serve a chain this machine's system
+    trust store cannot complete, so a plain urlopen fails with
+    CERTIFICATE_VERIFY_FAILED. The fix is to supply a CA bundle, NOT to disable
+    verification: an unverified fetch would let anything on the path substitute
+    the identifiers this database then attributes to SIMBAD, and the provenance
+    field would say SIMBAD regardless. If neither trust store works, the import
+    fails and says so rather than importing unauthenticated data.
     """
     try:
-        import requests
+        return ssl.create_default_context()
+    except Exception:                       # noqa: BLE001 -- fall through below
+        pass
+    return None
+
+
+def _certifi_context():
+    try:
+        import certifi
     except ImportError:
-        sys.exit("This script needs 'requests' (pip install requests). It is "
-                 "optional: no gate depends on it.")
-    params = {"REQUEST": "doQuery", "LANG": "ADQL", "FORMAT": "csv",
-              "QUERY": query}
-    r = requests.post(endpoint, data=params, timeout=timeout)
-    if r.status_code != 200:
-        raise RuntimeError("TAP query to %s failed with HTTP %d:\n%s"
-                           % (endpoint, r.status_code, r.text[:2000]))
-    return r.text
+        return None
+    return ssl.create_default_context(cafile=certifi.where())
+
+
+def tap_query(endpoint: str, query: str, timeout: float = 600.0) -> str:
+    """Run a synchronous TAP query and return the CSV body.
+
+    Uses urllib from the standard library rather than requests, so this script has
+    NO third-party dependency at all. That matters: the whole point of keeping the
+    import out of the gate is that the gate needs nothing installed, and it would
+    be poor form for the import itself to need something either.
+    """
+    data = urllib.parse.urlencode({
+        "REQUEST": "doQuery", "LANG": "ADQL", "FORMAT": "csv",
+        "QUERY": query}).encode("ascii")
+    req = urllib.request.Request(
+        endpoint, data=data,
+        headers={"User-Agent": "program_c_astrogation/C0 (research prototype)"})
+    contexts = [_ssl_context()]
+    fallback = _certifi_context()
+    if fallback is not None:
+        contexts.append(fallback)
+
+    last = None
+    for ctx in contexts:
+        try:
+            with urllib.request.urlopen(req, timeout=timeout, context=ctx) as r:
+                if r.status != 200:
+                    raise RuntimeError("TAP query to %s returned HTTP %d"
+                                       % (endpoint, r.status))
+                return r.read().decode("utf-8", errors="replace")
+        except urllib.error.HTTPError as exc:
+            body = exc.read().decode("utf-8", errors="replace")[:2000]
+            raise RuntimeError("TAP query to %s failed with HTTP %d:\n%s"
+                               % (endpoint, exc.code, body)) from exc
+        except urllib.error.URLError as exc:
+            # Only a certificate-chain failure is worth retrying with the other
+            # trust store. A refused connection or a timeout is not.
+            if not isinstance(exc.reason, ssl.SSLCertVerificationError):
+                raise
+            last = exc
+    raise RuntimeError(
+        "TAP query to %s could not complete a verified TLS handshake with either "
+        "the system trust store or certifi's CA bundle: %s. Refusing to fetch "
+        "unverified." % (endpoint, last))
 
 
 def f(row, key, default=None):

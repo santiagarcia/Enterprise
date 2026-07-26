@@ -1,0 +1,19 @@
+{
+  "data_kind": "Gaia DR3",
+  "release": "Gaia DR3",
+  "source_table": "gaiadr3.gaia_source",
+  "reference_epoch_jyear": 2016.0,
+  "retrieval_timestamp_utc": "2026-07-26T23:25:22Z",
+  "adql": "SELECT source_id, ra, ra_error, dec, dec_error, parallax, parallax_error, pmra, pmra_error, pmdec, pmdec_error, radial_velocity, radial_velocity_error, ref_epoch, ra_dec_corr, ra_parallax_corr, ra_pmra_corr, ra_pmdec_corr, dec_parallax_corr, dec_pmra_corr, dec_pmdec_corr, parallax_pmra_corr, parallax_pmdec_corr, pmra_pmdec_corr, duplicated_source, phot_g_mean_mag, ruwe, astrometric_params_solved FROM gaiadr3.gaia_source WHERE parallax IS NOT NULL AND parallax > 20.000000 AND parallax_error > 0 AND parallax / parallax_error >= 10.000000 ORDER BY parallax DESC",
+  "volume_radius_pc": 50.0,
+  "rows_in": 48809,
+  "rows_accepted": 48809,
+  "rows_rejected": 0,
+  "duplicates_collapsed": 0,
+  "ledger_balances": true,
+  "objects_written": 48809,
+  "snapshot_checksum_fnv1a": 6723122197521844789,
+  "simbad_used": false,
+  "exoplanet_archive_used": true,
+  "licence": "ESA/Gaia/DPAC, CC BY-SA 3.0 IGO; cite Gaia Collaboration 2016, 2023"
+}

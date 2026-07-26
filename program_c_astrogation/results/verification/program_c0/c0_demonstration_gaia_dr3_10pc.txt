@@ -1,0 +1,255 @@
+=== Program C, C0 offline demonstration ===
+
+DATA KIND: Gaia DR3
+
+snapshot            ../../program_c_astrogation/snapshots/gaia_dr3_10pc.txt
+schema version      1
+checksum verified   yes
+pinned release      Gaia DR3 / gaiadr3.gaia_source
+reference epoch     J2016
+volume radius       10 pc
+objects             315
+placeable           315 of 315  (0 retained without a defensible distance, so they cannot be positioned)
+outside the volume  0  (retained and flagged, never deleted)
+
+--- Solar System barycentric origin ---
+frame               Barycentric Cartesian (ICRS-aligned)
+origin              solar system barycentre
+orientation         ICRS axes: +x toward (ra=0, dec=0), +z toward the north celestial pole
+units               parsec; parsec per Julian year
+velocity convention coordinate velocity dx/dt at the stated epoch, rectilinear model
+position            (0, 0, 0) pc by definition
+
+--- nearest 100 systems, 3D position at the reference epoch ---
+name                           d [pc]       +-          x          y          z  estimator
+NAME Proxima Centauri         1.30197    0.000    -0.4748    -0.3629    -1.1567  InverseParallaxHighQuality
+NAME Barnard's star           1.82823    0.000    -0.0175    -1.8219     0.1511  InverseParallaxHighQuality
+Wolf  359                      2.4086    0.000    -2.2992     0.6548     0.2936  InverseParallaxHighQuality
+HD  95735                     2.54613    0.000    -1.9985     0.5045     1.4947  InverseParallaxHighQuality
+* alf CMa B                    2.6703    0.002    -0.5005     2.5079    -0.7683  InverseParallaxHighQuality
+G 272-61B                       2.675    0.004     2.3106     1.0663    -0.8243  InverseParallaxHighQuality
+G 272-61A                       2.720    0.005     2.3491     1.0840    -0.8380  InverseParallaxHighQuality
+CD-23 14742                   2.97595    0.000     0.5873    -2.6580    -1.2027  InverseParallaxHighQuality
+Ross  248                      3.1597    0.000     2.2593    -0.1786     2.2017  InverseParallaxHighQuality
+* eps Eri                      3.2198    0.001     1.9013     2.5441    -0.5291  InverseParallaxHighQuality
+HD 217987                     3.28801    0.000     2.5916    -0.6220    -1.9255  InverseParallaxHighQuality
+Ross  128                      3.3749    0.000    -3.3698     0.1803     0.0471  InverseParallaxHighQuality
+*  61 Cyg B                    3.4964    0.000     1.9861    -1.8681     2.1888  InverseParallaxHighQuality
+*  61 Cyg A                    3.4966    0.001     1.9858    -1.8681     2.1892  InverseParallaxHighQuality
+HD 173739                     3.52311    0.000     0.3301    -1.7499     3.0399  InverseParallaxHighQuality
+HD 173740                      3.5231    0.000     0.3301    -1.7501     3.0398  InverseParallaxHighQuality
+HD   1326                     3.56244    0.000     2.5532     0.2060     2.4758  InverseParallaxHighQuality
+HD   1326B                    3.56259    0.000     2.5531     0.2066     2.4761  InverseParallaxHighQuality
+G  51-15                       3.5810    0.001    -1.9441     2.5381     1.6131  InverseParallaxHighQuality
+* eps Ind                      3.6384    0.001     1.7405    -0.9698    -3.0444  InverseParallaxHighQuality
+* tau Cet                      3.6522    0.002     3.1562     1.5400    -1.0026  InverseParallaxHighQuality
+L  372-58                      3.6743    0.000     1.5399     2.1197    -2.5760  InverseParallaxHighQuality
+* eps Ind B                     3.695    0.009     1.7710    -0.9786    -3.0914  InverseParallaxHighQuality
+V* YZ Cet                      3.7167    0.000     3.3778     1.1062    -1.0864  InverseParallaxHighQuality
+BD+05  1668                    3.7861    0.001    -1.4036     3.4994     0.3438  InverseParallaxHighQuality
+NAME Teegarden's Star          3.8316    0.001     2.6699     2.5133     1.1116  InverseParallaxHighQuality
+HD  33793                     3.93393    0.000     0.5798     2.7184    -2.7838  InverseParallaxHighQuality
+V* AX Mic                      3.9696    0.001     2.3429    -2.0155    -2.4913  InverseParallaxHighQuality
+SCR J1845-6357                 4.0054    0.002     0.3445    -1.7242    -3.5988  InverseParallaxHighQuality
+DENIS J104814.6-395606         4.0451    0.001    -2.9505     0.9556    -2.5968  InverseParallaxHighQuality
+BD-12  4523                    4.3078    0.000    -1.6033    -3.8851    -0.9447  InverseParallaxHighQuality
+Wolf   28                     4.31444    0.000     4.1969     0.9148     0.4043  InverseParallaxHighQuality
+Wolf  424 A                     4.327    0.010    -4.2283    -0.6179     0.6785  InverseParallaxHighQuality
+HD 225213                      4.3460    0.001     3.4530     0.0834    -2.6377  InverseParallaxHighQuality
+G   3-33                       4.4696    0.001     3.7687     2.1810     1.0088  InverseParallaxHighQuality
+Wolf  424 B                     4.475    0.009    -4.3729    -0.6391     0.7017  InverseParallaxHighQuality
+BD+68   946                   4.54980    0.000    -0.1726    -1.6709     4.2284  InverseParallaxHighQuality
+CD-46 11540                    4.5528    0.001    -0.4238    -3.0818    -3.3242  InverseParallaxHighQuality
+LP  731-58                     4.5593    0.001    -4.2528     1.3773    -0.8967  InverseParallaxHighQuality
+LAWD 37                       4.63660    0.000    -1.9672     0.1218    -4.1968  InverseParallaxHighQuality
+G 208-45                       4.6604    0.001     1.5875    -2.9261     3.2615  InverseParallaxHighQuality
+BD-15  6290                    4.6721    0.001     4.3375    -1.2993    -1.1514  InverseParallaxHighQuality
+L  143-23                      4.8316    0.001    -2.2018     0.7545    -4.2341  InverseParallaxHighQuality
+G 158-27                       4.8461    0.001     4.8021     0.1405    -0.6364  InverseParallaxHighQuality
+DENIS J025503.3-470049         4.8680    0.004     2.3966     2.2960    -3.5612  InverseParallaxHighQuality
+HD  88230                      4.8706    0.001    -2.8170     1.4457     3.7010  InverseParallaxHighQuality
+BD+44  2051                    4.9047    0.001    -3.4553     0.8396     3.3781  InverseParallaxHighQuality
+BD+44  2051B                   4.9060    0.001    -3.4567     0.8393     3.3787  InverseParallaxHighQuality
+V* AD Leo                      4.9651    0.001    -4.2285     1.9809     1.6876  InverseParallaxHighQuality
+HD 204961                      4.9671    0.001     2.6152    -1.9428    -3.7494  InverseParallaxHighQuality
+CD-44 11909                    5.0077    0.001    -0.3582    -3.5646    -3.4989  InverseParallaxHighQuality
+* omi02 Eri B                  5.0077    0.001     2.1888     4.4542    -0.6686  InverseParallaxHighQuality
+* omi02 Eri                    5.0098    0.003     2.1915     4.4552    -0.6685  InverseParallaxHighQuality
+* omi02 Eri C                  5.0137    0.002     2.1915     4.4595    -0.6692  InverseParallaxHighQuality
+V* EV Lac                      5.0516    0.001     3.4307    -1.1344     3.5301  InverseParallaxHighQuality
+G   9-38B                       5.095    0.005    -3.3645     3.4167     1.7228  InverseParallaxHighQuality
+*  70 Oph B                     5.106    0.007     0.1216    -5.0995     0.2222  InverseParallaxHighQuality
+*  70 Oph A                     5.113    0.005     0.1216    -5.1070     0.2226  InverseParallaxHighQuality
+G   9-38A                      5.1508    0.003    -3.4012     3.4539     1.7416  InverseParallaxHighQuality
+2MASS J15065257+7027247         5.156    0.017    -1.1826    -1.2550     4.8593  InverseParallaxHighQuality
+G  99-49                       5.2080    0.001    -0.0015     5.2022     0.2459  InverseParallaxHighQuality
+2MASS J08173001-6155158         5.213    0.011    -1.3855     2.0255    -4.5990  InverseParallaxHighQuality
+G 254-29                       5.2542    0.001    -1.0287     0.0550     5.1522  InverseParallaxHighQuality
+UCAC4 195-119117               5.3268    0.001    -1.9123    -2.7509    -4.1414  InverseParallaxHighQuality
+LP  656-38                     5.3750    0.001     1.3371     5.1653    -0.6503  InverseParallaxHighQuality
+HD 119850                      5.4349    0.001    -4.7031    -2.3388     1.3961  InverseParallaxHighQuality
+EGGR 180                       5.5165    0.001     1.0738     2.6332     4.7271  InverseParallaxHighQuality
+G 175-34                       5.5174    0.002     1.0743     2.6337     4.7278  InverseParallaxHighQuality
+HD 265866                      5.5846    0.001    -1.1059     4.5366     3.0634  InverseParallaxHighQuality
+LP  816-60                     5.6201    0.001     3.6753    -3.9225    -1.6408  InverseParallaxHighQuality
+LSR J1835+3259                 5.6885    0.002     0.7387    -4.7135     3.0978  InverseParallaxHighQuality
+HD  36395                      5.7041    0.001     0.7068     5.6482    -0.3668  InverseParallaxHighQuality
+Gaia DR3 6305165514134625024       5.75    0.063    -3.8540    -3.8508    -1.8269  InverseParallaxHighQuality
+HD  42581                     5.76123    0.001    -0.2466     5.3410    -2.1459  InverseParallaxHighQuality
+* sig Dra                      5.7639    0.002     0.7862    -1.8434     5.4043  InverseParallaxHighQuality
+Ross   47                      5.7912    0.001     0.4389     5.6372     1.2517  InverseParallaxHighQuality
+HD 131977                      5.8864    0.002    -3.9170    -3.8320    -2.1500  InverseParallaxHighQuality
+L  205-128                     5.8891    0.002    -0.1867    -3.1739    -4.9572  InverseParallaxHighQuality
+L  347-14                      5.9089    0.002     1.4286    -3.8819    -4.2197  InverseParallaxHighQuality
+V* BR Psc                      5.9096    0.001     5.8979    -0.2775     0.2472  InverseParallaxHighQuality
+HD 180617                      5.9150    0.001     1.9400    -5.5624     0.5323  InverseParallaxHighQuality
+CD-40  9712                    5.9173    0.001    -2.6732    -3.5536    -3.9039  InverseParallaxHighQuality
+VB 10                          5.9188    0.002     1.9423    -5.5658     0.5307  InverseParallaxHighQuality
+* eta Cas                      5.9230    0.006     3.0829     0.6713     5.0127  InverseParallaxHighQuality
+* eta Cas B                    5.9270    0.001     3.0847     0.6715     5.0163  InverseParallaxHighQuality
+*  36 Oph B                    5.9478    0.004    -1.0297    -5.2172    -2.6639  InverseParallaxHighQuality
+*  36 Oph A                    5.9523    0.005    -1.0306    -5.2212    -2.6658  InverseParallaxHighQuality
+V* V2215 Oph                   5.9537    0.001    -1.0114    -5.2289    -2.6613  InverseParallaxHighQuality
+V* YZ CMi                      5.9889    0.001    -2.6358     5.3648     0.3709  InverseParallaxHighQuality
+HD 191408                      6.0122    0.004     2.6314    -4.0828    -3.5431  InverseParallaxHighQuality
+* e Eri                        6.0414    0.003     2.8370     3.3810    -4.1254  InverseParallaxHighQuality
+V* QY Aur                      6.0527    0.002    -1.4243     4.5160     3.7700  InverseParallaxHighQuality
+* del Pav                      6.0993    0.005     1.3121    -2.0839    -5.5800  InverseParallaxHighQuality
+SIMP J013656.5+093347.3         6.118    0.017     5.5012     2.4771     1.0164  InverseParallaxHighQuality
+HD 191849                      6.1646    0.001     2.3975    -3.6254    -4.3715  InverseParallaxHighQuality
+EGGR 372                      6.21136    0.000    -0.1059    -2.0316     5.8688  InverseParallaxHighQuality
+BD-11  3759                    6.2530    0.002    -4.7728    -3.8058    -1.3552  InverseParallaxHighQuality
+BD+19  5116B                   6.2536    0.002     5.8346    -0.7193     2.1324  InverseParallaxHighQuality
+BD+19  5116A                   6.2632    0.001     5.8436    -0.7206     2.1357  InverseParallaxHighQuality
+BD-07  4003                    6.3005    0.001    -4.0251    -4.7726    -0.8467  InverseParallaxHighQuality
+
+--- positions propagated to J12016.0 (rectilinear, a LOCAL KINEMATIC model) ---
+name                        moved [pc]      radial  transverse  warning
+NAME Proxima Centauri          0.33121    -0.22441     0.24360  within validity
+NAME Barnard's star            1.45775    -1.12977     0.92122  within validity
+Wolf  359                      0.55062     0.00000     0.55062  within validity
+HD  95735                      1.05377    -0.87044     0.59395  within validity
+* alf CMa B                    0.13262    -0.00000     0.13262  within validity
+G 272-61B                      0.43203     0.10482     0.41912  within validity
+G 272-61A                      0.50253     0.21946     0.45207  within validity
+CD-23 14742                    0.14906    -0.11369     0.09640  within validity
+Ross  248                      0.82738    -0.79045     0.24443  within validity
+* eps Eri                      0.15220    -0.00000     0.15220  within validity
+HD 217987                      1.10248     0.08496     1.09920  within validity
+Ross  128                      0.22342    -0.00000     0.22342  within validity
+*  61 Cyg B                    1.09865    -0.66061     0.87785  within validity
+*  61 Cyg A                    1.12117    -0.67473     0.89541  within validity
+HD 173739                      0.37960    -0.01333     0.37936  within validity
+HD 173740                      0.39811     0.00896     0.39801  within validity
+HD   1326                      0.51766     0.11625     0.50444  within validity
+HD   1326B                     0.50954     0.10844     0.49786  within validity
+G  51-15                       0.22064    -0.00000     0.22064  within validity
+* eps Ind                      0.92772    -0.41345     0.83050  within validity
+* tau Cet                      0.34037    -0.00000     0.34037  within validity
+L  372-58                      0.14933     0.01526     0.14854  within validity
+* eps Ind B                    0.83905    -0.00000     0.83905  within validity
+V* YZ Cet                      0.24566    -0.00000     0.24566  within validity
+BD+05  1668                    0.70825     0.17748     0.68565  within validity
+NAME Teegarden's Star          0.95157     0.00000     0.95157  within validity
+HD  33793                      2.99985     2.50619     1.64867  within validity
+V* AX Mic                      0.69776     0.21180     0.66484  within validity
+SCR J1845-6357                 0.51447     0.00000     0.51447  within validity
+DENIS J104814.6-395606         0.30173     0.00000     0.30173  within validity
+BD-12  4523                    0.33350    -0.22293     0.24804  within validity
+Wolf   28                      0.62298     0.00000     0.62298  within validity
+Wolf  424 A                    0.37943     0.00000     0.37943  within validity
+HD 225213                      1.31031     0.25697     1.28486  within validity
+G   3-33                       0.53623    -0.28935     0.45146  within validity
+Wolf  424 B                    0.37368    -0.00000     0.37368  within validity
+BD+68   946                    0.41335    -0.29561     0.28891  within validity
+CD-46 11540                    0.23439    -0.03447     0.23184  within validity
+LP  731-58                     0.36193     0.01507     0.36162  within validity
+LAWD 37                        0.60331    -0.00000     0.60331  within validity
+G 208-45                       0.14009     0.04022     0.13420  within validity
+BD-15  6290                    0.26607    -0.02133     0.26521  within validity
+L  143-23                      1.63754     1.59139     0.38601  within validity
+G 158-27                       0.63672    -0.41376     0.48396  within validity
+DENIS J025503.3-470049         0.27238     0.00000     0.27238  within validity
+HD  88230                      0.43731    -0.27083     0.34336  within validity
+BD+44  2051                    1.27953     0.69967     1.07129  within validity
+BD+44  2051B                   1.26509     0.69479     1.05722  within validity
+V* AD Leo                      0.16257     0.10915     0.12048  within validity
+HD 204961                      0.23612     0.13013     0.19702  within validity
+CD-44 11909                    0.45678    -0.35695     0.28503  within validity
+* omi02 Eri B                  0.97564     0.00000     0.97564  within validity
+* omi02 Eri                    1.08416    -0.43434     0.99335  within validity
+* omi02 Eri C                  1.09014    -0.45063     0.99264  within validity
+V* EV Lac                      0.20628    -0.00237     0.20627  within validity
+G   9-38B                      0.27932     0.15607     0.23165  within validity
+*  70 Oph B                    0.29346    -0.09682     0.27703  within validity
+*  70 Oph A                    0.28536    -0.05860     0.27928  within validity
+G   9-38A                      0.19318     0.00000     0.19318  within validity
+2MASS J15065257+7027247        0.39622    -0.00000     0.39622  within validity
+G  99-49                       0.31632     0.30637     0.07872  within validity
+2MASS J08173001-6155158        0.28063    -0.00000     0.28063  within validity
+G 254-29                       1.16267    -1.14037     0.22659  within validity
+UCAC4 195-119117               1.01399     0.87618     0.51039  within validity
+LP  656-38                     0.47649     0.43247     0.20003  within validity
+HD 119850                      0.62561     0.15935     0.60498  within validity
+EGGR 180                       0.63148     0.00000     0.63148  within validity
+G 175-34                       0.70815     0.28449     0.64850  within validity
+HD 265866                      0.31988     0.22803     0.22434  within validity
+LP  816-60                     0.08483     0.00000     0.08483  within validity
+LSR J1835+3259                 0.20922     0.00000     0.20922  within validity
+HD  36395                      0.62141     0.08381     0.61573  within validity
+Gaia DR3 6305165514134625024     0.00371     0.00000     0.00371  within validity
+HD  42581                      0.20894     0.04323     0.20442  within validity
+* sig Dra                      0.58100     0.27155     0.51363  within validity
+Ross   47                      1.29816     1.08471     0.71318  within validity
+HD 131977                      0.63518     0.27359     0.57323  within validity
+L  205-128                     0.67211    -0.44789     0.50112  within validity
+L  347-14                      0.85310     0.06178     0.85086  within validity
+V* BR Psc                      0.83105    -0.72987     0.39741  within validity
+HD 180617                      0.55157     0.36132     0.41674  within validity
+CD-40  9712                    0.49778     0.21542     0.44875  within validity
+VB 10                          0.42799    -0.00000     0.42799  within validity
+* eta Cas                      0.34782    -0.00000     0.34782  within validity
+* eta Cas B                    0.37091     0.10567     0.35554  within validity
+*  36 Oph B                    0.35543     0.00000     0.35543  within validity
+*  36 Oph A                    0.36150     0.00270     0.36149  within validity
+V* V2215 Oph                   0.35282    -0.00069     0.35282  within validity
+V* YZ CMi                      0.31003     0.26301     0.16414  within validity
+HD 191408                      1.40608    -1.32210     0.47866  within validity
+* e Eri                        1.28105     0.89751     0.91409  within validity
+V* QY Aur                      0.30576    -0.00000     0.30576  within validity
+* del Pav                      0.48999     0.00000     0.48999  within validity
+SIMP J013656.5+093347.3        0.36732    -0.00000     0.36732  within validity
+HD 191849                      0.41701    -0.34278     0.23748  within validity
+EGGR 372                       0.50687    -0.00000     0.50687  within validity
+BD-11  3759                    0.21002    -0.01390     0.20955  within validity
+BD+19  5116B                   0.16758    -0.00000     0.16758  within validity
+BD+19  5116A                   0.17646    -0.00212     0.17645  within validity
+BD-07  4003                    0.38727    -0.09967     0.37423  within validity
+
+--- nearest confirmed exoplanet hosts (8) ---
+HD 180617                      5.9150 pc   HD 180617 b (P = 105.911 d, a = 0.343 au)
+HD 219134                      6.5418 pc   HD 219134 b (P = 3.093 d, a = 0.039 au)   HD 219134 c (P = 6.765 d, a = 0.065 au)   HD 219134 d (P = 46.859 d, a = 0.237 au)   HD 219134 f (P = 22.717 d, a = 0.146 au)   HD 219134 g (P = 94.200 d, a = 0.375 au)   HD 219134 h (P = 2247.000 d, a = 3.110 au)
+HD 192310                      8.8116 pc   HD 192310 b (P = 74.720 d, a = 0.320 au)   HD 192310 c (P = 525.800 d, a = 1.180 au)
+HD 285968                      9.4852 pc   HD 285968 b (P = 8.784 d, a = 0.066 au)
+G 192-15                       9.5275 pc   G 192-15 b (P = 2.275 d, a = 0.017 au)   G 192-15 c (P = 1219.000 d, a = 1.137 au)
+Wolf 1069                      9.5747 pc   Wolf 1069 b (P = 15.564 d, a = 0.067 au)
+G 268-110                      9.7768 pc   G 268-110 b (P = 1.433 d, a = 0.013 au)
+HD 260655                      9.9977 pc   HD 260655 b (P = 2.770 d, a = 0.029 au)   HD 260655 c (P = 5.706 d, a = 0.047 au)
+
+--- candidate destinations ranked by distance ---
+Ranked by CURRENT CATALOGUE DISTANCE ONLY. This is not a route: a real
+voyage must intercept a destination's WORLDLINE, not travel to its stale
+catalogue position, and that is C1.
+  1. NAME Proxima Centauri       1.3020 pc   light time      4.25 yr
+  2. NAME Barnard's star         1.8282 pc   light time      5.96 yr
+  3. Wolf  359                   2.4086 pc   light time      7.86 yr
+  4. HD  95735                   2.5461 pc   light time      8.30 yr
+  5. * alf CMa B                 2.6703 pc   light time      8.71 yr
+  6. G 272-61B                   2.6749 pc   light time      8.72 yr
+  7. G 272-61A                   2.7195 pc   light time      8.87 yr
+  8. CD-23 14742                 2.9760 pc   light time      9.71 yr
+  9. Ross  248                   3.1597 pc   light time     10.31 yr
+ 10. * eps Eri                   3.2198 pc   light time     10.50 yr
+
+This is a catalogue and coordinate demonstration. There is no ship, no
+route optimisation, no warp bubble and no rendering: those are C1 to C3.

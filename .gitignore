@@ -79,3 +79,9 @@ scratchpad/
 # drift from it.
 *.sqlite
 *.sqlite-journal
+
+# Program C: the 50 pc default-volume snapshot is ~60 MB of retrieved Gaia DR3
+# records. Regenerate it with tools/import_gaia.py --radius-pc 50; its manifest
+# IS committed, so the retrieval is documented and reproducible. The 5 pc and
+# 10 pc verification volumes are small and are committed in full.
+program_c_astrogation/snapshots/gaia_dr3_50pc.txt

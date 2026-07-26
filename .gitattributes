@@ -24,3 +24,10 @@
 *.png  binary
 *.jpg  binary
 *.pyc  binary
+
+# Program C snapshots carry an FNV-1a checksum over their own bytes, and the C++
+# reader REFUSES a file whose checksum does not verify. Line-ending translation
+# would therefore not corrupt them silently -- it would break them loudly -- but
+# pin LF explicitly anyway so a future core.autocrlf setting cannot make a
+# committed, verified snapshot unreadable on checkout.
+program_c_astrogation/snapshots/*.txt text eol=lf

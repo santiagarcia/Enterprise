@@ -26,29 +26,54 @@ where a trajectory adapter is written.
 
 ---
 
-## THE DATA HONESTY PROBLEM, STATED FIRST
+## THE DATA PROVENANCE RULE, STATED FIRST
 
-**This milestone was implemented without network access, so no Gaia DR3 record
-was retrieved.** Every fixture committed here is one of two clearly separated
-kinds, and neither is presented as retrieved catalogue data:
+Every record in this program is one of three clearly separated kinds, and the
+kind travels with the data in a `data_kind` field that the gates assert on:
 
 | kind | provenance tag | what it is | what it is used for |
 |---|---|---|---|
-| **synthetic** | `SYNTHETIC` | constructed so the correct answer is known in closed form | the numerical gate: round trips, propagation, covariance, snapshot determinism |
-| **literature reference** | `LITERATURE_FROM_MEMORY` | approximate well-known values recorded from memory | order-of-magnitude sanity checks at loose tolerance only |
+| **retrieved** | `Gaia DR3` | real records pulled from `gaiadr3.gaia_source` over TAP by `tools/import_gaia.py`, with the real retrieval timestamp and the exact ADQL | the `C0-REAL-CATALOGUE` gate: agreement with published astronomy |
+| **synthetic** | `SYNTHETIC` | constructed so the correct answer is known in closed form | the `C0-CATALOGUE-UNIVERSE` gate: round trips, propagation, covariance, snapshot determinism |
+| **literature reference** | `LITERATURE_FROM_MEMORY` | approximate well-known values recorded from memory | loose order-of-magnitude sanity checks only |
 
 **No file in this repository claims a Gaia `source_id`, a retrieval timestamp or
 a release string it does not have.** Writing plausible numbers under a real
-catalogue's name would be fabricating records, and the gate would then be
-verifying a fiction. Every synthetic record carries
-`source_catalogue = "SYNTHETIC"` and every literature value carries
-`LITERATURE_FROM_MEMORY` together with a note that it must be replaced before any
-result depending on it is quoted.
+catalogue's name would be fabricating records, and a gate would then be verifying
+a fiction. Synthetic records carry `source_catalogue = "SYNTHETIC"`; retrieved
+records carry their real `source_id`, release and timestamp.
 
-`tools/import_gaia.py` is the live client. Running it against the real TAP
-service is what produces fixtures with genuine provenance, and it is a **separate
-optional step**, never part of CTest. Until it is run, the C0 gate verifies the
-*machinery* and says so.
+### A correction, recorded rather than quietly fixed
+
+The first version of this document, and the first version of the C0 gate, asserted
+that **no Gaia DR3 record could be retrieved because there was no network
+access**. That was wrong, and I had not tested it before writing it down. There
+was network access the whole time; the claim was an assumption presented as a
+fact, and it propagated into the architecture document, the manifest, the metadata
+JSON, the demonstration header and the gate's first case.
+
+It is recorded here rather than silently corrected because the failure mode is
+worth naming: an unverified claim about *the environment* is as damaging to
+provenance as an unverified claim about the data. The honesty machinery worked
+exactly as designed — every artefact was correctly labelled `SYNTHETIC`, so
+nothing had to be retracted — but the machinery was labelling a limitation that
+did not exist.
+
+What changed as a result: real Gaia DR3 snapshots are now committed, and
+`C0-REAL-CATALOGUE` checks them against published astronomy. The synthetic gate is
+unchanged and still required, because closed-form fixtures are the right way to
+verify machinery and real data cannot replace them.
+
+### Where retrieval happens, and where it does not
+
+`tools/import_gaia.py` is the only thing in this program that touches a network,
+and **no gate invokes it**. The workflow is enforced:
+
+    online import  ->  validated versioned snapshot  ->  offline deterministic gate
+
+`C0-REAL-CATALOGUE` reads a *committed, checksummed* snapshot. That makes it
+offline and deterministic in exactly the sense every other gate in this repository
+is, while still being a test against the real sky.
 
 ---
 
@@ -207,13 +232,31 @@ deliberately poor-parallax source that **must** be rejected.
 Until the live import is run these are the synthetic and literature-tagged
 records described above, and the gate reports which kind each one is.
 
-## 11. Gate
+## 11. Gates
 
-`C0-CATALOGUE-UNIVERSE`, **28 cases delivered against 25 required**, 0 failures,
-0 skips, in both the OTIlib-enabled and OTIlib-disabled configurations (C0 uses
-no automatic differentiation, so its case count is identical either way).
-Acceptance: 0 failures, 0 silently dropped records, 0 unknown coordinate frames,
-0 unit-ambiguous public fields.
+Two gates, both offline and deterministic, both required.
+
+**`C0-CATALOGUE-UNIVERSE`** — the machinery, against synthetic fixtures with
+closed-form answers. **28 cases delivered against 25 required**, 0 failures, 0
+skips, in both the OTIlib-enabled and OTIlib-disabled configurations (C0 uses no
+automatic differentiation, so the case count is identical either way). Acceptance:
+0 failures, 0 silently dropped records, 0 unknown coordinate frames, 0
+unit-ambiguous public fields.
+
+**`C0-REAL-CATALOGUE`** — the astronomy, against the committed Gaia DR3 snapshot.
+**15/15.** Six named stars checked at their published parallax and proper motion,
+each keyed by its `source_id`; then derived quantities against independently
+published values: Proxima Centauri at 4.2465 ly and 4.2465 yr light time,
+Barnard's star at 10.3934 arcsec/yr and 90.1 km/s transverse. Plus the
+superlative — no star in the volume beats Barnard's proper motion — which fails if
+the pipeline drops or corrupts extreme records, the ones a naive importer loses.
+
+Tolerances in the real-data gate are **absolute and set by the precision the
+published value is quoted to** (0.1 mas/yr for a value given as 10.3934 arcsec/yr),
+not chosen to make the test pass. Three of these cases failed on their first run:
+two because I had written relative tolerances into a `check_value` that compares
+absolutely, and one because I inverted the pc-to-light-year conversion — the
+library was right and the test was wrong.
 
 Network-dependent import runs only as an optional tool, never in CTest.
 
