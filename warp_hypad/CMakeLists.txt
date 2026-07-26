@@ -370,6 +370,20 @@ if(EXISTS "${PROGRAM_B_ROOT}/effective_metric/src/metric_medium_map.cpp")
     target_compile_options(b3_verify PRIVATE -Wall -Wextra -Wpedantic -Werror)
   endif()
 
+  # --- Program B, Milestone B4: Maxwell propagation -------------------------
+  add_executable(b4_verify
+    "${PROGRAM_B_ROOT}/inverse_design/verification/b4_verify.cpp"
+    "${PROGRAM_B_ROOT}/inverse_design/verification/b4_checks.cpp"
+  )
+  target_include_directories(b4_verify PRIVATE
+    "${PROGRAM_B_ROOT}/inverse_design/verification")
+  target_link_libraries(b4_verify PRIVATE program_b_em)
+  if(MSVC)
+    target_compile_options(b4_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+  else()
+    target_compile_options(b4_verify PRIVATE -Wall -Wextra -Wpedantic -Werror)
+  endif()
+
   set(WARP_HYPAD_B1_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_b1")
   set(WARP_HYPAD_B1C_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_b1c")
   add_test(NAME programb1.gate COMMAND b1_verify --out "${WARP_HYPAD_B1_RESULTS}")
@@ -398,6 +412,11 @@ if(EXISTS "${PROGRAM_B_ROOT}/effective_metric/src/metric_medium_map.cpp")
   add_test(NAME programb3.gate COMMAND b3_verify --out "${WARP_HYPAD_B3_RESULTS}")
   set_tests_properties(programb3.gate PROPERTIES
     DEPENDS "programb1c.gate;programb2.gate")
+
+  set(WARP_HYPAD_B4_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_b4")
+  add_test(NAME programb4.gate COMMAND b4_verify --out "${WARP_HYPAD_B4_RESULTS}")
+  set_tests_properties(programb4.gate PROPERTIES
+    DEPENDS "programb2.gate;programb3.gate")
   message(STATUS "  program B: B1 enabled")
 else()
   message(STATUS "  program B: not present, skipped")
@@ -523,6 +542,8 @@ if(WARP_HYPAD_WITH_OTILIB)
     target_compile_definitions(b2_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
     target_link_libraries(b3_verify PRIVATE warp_hypad_otilib)
     target_compile_definitions(b3_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
+    target_link_libraries(b4_verify PRIVATE warp_hypad_otilib)
+    target_compile_definitions(b4_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   endif()
 
   message(STATUS "  otilib:   ENABLED (GPL-3.0 -- see docs/otilib_discovery_report.md)")
@@ -561,4 +582,10 @@ if(TARGET b1_verify AND Python3_FOUND)
                    "${PROGRAM_B_ROOT}/python/plot_b3.py"
                    "${WARP_HYPAD_B3_RESULTS}")
   set_tests_properties(programb3.figures PROPERTIES DEPENDS "programb3.gate")
+
+  add_test(NAME programb4.figures
+           COMMAND ${Python3_EXECUTABLE}
+                   "${PROGRAM_B_ROOT}/python/plot_b4.py"
+                   "${WARP_HYPAD_B4_RESULTS}")
+  set_tests_properties(programb4.figures PROPERTIES DEPENDS "programb4.gate")
 endif()

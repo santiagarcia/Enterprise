@@ -7,9 +7,32 @@ frequency-dependent physical model:
 
 ## Scope
 
-> **A passing result is a passive, causal parametric constitutive model that
-> approximates the target response over a stated frequency band. It is not yet a
-> fabricated medium or an experimental device.**
+> **A passing result is a model that is CAUSAL GLOBALLY and PASSIVE OVER THE
+> VERIFIED FREQUENCY BAND, and that approximates the target response over that
+> band. It is not yet a fabricated medium or an experimental device.**
+
+The two adjectives have different scopes, and conflating them would overstate the
+result:
+
+| property | scope | how it is established |
+|---|---|---|
+| **causal** | **global**, all w | structural: every pole is in the lower half-plane for every parameter value, because damping passes through a strictly positive transform. No sampling involved. |
+| **passive** | **the tested band only** | `min eig L(w) >= 0` evaluated on a finite set of sampled frequencies. A violation between samples, or outside the band, is NOT excluded by this gate. |
+
+**Global passivity is claimed only where it is proved analytically**, and for the
+model families here it is not. `L(w)` is a rational function of `w` whose
+eigenvalues can dip negative in a narrow interval between grid points --
+particularly near a resonance, near a zero of `det mu`, or where two eigenvalue
+branches cross. The sampled gate cannot see that.
+
+What partially closes the gap is the **adaptive passivity search** of
+`adaptive_scan.hpp`, which refines intervals around local minima of
+`lambda_min(L)`, rapid eigenvalue changes, resonances, zeros of `det mu`, and
+poles. It is part of **B4 validation** and does not replace the B3 sampled gate;
+it narrows the unverified region rather than eliminating it. A genuine global
+proof would need an analytic argument -- a positive-real / Herglotz
+representation of the whole constitutive matrix -- which no milestone here has
+carried out.
 
 No unit cells, no antennas, no coils, no fabrication geometry, no full-wave
 Maxwell simulation. B3 is still not a geometry or hardware optimizer.
@@ -102,7 +125,8 @@ Converting the project's (E,B) blocks to the (E,H) representation:
     L = (C − C†) / (2i)              Hermitian by construction
 
 **Passivity is `L` positive semidefinite for every w > 0**, obtained from
-`<p> = (w/2) v† L v`. Eigenvalues come from the real 12×12 embedding of the
+`<p> = (w/2) v† L v`. What the gate verifies is that condition **on the sampled
+band**; see the scope table above for what that does and does not establish. Eigenvalues come from the real 12×12 embedding of the
 Hermitian 6×6, so no complex Jacobi rotation had to be written.
 
 **Reciprocity in this convention is `xi_EH = zeta_EH^T`** — derived, not
@@ -205,7 +229,7 @@ reaches ~1e-19.
 
 | quantity | value |
 |---|---|
-| min loss eigenvalue (passive case) | 2.46e-3 |
+| min loss eigenvalue over the sampled band (passive case) | 2.46e-3 |
 | max passivity violation | **0.0** |
 | centre / mean / worst mismatch | 1.67e-18 / 9.44e-19 / 2.67e-18 |
 | worst mismatch frequency | 4.60 |

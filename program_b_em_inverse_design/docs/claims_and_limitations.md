@@ -4,8 +4,9 @@ A claim-by-claim register. The purpose is that nobody — including a future
 reader of a results directory — has to reconstruct from the code what is
 established and what is merely computed.
 
-**Status:** 215/215 verification cases pass across six gates, 0 failed,
-0 skipped. 17/17 CTest. Zero compiler warnings at `/W4 /WX`.
+**Status:** 417/417 verification cases pass across eleven gates, 0 failed,
+0 skipped. 24/24 CTest with the OTIlib backend enabled, 23/23 with it disabled.
+Zero compiler warnings at `/W4 /WX`.
 
 | Gate | Cases |
 |---|---:|
@@ -15,10 +16,15 @@ established and what is merely computed.
 | Milestone A3 — metric generation | 31 |
 | OTIlib AD backend | 23 |
 | Program B1 — metric ↔ constitutive mapping | 20 |
+| Program B1C-S23 — Hodge duals, Bel extraction, ζ normalisation | 42 |
+| Program B1C-S456 — field reconstruction, ζ†, handedness, (A11) | 36 |
+| Program B1C aggregate — ergosurface, velocity sensitivities | 53 |
+| Program B2 — abstract constitutive inverse design | 33 |
+| Program B3 — physical admissibility | 38 |
 
-By level: 128 × A (exact identity), 42 × B (analytic), 30 × E (grid
-convergence), 15 × D (independent method). No C (manufactured-solution) or F
-(cross-code) cases yet.
+With the OTIlib backend disabled the HyPAD-specific cases are recorded as
+skipped rather than omitted, and the totals still reconcile to the same case
+counts.
 
 ---
 
@@ -70,6 +76,34 @@ convergence), 15 × D (independent method). No C (manufactured-solution) or F
   are **detected and reported**, 3/3, while a valid medium is still accepted.
 - The warp medium is **bianisotropic**: w_x ≈ −0.101 at the wall. No arrangement
   of ordinary dielectrics reproduces it.
+
+### Dispersive models (B3)
+
+Gate B3-PHYSICAL-ADMISSIBILITY, 38/38.
+
+- The Fourier convention is `e^{-i omega t}`, fixed once and **pinned** by the
+  requirement that the specified Lorentz and Drude forms come out passive rather
+  than active under it.
+- **Causality is GLOBAL**, and structural: damping passes through a strictly
+  positive transform, so every pole of every term lies in the lower half
+  omega-plane for every parameter value. No sampling is involved and no
+  optimizer step can escape it.
+- **Passivity is established OVER THE VERIFIED BAND ONLY.** `min eig L >= 0` is
+  checked on a finite set of sampled frequencies. **Global passivity is not
+  claimed.** `L(omega)` is rational and can dip negative in a narrow interval
+  between samples — especially near a resonance, a zero of `det mu`, or an
+  eigenvalue crossing — and a sampled gate cannot see that. Proving it globally
+  needs an analytic positive-real argument that has not been carried out here.
+  The adaptive search introduced at B4 narrows the unverified region; it does not
+  close it, and it is not a replacement for the B3 sampled gate.
+- Kramers–Krönig is a **diagnostic**, reported as a convergence trend, and is
+  explicitly not the causality proof.
+- `hard feasible approximation` and `soft penalized approximation` are reported
+  under different names, and a soft-penalty result is never called feasible
+  merely because its violation is small.
+- A recovered model reproduces a **response** over a band. That is not the same
+  claim as recovering **parameters**: below resonance the model is not
+  identifiable, and the gate measures both.
 
 ### Covariant correspondence (B1C, steps 1–6)
 
