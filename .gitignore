@@ -72,3 +72,10 @@ Thumbs.db
 # names: an over-broad pattern here would silently drop a real file later.
 .claude/
 scratchpad/
+
+# Program C: SQLite databases are a pure projection of the committed text
+# snapshot, regenerated on demand by tools/snapshot_to_sqlite.py. Committing a
+# binary that duplicates a checksummed text file adds no information and can
+# drift from it.
+*.sqlite
+*.sqlite-journal

@@ -1,0 +1,73 @@
+=== Program C, C0 offline demonstration ===
+
+DATA KIND: SYNTHETIC
+  These are NOT retrieved catalogue records. Every position below is
+  computed from SYNTHETIC fixtures, so the geometry is exercised and
+  the astronomy is not. Run tools/import_gaia.py for real data.
+
+snapshot            ../../program_c_astrogation/results/verification/program_c0/c0_snapshot_50pc.txt
+schema version      1
+checksum verified   yes
+pinned release      Gaia DR3 / gaiadr3.gaia_source
+reference epoch     J2016
+volume radius       50 pc
+objects             13
+placeable           11 of 13  (2 retained without a defensible distance, so they cannot be positioned)
+outside the volume  1  (retained and flagged, never deleted)
+
+--- Solar System barycentric origin ---
+frame               Barycentric Cartesian (ICRS-aligned)
+origin              solar system barycentre
+orientation         ICRS axes: +x toward (ra=0, dec=0), +z toward the north celestial pole
+units               parsec; parsec per Julian year
+velocity convention coordinate velocity dx/dt at the stated epoch, rectilinear model
+position            (0, 0, 0) pc by definition
+
+--- nearest 11 systems, 3D position at the reference epoch ---
+name                           d [pc]       +-          x          y          z  estimator
+SYN-HIGH-PM                     4.000    0.008    -1.8794     3.2552    -1.3681  InverseParallaxHighQuality
+SYN-POLE-5PC                    5.000    0.025     0.0000     0.0000     5.0000  InverseParallaxHighQuality
+SYN-BINARY-B                    6.246    0.016    -0.8885     5.0387    -3.5827  InverseParallaxHighQuality
+SYN-BINARY-A                    6.250    0.016    -0.8890     5.0419    -3.5849  InverseParallaxHighQuality
+SYN-RADIAL-ONLY                 8.000    0.026    -7.4033    -2.6946     1.3892  InverseParallaxHighQuality
+SYN-AXIS-10PC                  10.000    0.050    10.0000     0.0000     0.0000  InverseParallaxHighQuality
+SYN-EXOHOST                    11.000    0.036    -0.0000    -9.5263     5.5000  InverseParallaxHighQuality
+SYN-NO-RV                      15.000    0.067     0.5215    14.9338    -1.3073  InverseParallaxHighQuality
+SYN-HIGHDEC-CONVENTION         20.000    0.080     8.6603     5.0000    17.3205  InverseParallaxHighQuality
+SYN-STATIONARY                 25.000    0.062    12.5000    12.5000    17.6777  InverseParallaxHighQuality
+SYN-OUTSIDE-50PC               60.000    0.360    58.1907    10.2606    10.4189  InverseParallaxHighQuality  [OUTSIDE REQUESTED VOLUME]
+
+--- positions propagated to J12016.0 (rectilinear, a LOCAL KINEMATIC model) ---
+name                        moved [pc]      radial  transverse  warning
+SYN-HIGH-PM                    0.96963     0.00000     0.96963  within validity
+SYN-POLE-5PC                   0.00000     0.00000     0.00000  within validity
+SYN-BINARY-B                   0.23642     0.20966     0.10927  within validity
+SYN-BINARY-A                   0.23189     0.20454     0.10925  within validity
+SYN-RADIAL-ONLY                0.51136     0.51136     0.00000  within validity
+SYN-AXIS-10PC                  0.00000     0.00000     0.00000  within validity
+SYN-EXOHOST                    0.18121    -0.12273     0.13332  within validity
+SYN-NO-RV                      0.10488    -0.00000     0.10488  within validity
+SYN-HIGHDEC-CONVENTION         0.48481    -0.00000     0.48481  within validity
+SYN-STATIONARY                 0.00000     0.00000     0.00000  within validity
+SYN-OUTSIDE-50PC               0.04114     0.00000     0.04114  within validity
+
+--- nearest confirmed exoplanet hosts (1) ---
+SYN-EXOHOST                   11.0000 pc   SYN-EXOHOST b (P = 11.186 d, a = 0.049 au)
+
+--- candidate destinations ranked by distance ---
+Ranked by CURRENT CATALOGUE DISTANCE ONLY. This is not a route: a real
+voyage must intercept a destination's WORLDLINE, not travel to its stale
+catalogue position, and that is C1.
+  1. SYN-HIGH-PM                 4.0000 pc   light time     13.05 yr
+  2. SYN-POLE-5PC                5.0000 pc   light time     16.31 yr
+  3. SYN-BINARY-B                6.2461 pc   light time     20.37 yr
+  4. SYN-BINARY-A                6.2500 pc   light time     20.38 yr
+  5. SYN-RADIAL-ONLY             8.0000 pc   light time     26.09 yr
+  6. SYN-AXIS-10PC              10.0000 pc   light time     32.62 yr
+  7. SYN-EXOHOST                11.0000 pc   light time     35.88 yr   [has planets]
+  8. SYN-NO-RV                  15.0000 pc   light time     48.92 yr
+  9. SYN-HIGHDEC-CONVENTION     20.0000 pc   light time     65.23 yr
+ 10. SYN-STATIONARY             25.0000 pc   light time     81.54 yr
+
+This is a catalogue and coordinate demonstration. There is no ship, no
+route optimisation, no warp bubble and no rendering: those are C1 to C3.

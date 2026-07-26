@@ -1,0 +1,48 @@
+program_c C0 catalogue manifest
+
+DATA KIND: SYNTHETIC
+  This snapshot contains NO retrieved catalogue data. Every
+  record is SYNTHETIC or LITERATURE_FROM_MEMORY. Run
+  tools/import_gaia.py to produce a snapshot with genuine
+  provenance.
+
+catalogue          Gaia DR3
+release            Gaia DR3
+source table       gaiadr3.gaia_source
+reference epoch    J2016
+volume radius      50 pc
+retrieval          n/a: no retrieval was performed; fixtures are SYNTHETIC
+licence            Gaia data would be ESA/Gaia/DPAC, CC BY-SA 3.0 IGO; NOT APPLICABLE here because no Gaia data is present
+checksum (FNV-1a)  517333436261633138   integrity only, not cryptographic
+
+rows in            13
+accepted           11
+rejected           2
+  reject 1008: parallax signal-to-noise 2.000000 below the required 10.000000: inverse parallax is not a defensible estimator here, so None is returned rather than a biased distance
+  reject 1009: parallax is not strictly positive, so its inverse is meaningless: distance estimator None
+distance estimator counts
+  InverseParallaxHighQuality 11
+  ExternalPosterior          0
+  UserSupplied               0
+  None                       2
+missing radial velocity      1
+missing covariance           2
+duplicates collapsed         0
+ledger balances              yes   (13 = 11 + 2 + 0)
+
+uncertainty summary over the accepted records
+  records with a distance    11
+  distance sigma, min        0.008 pc
+  distance sigma, max        0.359999 pc
+  mean fractional sigma      0.00368167
+  parallax snr floor         10 (below it the estimator is None, never a biased inverse)
+
+row counts by volume, from the offline query layer
+  within 5 pc                2
+  within 50 pc               10
+  confirmed exoplanet hosts  1
+
+ADQL specifying the intended import. NOT ISSUED: this milestone performed
+no retrieval. Reproduce it with tools/import_gaia.py, whose adql_for_radius()
+emits this text character for character.
+SELECT source_id, ra, ra_error, dec, dec_error, parallax, parallax_error, pmra, pmra_error, pmdec, pmdec_error, radial_velocity, radial_velocity_error, ref_epoch, ra_dec_corr, ra_parallax_corr, ra_pmra_corr, ra_pmdec_corr, dec_parallax_corr, dec_pmra_corr, dec_pmdec_corr, parallax_pmra_corr, parallax_pmdec_corr, pmra_pmdec_corr, duplicated_source, phot_g_mean_mag, ruwe, astrometric_params_solved FROM gaiadr3.gaia_source WHERE parallax IS NOT NULL AND parallax > 20.000000 AND parallax_error > 0 AND parallax / parallax_error >= 10.000000 ORDER BY parallax DESC
