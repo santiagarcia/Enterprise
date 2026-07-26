@@ -3,7 +3,9 @@
 DATA KIND: SYNTHETIC
   These are NOT retrieved catalogue records. Every position below is
   computed from SYNTHETIC fixtures, so the geometry is exercised and
-  the astronomy is not. Run tools/import_gaia.py for real data.
+  the astronomy is not. For real records, pass
+    --snapshot snapshots/gaia_dr3_10pc.txt
+  or regenerate one with tools/import_gaia.py.
 
 snapshot            ../../program_c_astrogation/results/verification/program_c0/c0_snapshot_50pc.txt
 schema version      1

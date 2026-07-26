@@ -1,6 +1,8 @@
 === Program C, C0 offline demonstration ===
 
 DATA KIND: Gaia DR3
+  Real Gaia DR3 records, retrieved 2026-07-26T23:23:03Z.
+  ESA/Gaia/DPAC, CC BY-SA 3.0 IGO; cite Gaia Collaboration 2016, 2023
 
 snapshot            ../../program_c_astrogation/snapshots/gaia_dr3_10pc.txt
 schema version      1

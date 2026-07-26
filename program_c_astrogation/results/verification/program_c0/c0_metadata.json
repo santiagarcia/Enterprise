@@ -6,11 +6,11 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "9cb6db3c7ee525ba593c94874cb34180e63456ea",
+    "git_commit": "f7f98dae050799cd41206988dfbefb8e290febb5",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
-  "data_honesty": "No Gaia DR3 record was retrieved: this milestone had no network access. Every fixture is SYNTHETIC or LITERATURE_FROM_MEMORY and is tagged as such. The gate verifies the machinery, not agreement with the catalogue.",
+  "data_honesty": "Every fixture in THIS gate is SYNTHETIC or LITERATURE_FROM_MEMORY and is tagged as such, by design: closed-form fixtures verify the machinery because their expected answers are exact. This gate therefore makes no claim of agreement with Gaia DR3. That claim belongs to the separate C0-REAL-CATALOGUE gate, which reads the committed real snapshots under snapshots/.",
   "data_kind": "SYNTHETIC",
   "database_format": "portable versioned text snapshot; SQLite deferred as a dependency decision, materialised by tools/snapshot_to_sqlite.py",
   "duplicates_collapsed": 0,
@@ -19,11 +19,12 @@
   "pinned_catalogue": "Gaia DR3",
   "pinned_table": "gaiadr3.gaia_source",
   "propagation_model": "rectilinear barycentric, a LOCAL KINEMATIC model, not a Galactic orbit integrator; validity 1e5 yr",
+  "real_data_gate": "program_c0_real",
   "reference_epoch_jyear": 2016,
   "rows_accepted": 11,
   "rows_in": 13,
   "rows_rejected": 2,
   "snapshot_checksum_fnv1a": 5.1733343626163315e+17,
   "tap_endpoint": "https://gea.esac.esa.int/tap-server/tap",
-  "timestamp_utc": "2026-07-26T23:10:42Z"
+  "timestamp_utc": "2026-07-26T23:38:30Z"
 }

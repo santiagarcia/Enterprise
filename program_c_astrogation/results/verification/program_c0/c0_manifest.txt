@@ -2,9 +2,10 @@ program_c C0 catalogue manifest
 
 DATA KIND: SYNTHETIC
   This snapshot contains NO retrieved catalogue data. Every
-  record is SYNTHETIC or LITERATURE_FROM_MEMORY. Run
-  tools/import_gaia.py to produce a snapshot with genuine
-  provenance.
+  record is SYNTHETIC or LITERATURE_FROM_MEMORY, by design:
+  this gate verifies the machinery against closed-form answers.
+  Real Gaia DR3 snapshots are committed under snapshots/ and are
+  checked by the separate C0-REAL-CATALOGUE gate.
 
 catalogue          Gaia DR3
 release            Gaia DR3

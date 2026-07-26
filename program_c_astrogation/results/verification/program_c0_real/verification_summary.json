@@ -5,8 +5,8 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "086b3b4ed7251053261dc86d26859cb1d1eceb21",
-    "git_dirty": true,
+    "git_commit": "f7f98dae050799cd41206988dfbefb8e290febb5",
+    "git_dirty": false,
     "platform": "Windows-AMD64"
   },
   "cases": [
@@ -21,7 +21,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the snapshot declares itself Gaia DR3, names its table and epoch, carries a retrieval timestamp, and its checksum verifies",
-      "runtime_seconds": 6e-07,
+      "runtime_seconds": 8e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -36,7 +36,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "Gaia DR3 5853498713190525696 (NAME Proxima Centauri) matches its published parallax to 1e-6 mas and its published proper motion to 1e-3 mas/yr",
-      "runtime_seconds": 5.91e-05,
+      "runtime_seconds": 6.41e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -51,7 +51,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "Gaia DR3 4472832130942575872 (NAME Barnard's star) matches its published parallax to 1e-6 mas and its published proper motion to 1e-3 mas/yr",
-      "runtime_seconds": 5.7e-06,
+      "runtime_seconds": 5.1e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -66,7 +66,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "Gaia DR3 3864972938605115520 (Wolf  359) matches its published parallax to 1e-6 mas and its published proper motion to 1e-3 mas/yr",
-      "runtime_seconds": 4.6e-06,
+      "runtime_seconds": 4.4e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -81,7 +81,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "Gaia DR3 762815470562110464 (HD  95735) matches its published parallax to 1e-6 mas and its published proper motion to 1e-3 mas/yr",
-      "runtime_seconds": 4.1e-06,
+      "runtime_seconds": 3.8e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -96,7 +96,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "Gaia DR3 2947050466531873024 (* alf CMa B) matches its published parallax to 1e-6 mas and its published proper motion to 1e-3 mas/yr",
-      "runtime_seconds": 6.8e-06,
+      "runtime_seconds": 6.1e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -111,7 +111,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "Gaia DR3 5164707970261890560 (* eps Eri) matches its published parallax to 1e-6 mas and its published proper motion to 1e-3 mas/yr",
-      "runtime_seconds": 4.2e-06,
+      "runtime_seconds": 3.9e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -130,7 +130,7 @@
       "passed": true,
       "reference": "the nearest star's distance, from Gaia DR3 parallax 768.066539 mas via inverse parallax, against the published 4.2465 ly",
       "relative_error": 9.437559183090187e-06,
-      "runtime_seconds": 8.3e-06,
+      "runtime_seconds": 6.9e-06,
       "skipped": false,
       "tolerance": 0.0001
     },
@@ -149,7 +149,7 @@
       "passed": true,
       "reference": "light travel time to the nearest star, through the unit layer, against the published 4.2465 yr",
       "relative_error": 9.437559183090187e-06,
-      "runtime_seconds": 3e-07,
+      "runtime_seconds": 2e-07,
       "skipped": false,
       "tolerance": 0.001
     },
@@ -187,7 +187,7 @@
       "passed": true,
       "reference": "transverse velocity from proper motion and distance, against the published ~90.1 km/s",
       "relative_error": 0.00026722520205246363,
-      "runtime_seconds": 4e-07,
+      "runtime_seconds": 8e-07,
       "skipped": false,
       "tolerance": 0.1
     },
@@ -202,7 +202,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "no star in the retrieved volume has a larger proper motion than Barnard's star",
-      "runtime_seconds": 1.1e-06,
+      "runtime_seconds": 1e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -217,7 +217,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the parallax selection really does bound the volume: every accepted distance is within the requested radius",
-      "runtime_seconds": 4e-07,
+      "runtime_seconds": 2e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -247,7 +247,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "rows retrieved equals accepted plus rejected plus duplicates collapsed, on the real import",
-      "runtime_seconds": 2.1e-06,
+      "runtime_seconds": 1e-07,
       "skipped": false,
       "tolerance": 0
     }
@@ -257,6 +257,6 @@
   "num_failed": 0,
   "num_passed": 15,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T23:28:31Z",
+  "timestamp_utc": "2026-07-26T23:38:31Z",
   "title": "C0-REAL-CATALOGUE: the committed Gaia DR3 snapshot against independently published astronomy"
 }

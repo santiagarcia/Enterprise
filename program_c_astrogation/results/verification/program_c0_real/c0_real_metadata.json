@@ -4,8 +4,8 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "086b3b4ed7251053261dc86d26859cb1d1eceb21",
-    "git_dirty": true,
+    "git_commit": "f7f98dae050799cd41206988dfbefb8e290febb5",
+    "git_dirty": false,
     "platform": "Windows-AMD64"
   },
   "data_kind": "Gaia DR3",
@@ -19,6 +19,6 @@
   "snapshot": "../../program_c_astrogation/snapshots/gaia_dr3_5pc.txt",
   "snapshot_checksum_fnv1a": 7.95612492446759e+18,
   "source_table": "gaiadr3.gaia_source",
-  "timestamp_utc": "2026-07-26T23:28:31Z",
+  "timestamp_utc": "2026-07-26T23:38:31Z",
   "volume_radius_pc": 5
 }
