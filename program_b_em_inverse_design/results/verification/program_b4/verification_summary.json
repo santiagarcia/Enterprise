@@ -5,7 +5,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "976ef4960578d7eece4aa22a861cbeb1c63c9144",
+    "git_commit": "9bf1028688994b1fd2c9718f519998ef2ea1d7dc",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -21,7 +21,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the frequency-domain curl equations are recorded and derived from this project's own e^{-i omega t} kernel",
-      "runtime_seconds": 4.9e-06,
+      "runtime_seconds": 3.4e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -40,7 +40,7 @@
       "passed": true,
       "reference": "|k| = omega in vacuum with c = 1: the analytic transverse mode is annihilated by the plane-wave operator exactly on the light cone",
       "relative_error": null,
-      "runtime_seconds": 6.24e-05,
+      "runtime_seconds": 4.25e-05,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -55,7 +55,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "at |k| = 1.7 omega the operator is NOT singular, so the previous case is not passing for a trivial reason",
-      "runtime_seconds": 0.0001576,
+      "runtime_seconds": 0.0001064,
       "skipped": false,
       "tolerance": 0
     },
@@ -74,7 +74,7 @@
       "passed": true,
       "reference": "|k|^2 = eps mu omega^2 for an isotropic medium, with H_z = sqrt(eps/mu) E_y",
       "relative_error": null,
-      "runtime_seconds": 8.5e-06,
+      "runtime_seconds": 6.5e-06,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -93,7 +93,7 @@
       "passed": true,
       "reference": "v_p = 1/sqrt(eps mu)",
       "relative_error": null,
-      "runtime_seconds": 1.18e-05,
+      "runtime_seconds": 1.2e-05,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -108,7 +108,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "k.E = k.H = 0 and k x E = omega H for the vacuum transverse mode",
-      "runtime_seconds": 3e-07,
+      "runtime_seconds": 2e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -127,7 +127,7 @@
       "passed": true,
       "reference": "the Fresnel quartic from adj(W) = lambda k (x) k is proportional to (eta^{ab} k_a k_b)^2, with ONE constant across every wavevector",
       "relative_error": null,
-      "runtime_seconds": 9.3e-06,
+      "runtime_seconds": 8.1e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -146,7 +146,7 @@
       "passed": true,
       "reference": "the Fresnel scalar is unchanged under g_eff -> Omega^2 g_eff, so the light cone is a property of the conformal class",
       "relative_error": null,
-      "runtime_seconds": 6.3e-06,
+      "runtime_seconds": 7.8e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -161,7 +161,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a metric-induced medium has its two propagation branches degenerate, while a generic reciprocal anisotropic medium splits them",
-      "runtime_seconds": 4.81e-05,
+      "runtime_seconds": 4.46e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -180,7 +180,7 @@
       "passed": true,
       "reference": "v_g = dw/dk from the dispersion curve equals c/(n + w dn/dw)",
       "relative_error": null,
-      "runtime_seconds": 8.1e-06,
+      "runtime_seconds": 7.4e-06,
       "skipped": false,
       "tolerance": 1e-07
     },
@@ -210,7 +210,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "in a magnetoelectric medium the forward and backward wavenumbers differ in magnitude: phase velocity is direction dependent",
-      "runtime_seconds": 4.8e-06,
+      "runtime_seconds": 4.9e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -229,7 +229,7 @@
       "passed": true,
       "reference": "R + T = 1 for a lossless dielectric slab",
       "relative_error": null,
-      "runtime_seconds": 0.0001639,
+      "runtime_seconds": 0.0001106,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -248,7 +248,7 @@
       "passed": true,
       "reference": "the independently integrated dissipated power is zero in a lossless slab",
       "relative_error": null,
-      "runtime_seconds": 0.0001663,
+      "runtime_seconds": 0.0001129,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -267,7 +267,7 @@
       "passed": true,
       "reference": "R + T + A = 1 with A obtained by integrating <p> = (w/2) Im[E* D + H* B] through the internal field profile",
       "relative_error": null,
-      "runtime_seconds": 0.0024582,
+      "runtime_seconds": 0.0015848,
       "skipped": false,
       "tolerance": 1e-07
     },
@@ -282,7 +282,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a passive lossy slab absorbs a strictly positive amount of power",
-      "runtime_seconds": 0.0024651,
+      "runtime_seconds": 0.001588,
       "skipped": false,
       "tolerance": 0
     },
@@ -297,7 +297,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a slab with Im eps < 0 shows NEGATIVE absorption and R + T > 1",
-      "runtime_seconds": 5.44e-05,
+      "runtime_seconds": 3.64e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -312,7 +312,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a 40-unit evanescent layer returns finite R and T with T exponentially small, rather than overflowing",
-      "runtime_seconds": 4.35e-05,
+      "runtime_seconds": 3.04e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -327,7 +327,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "dropping the magnetoelectric term changes measurable propagation observables -- phase accumulation and group delay -- through a warp-analogue profile, and both stacks conserve energy",
-      "runtime_seconds": 0.0049142,
+      "runtime_seconds": 0.0033663,
       "skipped": false,
       "tolerance": 0
     },
@@ -342,7 +342,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the adaptive scan finds a strictly LOWER minimum loss eigenvalue than the coarse grid, by refining around resonances, zeros of det mu and local minima",
-      "runtime_seconds": 0.004801,
+      "runtime_seconds": 0.0036222,
       "skipped": false,
       "tolerance": 0
     },
@@ -361,7 +361,7 @@
       "passed": true,
       "reference": "d(phase)/d(eps) through a slab matches the analytic w d /(2 sqrt(eps))",
       "relative_error": null,
-      "runtime_seconds": 1.56e-05,
+      "runtime_seconds": 1.03e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -376,7 +376,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "two identical stack solves return bit-identical R, T and A",
-      "runtime_seconds": 0.0001147,
+      "runtime_seconds": 7.45e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -391,7 +391,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the number of real propagation branches along a direction is counted and reported rather than assumed",
-      "runtime_seconds": 4.11e-05,
+      "runtime_seconds": 2.92e-05,
       "skipped": false,
       "tolerance": 0
     }
@@ -401,6 +401,6 @@
   "num_failed": 0,
   "num_passed": 23,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T18:04:38Z",
+  "timestamp_utc": "2026-07-26T22:19:09Z",
   "title": "B4-MAXWELL-PROPAGATION: does the B3 constitutive model produce the electromagnetic propagation the target effective metric predicts? Plane-wave operator, Fresnel polynomial, layered propagation and energy balance"
 }

@@ -5,7 +5,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "976ef4960578d7eece4aa22a861cbeb1c63c9144",
+    "git_commit": "9bf1028688994b1fd2c9718f519998ef2ea1d7dc",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -25,7 +25,7 @@
       "passed": true,
       "reference": "eps_{0123} = +sqrt(-det g) and eps^{0123} = -1/sqrt(-det g), both totally antisymmetric, for Minkowski AND a curved non-diagonal lab",
       "relative_error": null,
-      "runtime_seconds": 2.65e-05,
+      "runtime_seconds": 2.03e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -44,7 +44,7 @@
       "passed": true,
       "reference": "eps_{abcd} eps^{cdef} = -2(delta_a^e delta_b^f - delta_a^f delta_b^e)",
       "relative_error": null,
-      "runtime_seconds": 2.25e-05,
+      "runtime_seconds": 1.38e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -63,7 +63,7 @@
       "passed": true,
       "reference": "**F = -F for an arbitrary two-form, in four-dimensional Lorentzian signature",
       "relative_error": null,
-      "runtime_seconds": 2.85e-05,
+      "runtime_seconds": 1.89e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -82,7 +82,7 @@
       "passed": true,
       "reference": "*(*Z) = -Z",
       "relative_error": null,
-      "runtime_seconds": 7.03e-05,
+      "runtime_seconds": 4.05e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -101,7 +101,7 @@
       "passed": true,
       "reference": "(Z*)* = -Z",
       "relative_error": null,
-      "runtime_seconds": 7.87e-05,
+      "runtime_seconds": 4.61e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -120,7 +120,7 @@
       "passed": true,
       "reference": "*(Z*) = (*Z)*, since the two duals contract disjoint index pairs",
       "relative_error": null,
-      "runtime_seconds": 6.26e-05,
+      "runtime_seconds": 3.57e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -139,7 +139,7 @@
       "passed": true,
       "reference": "(*Z*) applied twice returns +Z: (-1) from each index pair",
       "relative_error": null,
-      "runtime_seconds": 6.26e-05,
+      "runtime_seconds": 3.54e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -158,7 +158,7 @@
       "passed": true,
       "reference": "the left dual of the vacuum Z equals (1/2) eps^{abcd}",
       "relative_error": null,
-      "runtime_seconds": 2.12e-05,
+      "runtime_seconds": 1.28e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -177,7 +177,7 @@
       "passed": true,
       "reference": "*(L.Z) computed in the new coordinates equals L.(*Z) computed in the old ones",
       "relative_error": null,
-      "runtime_seconds": 0.0002129,
+      "runtime_seconds": 0.0001708,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -196,7 +196,7 @@
       "passed": true,
       "reference": "H^{ab} = Z^{abcd} F_{cd} reproduces H = F exactly for Minkowski, on a general antisymmetric F",
       "relative_error": null,
-      "runtime_seconds": 1.43e-05,
+      "runtime_seconds": 1.34e-05,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -215,7 +215,7 @@
       "passed": true,
       "reference": "Z^{abcd} is unchanged under g_eff -> Omega^2 g_eff",
       "relative_error": null,
-      "runtime_seconds": 1.77e-05,
+      "runtime_seconds": 1.68e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -234,7 +234,7 @@
       "passed": true,
       "reference": "Z'^{abcd} = L^a_p L^b_q L^c_r L^d_s Z^{pqrs} under a linear change of coordinates applied to both g_eff and g_lab",
       "relative_error": null,
-      "runtime_seconds": 9.9e-05,
+      "runtime_seconds": 8.08e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -253,7 +253,7 @@
       "passed": true,
       "reference": "eps^{ab} = h^{ab} exactly for the Alcubierre analogue with g_lab = eta and the laboratory rest observer, at every v_s",
       "relative_error": null,
-      "runtime_seconds": 0.0007032,
+      "runtime_seconds": 0.0005387,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -272,7 +272,7 @@
       "passed": true,
       "reference": "[mu^-1]^{ab} = diag(0, 1, -g_00, -g_00) with -g_00 = 1 - v^2 f^2",
       "relative_error": null,
-      "runtime_seconds": 0.0007085,
+      "runtime_seconds": 0.0005505,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -291,7 +291,7 @@
       "passed": true,
       "reference": "zeta^{23} = -g_01 = v f, zeta^{32} = +g_01, all other components zero",
       "relative_error": null,
-      "runtime_seconds": 0.0007178,
+      "runtime_seconds": 0.0005546,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -310,7 +310,7 @@
       "passed": true,
       "reference": "zeta_adjoint = zeta^T for the warp analogue, as required by the pair symmetry Z^{abcd} = Z^{cdab}",
       "relative_error": null,
-      "runtime_seconds": 0.0007203,
+      "runtime_seconds": 0.0005573,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -325,7 +325,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "for the warp analogue with the bubble moving along +x, B = +B0 z-hat and E = 0, the induced displacement points along -y",
-      "runtime_seconds": 3.96e-05,
+      "runtime_seconds": 5.09e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -344,7 +344,7 @@
       "passed": true,
       "reference": "D_y = g_01 = -v f B0 exactly",
       "relative_error": 0,
-      "runtime_seconds": 4.26e-05,
+      "runtime_seconds": 5.34e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -363,7 +363,7 @@
       "passed": true,
       "reference": "the Plebanski eps is diag(1, 1/(1-v^2f^2), 1/(1-v^2f^2)) for the Alcubierre metric",
       "relative_error": null,
-      "runtime_seconds": 0.0002789,
+      "runtime_seconds": 0.0001165,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -378,7 +378,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the covariant eps for the laboratory observer and the Plebanski eps differ, by exactly the ratio of the two observers' normalisations",
-      "runtime_seconds": 0.0003062,
+      "runtime_seconds": 0.0001259,
       "skipped": false,
       "tolerance": 0
     },
@@ -397,7 +397,7 @@
       "passed": true,
       "reference": "[mu^-1] from the (A7) laboratory decomposition equals the 3x3 inverse of the Plebanski mu, componentwise",
       "relative_error": null,
-      "runtime_seconds": 0.000346,
+      "runtime_seconds": 0.0001499,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -412,7 +412,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "at every profile point where the medium is not vacuum, two admissible laboratory observers see different blocks",
-      "runtime_seconds": 0.0022799,
+      "runtime_seconds": 0.0008501,
       "skipped": false,
       "tolerance": 0
     },
@@ -431,7 +431,7 @@
       "passed": true,
       "reference": "Zhat[V] = Z, Zhat[U] = Z and Zhat[V] = Zhat[U] across the warp profile: the blocks are observer dependent, the tensor is not",
       "relative_error": null,
-      "runtime_seconds": 0.0023271,
+      "runtime_seconds": 0.0008592,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -446,7 +446,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "inside v_s f > 1 the effective metric stays Lorentzian and Z^{abcd} stays valid at EVERY point, while the coordinate-time observer of g_eff is inadmissible at every point",
-      "runtime_seconds": 0.0008121,
+      "runtime_seconds": 0.0003454,
       "skipped": false,
       "tolerance": 0
     },
@@ -461,7 +461,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the Alcubierre metric has signature (-,+,+,+) and det g = -1 at every point for v_s up to 10",
-      "runtime_seconds": 0.0002361,
+      "runtime_seconds": 0.000143,
       "skipped": false,
       "tolerance": 0
     },
@@ -476,7 +476,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "inside the ergoregion the Eulerian observer of g_eff and the laboratory observer both remain admissible where the g_eff coordinate-time observer does not, and the laboratory blocks stay finite",
-      "runtime_seconds": 0.0056203,
+      "runtime_seconds": 0.003702,
       "skipped": false,
       "tolerance": 0
     },
@@ -491,7 +491,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a boosted inertial laboratory observer gives a valid but DIFFERENT (A7) decomposition of the same Z",
-      "runtime_seconds": 0.0001207,
+      "runtime_seconds": 7.63e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -510,7 +510,7 @@
       "passed": true,
       "reference": "eps^{ab} = h^{ab} at every point of the sweep, so its condition number is identically 1 and cannot diverge",
       "relative_error": null,
-      "runtime_seconds": 0.0366634,
+      "runtime_seconds": 0.0265388,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -525,7 +525,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "cond(eps) is 1 both at the ergosurface and far from it, recorded so the withdrawn expectation is not silently dropped",
-      "runtime_seconds": 0.0366798,
+      "runtime_seconds": 0.0265563,
       "skipped": false,
       "tolerance": 0
     },
@@ -544,7 +544,7 @@
       "passed": true,
       "reference": "the smallest eigenvalue magnitude of [mu^-1] equals min(1, |g_00|) exactly along the sweep",
       "relative_error": null,
-      "runtime_seconds": 0.0366985,
+      "runtime_seconds": 0.0265754,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -559,7 +559,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the permeability diverges at the ergosurface: min|eig mu^-1| falls below 1e-4, cond(mu^-1) exceeds 1e3 and |det mu^-1| falls below 1e-8, while all three are of order 1 far away",
-      "runtime_seconds": 0.0367121,
+      "runtime_seconds": 0.026589,
       "skipped": false,
       "tolerance": 0
     },
@@ -574,7 +574,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "max|Z^{abcd}| is bounded over the whole sweep and is unchanged to 1e-4 across the ergosurface itself, and the magnetoelectric norm stays finite, while the permeability diverges",
-      "runtime_seconds": 0.0367258,
+      "runtime_seconds": 0.0266021,
       "skipped": false,
       "tolerance": 0
     },
@@ -593,7 +593,7 @@
       "passed": true,
       "reference": "the independent reference evaluator, written from the equations and calling no production code, reproduces AlcubierreMetric::evaluate",
       "relative_error": null,
-      "runtime_seconds": 1.97e-05,
+      "runtime_seconds": 1.7e-05,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -612,7 +612,7 @@
       "passed": true,
       "reference": "the independent reference evaluator, written from the equations and calling no production code, reproduces AlcubierreMetric::evaluate",
       "relative_error": null,
-      "runtime_seconds": 2.9e-05,
+      "runtime_seconds": 2.6e-05,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -631,7 +631,7 @@
       "passed": true,
       "reference": "dg/dv at fixed bubble centre, analytic against centred finite differences of the fixed-centre reference",
       "relative_error": null,
-      "runtime_seconds": 5.94e-05,
+      "runtime_seconds": 3.2e-05,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -650,7 +650,7 @@
       "passed": true,
       "reference": "the TOTAL dg/dv at fixed laboratory coordinates, analytic against centred finite differences of the fixed-laboratory reference, which recomputes x_s(v) = x_s0 + v t per call",
       "relative_error": null,
-      "runtime_seconds": 6.95e-05,
+      "runtime_seconds": 3.98e-05,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -669,7 +669,7 @@
       "passed": true,
       "reference": "dg/dv at fixed bubble centre, analytic against centred finite differences of the fixed-centre reference",
       "relative_error": null,
-      "runtime_seconds": 7.44e-05,
+      "runtime_seconds": 4.29e-05,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -688,7 +688,7 @@
       "passed": true,
       "reference": "the TOTAL dg/dv at fixed laboratory coordinates, analytic against centred finite differences of the fixed-laboratory reference, which recomputes x_s(v) = x_s0 + v t per call",
       "relative_error": null,
-      "runtime_seconds": 7.99e-05,
+      "runtime_seconds": 4.59e-05,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -707,7 +707,7 @@
       "passed": true,
       "reference": "dg/dv|_{t,x} - dg/dv|_{x_s} = (dg/df)(df/dr_s)(dr_s/dv) with dr_s/dv = -((x - x_s)/r_s) t, assembled component by component",
       "relative_error": null,
-      "runtime_seconds": 7.4e-06,
+      "runtime_seconds": 9.4e-06,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -726,7 +726,7 @@
       "passed": true,
       "reference": "dg/dv|_{t,x} - dg/dv|_{x_s} = (dg/df)(df/dr_s)(dr_s/dv) with dr_s/dv = -((x - x_s)/r_s) t, assembled component by component",
       "relative_error": null,
-      "runtime_seconds": 1.35e-05,
+      "runtime_seconds": 1.76e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -745,7 +745,7 @@
       "passed": true,
       "reference": "the trajectory term equals -t (dg/dx) evaluated at FIXED x_s and fixed v, per component",
       "relative_error": null,
-      "runtime_seconds": 1.51e-05,
+      "runtime_seconds": 9.2e-06,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -764,7 +764,7 @@
       "passed": true,
       "reference": "the trajectory term equals -t (dg/dx) evaluated at FIXED x_s and fixed v, per component",
       "relative_error": null,
-      "runtime_seconds": 2.05e-05,
+      "runtime_seconds": 1.21e-05,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -783,7 +783,7 @@
       "passed": true,
       "reference": "FixedBubbleCenter HyPAD sensitivity equals the analytic dg/dv|_{x_s}",
       "relative_error": null,
-      "runtime_seconds": 0.0003295,
+      "runtime_seconds": 0.0005084,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -802,7 +802,7 @@
       "passed": true,
       "reference": "FixedLaboratoryCoordinates HyPAD sensitivity equals the analytic total dg/dv|_{t,x}, including the dx_s/dv = t trajectory term",
       "relative_error": null,
-      "runtime_seconds": 0.0003487,
+      "runtime_seconds": 0.0006341,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -821,7 +821,7 @@
       "passed": true,
       "reference": "FixedBubbleCenter HyPAD sensitivity equals the analytic dg/dv|_{x_s}",
       "relative_error": null,
-      "runtime_seconds": 0.0003528,
+      "runtime_seconds": 0.000642,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -840,7 +840,7 @@
       "passed": true,
       "reference": "FixedLaboratoryCoordinates HyPAD sensitivity equals the analytic total dg/dv|_{t,x}, including the dx_s/dv = t trajectory term",
       "relative_error": null,
-      "runtime_seconds": 0.0003568,
+      "runtime_seconds": 0.0006449,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -859,7 +859,7 @@
       "passed": true,
       "reference": "at t = 0 the two sensitivity modes coincide, because dx_s/dv = t = 0",
       "relative_error": null,
-      "runtime_seconds": 0.0008344,
+      "runtime_seconds": 0.0009879,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -874,7 +874,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "at t != 0 the two modes differ substantially, so the distinction is not cosmetic",
-      "runtime_seconds": 0.0008422,
+      "runtime_seconds": 0.0009949,
       "skipped": false,
       "tolerance": 0
     },
@@ -893,7 +893,7 @@
       "passed": true,
       "reference": "g_11, g_22, g_33 and every off-diagonal component other than g_01 are constants, so their velocity sensitivity is exactly zero in both modes",
       "relative_error": null,
-      "runtime_seconds": 0.0023373,
+      "runtime_seconds": 0.0033139,
       "skipped": false,
       "tolerance": 0
     },
@@ -912,7 +912,7 @@
       "passed": true,
       "reference": "an objective with a translation-invariant weight over a domain with remote boundaries is unchanged between t = 0 and t = 12",
       "relative_error": null,
-      "runtime_seconds": 0.0002943,
+      "runtime_seconds": 0.0004661,
       "skipped": false,
       "tolerance": 1e-06
     },
@@ -927,7 +927,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "an objective read by a FIXED laboratory sensor at x = 0 changes substantially between t = 0 and t = 12",
-      "runtime_seconds": 0.0003023,
+      "runtime_seconds": 0.0004843,
       "skipped": false,
       "tolerance": 0
     },
@@ -942,7 +942,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the valid, observer-invalid and metric-degenerate statuses are each produced by an appropriate input and are not collapsed together",
-      "runtime_seconds": 0.0001076,
+      "runtime_seconds": 5.06e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -961,7 +961,7 @@
       "passed": true,
       "reference": "d Z^{0101} / d(v, R, sigma) matches centred finite differences",
       "relative_error": null,
-      "runtime_seconds": 8.22e-05,
+      "runtime_seconds": 9e-05,
       "skipped": false,
       "tolerance": 1e-06
     }
@@ -971,6 +971,6 @@
   "num_failed": 0,
   "num_passed": 53,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T18:03:12Z",
+  "timestamp_utc": "2026-07-26T22:17:40Z",
   "title": "Correction gate: covariant Z^abcd versus observer-dependent 3+1 decomposition; the v_s f = 1 surface is an ergosurface, not an invariant realizability wall"
 }

@@ -1,0 +1,19 @@
+{
+  "build": {
+    "build_type": "RelWithDebInfo",
+    "compiler_id": "MSVC",
+    "compiler_version": "19.44.35223.0",
+    "cxx_standard": "C++17",
+    "git_commit": "9bf1028688994b1fd2c9718f519998ef2ea1d7dc",
+    "git_dirty": false,
+    "platform": "Windows-AMD64"
+  },
+  "classification_flags": "fresnel_single_cone, principal_part_metric_compatible, contains_axion, contains_skewon, reciprocal, pair_antisymmetric -- reported separately, replacing B4's single metric_induced boolean",
+  "corrected_claim": "Metric-induced constitutive tensors are non-birefringent. Generic reciprocal constitutive tensors need not be. The converse requires additional assumptions and is subject to conformal/dilaton freedom and constitutive pieces that do not affect the Fresnel polynomial.",
+  "differentiation_exclusions": "no claim is made to differentiate through branch sorting, mode switching, poles, zeros of transmission, or degeneracies. The phase sensitivity refuses to report a value when |t| falls below 1e-8, and root multiplicity carries an explicit conditioning warning because a root of multiplicity m is attainable only to about eps^(1/m).",
+  "fresnel_does_not_determine_Z": "W^{bd} = Z^{abcd}k_a k_c annihilates the axion piece identically, and the cone is conformally invariant, so the Fresnel polynomial does NOT uniquely reconstruct Z^{abcd}.",
+  "milestone": "B4C",
+  "root_finder": "Durand-Kerner with Newton polish, clustering for multiplicity, per-root residual and conditioning warning. Replaces a sign-change scan that was blind to roots of even multiplicity.",
+  "timestamp_utc": "2026-07-26T22:19:10Z",
+  "withdrawn_claim": "metricity iff no birefringence"
+}

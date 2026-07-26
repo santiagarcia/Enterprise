@@ -4,7 +4,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "976ef4960578d7eece4aa22a861cbeb1c63c9144",
+    "git_commit": "9bf1028688994b1fd2c9718f519998ef2ea1d7dc",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -13,5 +13,5 @@
   "milestone": "B1C",
   "primary_source": "S. Schuster and M. Visser, Phys. Rev. D 96, 124019 (2017), DOI 10.1103/PhysRevD.96.124019 (verified)",
   "sub_gates": "B1C-S23 (Hodge duals, A7 extraction, projector, zeta normalisation) and B1C-S456 (F->H reconstruction, zeta_adjoint, handedness, A11) are separate binaries and separate CTest tests. This gate depends on them through CTest rather than repeating their cases.",
-  "timestamp_utc": "2026-07-26T18:03:12Z"
+  "timestamp_utc": "2026-07-26T22:17:40Z"
 }

@@ -5,7 +5,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "976ef4960578d7eece4aa22a861cbeb1c63c9144",
+    "git_commit": "9bf1028688994b1fd2c9718f519998ef2ea1d7dc",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -25,7 +25,7 @@
       "passed": true,
       "reference": "addition, multiplication and division against hand-computed values; (a/b)*b = a; a conj(a) is real and equals |a|^2",
       "relative_error": null,
-      "runtime_seconds": 1.14e-05,
+      "runtime_seconds": 1.11e-05,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -40,7 +40,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "for a complex symmetric matrix the plain transpose residual vanishes while the Hermitian adjoint residual does not",
-      "runtime_seconds": 1.49e-05,
+      "runtime_seconds": 1.34e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -59,7 +59,7 @@
       "passed": true,
       "reference": "A A^-1 = I for a complex 3x3",
       "relative_error": null,
-      "runtime_seconds": 2.88e-05,
+      "runtime_seconds": 2.72e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -78,7 +78,7 @@
       "passed": true,
       "reference": "with every damping set to zero the response is exactly real and matches the undamped closed form",
       "relative_error": null,
-      "runtime_seconds": 2.85e-05,
+      "runtime_seconds": 2.65e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -93,7 +93,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "under the recorded e^{-i omega t} kernel both specified model forms have STRICTLY POSITIVE imaginary part for positive parameters, which is passive; under the opposite kernel both would be gain",
-      "runtime_seconds": 1.49e-05,
+      "runtime_seconds": 1.38e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -108,7 +108,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the Fourier kernel, time derivative, constitutive relation, dissipated power, Poynting vector, passive sign, causal half-plane and reality condition are all recorded",
-      "runtime_seconds": 2.09e-05,
+      "runtime_seconds": 1.85e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -127,7 +127,7 @@
       "passed": true,
       "reference": "the two-pole Lorentz permittivity matches a hand-written closed form",
       "relative_error": null,
-      "runtime_seconds": 6.2e-06,
+      "runtime_seconds": 6.1e-06,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -146,7 +146,7 @@
       "passed": true,
       "reference": "[mu^-1](w) mu(w) = 1 at every sampled frequency",
       "relative_error": null,
-      "runtime_seconds": 0.0002419,
+      "runtime_seconds": 0.0002241,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -165,7 +165,7 @@
       "passed": true,
       "reference": "eps(-w) = conj(eps(w)), the condition for a real time-domain response",
       "relative_error": null,
-      "runtime_seconds": 0.0002488,
+      "runtime_seconds": 0.0002304,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -184,7 +184,7 @@
       "passed": true,
       "reference": "zeta_adjoint = zeta^T at every frequency, exactly",
       "relative_error": null,
-      "runtime_seconds": 3.1e-05,
+      "runtime_seconds": 3e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -199,7 +199,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "every pole of every Lorentz term sits in the LOWER half omega-plane, including the overdamped case where both roots are purely imaginary",
-      "runtime_seconds": 1.84e-05,
+      "runtime_seconds": 1.79e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -214,7 +214,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the damping transform is strictly positive for every input, including extreme negative values, so no optimizer step can produce an acausal model",
-      "runtime_seconds": 2.37e-05,
+      "runtime_seconds": 2.32e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -233,7 +233,7 @@
       "passed": true,
       "reference": "positive_transform(positive_transform_inverse(x)) = x, so a known physical model can be expressed exactly as a design vector",
       "relative_error": null,
-      "runtime_seconds": 2.73e-05,
+      "runtime_seconds": 2.65e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -248,7 +248,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the Kramers-Kronig residual DECREASES monotonically as the integration band widens, and is small on the widest band -- the signature of quadrature truncation rather than a causality violation",
-      "runtime_seconds": 0.2426929,
+      "runtime_seconds": 0.1801164,
       "skipped": false,
       "tolerance": 0
     },
@@ -267,7 +267,7 @@
       "passed": true,
       "reference": "L = (C - C^dagger)/(2i) is Hermitian at every band frequency",
       "relative_error": null,
-      "runtime_seconds": 0.0001436,
+      "runtime_seconds": 0.0001339,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -286,7 +286,7 @@
       "passed": true,
       "reference": "xi_EH = zeta_EH^T, the reciprocity relation DERIVED for this project's (E,B) sign convention",
       "relative_error": null,
-      "runtime_seconds": 0.0001492,
+      "runtime_seconds": 0.0001391,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -301,7 +301,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the nondispersive vacuum limit has loss eigenvalues exactly zero: passive, and on the boundary rather than inside it",
-      "runtime_seconds": 9.06e-05,
+      "runtime_seconds": 8.32e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -316,7 +316,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a damped two-pole Lorentz medium is passive across the whole band: the smallest eigenvalue of the loss matrix is non-negative",
-      "runtime_seconds": 0.0001041,
+      "runtime_seconds": 9.44e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -331,7 +331,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a Lorentz term with NEGATIVE damping is detected as active -- the loss matrix acquires a negative eigenvalue -- and its poles move into the upper half plane, so it is acausal as well",
-      "runtime_seconds": 0.0001005,
+      "runtime_seconds": 9.01e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -346,7 +346,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a medium with STRICTLY POSITIVE Im eps and Im mu at every frequency is nevertheless NOT passive when the magnetoelectric coupling is strong: the full loss matrix has a negative eigenvalue",
-      "runtime_seconds": 0.0001463,
+      "runtime_seconds": 0.0001326,
       "skipped": false,
       "tolerance": 0
     },
@@ -365,7 +365,7 @@
       "passed": true,
       "reference": "(A11) is homogeneous linear in the blocks with real coefficients",
       "relative_error": null,
-      "runtime_seconds": 2.95e-05,
+      "runtime_seconds": 2.9e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -380,7 +380,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "J_band vanishes at the exact target, and the centre, mean and worst frequency mismatches are reported as three distinct numbers",
-      "runtime_seconds": 0.0011113,
+      "runtime_seconds": 0.0009158,
       "skipped": false,
       "tolerance": 0
     },
@@ -399,7 +399,7 @@
       "passed": true,
       "reference": "d eps/dF = 1/D, d eps/dw0 = -2 F w0/D^2, d eps/dgamma = i F w/D^2 match centred differences",
       "relative_error": null,
-      "runtime_seconds": 7e-07,
+      "runtime_seconds": 9e-07,
       "skipped": false,
       "tolerance": 1e-06
     },
@@ -418,7 +418,7 @@
       "passed": true,
       "reference": "complex-step derivatives, from instantiating the model at Scalar = Complex<double> with a step of 1e-30, agree with centred differences",
       "relative_error": null,
-      "runtime_seconds": 1.41e-05,
+      "runtime_seconds": 1.4e-05,
       "skipped": false,
       "tolerance": 1e-06
     },
@@ -433,7 +433,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the band objective's gradient is assembled from batches of at most kOtiDirections = 3 active directions",
-      "runtime_seconds": 0.0918644,
+      "runtime_seconds": 0.0758498,
       "skipped": false,
       "tolerance": 0
     },
@@ -452,7 +452,7 @@
       "passed": true,
       "reference": "the batch-assembled HyPAD gradient of J_band matches centred differences",
       "relative_error": null,
-      "runtime_seconds": 0.091871,
+      "runtime_seconds": 0.0758563,
       "skipped": false,
       "tolerance": 1e-06
     },
@@ -467,7 +467,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a manufactured single-pole target is recovered from a 20 percent perturbation, in physical parameters and not merely in objective",
-      "runtime_seconds": 5.8638178,
+      "runtime_seconds": 6.2936085,
       "skipped": false,
       "tolerance": 0
     },
@@ -482,7 +482,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a two-pole target is recovered to a band mismatch below 1e-12",
-      "runtime_seconds": 9.1558387,
+      "runtime_seconds": 11.0225863,
       "skipped": false,
       "tolerance": 0
     },
@@ -497,7 +497,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a one-pole model fitted to a two-pole target leaves a STRICTLY NONZERO residual, and still improves substantially on its start",
-      "runtime_seconds": 0.6979785,
+      "runtime_seconds": 0.7986624,
       "skipped": false,
       "tolerance": 0
     },
@@ -512,7 +512,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the hard-feasible run satisfies the bound EXACTLY -- zero violation -- and is labelled feasible, while the soft-penalised run is reported under a different name whatever the size of its violation",
-      "runtime_seconds": 28.601086,
+      "runtime_seconds": 32.4512805,
       "skipped": false,
       "tolerance": 0
     },
@@ -527,7 +527,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a fixed one-pole model fits a two-pole target progressively worse as the band widens, and the degradation is monotone",
-      "runtime_seconds": 20.9533642,
+      "runtime_seconds": 17.970423,
       "skipped": false,
       "tolerance": 0
     },
@@ -542,7 +542,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a dispersive magnetoelectric target is recovered while reciprocity holds exactly at every frequency throughout",
-      "runtime_seconds": 8.2021261,
+      "runtime_seconds": 8.3958714,
       "skipped": false,
       "tolerance": 0
     },
@@ -557,7 +557,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the same coefficients on an independently rebuilt triad give a DIFFERENT tensor, because the magnetoelectric shape K singles out particular spatial directions",
-      "runtime_seconds": 0.0025519,
+      "runtime_seconds": 0.0028114,
       "skipped": false,
       "tolerance": 0
     },
@@ -576,7 +576,7 @@
       "passed": true,
       "reference": "the same physical model built in transformed coordinates gives the pushed-forward Z at EVERY band frequency, real and imaginary parts alike",
       "relative_error": null,
-      "runtime_seconds": 0.0025563,
+      "runtime_seconds": 0.0028179,
       "skipped": false,
       "tolerance": 1e-11
     },
@@ -591,7 +591,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a nondispersive lossless model reproduces the B2 isotropic design's Z exactly at every frequency, with identically zero imaginary part",
-      "runtime_seconds": 0.0002716,
+      "runtime_seconds": 0.0002961,
       "skipped": false,
       "tolerance": 0
     },
@@ -610,7 +610,7 @@
       "passed": true,
       "reference": "eps = mu = 1 with no poles reproduces the vacuum Z at every frequency",
       "relative_error": null,
-      "runtime_seconds": 0.0002417,
+      "runtime_seconds": 0.0002712,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -625,7 +625,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "an undamped Lorentz medium evaluated well below its resonance is exactly lossless and sits on the passivity boundary",
-      "runtime_seconds": 5.69e-05,
+      "runtime_seconds": 6.71e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -640,7 +640,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "two band-optimizer runs from the same initialization are bit-identical",
-      "runtime_seconds": 10.3556967,
+      "runtime_seconds": 10.1760052,
       "skipped": false,
       "tolerance": 0
     }
@@ -650,6 +650,6 @@
   "num_failed": 0,
   "num_passed": 38,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T18:04:38Z",
+  "timestamp_utc": "2026-07-26T22:19:09Z",
   "title": "B3-PHYSICAL-ADMISSIBILITY: frequency-dependent constitutive models. q_physical -> eps(w), mu^-1(w), zeta(w) -> Z(w) -> J_band, with structural causality and a derived passivity condition"
 }

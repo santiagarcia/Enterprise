@@ -5,7 +5,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "976ef4960578d7eece4aa22a861cbeb1c63c9144",
+    "git_commit": "9bf1028688994b1fd2c9718f519998ef2ea1d7dc",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -25,7 +25,7 @@
       "passed": true,
       "reference": "g_{mu nu} == diag(-1,1,1,1) at every grid point",
       "relative_error": null,
-      "runtime_seconds": 0.000821,
+      "runtime_seconds": 0.0010056,
       "skipped": false,
       "tolerance": 0
     },
@@ -44,7 +44,7 @@
       "passed": true,
       "reference": "det g == -1",
       "relative_error": null,
-      "runtime_seconds": 0.0008904,
+      "runtime_seconds": 0.0010808,
       "skipped": false,
       "tolerance": 0
     },
@@ -63,7 +63,7 @@
       "passed": true,
       "reference": "g_{mu nu} == g_{nu mu}",
       "relative_error": null,
-      "runtime_seconds": 0.000894,
+      "runtime_seconds": 0.0010843,
       "skipped": false,
       "tolerance": 0
     },
@@ -82,7 +82,7 @@
       "passed": true,
       "reference": "f(0) == 1 exactly, by construction of the numerator",
       "relative_error": 0,
-      "runtime_seconds": 3e-06,
+      "runtime_seconds": 3.5e-06,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -101,7 +101,7 @@
       "passed": true,
       "reference": "f(r) -> 0 as r -> infinity (asymptotic flatness of the shape function)",
       "relative_error": null,
-      "runtime_seconds": 2.18e-05,
+      "runtime_seconds": 1.96e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -120,7 +120,7 @@
       "passed": true,
       "reference": "f is non-increasing in r on [0, 40]",
       "relative_error": null,
-      "runtime_seconds": 9.96e-05,
+      "runtime_seconds": 9.92e-05,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -139,7 +139,7 @@
       "passed": true,
       "reference": "0 <= f <= 1 everywhere",
       "relative_error": null,
-      "runtime_seconds": 0.0001014,
+      "runtime_seconds": 0.0001012,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -154,7 +154,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "increasing R moves the f = 1/2 wall outward",
-      "runtime_seconds": 2.34e-05,
+      "runtime_seconds": 2.33e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -188,7 +188,7 @@
       "passed": true,
       "reference": "f depends on R and sigma only, never on v",
       "relative_error": null,
-      "runtime_seconds": 4e-06,
+      "runtime_seconds": 4.2e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -226,7 +226,7 @@
       "passed": true,
       "reference": "det g == -1 identically, for every parameter value and every point (the (t,x) block has determinant (-1 + v^2 f^2) - (v f)^2 = -1)",
       "relative_error": null,
-      "runtime_seconds": 0.0328638,
+      "runtime_seconds": 0.0326072,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -245,7 +245,7 @@
       "passed": true,
       "reference": "g_{mu nu} == g_{nu mu} everywhere",
       "relative_error": null,
-      "runtime_seconds": 0.0328888,
+      "runtime_seconds": 0.0326307,
       "skipped": false,
       "tolerance": 0
     },
@@ -264,7 +264,7 @@
       "passed": true,
       "reference": "g_{mu alpha} g^{alpha nu} == delta_mu^nu at every point",
       "relative_error": null,
-      "runtime_seconds": 0.0328911,
+      "runtime_seconds": 0.0326338,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -279,7 +279,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "every point has exactly one negative and three positive metric eigenvalues",
-      "runtime_seconds": 0.032915,
+      "runtime_seconds": 0.0326481,
       "skipped": false,
       "tolerance": 0
     },
@@ -294,7 +294,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "no point is non-finite, asymmetric, singular, ill-conditioned or of wrong signature",
-      "runtime_seconds": 0.0329181,
+      "runtime_seconds": 0.0326509,
       "skipped": false,
       "tolerance": 0
     },
@@ -313,7 +313,7 @@
       "passed": true,
       "reference": "the numerical adjugate inverse agrees with the closed-form inverse g^00=-1, g^01=-vf, g^11=1-v^2f^2",
       "relative_error": null,
-      "runtime_seconds": 0.0016868,
+      "runtime_seconds": 0.0017572,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -332,7 +332,7 @@
       "passed": true,
       "reference": "g -> eta far from the bubble",
       "relative_error": null,
-      "runtime_seconds": 4e-07,
+      "runtime_seconds": 3e-07,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -385,7 +385,7 @@
       "passed": true,
       "reference": "eigenvalues of R^T eta R equal those of eta",
       "relative_error": null,
-      "runtime_seconds": 5.8e-06,
+      "runtime_seconds": 6.2e-06,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -404,7 +404,7 @@
       "passed": true,
       "reference": "the metric evaluates bit-identically with double and a custom scalar type",
       "relative_error": null,
-      "runtime_seconds": 4.7e-06,
+      "runtime_seconds": 4.5e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -442,7 +442,7 @@
       "passed": true,
       "reference": "in the frozen-time formulation the metric is independent of t, exactly",
       "relative_error": null,
-      "runtime_seconds": 9e-07,
+      "runtime_seconds": 8e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -461,7 +461,7 @@
       "passed": true,
       "reference": "df/dR and df/dsigma match the hand-derived closed form, and df/dv is exactly zero, at 6 sample points",
       "relative_error": null,
-      "runtime_seconds": 4.94e-05,
+      "runtime_seconds": 7.49e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -480,7 +480,7 @@
       "passed": true,
       "reference": "dg_00/dp == 2 v f^2, 2 v^2 f f_R, 2 v^2 f f_sigma",
       "relative_error": null,
-      "runtime_seconds": 0.0007891,
+      "runtime_seconds": 0.0005606,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -499,7 +499,7 @@
       "passed": true,
       "reference": "dg_0x/dp == -f, -v f_R, -v f_sigma, and the stored transpose agrees",
       "relative_error": null,
-      "runtime_seconds": 0.0007958,
+      "runtime_seconds": 0.0005666,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -518,7 +518,7 @@
       "passed": true,
       "reference": "the purely spatial block g_{ij} is the constant 1, so every sensitivity is exactly zero",
       "relative_error": null,
-      "runtime_seconds": 0.0007998,
+      "runtime_seconds": 0.0005702,
       "skipped": false,
       "tolerance": 0
     },
@@ -537,7 +537,7 @@
       "passed": true,
       "reference": "seeding all three parameters at once gives the same metric sensitivities as three single-seed evaluations",
       "relative_error": null,
-      "runtime_seconds": 0.0002189,
+      "runtime_seconds": 0.000202,
       "skipped": false,
       "tolerance": 0
     },
@@ -556,7 +556,7 @@
       "passed": true,
       "reference": "with zero seeds the OTI metric real parts equal the double metric to within a few ulp",
       "relative_error": null,
-      "runtime_seconds": 3.48e-05,
+      "runtime_seconds": 5.05e-05,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -575,7 +575,7 @@
       "passed": true,
       "reference": "for every point and parameter, the best centered finite-difference metric sensitivity agrees with the HyPAD value",
       "relative_error": null,
-      "runtime_seconds": 0.0017651,
+      "runtime_seconds": 0.002669,
       "skipped": false,
       "tolerance": 0.001
     }
@@ -585,6 +585,6 @@
   "num_failed": 0,
   "num_passed": 31,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T18:03:11Z",
+  "timestamp_utc": "2026-07-26T22:17:39Z",
   "title": "Metric generation: Minkowski and frozen-time Alcubierre, with determinant, inverse, signature and HyPAD parameter sensitivities"
 }
