@@ -440,6 +440,52 @@ else()
   message(STATUS "  program B: not present, skipped")
 endif()
 
+# --- Program C, Milestone C0: catalogue-grounded astrogation -----------------
+#
+# A SEPARATE program. It gets its own directory, namespace and gate, and Programs
+# A and B know nothing about it. The dependency edge runs one way only, and at C0
+# program_c consumes only warp_hypad_core for the verification harness -- no
+# catalogue, route or UI concern enters an A or B core.
+#
+# It builds from this file rather than its own because CTest is unified here, the
+# same way program_b does. That is a build-tree convenience, not a coupling.
+
+set(PROGRAM_C_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../program_c_astrogation")
+
+if(EXISTS "${PROGRAM_C_ROOT}/verification/c0_verify.cpp")
+  add_executable(c0_verify
+    "${PROGRAM_C_ROOT}/verification/c0_verify.cpp"
+    "${PROGRAM_C_ROOT}/verification/c0_checks.cpp"
+  )
+  target_include_directories(c0_verify PRIVATE
+    "${PROGRAM_C_ROOT}/include"
+    "${PROGRAM_C_ROOT}/verification")
+  target_link_libraries(c0_verify PRIVATE warp_hypad_core)
+  if(MSVC)
+    target_compile_options(c0_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+  else()
+    target_compile_options(c0_verify PRIVATE -Wall -Wextra -Wpedantic -Werror)
+  endif()
+
+  add_executable(c0_demo "${PROGRAM_C_ROOT}/demo/c0_demo.cpp")
+  target_include_directories(c0_demo PRIVATE "${PROGRAM_C_ROOT}/include"
+    "${PROGRAM_C_ROOT}/verification")
+  target_link_libraries(c0_demo PRIVATE warp_hypad_core)
+  if(MSVC)
+    target_compile_options(c0_demo PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+  else()
+    target_compile_options(c0_demo PRIVATE -Wall -Wextra -Wpedantic -Werror)
+  endif()
+
+  set(WARP_HYPAD_C0_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_c0")
+  add_test(NAME programc0.gate COMMAND c0_verify --out "${WARP_HYPAD_C0_RESULTS}")
+  add_test(NAME programc0.demo COMMAND c0_demo --out "${WARP_HYPAD_C0_RESULTS}")
+  set_tests_properties(programc0.demo PROPERTIES DEPENDS "programc0.gate")
+  message(STATUS "  program C: C0 enabled")
+else()
+  message(STATUS "  program C: not present, skipped")
+endif()
+
 # --- OTIlib sensitivity backend (opt-in) ------------------------------------
 #
 # OFF by default, and that is an ARCHITECTURAL choice, not an open licensing
