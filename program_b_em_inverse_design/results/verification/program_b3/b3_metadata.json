@@ -1,0 +1,27 @@
+{
+  "build": {
+    "build_type": "RelWithDebInfo",
+    "compiler_id": "MSVC",
+    "compiler_version": "19.44.35223.0",
+    "cxx_standard": "C++17",
+    "git_commit": "1208b5c04d3bd81a382921faef75f1eb71a3365e",
+    "git_dirty": false,
+    "platform": "Windows-AMD64"
+  },
+  "causal_half_plane": "response analytic in the UPPER half omega-plane; poles in the LOWER half",
+  "causality_enforcement": "structural: damping is a strictly positive function of an unconstrained variable, so every pole is in the lower half omega-plane for every parameter value. Kramers-Kronig is a diagnostic only.",
+  "constitutive_relation": "D = eps E - zeta B ; H = zeta^T E + [mu^-1] B   (E,B representation)",
+  "dissipated_power": "<p> = (omega/2) Im[ E* . D + H* . B ] = (omega/2) v^dagger L v, L = (C - C^dagger)/(2i)",
+  "fourier_kernel": "exp(-i*omega*t)",
+  "hard_feasibility": "bounded parameter transforms plus projection. A soft-penalty result is never labelled feasible.",
+  "milestone": "B3",
+  "model_family": "Lorentz + optional Drude, isotropic; mu parameterized directly, mu^-1 derived; zeta = z(w) K, reciprocal",
+  "passive_sign": "Im eps >= 0 for omega > 0; more generally L positive semidefinite",
+  "pole_locations": "eps pole 0: 2.9986-0.0900i, -2.9986-0.0900i; eps pole 1: 4.3974-0.1500i, -4.3974-0.1500i; mu pole 0: 3.5983-0.1100i, -3.5983-0.1100i; overdamped: 0.0000-0.0134i, 0.0000-2.9866i (overdamped); ",
+  "poynting": "<S> = (1/2) Re[ E x H* ]",
+  "reality_condition": "eps(-omega) = conj(eps(omega)) for real omega",
+  "reciprocity": "zeta_adjoint = zeta^T, unconjugated transpose",
+  "scope": "A passing result is a passive, causal parametric constitutive model that approximates the target response over a stated frequency band. It is NOT a fabricated medium or an experimental device. No unit-cell geometry, no hardware control model, no Maxwell propagation.",
+  "time_derivative": "d/dt -> -i*omega",
+  "timestamp_utc": "2026-07-26T16:50:23Z"
+}

@@ -5,7 +5,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "611053f22b136ad570115f0535ab02e677e46fef",
+    "git_commit": "1208b5c04d3bd81a382921faef75f1eb71a3365e",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -25,7 +25,7 @@
       "passed": true,
       "reference": "eps_{0123} = +sqrt(-det g) and eps^{0123} = -1/sqrt(-det g), both totally antisymmetric, for Minkowski AND a curved non-diagonal lab",
       "relative_error": null,
-      "runtime_seconds": 2.06e-05,
+      "runtime_seconds": 1.76e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -44,7 +44,7 @@
       "passed": true,
       "reference": "eps_{abcd} eps^{cdef} = -2(delta_a^e delta_b^f - delta_a^f delta_b^e)",
       "relative_error": null,
-      "runtime_seconds": 2.36e-05,
+      "runtime_seconds": 1.43e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -63,7 +63,7 @@
       "passed": true,
       "reference": "**F = -F for an arbitrary two-form, in four-dimensional Lorentzian signature",
       "relative_error": null,
-      "runtime_seconds": 1.94e-05,
+      "runtime_seconds": 1.65e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -82,7 +82,7 @@
       "passed": true,
       "reference": "*(*Z) = -Z",
       "relative_error": null,
-      "runtime_seconds": 4.96e-05,
+      "runtime_seconds": 4.53e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -101,7 +101,7 @@
       "passed": true,
       "reference": "(Z*)* = -Z",
       "relative_error": null,
-      "runtime_seconds": 5.74e-05,
+      "runtime_seconds": 5.11e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -120,7 +120,7 @@
       "passed": true,
       "reference": "*(Z*) = (*Z)*, since the two duals contract disjoint index pairs",
       "relative_error": null,
-      "runtime_seconds": 5.52e-05,
+      "runtime_seconds": 3.97e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -139,7 +139,7 @@
       "passed": true,
       "reference": "(*Z*) applied twice returns +Z: (-1) from each index pair",
       "relative_error": null,
-      "runtime_seconds": 4.9e-05,
+      "runtime_seconds": 4.01e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -158,7 +158,7 @@
       "passed": true,
       "reference": "the left dual of the vacuum Z equals (1/2) eps^{abcd}",
       "relative_error": null,
-      "runtime_seconds": 1.72e-05,
+      "runtime_seconds": 1.59e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -177,7 +177,7 @@
       "passed": true,
       "reference": "*(L.Z) computed in the new coordinates equals L.(*Z) computed in the old ones",
       "relative_error": null,
-      "runtime_seconds": 0.0002121,
+      "runtime_seconds": 0.0001911,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -196,7 +196,7 @@
       "passed": true,
       "reference": "h^a_b V^b = 0",
       "relative_error": null,
-      "runtime_seconds": 1.2e-05,
+      "runtime_seconds": 9e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -215,7 +215,7 @@
       "passed": true,
       "reference": "V_a h^a_b = 0",
       "relative_error": null,
-      "runtime_seconds": 2.33e-05,
+      "runtime_seconds": 1.55e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -234,7 +234,7 @@
       "passed": true,
       "reference": "h^a_c h^c_b = h^a_b",
       "relative_error": null,
-      "runtime_seconds": 2.67e-05,
+      "runtime_seconds": 1.77e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -253,7 +253,7 @@
       "passed": true,
       "reference": "h^a_a = 3",
       "relative_error": null,
-      "runtime_seconds": 3.26e-05,
+      "runtime_seconds": 2.1e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -272,7 +272,7 @@
       "passed": true,
       "reference": "g_ab = h_ab - V_a V_b",
       "relative_error": null,
-      "runtime_seconds": 3.66e-05,
+      "runtime_seconds": 2.31e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -291,7 +291,7 @@
       "passed": true,
       "reference": "h^{ac} g_cb = h^a_b, so the upper, lower and mixed forms are the same object",
       "relative_error": null,
-      "runtime_seconds": 4.93e-05,
+      "runtime_seconds": 3e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -310,7 +310,7 @@
       "passed": true,
       "reference": "all four A7 contractions match a reference computed in the test with its own loops",
       "relative_error": null,
-      "runtime_seconds": 0.0002695,
+      "runtime_seconds": 0.0001636,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -329,7 +329,7 @@
       "passed": true,
       "reference": "eps^{ab} = h^{ab} for vacuum",
       "relative_error": null,
-      "runtime_seconds": 0.0001492,
+      "runtime_seconds": 8.56e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -348,7 +348,7 @@
       "passed": true,
       "reference": "[mu^-1]^{ab} = h^{ab} for vacuum",
       "relative_error": null,
-      "runtime_seconds": 0.0001555,
+      "runtime_seconds": 8.8e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -367,7 +367,7 @@
       "passed": true,
       "reference": "zeta = 0 for vacuum",
       "relative_error": null,
-      "runtime_seconds": 0.0001605,
+      "runtime_seconds": 8.98e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -386,7 +386,7 @@
       "passed": true,
       "reference": "zeta+ = 0 for vacuum",
       "relative_error": null,
-      "runtime_seconds": 0.0001651,
+      "runtime_seconds": 9.15e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -405,7 +405,7 @@
       "passed": true,
       "reference": "eps^{ab} = eps h^{ab} from (B1a)/(B2), with eps = 2.75",
       "relative_error": null,
-      "runtime_seconds": 0.0001389,
+      "runtime_seconds": 9.26e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -424,7 +424,7 @@
       "passed": true,
       "reference": "[mu^-1]^{ab} = mu^-1 h^{ab} from (B1b)/(B2), with mu^-1 = 0.4",
       "relative_error": null,
-      "runtime_seconds": 0.0001469,
+      "runtime_seconds": 9.61e-05,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -443,7 +443,7 @@
       "passed": true,
       "reference": "zeta = 0 for an isotropic medium AT REST relative to the observer",
       "relative_error": null,
-      "runtime_seconds": 0.0001557,
+      "runtime_seconds": 0.0001011,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -458,7 +458,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "for a magnetoelectric medium *Z != Z*, and the two A7 duals therefore give genuinely different magnetoelectric blocks",
-      "runtime_seconds": 5.9e-05,
+      "runtime_seconds": 3.61e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -477,7 +477,7 @@
       "passed": true,
       "reference": "V_a epsilon^{ab} = 0",
       "relative_error": null,
-      "runtime_seconds": 1.7e-06,
+      "runtime_seconds": 9e-07,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -496,7 +496,7 @@
       "passed": true,
       "reference": "epsilon^{ab} V_b = 0",
       "relative_error": null,
-      "runtime_seconds": 8.3e-06,
+      "runtime_seconds": 3.6e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -515,7 +515,7 @@
       "passed": true,
       "reference": "h^a_c h^b_d epsilon^{cd} = epsilon^{ab}",
       "relative_error": null,
-      "runtime_seconds": 1.26e-05,
+      "runtime_seconds": 5.6e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -553,7 +553,7 @@
       "passed": true,
       "reference": "mu_inverse^{ab} V_b = 0",
       "relative_error": null,
-      "runtime_seconds": 3.4e-06,
+      "runtime_seconds": 2e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -572,7 +572,7 @@
       "passed": true,
       "reference": "h^a_c h^b_d mu_inverse^{cd} = mu_inverse^{ab}",
       "relative_error": null,
-      "runtime_seconds": 2.29e-05,
+      "runtime_seconds": 2.01e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -610,7 +610,7 @@
       "passed": true,
       "reference": "zeta^{ab} V_b = 0",
       "relative_error": null,
-      "runtime_seconds": 3.4e-06,
+      "runtime_seconds": 1.9e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -629,7 +629,7 @@
       "passed": true,
       "reference": "h^a_c h^b_d zeta^{cd} = zeta^{ab}",
       "relative_error": null,
-      "runtime_seconds": 6.9e-06,
+      "runtime_seconds": 4.1e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -648,7 +648,7 @@
       "passed": true,
       "reference": "V_a zeta_adjoint^{ab} = 0",
       "relative_error": null,
-      "runtime_seconds": 1e-07,
+      "runtime_seconds": 0,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -667,7 +667,7 @@
       "passed": true,
       "reference": "zeta_adjoint^{ab} V_b = 0",
       "relative_error": null,
-      "runtime_seconds": 4.3e-06,
+      "runtime_seconds": 2.1e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -686,7 +686,7 @@
       "passed": true,
       "reference": "h^a_c h^b_d zeta_adjoint^{cd} = zeta_adjoint^{ab}",
       "relative_error": null,
-      "runtime_seconds": 9.9e-06,
+      "runtime_seconds": 4.8e-06,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -701,7 +701,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the magnetoelectric block is genuinely nonzero for the warp medium, so its spatiality and projection tests are not vacuous",
-      "runtime_seconds": 3.32e-05,
+      "runtime_seconds": 2.05e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -773,7 +773,7 @@
       "passed": true,
       "reference": "the ratio zeta(B17) / W_zeta(A7d) is one constant, independent of boost magnitude, boost direction and the eps/mu pair",
       "relative_error": null,
-      "runtime_seconds": 8.2e-06,
+      "runtime_seconds": 6.6e-06,
       "skipped": false,
       "tolerance": 1e-11
     },
@@ -788,7 +788,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the magnetoelectric normalisation constant c_zeta is determined from (B17), with one specific sign",
-      "runtime_seconds": 2.4e-06,
+      "runtime_seconds": 2.1e-06,
       "skipped": false,
       "tolerance": 0
     }
@@ -798,6 +798,6 @@
   "num_failed": 0,
   "num_passed": 42,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T14:25:39Z",
+  "timestamp_utc": "2026-07-26T16:48:56Z",
   "title": "B1C-S23: four-dimensional Hodge duals, Bel extraction from Schuster & Visser (A7a)-(A7d), spatial projector and block spatiality"
 }

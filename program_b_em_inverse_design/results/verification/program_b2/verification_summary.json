@@ -5,7 +5,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "611053f22b136ad570115f0535ab02e677e46fef",
+    "git_commit": "1208b5c04d3bd81a382921faef75f1eb71a3365e",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -21,7 +21,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the spatial triad satisfies g_lab(e_i, e_j) = delta_ij and g_lab(e_i, V) = 0",
-      "runtime_seconds": 4.4e-06,
+      "runtime_seconds": 2.5e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -40,7 +40,7 @@
       "passed": true,
       "reference": "g_lab(e_i, e_j) = delta_ij and g_lab(e_i, V) = 0",
       "relative_error": null,
-      "runtime_seconds": 3.08e-05,
+      "runtime_seconds": 2.69e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -59,7 +59,7 @@
       "passed": true,
       "reference": "q -> coefficients -> q is the identity, and q -> blocks -> coefficients likewise, for every linear family",
       "relative_error": null,
-      "runtime_seconds": 2.43e-05,
+      "runtime_seconds": 1.59e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -78,7 +78,7 @@
       "passed": true,
       "reference": "eps and mu^-1 are symmetric and zeta_adjoint = zeta^T for every family, with no symmetrisation step applied afterwards",
       "relative_error": null,
-      "runtime_seconds": 8.43e-05,
+      "runtime_seconds": 7.38e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -97,7 +97,7 @@
       "passed": true,
       "reference": "every block is spatial with respect to V, structurally",
       "relative_error": null,
-      "runtime_seconds": 9.14e-05,
+      "runtime_seconds": 9.27e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -116,7 +116,7 @@
       "passed": true,
       "reference": "Z_design^{abcd} = Z_design^{cdab} for every family",
       "relative_error": null,
-      "runtime_seconds": 9.72e-05,
+      "runtime_seconds": 0.0001002,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -135,7 +135,7 @@
       "passed": true,
       "reference": "design blocks -> Z via (A11) -> blocks via (A7) returns the design blocks",
       "relative_error": null,
-      "runtime_seconds": 0.0001935,
+      "runtime_seconds": 0.000141,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -154,7 +154,7 @@
       "passed": true,
       "reference": "with g_lab = eta and V = (1,0,0,0) the observer Gram is the identity, so the coordinate-basis and observer-referred norms coincide exactly",
       "relative_error": null,
-      "runtime_seconds": 0.000132,
+      "runtime_seconds": 9.51e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -173,7 +173,7 @@
       "passed": true,
       "reference": "||Z||^2_V is unchanged by a nontrivial linear coordinate change",
       "relative_error": null,
-      "runtime_seconds": 0.0001408,
+      "runtime_seconds": 0.0001008,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -188,7 +188,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the coordinate-basis norm DOES change under the same coordinate change, which is why it is labelled a coordinate-basis norm",
-      "runtime_seconds": 0.0001599,
+      "runtime_seconds": 0.000115,
       "skipped": false,
       "tolerance": 0
     },
@@ -207,7 +207,7 @@
       "passed": true,
       "reference": "J_Z and J_blocks vanish when the design equals the target",
       "relative_error": null,
-      "runtime_seconds": 0.000352,
+      "runtime_seconds": 0.0002086,
       "skipped": false,
       "tolerance": 1e-28
     },
@@ -222,7 +222,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "J_Z is strictly positive for every perturbed design",
-      "runtime_seconds": 0.0003651,
+      "runtime_seconds": 0.0002126,
       "skipped": false,
       "tolerance": 0
     },
@@ -241,7 +241,7 @@
       "passed": true,
       "reference": "J_Z is an exact quadratic in q for the linear families: its third difference along any direction vanishes",
       "relative_error": null,
-      "runtime_seconds": 0.0002918,
+      "runtime_seconds": 0.0001752,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -260,7 +260,7 @@
       "passed": true,
       "reference": "for J = sum c_k (q_k - a_k)^2 the centred difference reproduces the hand-derived 2 c_k (q_k - a_k)",
       "relative_error": null,
-      "runtime_seconds": 5.7e-06,
+      "runtime_seconds": 4.6e-06,
       "skipped": false,
       "tolerance": 1e-09
     },
@@ -279,7 +279,7 @@
       "passed": true,
       "reference": "the batch-assembled HyPAD gradient of J = sum c_k (q_k - a_k)^2 equals the hand-derived 2 c_k (q_k - a_k) exactly",
       "relative_error": null,
-      "runtime_seconds": 3.62e-05,
+      "runtime_seconds": 2.66e-05,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -298,7 +298,7 @@
       "passed": true,
       "reference": "centred differences of J_Z reproduce 2 A_k . (A q - z) / s, the gradient implied by the linear design map",
       "relative_error": null,
-      "runtime_seconds": 0.0022927,
+      "runtime_seconds": 0.0012811,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -317,7 +317,7 @@
       "passed": true,
       "reference": "the batch-assembled HyPAD gradient of J_Z equals the closed-form 2 A_k . (A q - z) / s implied by the linear design map",
       "relative_error": null,
-      "runtime_seconds": 0.0048098,
+      "runtime_seconds": 0.0022662,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -332,7 +332,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the 21-parameter gradient is assembled from batches of at most kOtiDirections = 3 active directions",
-      "runtime_seconds": 0.0048755,
+      "runtime_seconds": 0.0022861,
       "skipped": false,
       "tolerance": 0
     },
@@ -351,7 +351,7 @@
       "passed": true,
       "reference": "the batch-assembled HyPAD gradient equals the centred-difference gradient of the same objective",
       "relative_error": null,
-      "runtime_seconds": 0.0048813,
+      "runtime_seconds": 0.00229,
       "skipped": false,
       "tolerance": 1e-08
     },
@@ -370,7 +370,7 @@
       "passed": true,
       "reference": "a partial derivative is identical whether its parameter was seeded alone or alongside two others",
       "relative_error": null,
-      "runtime_seconds": 0.0072053,
+      "runtime_seconds": 0.0034533,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -385,7 +385,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "starting from a perturbed design, the optimizer recovers the known target: relative tensor residual below 1e-6 and every parameter within 1e-4",
-      "runtime_seconds": 0.0060455,
+      "runtime_seconds": 0.0040185,
       "skipped": false,
       "tolerance": 0
     },
@@ -400,7 +400,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the objective decreases monotonically and the line search succeeds at every accepted iteration",
-      "runtime_seconds": 0.0060525,
+      "runtime_seconds": 0.0040225,
       "skipped": false,
       "tolerance": 0
     },
@@ -415,7 +415,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "starting from a perturbed design, the optimizer recovers the known target: relative tensor residual below 1e-6 and every parameter within 1e-4",
-      "runtime_seconds": 0.1019348,
+      "runtime_seconds": 0.0784982,
       "skipped": false,
       "tolerance": 0
     },
@@ -430,7 +430,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the objective decreases monotonically and the line search succeeds at every accepted iteration",
-      "runtime_seconds": 0.1019403,
+      "runtime_seconds": 0.0785024,
       "skipped": false,
       "tolerance": 0
     },
@@ -445,7 +445,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "starting from a perturbed design, the optimizer recovers the known target: relative tensor residual below 1e-6 and every parameter within 1e-4",
-      "runtime_seconds": 0.1111449,
+      "runtime_seconds": 0.0833372,
       "skipped": false,
       "tolerance": 0
     },
@@ -460,7 +460,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the objective decreases monotonically and the line search succeeds at every accepted iteration",
-      "runtime_seconds": 0.1111534,
+      "runtime_seconds": 0.0833438,
       "skipped": false,
       "tolerance": 0
     },
@@ -475,7 +475,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a subluminal Alcubierre effective metric with g_lab = eta is recovered in the unrestricted reciprocal family, compared against Z_target itself",
-      "runtime_seconds": 0.0201396,
+      "runtime_seconds": 0.016892,
       "skipped": false,
       "tolerance": 0
     },
@@ -490,12 +490,12 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "against a magnetoelectric target, the zeta == 0 family leaves a STRICTLY NONZERO residual, and the optimizer finds the same point as the exact least-squares projection",
-      "runtime_seconds": 0.066574,
+      "runtime_seconds": 0.0483278,
       "skipped": false,
       "tolerance": 0
     },
     {
-      "computed_description": "J_Z = 1.7451e-01, penalty = 1.2587e-05, max|eps| = 1.5001e+00 against bound 1.5, entry bound active: yes, MaxIterationsReached",
+      "computed_description": "J_Z = 1.7450e-01, penalty = 2.2031e-05, max|eps| = 1.5001e+00 against bound 1.5, entry bound active: yes, MaxIterationsReached",
       "expected_description": "nonzero J_Z with the entry bound respected and reported",
       "grid": "n/a",
       "level": "B",
@@ -505,7 +505,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "with bounds excluding the target, the result is a BEST BOUNDED APPROXIMATION: J_Z stays strictly positive, the bound is reported as active, and no exact realization is claimed",
-      "runtime_seconds": 2.0283897,
+      "runtime_seconds": 1.4012938,
       "skipped": false,
       "tolerance": 0
     },
@@ -520,7 +520,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "optimizing entirely in the transformed coordinates reconstructs the transformed target: the FINAL TENSOR RELATIONSHIP holds",
-      "runtime_seconds": 0.3941411,
+      "runtime_seconds": 0.2506432,
       "skipped": false,
       "tolerance": 0
     },
@@ -535,7 +535,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "two runs from the same initialization are BIT-IDENTICAL in history, termination reason and final parameters",
-      "runtime_seconds": 0.2139483,
+      "runtime_seconds": 0.1440239,
       "skipped": false,
       "tolerance": 0
     },
@@ -550,7 +550,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a non-finite design is rejected with reason NonFiniteEncountered, and an overflowing design is reported as not finite rather than silently scored",
-      "runtime_seconds": 0.0005182,
+      "runtime_seconds": 6.28e-05,
       "skipped": false,
       "tolerance": 0
     },
@@ -565,7 +565,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "a metric-induced target is classified as metric-induced, reciprocal, pair-antisymmetric, finite and observer-decomposable",
-      "runtime_seconds": 7.45e-05,
+      "runtime_seconds": 4.16e-05,
       "skipped": false,
       "tolerance": 0
     }
@@ -575,6 +575,6 @@
   "num_failed": 0,
   "num_passed": 33,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-26T14:25:42Z",
+  "timestamp_utc": "2026-07-26T16:48:58Z",
   "title": "B2-ABSTRACT-INVERSE: abstract constitutive inverse design. g_eff^target -> Z_target -> observer blocks -> nearest admissible constitutive design, over the A11 reconstruction verified at B1C"
 }

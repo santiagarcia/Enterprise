@@ -4,7 +4,7 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "611053f22b136ad570115f0535ab02e677e46fef",
+    "git_commit": "1208b5c04d3bd81a382921faef75f1eb71a3365e",
     "git_dirty": false,
     "platform": "Windows-AMD64"
   },
@@ -21,5 +21,5 @@
   "parameterization": "21 parameters in an orthonormal spatial triad adapted to V: 6 symmetric eps, 6 symmetric mu^-1, 9 general zeta, with zeta_adjoint = zeta^T structural",
   "reconstruction": "Schuster & Visser (A11), the implementation verified at B1C-S456 to 2.2e-16 on random reciprocal media",
   "scope": "Abstract constitutive-design space only. No Maxwell solver, no coils or antennas, no metamaterial unit cells, no dispersion fitting, no experimental control model. Nothing here claims physical realizability of any computed design, and nothing generates measurable gravitational curvature.",
-  "timestamp_utc": "2026-07-26T14:25:42Z"
+  "timestamp_utc": "2026-07-26T16:48:58Z"
 }
