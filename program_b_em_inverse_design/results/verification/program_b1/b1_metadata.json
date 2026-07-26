@@ -4,8 +4,8 @@
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "unknown",
-    "git_dirty": true,
+    "git_commit": "018cf5de355b1ab9785cf9f8bfce3046e4929fd6",
+    "git_dirty": false,
     "platform": "Windows-AMD64"
   },
   "conformal_ambiguity": "the forward map is invariant under g -> Omega^2 g, so the inverse returns a conformal class representative and the gauge is reported",
@@ -13,7 +13,7 @@
   "inverse_map": "closed form h = det(eps) eps^-1 in the g_00 = -1 gauge, valid for w = 0 only",
   "metric_signature": "-+++",
   "milestone": "B1",
-  "timestamp_utc": "2026-07-26T13:57:08Z",
+  "timestamp_utc": "2026-07-26T13:59:54Z",
   "units": "Heaviside-Lorentz, c = 1; vacuum is eps = mu = I",
   "validity_condition": "g_00 < 0 required; fails where v_s f > 1"
 }
