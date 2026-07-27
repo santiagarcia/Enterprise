@@ -6,9 +6,9 @@
   "data_kind": "Gaia DR3",
   "destination_source_id": "5853498713190525696",
   "generated_from": "c1_metadata.json",
-  "generated_timestamp": "2026-07-27T01:28:52Z",
-  "git_commit": "912d8231e9620df0ff3458b66fa693a03cb366bd",
-  "git_dirty": true,
+  "generated_timestamp": "2026-07-27T01:32:16Z",
+  "git_commit": "4e9d6869857615d3303e4e5e856b53e09673f16e",
+  "git_dirty": false,
   "observer_frame": "BarycentricCartesian for coordinate quantities; ship proper time is the crew clock along the same worldline",
   "physical_parameters": {
     "acceleration_g": 1,
