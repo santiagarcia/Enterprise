@@ -1,0 +1,349 @@
+{
+  "animations": [
+    {
+      "codec": "libx264",
+      "duration_s": 2.0,
+      "filename": "bubble_translation.mp4",
+      "final_frame_sha256": "044b20a6137dcf1c3d50a213ecc797161892c4f2eeb3359bd9cb25b0321167a9",
+      "first_frame_sha256": "703c6950b372c1886a911bc2ad4598457408a11ff2e266301314c15b30fb55e4",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1360,
+        642
+      ],
+      "source_data": "translation_sweep.csv",
+      "source_data_sha256": "79803fdc7ebee4c90dd1fb92fa6d5585377d4cd03537afb4bc31042ca1581e74",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 2.0,
+      "filename": "bubble_translation.gif",
+      "final_frame_sha256": "044b20a6137dcf1c3d50a213ecc797161892c4f2eeb3359bd9cb25b0321167a9",
+      "first_frame_sha256": "703c6950b372c1886a911bc2ad4598457408a11ff2e266301314c15b30fb55e4",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1360,
+        642
+      ],
+      "source_data": "translation_sweep.csv",
+      "source_data_sha256": "79803fdc7ebee4c90dd1fb92fa6d5585377d4cd03537afb4bc31042ca1581e74",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 2.0,
+      "filename": "bubble_velocity_sweep.mp4",
+      "final_frame_sha256": "c7e32e4f1f89c820da03556f3cc36184d38afde11623bc33902245b4482a08aa",
+      "first_frame_sha256": "23b3c121d76ba3d27f093259ce65585a293938ecbf60b0dbd6cfee94253e720e",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1082,
+        721
+      ],
+      "source_data": "velocity_sweep.csv",
+      "source_data_sha256": "23496c93c29931ea3ed6cc3f2a9e13cf8c0173dab2f51350adf4b51548b55787",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 2.0,
+      "filename": "bubble_velocity_sweep.gif",
+      "final_frame_sha256": "c7e32e4f1f89c820da03556f3cc36184d38afde11623bc33902245b4482a08aa",
+      "first_frame_sha256": "23b3c121d76ba3d27f093259ce65585a293938ecbf60b0dbd6cfee94253e720e",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1082,
+        721
+      ],
+      "source_data": "velocity_sweep.csv",
+      "source_data_sha256": "23496c93c29931ea3ed6cc3f2a9e13cf8c0173dab2f51350adf4b51548b55787",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 2.0,
+      "filename": "bubble_radius_sweep.mp4",
+      "final_frame_sha256": "b163b030945508fc168f4c0a01491d1d097f3d821e3d2b4fc06481cc3cdfde2f",
+      "first_frame_sha256": "3613535d7a746d06f4a85547397644f8fa9fe32e515d8f46b94857b8c5e56ab7",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1082,
+        719
+      ],
+      "source_data": "radius_sweep.csv",
+      "source_data_sha256": "9b881bfdb995fb1eebf6fd7ddc78e1687282ab9a2718bf09b85373cfdf52085b",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 2.0,
+      "filename": "bubble_radius_sweep.gif",
+      "final_frame_sha256": "b163b030945508fc168f4c0a01491d1d097f3d821e3d2b4fc06481cc3cdfde2f",
+      "first_frame_sha256": "3613535d7a746d06f4a85547397644f8fa9fe32e515d8f46b94857b8c5e56ab7",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1082,
+        719
+      ],
+      "source_data": "radius_sweep.csv",
+      "source_data_sha256": "9b881bfdb995fb1eebf6fd7ddc78e1687282ab9a2718bf09b85373cfdf52085b",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 2.0,
+      "filename": "bubble_steepness_sweep.mp4",
+      "final_frame_sha256": "bc4af47d280e03dc55bea20843a2abf86a000db4e0ae56523908d19ba90f931c",
+      "first_frame_sha256": "73c497e816216a5bf870b61ec3050e41ecb111580f335a40ef3fca39fbbbb1ab",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1082,
+        719
+      ],
+      "source_data": "steepness_sweep.csv",
+      "source_data_sha256": "ee347e59378ed90fe51b1da52e569f2172ed4f171db6d9f71fe0ef78f9a025a2",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 2.0,
+      "filename": "bubble_steepness_sweep.gif",
+      "final_frame_sha256": "bc4af47d280e03dc55bea20843a2abf86a000db4e0ae56523908d19ba90f931c",
+      "first_frame_sha256": "73c497e816216a5bf870b61ec3050e41ecb111580f335a40ef3fca39fbbbb1ab",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1082,
+        719
+      ],
+      "source_data": "steepness_sweep.csv",
+      "source_data_sha256": "ee347e59378ed90fe51b1da52e569f2172ed4f171db6d9f71fe0ef78f9a025a2",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 2.0,
+      "filename": "metric_component_evolution.mp4",
+      "final_frame_sha256": "c61d7d13f725e9f8b6406565323ee80b8ffb1bf37df6020d7026b7df4bf285c2",
+      "first_frame_sha256": "6c917a20dc470ec4fb1bb03a03c641e3d97c7eba2aecbe306571eec8eea15065",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1542,
+        597
+      ],
+      "source_data": "translation_sweep.csv",
+      "source_data_sha256": "79803fdc7ebee4c90dd1fb92fa6d5585377d4cd03537afb4bc31042ca1581e74",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 2.0,
+      "filename": "metric_component_evolution.gif",
+      "final_frame_sha256": "c61d7d13f725e9f8b6406565323ee80b8ffb1bf37df6020d7026b7df4bf285c2",
+      "first_frame_sha256": "6c917a20dc470ec4fb1bb03a03c641e3d97c7eba2aecbe306571eec8eea15065",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1542,
+        597
+      ],
+      "source_data": "translation_sweep.csv",
+      "source_data_sha256": "79803fdc7ebee4c90dd1fb92fa6d5585377d4cd03537afb4bc31042ca1581e74",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 2.0,
+      "filename": "sensitivity_v_evolution.mp4",
+      "final_frame_sha256": "e1cac1c775b20a2226eb5150fe88722760bd80f19647e0fe5659f34eb1da360e",
+      "first_frame_sha256": "cd262555f69d3e1d79634fa40a1d0d1b099a4930ff65e629c5548ceec28b2ffe",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1082,
+        721
+      ],
+      "source_data": "sensitivity_sweep.csv",
+      "source_data_sha256": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 2.0,
+      "filename": "sensitivity_v_evolution.gif",
+      "final_frame_sha256": "e1cac1c775b20a2226eb5150fe88722760bd80f19647e0fe5659f34eb1da360e",
+      "first_frame_sha256": "cd262555f69d3e1d79634fa40a1d0d1b099a4930ff65e629c5548ceec28b2ffe",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1082,
+        721
+      ],
+      "source_data": "sensitivity_sweep.csv",
+      "source_data_sha256": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 2.0,
+      "filename": "sensitivity_R_evolution.mp4",
+      "final_frame_sha256": "ef67c08c5cd6e7932a0cb313c14cb39a08991c7a88b78d26a9d2d1d77608cff9",
+      "first_frame_sha256": "3e3047daf44ed78cfa1de830626f16086c3688d1a62dc4f5b0c37215595e99d1",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1082,
+        721
+      ],
+      "source_data": "sensitivity_sweep.csv",
+      "source_data_sha256": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 2.0,
+      "filename": "sensitivity_R_evolution.gif",
+      "final_frame_sha256": "ef67c08c5cd6e7932a0cb313c14cb39a08991c7a88b78d26a9d2d1d77608cff9",
+      "first_frame_sha256": "3e3047daf44ed78cfa1de830626f16086c3688d1a62dc4f5b0c37215595e99d1",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1082,
+        721
+      ],
+      "source_data": "sensitivity_sweep.csv",
+      "source_data_sha256": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 2.0,
+      "filename": "sensitivity_sigma_evolution.mp4",
+      "final_frame_sha256": "897f4b40c8de5ce22c93344b3e83c2f89c202d2a62fe274103ae0d02e0c7ed77",
+      "first_frame_sha256": "95cf52e31a4da778ad97770f571deeb37e1ced6a21996622b9b3937c1e2bd8d8",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1082,
+        721
+      ],
+      "source_data": "sensitivity_sweep.csv",
+      "source_data_sha256": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 2.0,
+      "filename": "sensitivity_sigma_evolution.gif",
+      "final_frame_sha256": "897f4b40c8de5ce22c93344b3e83c2f89c202d2a62fe274103ae0d02e0c7ed77",
+      "first_frame_sha256": "95cf52e31a4da778ad97770f571deeb37e1ced6a21996622b9b3937c1e2bd8d8",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1082,
+        721
+      ],
+      "source_data": "sensitivity_sweep.csv",
+      "source_data_sha256": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 2.0,
+      "filename": "fixed_lab_vs_fixed_center.mp4",
+      "final_frame_sha256": "62373abf3163a85a3b5523710edc2debe63da532c637a39de65550aeabca8230",
+      "first_frame_sha256": "baff817f4bd46c6fe92a57b32d45e2da6c4b0f0353c68e5441b289edeb8e4136",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1852,
+        597
+      ],
+      "source_data": "fixed_lab_vs_fixed_center.csv",
+      "source_data_sha256": "1eee468865f893097b656b4bab296ee0329e4b9c82f5829c2b07f3d901d0bd21",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 2.0,
+      "filename": "fixed_lab_vs_fixed_center.gif",
+      "final_frame_sha256": "62373abf3163a85a3b5523710edc2debe63da532c637a39de65550aeabca8230",
+      "first_frame_sha256": "baff817f4bd46c6fe92a57b32d45e2da6c4b0f0353c68e5441b289edeb8e4136",
+      "frame_count": 24,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1852,
+        597
+      ],
+      "source_data": "fixed_lab_vs_fixed_center.csv",
+      "source_data_sha256": "1eee468865f893097b656b4bab296ee0329e4b9c82f5829c2b07f3d901d0bd21",
+      "written": true
+    }
+  ],
+  "provenance": {
+    "camera_model": "orthographic, fixed",
+    "color_model": "illustrative_only",
+    "contract": "production solver -> saved records -> visualization scripts -> PNG/SVG/GIF/MP4",
+    "coordinate_frame": "inertial Cartesian laboratory, x_s(t) = x_s0 + v_s t",
+    "frame_count": 24,
+    "frame_rate": 12,
+    "generated_timestamp": "2026-07-27T22:29:31Z",
+    "git_commit": "893dcfd6c463793a0201d824d20a9d72b7a3bf52",
+    "git_dirty": true,
+    "input_checksums": {
+      "fixed_lab_vs_fixed_center.csv": "1eee468865f893097b656b4bab296ee0329e4b9c82f5829c2b07f3d901d0bd21",
+      "radius_sweep.csv": "9b881bfdb995fb1eebf6fd7ddc78e1687282ab9a2718bf09b85373cfdf52085b",
+      "sensitivity_sweep.csv": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "steepness_sweep.csv": "ee347e59378ed90fe51b1da52e569f2172ed4f171db6d9f71fe0ef78f9a025a2",
+      "translation_sweep.csv": "79803fdc7ebee4c90dd1fb92fa6d5585377d4cd03537afb4bc31042ca1581e74",
+      "velocity_sweep.csv": "23496c93c29931ea3ed6cc3f2a9e13cf8c0173dab2f51350adf4b51548b55787"
+    },
+    "input_files": [
+      "translation_sweep.csv",
+      "velocity_sweep.csv",
+      "radius_sweep.csv",
+      "steepness_sweep.csv",
+      "sensitivity_sweep.csv",
+      "fixed_lab_vs_fixed_center.csv"
+    ],
+    "milestone": "V0.1A / A-VISUAL-SWEEP-EXPORT",
+    "observer": "coordinate (no observer boost)",
+    "program": "A (warp_hypad)",
+    "recomputes_physics": false,
+    "render_theme": "scientific",
+    "simulation_parameters": {
+      "frames": 24,
+      "grid": "41 x 41",
+      "source": "a_sweep_export"
+    },
+    "time_convention": "laboratory coordinate time",
+    "units": "geometrised, c = 1; lengths in bubble radii"
+  }
+}

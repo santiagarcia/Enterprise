@@ -1,0 +1,39 @@
+{
+  "build": {
+    "build_type": "RelWithDebInfo",
+    "compiler_id": "MSVC",
+    "compiler_version": "19.44.35223.0",
+    "cxx_standard": "C++17",
+    "git_commit": "893dcfd6c463793a0201d824d20a9d72b7a3bf52",
+    "git_dirty": true,
+    "platform": "Windows-AMD64"
+  },
+  "checksums": {
+    "fixed_lab_vs_fixed_center.csv": "5546404300084941016",
+    "radius_sweep.csv": "12099542649258195401",
+    "sensitivity_sweep.csv": "15767587146938097365",
+    "steepness_sweep.csv": "5008639285841249954",
+    "translation_sweep.csv": "9204574471741671607",
+    "velocity_sweep.csv": "6012176978190942632"
+  },
+  "coordinate_mode": "InertialTimeDependent, x_s(t) = x_s0 + v_s t",
+  "ergosurface_crossing_frame": 14,
+  "frames_per_sweep": 24,
+  "frozen_time_used": false,
+  "generated_timestamp": "2026-07-27T22:32:07Z",
+  "grid_half_width": 4,
+  "grid_nx": 41,
+  "grid_ny": 41,
+  "milestone": "V0.1A / A-VISUAL-SWEEP-EXPORT",
+  "nominal_parameters": "v = 0.5, R = 1, sigma = 4",
+  "otilib_enabled": true,
+  "program": "A (warp_hypad)",
+  "radius_range": "0.6 to 2",
+  "scope": "These records contain effective-metric components and parameter sensitivities. They do not contain curvature, stress-energy or propulsion physics.",
+  "sensitivity_backend": "otilib",
+  "sensitivity_convention": "FixedBubbleCenter for the sensitivity sweep; both conventions appear in fixed_lab_vs_fixed_center.csv",
+  "sigma_range": "2 to 10",
+  "time_convention": "coordinate time of the inertial laboratory frame",
+  "units": "geometrised, c = 1; lengths in bubble radii; time in the same geometrised unit",
+  "velocity_range": "0.2 to 1.6"
+}

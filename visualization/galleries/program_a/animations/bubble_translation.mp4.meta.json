@@ -1,0 +1,29 @@
+{
+  "camera_model": "orthographic, fixed, two-panel",
+  "color_model": "illustrative_only",
+  "contract": "production solver -> saved records -> visualization scripts -> PNG/SVG/GIF/MP4",
+  "coordinate_frame": "inertial Cartesian laboratory, x_s(t) = x_s0 + v_s t",
+  "frame_count": 24,
+  "frame_rate": 12,
+  "generated_timestamp": "2026-07-27T22:27:53Z",
+  "git_commit": "893dcfd6c463793a0201d824d20a9d72b7a3bf52",
+  "git_dirty": true,
+  "input_checksums": {
+    "translation_sweep.csv": "79803fdc7ebee4c90dd1fb92fa6d5585377d4cd03537afb4bc31042ca1581e74"
+  },
+  "input_files": [
+    "translation_sweep.csv"
+  ],
+  "milestone": "V0.1A / A-VISUAL-SWEEP-EXPORT",
+  "observer": "coordinate (no observer boost)",
+  "program": "A (warp_hypad)",
+  "recomputes_physics": false,
+  "render_theme": "scientific",
+  "simulation_parameters": {
+    "frames": 24,
+    "grid": "41 x 41",
+    "source": "a_sweep_export"
+  },
+  "time_convention": "laboratory coordinate time",
+  "units": "geometrised, c = 1; lengths in bubble radii"
+}

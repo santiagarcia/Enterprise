@@ -440,6 +440,43 @@ else()
   message(STATUS "  program B: not present, skipped")
 endif()
 
+# --- V0.1A: Program A swept-field exporter ----------------------------------
+#
+# The exporter MAY evaluate physics: it calls the same AlcubierreMetric path the
+# numerical gates use. The Python renderers may not, and the visual gate greps
+# their AST to keep it that way.
+add_executable(a_sweep_export tools/a_sweep_export.cpp)
+target_link_libraries(a_sweep_export PRIVATE warp_hypad_core)
+if(MSVC)
+  target_compile_options(a_sweep_export PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(a_sweep_export PRIVATE -Wall -Wextra -Wpedantic -Werror)
+endif()
+set(WARP_HYPAD_A_SWEEPS
+    "${CMAKE_CURRENT_SOURCE_DIR}/results/verification/v0_program_a_sweeps")
+set(WARP_HYPAD_A_GALLERY
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_a")
+add_test(NAME programa.visual_sweep_export
+         COMMAND a_sweep_export --out "${WARP_HYPAD_A_SWEEPS}")
+if(Python3_Interpreter_FOUND)
+  add_test(NAME programa.visual_render COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_a/animate_sweeps.py"
+    --sweeps "${WARP_HYPAD_A_SWEEPS}"
+    --out "${WARP_HYPAD_A_GALLERY}/animations"
+    --contact-sheets "${WARP_HYPAD_A_GALLERY}/contact_sheets")
+  add_test(NAME programa.visual_gate COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/regression/v0_program_a_verify.py"
+    --gallery "${WARP_HYPAD_A_GALLERY}"
+    --sweeps "${WARP_HYPAD_A_SWEEPS}"
+    --visualization "${CMAKE_CURRENT_SOURCE_DIR}/../visualization")
+  # One DEPENDS assignment per test: repeated set_tests_properties(... DEPENDS)
+  # calls REPLACE the property rather than appending to it.
+  set_tests_properties(programa.visual_render PROPERTIES
+    DEPENDS "programa.visual_sweep_export")
+  set_tests_properties(programa.visual_gate PROPERTIES
+    DEPENDS "programa.visual_render")
+endif()
+
 # --- Program C, Milestone C0: catalogue-grounded astrogation -----------------
 #
 # A SEPARATE program. It gets its own directory, namespace and gate, and Programs
@@ -644,6 +681,12 @@ if(WARP_HYPAD_WITH_OTILIB)
   # Let A3 and A2T use the real HyPAD scalar for their sensitivity checks.
   target_link_libraries(milestone3_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(milestone3_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
+  # The sweep exporter uses the OTI backend for sensitivities when it is
+  # available, and centred finite differences on the same production metric when
+  # it is not. Only the OTI COMPARISON cases skip in the disabled build; every
+  # field is still exported either way.
+  target_link_libraries(a_sweep_export PRIVATE warp_hypad_otilib)
+  target_compile_definitions(a_sweep_export PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(milestone2t_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(milestone2t_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   if(TARGET b1_verify)

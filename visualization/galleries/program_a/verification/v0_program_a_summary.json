@@ -1,0 +1,150 @@
+{
+  "gate": "V0-PROGRAM-A-ANIMATIONS",
+  "num_cases": 14,
+  "num_passed": 11,
+  "num_failed": 0,
+  "num_blocked": 3,
+  "all_passed": true,
+  "cases": [
+    {
+      "name": "v0a.nine_animation_families_exist",
+      "claim": "every required Program A animation family is present",
+      "state": "PASS",
+      "passed": true,
+      "expected": "9 families",
+      "computed": "all 9 present",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a.static_figures_valid",
+      "claim": "every static figure exists as a PNG with sane dimensions",
+      "state": "PASS",
+      "passed": true,
+      "expected": "11 figures",
+      "computed": "all 11 valid",
+      "note": "",
+      "seconds": 0.001
+    },
+    {
+      "name": "v0a.svgs_parse",
+      "claim": "every static figure has a well-formed SVG",
+      "state": "PASS",
+      "passed": true,
+      "expected": "11 SVGs",
+      "computed": "all parse",
+      "note": "",
+      "seconds": 0.0469
+    },
+    {
+      "name": "v0a.manifest_matches_frames",
+      "claim": "every manifest entry is complete, reports 24 frames, and the animation actually changes",
+      "state": "PASS",
+      "passed": true,
+      "expected": "18 complete entries",
+      "computed": "18 entries valid",
+      "note": "",
+      "seconds": 0.0151
+    },
+    {
+      "name": "v0a.contact_sheets_exist",
+      "claim": "each animation has a contact sheet, so a regression is visible without opening a video",
+      "state": "PASS",
+      "passed": true,
+      "expected": "9 sheets",
+      "computed": "all 9 present",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a.no_blank_frames",
+      "claim": "no contact sheet is blank",
+      "state": "PASS",
+      "passed": true,
+      "expected": "every sheet carries real content",
+      "computed": "all sheets rich",
+      "note": "",
+      "seconds": 0.4832
+    },
+    {
+      "name": "v0a.no_renderer_calls_production_physics",
+      "claim": "no visualization script imports warp_hypad or calls a metric, shape, signature, seeding or hyperbolic routine",
+      "state": "PASS",
+      "passed": true,
+      "expected": "zero physics in the visualization tree",
+      "computed": "clean",
+      "note": "this is the case that keeps the contract true as the tree grows",
+      "seconds": 0.038
+    },
+    {
+      "name": "v0a.metadata_checksums_agree",
+      "claim": "every animation sidecar names its sweep inputs and their SHA-256 still matches the files on disk",
+      "state": "PASS",
+      "passed": true,
+      "expected": "all inputs unchanged",
+      "computed": "9 input checksums checked, 0 mismatched, 0 sidecars missing",
+      "note": "a figure whose input bytes have changed is stale, and stale is indistinguishable from correct by eye",
+      "seconds": 0.1779
+    },
+    {
+      "name": "v0a.anomaly_report_clean",
+      "claim": "the visual anomaly report exists and has zero fired diagnostics",
+      "state": "PASS",
+      "passed": true,
+      "expected": "0 fired",
+      "computed": "0 fired of 120 diagnostics",
+      "note": "a fired anomaly does not suppress the figure; it fails this gate while the evidence survives",
+      "seconds": 0.0141
+    },
+    {
+      "name": "v0a.sweep_manifest_scope_and_time_mode",
+      "claim": "the sweep manifest states its scope, and confirms FrozenTimeDiagnostic was never used",
+      "state": "PASS",
+      "passed": true,
+      "expected": "scope stated, frozen time not used",
+      "computed": "manifest present and consistent",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a.plotted_rows_match_source",
+      "claim": "the shape-function figure plots exactly the rows its source contains",
+      "state": "PASS",
+      "passed": true,
+      "expected": "3609 rows",
+      "computed": "3609 plotted against 3609 in shape_profiles.csv",
+      "note": "",
+      "seconds": 0.1782
+    },
+    {
+      "name": "v0a.blocked.curvature_norm_slice",
+      "claim": "curvature_norm_slice is not generated, and its scientific dependency is real",
+      "state": "BLOCKED_BY_UNIMPLEMENTED_SCIENCE",
+      "passed": false,
+      "expected": "absent, with a stated dependency",
+      "computed": "Program A has no curvature invariants (A4)",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a.blocked.curvature_wall_evolution",
+      "claim": "curvature_wall_evolution is not generated, and its scientific dependency is real",
+      "state": "BLOCKED_BY_UNIMPLEMENTED_SCIENCE",
+      "passed": false,
+      "expected": "absent, with a stated dependency",
+      "computed": "Program A has no curvature implementation (A4)",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a.blocked.ricci_scalar_slice",
+      "claim": "ricci_scalar_slice is not generated, and its scientific dependency is real",
+      "state": "BLOCKED_BY_UNIMPLEMENTED_SCIENCE",
+      "passed": false,
+      "expected": "absent, with a stated dependency",
+      "computed": "Program A has no Ricci implementation (A4)",
+      "note": "",
+      "seconds": 0.0
+    }
+  ]
+}

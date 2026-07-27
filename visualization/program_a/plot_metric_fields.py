@@ -262,7 +262,12 @@ def main(argv=None) -> int:
     crosses = min(g00) < 0.0 < max(g00)
     ax.set_xlabel("x [bubble radii]")
     ax.set_ylabel("y [bubble radii]")
-    ax.set_title("Ergosurface: the $g_{00}=0$ level set", fontsize=10)
+    # The title states what the samples SHOW, not what the figure was named
+    # after. Calling a figure "ergosurface" when g00 never reaches zero would
+    # assert a surface that is not there.
+    ax.set_title("$g_{00}=0$ ergosurface diagnostic" if crosses
+                 else "$g_{00}$ diagnostic — no ergosurface for this "
+                      "parameter set", fontsize=10)
     rnd.stamp(ax, theme, lines=[
         "g00 range   %.4g to %.4g" % (min(g00), max(g00)),
         "crosses 0   %s" % ("yes, an ergosurface exists" if crosses
@@ -322,6 +327,91 @@ def main(argv=None) -> int:
          base_prov("illustrative_only", "none (convergence plot)", [f_ofd]),
          [[params[i], steps[i], abserr[i]] for i in range(len(steps))],
          ["parameter", "step_size", "absolute_error"])
+
+    # --- 10. Deviation views -------------------------------------------------
+    #
+    # g00 spans -1 to -0.96 and g11 is exactly 1: on an absolute scale both are
+    # flat, and the structure that matters is invisible. A residual against a
+    # STATED reference makes it visible -- but a contrast-enhanced residual must
+    # never be presented as though it were the absolute field, so every panel
+    # says so in its title and carries the reference value.
+    deviations = [
+        ("g00", g00, -1.0, r"$\Delta g_{00} = g_{00} + 1$", "reference $-1$ "
+         "(Minkowski)"),
+        ("g11", g11, 1.0, r"$\Delta g_{11} = g_{11} - 1$", "reference $+1$ "
+         "(Minkowski)"),
+        ("det", det, -1.0, r"$\Delta \det g = \det g + 1$",
+         "reference $-1$ (analytic, exact for any $v$ and $f$)"),
+    ]
+    fig, axes = plt.subplots(1, 3, figsize=(16.0, 5.0))
+    dev_rows = []
+    for ax, (nm, vals, ref, lab, refnote) in zip(axes, deviations):
+        dev = [v - ref for v in vals]
+        _, _, D = grid_from(x, y, dev)
+        m = max(abs(min(dev)), abs(max(dev)))
+        if m == 0.0:
+            m = 1.0e-16      # an exactly-zero residual still needs a finite scale
+        im = ax.imshow(D, origin="lower", extent=extent, cmap="PuOr_r",
+                       vmin=-m, vmax=m, aspect="equal")
+        cb = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+        cb.formatter.set_powerlimits((-2, 2))
+        ax.set_title("%s\n%s" % (lab, refnote), fontsize=9.5)
+        ax.set_xlabel("x [bubble radii]")
+        dev_rows.append([nm, ref, min(dev), max(dev),
+                         max(abs(v) for v in dev)])
+    axes[0].set_ylabel("y [bubble radii]")
+    fig.suptitle("CONTRAST-ENHANCED DEVIATION FROM STATED REFERENCE — "
+                 "these are residuals, not the absolute fields", fontsize=11)
+    rnd.scope_note(fig, theme, SCOPE)
+    save(fig, "metric_deviation_views",
+         base_prov("illustrative_only", "orthographic, fixed", [f_slice],
+                   extra={"view_kind": "contrast_enhanced_deviation",
+                          "references": {"g00": -1.0, "g11": 1.0, "det": -1.0},
+                          "is_absolute_field": False}),
+         dev_rows,
+         ["field", "reference", "min_deviation", "max_deviation",
+          "worst_absolute_deviation"])
+
+    # --- 11. Constant-field status panel -------------------------------------
+    #
+    # det(g) = -1 exactly, everywhere, for ANY v and f. A flat heatmap conveys
+    # nothing; the useful statement is the comparison against the analytic value
+    # and whether it holds.
+    det_min, det_max = min(det), max(det)
+    det_worst = max(abs(v + 1.0) for v in det)
+    det_tol = 1.0e-12
+    det_pass = det_worst <= det_tol
+    fig, ax = plt.subplots(figsize=(8.2, 3.6))
+    ax.axis("off")
+    rows = [
+        ("analytic value", "-1 exactly, for any $v$ and $f$"),
+        ("measured minimum", "%.17g" % det_min),
+        ("measured maximum", "%.17g" % det_max),
+        ("worst |det g + 1|", "%.3e" % det_worst),
+        ("tolerance", "%.1e" % det_tol),
+        ("result", "PASS" if det_pass else "FAIL"),
+    ]
+    for k, (lab, val) in enumerate(rows):
+        ax.text(0.03, 0.88 - 0.15 * k, lab, fontsize=10, family="monospace",
+                color=theme.foreground, transform=ax.transAxes)
+        ax.text(0.46, 0.88 - 0.15 * k, val, fontsize=10, family="monospace",
+                color=(theme.accent if lab != "result"
+                       else (theme.accent_two if det_pass
+                             else theme.uncertainty_color)),
+                transform=ax.transAxes)
+    ax.set_title("det(g) status — an analytically constant field, reported "
+                 "rather than shaded", fontsize=10.5, color=theme.foreground)
+    rnd.scope_note(fig, theme,
+                   "The (t,x) block determinant is (-1 + v^2 f^2) - (v f)^2 = -1 "
+                   "identically, so this is an exact identity, not a tolerance "
+                   "result. " + SCOPE)
+    save(fig, "metric_determinant_status",
+         base_prov("illustrative_only", "none (status panel)", [f_slice],
+                   extra={"analytic_value": -1.0, "worst_deviation": det_worst,
+                          "tolerance": det_tol, "passed": det_pass}),
+         [[det_min, det_max, det_worst, det_tol, int(det_pass)]],
+         ["measured_min", "measured_max", "worst_absolute_deviation",
+          "tolerance", "passed"])
 
     path = rep.write(out_dir)
     fired = rep.fired

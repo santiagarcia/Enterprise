@@ -1,0 +1,4 @@
+field,reference,min_deviation,max_deviation,worst_absolute_deviation
+g00,-1.0,0.0,0.040000000000000036,0.040000000000000036
+g11,1.0,0.0,0.0,0.0
+det,-1.0,0.0,0.0,0.0

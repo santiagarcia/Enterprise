@@ -2,6 +2,669 @@
   "all_clear": true,
   "note": "These are TESTS, not aesthetic scores. A fired diagnostic fails the V0 gate. Figures are still written when one fires, because suppressing the picture would hide the evidence.",
   "renderers": {
+    "animate_sweeps": {
+      "diagnostics": [
+        {
+          "detail": "translation centre",
+          "diagnostic": "center_trajectory_mismatch",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 0.0
+        },
+        {
+          "detail": "translation time: 0 non-increasing steps",
+          "diagnostic": "non_monotonic_sequence",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_translation: 0 blank frames of 24",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep parameter: 0 non-increasing steps",
+          "diagnostic": "non_monotonic_sequence",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep grid size",
+          "diagnostic": "changing_object_count",
+          "fired": false,
+          "measured": [
+            1681
+          ],
+          "threshold": 1
+        },
+        {
+          "detail": "bubble_velocity_sweep colour scale",
+          "diagnostic": "unstable_exposure",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 0.0
+        },
+        {
+          "detail": "bubble_velocity_sweep: worst |det g + 1| over the sweep",
+          "diagnostic": "determinant_deviation",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 1e-12
+        },
+        {
+          "detail": "bubble_velocity_sweep: samples not Lorentzian",
+          "diagnostic": "signature_failure",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 0",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 0",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 1",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 1,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 1",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 1,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 2",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 2,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 2",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 2,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 3",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 3,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 3",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 3,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 4",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 4,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 4",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 4,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 5",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 5,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 5",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 5,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 6",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 6,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 6",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 6,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 7",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 7,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 7",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 7,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 8",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 8,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 8",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 8,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 9",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 9,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 9",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 9,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 10",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 10,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 10",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 10,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 11",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 11,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 11",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 11,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 12",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 12,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 12",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 12,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 13",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 13,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 13",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 13,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 14",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 14,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 14",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 14,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 15",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 15,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 15",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 15,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 16",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 16,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 16",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 16,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 17",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 17,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 17",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 17,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 18",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 18,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 18",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 18,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 19",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 19,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 19",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 19,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 20",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 20,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 20",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 20,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 21",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 21,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 21",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 21,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 22",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 22,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 22",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 22,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 23",
+          "diagnostic": "contour_without_zero_crossing",
+          "fired": false,
+          "measured": 23,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep frame 23",
+          "diagnostic": "zero_crossing_without_contour",
+          "fired": false,
+          "measured": 23,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_velocity_sweep: 0 blank frames of 24",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "the centre must not move while R is swept",
+          "diagnostic": "radius_translation_confusion",
+          "fired": false,
+          "measured": 1,
+          "threshold": 1
+        },
+        {
+          "detail": "bubble_radius_sweep parameter: 0 non-increasing steps",
+          "diagnostic": "non_monotonic_sequence",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_radius_sweep grid size",
+          "diagnostic": "changing_object_count",
+          "fired": false,
+          "measured": [
+            1681
+          ],
+          "threshold": 1
+        },
+        {
+          "detail": "bubble_radius_sweep colour scale",
+          "diagnostic": "unstable_exposure",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 0.0
+        },
+        {
+          "detail": "bubble_radius_sweep: worst |det g + 1| over the sweep",
+          "diagnostic": "determinant_deviation",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 1e-12
+        },
+        {
+          "detail": "bubble_radius_sweep: samples not Lorentzian",
+          "diagnostic": "signature_failure",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_radius_sweep: 0 blank frames of 24",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "the centre must not move while sigma is swept",
+          "diagnostic": "steepness_radius_confusion",
+          "fired": false,
+          "measured": 1,
+          "threshold": 1
+        },
+        {
+          "detail": "bubble_steepness_sweep parameter: 0 non-increasing steps",
+          "diagnostic": "non_monotonic_sequence",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_steepness_sweep grid size",
+          "diagnostic": "changing_object_count",
+          "fired": false,
+          "measured": [
+            1681
+          ],
+          "threshold": 1
+        },
+        {
+          "detail": "bubble_steepness_sweep colour scale",
+          "diagnostic": "unstable_exposure",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 0.0
+        },
+        {
+          "detail": "bubble_steepness_sweep: worst |det g + 1| over the sweep",
+          "diagnostic": "determinant_deviation",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 1e-12
+        },
+        {
+          "detail": "bubble_steepness_sweep: samples not Lorentzian",
+          "diagnostic": "signature_failure",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "bubble_steepness_sweep: 0 blank frames of 24",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "metric_component_evolution: 0 blank frames of 24",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "sensitivity_v_evolution parameter: 0 non-increasing steps",
+          "diagnostic": "non_monotonic_sequence",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "sensitivity_v_evolution grid size",
+          "diagnostic": "changing_object_count",
+          "fired": false,
+          "measured": [
+            1681
+          ],
+          "threshold": 1
+        },
+        {
+          "detail": "sensitivity_v_evolution colour scale",
+          "diagnostic": "unstable_exposure",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 0.0
+        },
+        {
+          "detail": "sensitivity_v_evolution: worst |det g + 1| over the sweep",
+          "diagnostic": "determinant_deviation",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 1e-12
+        },
+        {
+          "detail": "sensitivity_v_evolution: samples not Lorentzian",
+          "diagnostic": "signature_failure",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "sensitivity_v_evolution: 0 blank frames of 24",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "sensitivity_R_evolution parameter: 0 non-increasing steps",
+          "diagnostic": "non_monotonic_sequence",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "sensitivity_R_evolution grid size",
+          "diagnostic": "changing_object_count",
+          "fired": false,
+          "measured": [
+            1681
+          ],
+          "threshold": 1
+        },
+        {
+          "detail": "sensitivity_R_evolution colour scale",
+          "diagnostic": "unstable_exposure",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 0.0
+        },
+        {
+          "detail": "sensitivity_R_evolution: worst |det g + 1| over the sweep",
+          "diagnostic": "determinant_deviation",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 1e-12
+        },
+        {
+          "detail": "sensitivity_R_evolution: samples not Lorentzian",
+          "diagnostic": "signature_failure",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "sensitivity_R_evolution: 0 blank frames of 24",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "sensitivity_sigma_evolution parameter: 0 non-increasing steps",
+          "diagnostic": "non_monotonic_sequence",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "sensitivity_sigma_evolution grid size",
+          "diagnostic": "changing_object_count",
+          "fired": false,
+          "measured": [
+            1681
+          ],
+          "threshold": 1
+        },
+        {
+          "detail": "sensitivity_sigma_evolution colour scale",
+          "diagnostic": "unstable_exposure",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 0.0
+        },
+        {
+          "detail": "sensitivity_sigma_evolution: worst |det g + 1| over the sweep",
+          "diagnostic": "determinant_deviation",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 1e-12
+        },
+        {
+          "detail": "sensitivity_sigma_evolution: samples not Lorentzian",
+          "diagnostic": "signature_failure",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "sensitivity_sigma_evolution: 0 blank frames of 24",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "fixed-lab minus fixed-centre minus the trajectory term",
+          "diagnostic": "chain_rule_residual",
+          "fired": false,
+          "measured": 4.440892099e-10,
+          "threshold": 0.0001
+        },
+        {
+          "detail": "fixed_lab_vs_fixed_center: 0 blank frames of 24",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        }
+      ],
+      "milestone": "V0.1A / A-VISUAL-SWEEP-EXPORT",
+      "num_fired": 0,
+      "program": "A (warp_hypad)"
+    },
     "plot_metric_fields": {
       "diagnostics": [
         {

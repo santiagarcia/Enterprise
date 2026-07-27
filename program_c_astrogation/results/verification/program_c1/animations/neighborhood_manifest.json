@@ -43,9 +43,9 @@
     "data_kind": "Gaia DR3",
     "destination_source_id": "5853498713190525696",
     "generated_from": "c1_metadata.json",
-    "generated_timestamp": "2026-07-27T21:39:03Z",
-    "git_commit": "4e9d6869857615d3303e4e5e856b53e09673f16e",
-    "git_dirty": false,
+    "generated_timestamp": "2026-07-27T22:30:59Z",
+    "git_commit": "893dcfd6c463793a0201d824d20a9d72b7a3bf52",
+    "git_dirty": true,
     "observer_frame": "BarycentricCartesian (camera orbit only; no observer motion is modelled)",
     "physical_parameters": {
       "acceleration_g": 1,

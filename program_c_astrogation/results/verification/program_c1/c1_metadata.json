@@ -32,14 +32,14 @@
     }
   ],
   "effective_metric": "NONE. C1 is special-relativistic kinematics in flat spacetime. No warp metric, no propulsion energy, no collision hazard, no interstellar medium.",
-  "generated_timestamp": "2026-07-27T21:37:20Z",
+  "generated_timestamp": "2026-07-27T22:29:32Z",
   "git_commit": {
-    "build_type": "RelWithDebInfo",
+    "build_type": "Release",
     "compiler_id": "MSVC",
     "compiler_version": "19.44.35223.0",
     "cxx_standard": "C++17",
-    "git_commit": "4e9d6869857615d3303e4e5e856b53e09673f16e",
-    "git_dirty": false,
+    "git_commit": "893dcfd6c463793a0201d824d20a9d72b7a3bf52",
+    "git_dirty": true,
     "platform": "Windows-AMD64"
   },
   "milestone": "C1-RELATIVISTIC-ASTROGATION",
