@@ -14,7 +14,7 @@
       "expected": "PNG and SVG present, both dimensions above 400 px",
       "computed": "local_neighborhood_3d.png at (1036, 1204)",
       "note": "",
-      "seconds": 0.011
+      "seconds": 0.0119
     },
     {
       "name": "c1vis.worldline_figures_generated",
@@ -41,7 +41,7 @@
       "expected": "relativistic_aberration and doppler_sky",
       "computed": "aberration=True doppler=True",
       "note": "",
-      "seconds": 0.0
+      "seconds": 0.001
     },
     {
       "name": "c1vis.journey_animation_generated",
@@ -77,7 +77,7 @@
       "expected": "zero physics recomputation in the visualization tree",
       "computed": "clean across the visualization tree",
       "note": "the visuals read solver CSVs and draw them; this case is what keeps that true as the tree grows",
-      "seconds": 0.0376
+      "seconds": 0.0396
     },
     {
       "name": "c1vis.no_blank_or_nonfinite_frames",
@@ -86,7 +86,7 @@
       "expected": "every sheet carries real content",
       "computed": "all sheets have rich content",
       "note": "records.column refuses NaN and infinity at the read boundary, so a nonfinite value fails loudly instead of vanishing from a plot",
-      "seconds": 0.3551
+      "seconds": 0.3791
     },
     {
       "name": "c1vis.deterministic_rerender_metadata",
@@ -95,7 +95,7 @@
       "expected": "identical plotted CSV and identical metadata",
       "computed": "plotted CSV sha256 matches; metadata matches",
       "note": "image hashes are NOT compared: they are pinned to matplotlib and freetype versions, and the requirement allows pixel hashes only in a pinned environment. The plotted numbers are the invariant",
-      "seconds": 2.6371
+      "seconds": 2.7773
     }
   ]
 }

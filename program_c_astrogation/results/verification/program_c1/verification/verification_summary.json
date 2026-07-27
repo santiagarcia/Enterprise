@@ -25,7 +25,7 @@
       "passed": true,
       "reference": "x = v t for a constant coordinate velocity of 0.5 c over 4 yr",
       "relative_error": 0,
-      "runtime_seconds": 2.6e-06,
+      "runtime_seconds": 2.9e-06,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -44,7 +44,7 @@
       "passed": true,
       "reference": "Simpson integration of dtau = dt sqrt(1-beta^2) against the exact tau = t/gamma at beta = 0.8",
       "relative_error": 0,
-      "runtime_seconds": 3.6e-06,
+      "runtime_seconds": 3.4e-06,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -63,7 +63,7 @@
       "passed": true,
       "reference": "x(tau) = (c^2/a)[cosh(a tau/c) - 1] at 1 g for tau = 2 yr",
       "relative_error": 0,
-      "runtime_seconds": 7.7e-06,
+      "runtime_seconds": 7.6e-06,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -82,7 +82,7 @@
       "passed": true,
       "reference": "c t(tau) = (c^2/a) sinh(a tau/c) at 1 g for tau = 2 yr",
       "relative_error": 0,
-      "runtime_seconds": 9.3e-06,
+      "runtime_seconds": 1.09e-05,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -101,7 +101,7 @@
       "passed": true,
       "reference": "beta = tanh(a tau/c), gamma = cosh(a tau/c), and gamma = 1/sqrt(1-beta^2) all agree",
       "relative_error": null,
-      "runtime_seconds": 2e-06,
+      "runtime_seconds": 2.2e-06,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -120,7 +120,7 @@
       "passed": true,
       "reference": "a symmetric 1 g journey arrives at the destination distance and at rest",
       "relative_error": null,
-      "runtime_seconds": 1.15e-05,
+      "runtime_seconds": 1.35e-05,
       "skipped": false,
       "tolerance": 1e-13
     },
@@ -135,7 +135,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the interception solve converges and places the ship on the destination's worldline, not at its catalogue position",
-      "runtime_seconds": 0.0004043,
+      "runtime_seconds": 0.0003977,
       "skipped": false,
       "tolerance": 0
     },
@@ -150,7 +150,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "aiming at the stale catalogue position misses, and misses more for the faster-moving star",
-      "runtime_seconds": 3e-07,
+      "runtime_seconds": 4e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -165,7 +165,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the interception position uncertainty exceeds the catalogue position uncertainty, because velocity errors integrate over the flight",
-      "runtime_seconds": 2e-07,
+      "runtime_seconds": 3e-07,
       "skipped": false,
       "tolerance": 0
     },
@@ -184,7 +184,7 @@
       "passed": true,
       "reference": "the boost preserves the Minkowski norm of a null and a timelike four-vector, and the four-velocity is unit timelike",
       "relative_error": null,
-      "runtime_seconds": 7e-07,
+      "runtime_seconds": 8e-07,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -203,7 +203,7 @@
       "passed": true,
       "reference": "the four-vector boost reproduces cos t' = (cos t + b)/(1 + b cos t) for the source direction, over 37 angles",
       "relative_error": null,
-      "runtime_seconds": 3.4e-06,
+      "runtime_seconds": 3.5e-06,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -237,7 +237,7 @@
       "passed": true,
       "reference": "nu'/nu = sqrt((1+b)/(1-b)) for a source directly ahead",
       "relative_error": 0,
-      "runtime_seconds": 2.7e-06,
+      "runtime_seconds": 3e-06,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -256,7 +256,7 @@
       "passed": true,
       "reference": "nu'/nu = sqrt((1-b)/(1+b)) for a source directly behind",
       "relative_error": 0,
-      "runtime_seconds": 3.5e-06,
+      "runtime_seconds": 4e-06,
       "skipped": false,
       "tolerance": 1e-15
     },
@@ -275,7 +275,7 @@
       "passed": true,
       "reference": "at zero velocity every Doppler factor is exactly 1",
       "relative_error": null,
-      "runtime_seconds": 3.9e-06,
+      "runtime_seconds": 4.3e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -294,7 +294,7 @@
       "passed": true,
       "reference": "at zero velocity every apparent direction equals the geometric direction to within one renormalisation rounding",
       "relative_error": null,
-      "runtime_seconds": 6.9e-06,
+      "runtime_seconds": 7.2e-06,
       "skipped": false,
       "tolerance": 4e-16
     },
@@ -313,7 +313,7 @@
       "passed": true,
       "reference": "the emission time satisfies |x_obs - x_star(t_e)| = c (t_obs - t_e)",
       "relative_error": 0,
-      "runtime_seconds": 4.6e-06,
+      "runtime_seconds": 4.7e-06,
       "skipped": false,
       "tolerance": 1e-12
     },
@@ -351,7 +351,7 @@
       "passed": true,
       "reference": "a message sent by the ship reaches Earth at t + |x|/c, and the round trip is 2|x|/c",
       "relative_error": 0,
-      "runtime_seconds": 2e-06,
+      "runtime_seconds": 1.9e-06,
       "skipped": false,
       "tolerance": 1e-14
     },
@@ -366,7 +366,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "the apparent-sky table has exactly one row per placeable catalogue source, in both the rest and moving observer frames",
-      "runtime_seconds": 0.0003433,
+      "runtime_seconds": 0.0003431,
       "skipped": false,
       "tolerance": 0
     },
@@ -381,7 +381,7 @@
       "parameters": "n/a",
       "passed": true,
       "reference": "every apparent-sky row carries a finite, non-negative angular uncertainty, and the small-angle form remains defensible",
-      "runtime_seconds": 4.2e-06,
+      "runtime_seconds": 3.7e-06,
       "skipped": false,
       "tolerance": 0
     },
@@ -400,7 +400,7 @@
       "passed": true,
       "reference": "rebuilding the worldline from the same inputs reproduces it bit for bit",
       "relative_error": null,
-      "runtime_seconds": 0.0002037,
+      "runtime_seconds": 0.0002109,
       "skipped": false,
       "tolerance": 0
     }
@@ -410,6 +410,6 @@
   "num_failed": 0,
   "num_passed": 22,
   "num_skipped": 0,
-  "timestamp_utc": "2026-07-27T01:32:14Z",
+  "timestamp_utc": "2026-07-27T21:22:00Z",
   "title": "C1-RELATIVISTIC-ASTROGATION: ship worldlines, clocks, moving-target interception, aberration, Doppler and the retarded apparent sky"
 }

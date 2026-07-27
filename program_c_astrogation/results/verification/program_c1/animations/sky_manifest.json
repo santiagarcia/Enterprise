@@ -77,7 +77,7 @@
     "data_kind": "Gaia DR3",
     "destination_source_id": "5853498713190525696",
     "generated_from": "c1_metadata.json",
-    "generated_timestamp": "2026-07-27T01:34:41Z",
+    "generated_timestamp": "2026-07-27T21:24:21Z",
     "git_commit": "4e9d6869857615d3303e4e5e856b53e09673f16e",
     "git_dirty": false,
     "observer_frame": "LocalShipFrame (instantaneous rest frame)",

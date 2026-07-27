@@ -1,0 +1,210 @@
+{
+  "all_clear": true,
+  "note": "These are TESTS, not aesthetic scores. A fired diagnostic fails the V0 gate. Figures are still written when one fires, because suppressing the picture would hide the evidence.",
+  "renderers": {
+    "plot_metric_fields": {
+      "diagnostics": [
+        {
+          "detail": "metric_slice g00: 0 non-finite of 6561",
+          "diagnostic": "nonfinite_value",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "metric_slice det: 0 non-finite of 6561",
+          "diagnostic": "nonfinite_value",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "metric_slice g00 has 262 distinct values",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 262,
+          "threshold": 4
+        },
+        {
+          "detail": "metric determinant: 0 of 6561 samples on the wrong side",
+          "diagnostic": "unexpected_negative_determinant",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "saved signature_ok flag: 0 of 6561 samples flagged invalid",
+          "diagnostic": "non_lorentzian_signature",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "shape f: 0 non-finite of 3609",
+          "diagnostic": "nonfinite_value",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "shape f (R=2, sigma=1): largest step at index 67",
+          "diagnostic": "unexpected_discontinuity",
+          "fired": false,
+          "measured": 0.015537087539999939,
+          "threshold": 0.35
+        },
+        {
+          "detail": "shape f (R=2, sigma=2): largest step at index 67",
+          "diagnostic": "unexpected_discontinuity",
+          "fired": false,
+          "measured": 0.030008119699999947,
+          "threshold": 0.35
+        },
+        {
+          "detail": "shape f (R=2, sigma=5): largest step at index 67",
+          "diagnostic": "unexpected_discontinuity",
+          "fired": false,
+          "measured": 0.07481318510000001,
+          "threshold": 0.35
+        },
+        {
+          "detail": "shape f (R=3, sigma=1): largest step at index 101",
+          "diagnostic": "unexpected_discontinuity",
+          "fired": false,
+          "measured": 0.015069667030000011,
+          "threshold": 0.35
+        },
+        {
+          "detail": "shape f (R=3, sigma=2): largest step at index 100",
+          "diagnostic": "unexpected_discontinuity",
+          "fired": false,
+          "measured": 0.02996441997999999,
+          "threshold": 0.35
+        },
+        {
+          "detail": "shape f (R=3, sigma=5): largest step at index 100",
+          "diagnostic": "unexpected_discontinuity",
+          "fired": false,
+          "measured": 0.07444251681000003,
+          "threshold": 0.35
+        },
+        {
+          "detail": "shape f (R=5, sigma=1): largest step at index 167",
+          "diagnostic": "unexpected_discontinuity",
+          "fired": false,
+          "measured": 0.014999862009999976,
+          "threshold": 0.35
+        },
+        {
+          "detail": "shape f (R=5, sigma=2): largest step at index 167",
+          "diagnostic": "unexpected_discontinuity",
+          "fired": false,
+          "measured": 0.029988007160000052,
+          "threshold": 0.35
+        },
+        {
+          "detail": "shape f (R=5, sigma=5): largest step at index 167",
+          "diagnostic": "unexpected_discontinuity",
+          "fired": false,
+          "measured": 0.07481318479000004,
+          "threshold": 0.35
+        },
+        {
+          "detail": "metric_determinant: constant field (value -1), so clipping is undefined; constancy is checked separately",
+          "diagnostic": "clipped_values",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 0.02
+        },
+        {
+          "detail": "|det(g) + 1| over the slice; the Alcubierre metric has unit determinant by construction",
+          "diagnostic": "determinant_matches_analytic",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 1e-12
+        },
+        {
+          "detail": "metric_signature_map: constant field (value 1), so clipping is undefined; constancy is checked separately",
+          "diagnostic": "clipped_values",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 0.02
+        },
+        {
+          "detail": "sensitivity v: 0 non-finite of 6561",
+          "diagnostic": "nonfinite_value",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "sensitivity v has 313 distinct values",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 313,
+          "threshold": 4
+        },
+        {
+          "detail": "sensitivity_v_slice: 0.02% at or beyond the scale limits",
+          "diagnostic": "clipped_values",
+          "fired": false,
+          "measured": 0.000152,
+          "threshold": 0.02
+        },
+        {
+          "detail": "sensitivity R: 0 non-finite of 6561",
+          "diagnostic": "nonfinite_value",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "sensitivity R has 309 distinct values",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 309,
+          "threshold": 4
+        },
+        {
+          "detail": "sensitivity_R_slice: 0.18% at or beyond the scale limits",
+          "diagnostic": "clipped_values",
+          "fired": false,
+          "measured": 0.001829,
+          "threshold": 0.02
+        },
+        {
+          "detail": "sensitivity sigma: 0 non-finite of 6561",
+          "diagnostic": "nonfinite_value",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "sensitivity sigma has 314 distinct values",
+          "diagnostic": "blank_field",
+          "fired": false,
+          "measured": 314,
+          "threshold": 4
+        },
+        {
+          "detail": "sensitivity_sigma_slice: 0.12% at or beyond the scale limits",
+          "diagnostic": "clipped_values",
+          "fired": false,
+          "measured": 0.001219,
+          "threshold": 0.02
+        },
+        {
+          "detail": "oti_vs_fd absolute_error: 0 non-finite of 216",
+          "diagnostic": "nonfinite_value",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        }
+      ],
+      "milestone": "milestone_03",
+      "num_fired": 0,
+      "program": "A (warp_hypad)"
+    }
+  },
+  "total_fired": 0
+}

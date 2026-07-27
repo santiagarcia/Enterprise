@@ -1,0 +1,28 @@
+{
+  "camera_model": "none (convergence plot)",
+  "color_model": "illustrative_only",
+  "contract": "production solver -> saved records -> visualization scripts -> PNG/SVG/GIF/MP4",
+  "coordinate_frame": "inertial Cartesian, comoving bubble coordinates",
+  "frame_count": 1,
+  "frame_rate": null,
+  "generated_timestamp": "2026-07-27T21:19:09Z",
+  "git_commit": "a5aa0b03814763b311c1c8d2b2868db1eb717e6c",
+  "git_dirty": true,
+  "input_checksums": {
+    "hypad_vs_fd.csv": "99a383320071575c9a12b0890db147d0a98d9503aabef0e33eedfb219f3708e2"
+  },
+  "input_files": [
+    "hypad_vs_fd.csv"
+  ],
+  "milestone": "milestone_03",
+  "observer": "coordinate (no observer boost applied)",
+  "program": "A (warp_hypad)",
+  "recomputes_physics": false,
+  "render_theme": "scientific",
+  "simulation_parameters": {
+    "note": "as recorded in the milestone_03 gate metadata",
+    "slice": "xy plane through the bubble"
+  },
+  "time_convention": "static slice at the gate's evaluation time",
+  "units": "geometrised: c = 1, lengths in bubble-radius units"
+}
