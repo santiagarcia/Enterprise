@@ -1,0 +1,41 @@
+{
+  "catalogue": "Gaia DR3",
+  "catalogue_release": "Gaia DR3",
+  "color_model": "illustrative_only",
+  "coordinate_frame": "Barycentric Cartesian (ICRS-aligned)",
+  "data_kind": "Gaia DR3",
+  "destination_source_id": "5853498713190525696",
+  "generated_from": "c1_metadata.json",
+  "generated_timestamp": "2026-07-27T01:28:57Z",
+  "git_commit": "912d8231e9620df0ff3458b66fa693a03cb366bd",
+  "git_dirty": true,
+  "observer_frame": "BarycentricCartesian and the ship rest frame, labelled separately on every bar pair",
+  "physical_parameters": {
+    "acceleration_g": 1,
+    "peak_beta": 0,
+    "total_coordinate_time_yr": 5.871328410588077,
+    "total_proper_time_yr": 3.541697599782593,
+    "worldline_samples": 241
+  },
+  "recomputes_physics": false,
+  "reference_epoch": 2016,
+  "render_parameters": {
+    "alters_physical_quantities": false,
+    "background": "#0b0e14",
+    "bars": "saved coordinate and proper times",
+    "dpi": 160,
+    "glow_passes": 0,
+    "marker_area_meaning": "area scales with apparent brightness proxy; a larger dot means brighter or nearer, never physically larger",
+    "marker_area_range_pt2": [
+      2.0,
+      90.0
+    ],
+    "theme": "scientific",
+    "trail": false,
+    "y_scale": "log"
+  },
+  "simulation_epoch": 2026,
+  "snapshot_checksum": "3617003818486492466",
+  "trajectory_model": "SymmetricProperAcceleration",
+  "units": "parsec; Julian year; parsec per Julian year"
+}

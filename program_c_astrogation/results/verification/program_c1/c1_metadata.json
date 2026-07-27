@@ -1,0 +1,63 @@
+{
+  "brightness_qualification": "physical approximation: bolometric and grey. It applies the D^4 specific-intensity transformation to a frequency-integrated flux, which is exact only for a source whose spectrum is unchanged in shape by the shift. It is NOT a photorealistic prediction and display exposure is applied separately.",
+  "catalogue": "Gaia DR3",
+  "catalogue_release": "Gaia DR3",
+  "color_model": "approximate_blackbody_visualization",
+  "coordinate_frame": "Barycentric Cartesian (ICRS-aligned)",
+  "data_kind": "Gaia DR3",
+  "destinations": [
+    {
+      "arrival_epoch": 2031.8713284105906,
+      "destination_source_id": "5853498713190525696",
+      "display_name": "NAME Proxima Centauri",
+      "distance_pc": 1.3016144186370073,
+      "flight_coordinate_time_yr": 5.87132841059065,
+      "interception_uncertainty_pc": 8.461368033928011e-05,
+      "solver_iterations": 39,
+      "solver_method": "bracketed bisection on |x_star(t)| - D_flown(t), then secant refinement; bisection because the residual is monotone and bracketing cannot diverge",
+      "solver_residual_pc": 7.485123632022805e-13,
+      "stale_targeting_error_au": 79.74709742229393
+    },
+    {
+      "arrival_epoch": 2033.6523794397071,
+      "destination_source_id": "4472832130942575872",
+      "display_name": "NAME Barnard's star",
+      "distance_pc": 1.8262403890937642,
+      "flight_coordinate_time_yr": 7.652379439707147,
+      "interception_uncertainty_pc": 0.00013410747578332456,
+      "solver_iterations": 38,
+      "solver_method": "bracketed bisection on |x_star(t)| - D_flown(t), then secant refinement; bisection because the residual is monotone and bracketing cannot diverge",
+      "solver_residual_pc": 8.30002733209767e-13,
+      "stale_targeting_error_au": 335.4212500988341
+    }
+  ],
+  "effective_metric": "NONE. C1 is special-relativistic kinematics in flat spacetime. No warp metric, no propulsion energy, no collision hazard, no interstellar medium.",
+  "generated_timestamp": "2026-07-27T01:21:47Z",
+  "git_commit": {
+    "build_type": "Release",
+    "compiler_id": "MSVC",
+    "compiler_version": "19.44.35223.0",
+    "cxx_standard": "C++17",
+    "git_commit": "912d8231e9620df0ff3458b66fa693a03cb366bd",
+    "git_dirty": true,
+    "platform": "Windows-AMD64"
+  },
+  "milestone": "C1-RELATIVISTIC-ASTROGATION",
+  "observer_frame": "LocalShipFrame (instantaneous rest frame of the ship, boosted from BarycentricCartesian)",
+  "physical_parameters": {
+    "acceleration_g": 1,
+    "peak_beta": 0,
+    "total_coordinate_time_yr": 5.871328410588077,
+    "total_proper_time_yr": 3.541697599782593,
+    "worldline_samples": 241
+  },
+  "reference_epoch": 2016,
+  "simulation_epoch": 2026,
+  "snapshot": "C:/Users/sgb10/Documents/GitHub/Mine/Enterprise/warp_hypad/../program_c_astrogation/snapshots/gaia_dr3_10pc.txt",
+  "snapshot_checksum": "3617003818486492466",
+  "speed_of_light_pc_per_yr": 0.3066013937855505,
+  "standard_gravity_pc_per_yr2": 0.3165031702829716,
+  "trajectory_model": "SymmetricProperAcceleration",
+  "trajectory_model_purpose": "accelerate at constant proper acceleration to the midpoint, then decelerate; arrives at rest",
+  "units": "parsec; Julian year; parsec per Julian year"
+}

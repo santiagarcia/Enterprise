@@ -1,0 +1,117 @@
+{
+  "animations": [
+    {
+      "codec": "libx264",
+      "duration_s": 4.0,
+      "filename": "relativistic_aberration.mp4",
+      "final_frame_sha256": "7f6b6241fe6bf988b51079849dcfb8f10f57d8e0862721df133a49d6152fcbfe",
+      "first_frame_sha256": "ff3ec5f08f667bfd78291a4947cc9e0d217d97784d8d4c820621b45c517e234b",
+      "frame_count": 48,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1467,
+        649
+      ],
+      "source_data": "apparent_sky_sequence.csv",
+      "source_data_sha256": "daf03626c688778667745179b8512a92ecc69f265ce6c379ccbef2df52767aa5",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 4.0,
+      "filename": "relativistic_aberration.gif",
+      "final_frame_sha256": "7f6b6241fe6bf988b51079849dcfb8f10f57d8e0862721df133a49d6152fcbfe",
+      "first_frame_sha256": "ff3ec5f08f667bfd78291a4947cc9e0d217d97784d8d4c820621b45c517e234b",
+      "frame_count": 48,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1467,
+        649
+      ],
+      "source_data": "apparent_sky_sequence.csv",
+      "source_data_sha256": "daf03626c688778667745179b8512a92ecc69f265ce6c379ccbef2df52767aa5",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 4.0,
+      "filename": "doppler_sky.mp4",
+      "final_frame_sha256": "66a9e557076e619dff91e0b3a07ac32a7e114e9a080990ff4dac41b104848533",
+      "first_frame_sha256": "e9f376550b6b05c78305a02dede0a1d3267a814e832d80774ef82943d0b169a0",
+      "frame_count": 48,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1467,
+        649
+      ],
+      "source_data": "apparent_sky_sequence.csv",
+      "source_data_sha256": "daf03626c688778667745179b8512a92ecc69f265ce6c379ccbef2df52767aa5",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 4.0,
+      "filename": "doppler_sky.gif",
+      "final_frame_sha256": "66a9e557076e619dff91e0b3a07ac32a7e114e9a080990ff4dac41b104848533",
+      "first_frame_sha256": "e9f376550b6b05c78305a02dede0a1d3267a814e832d80774ef82943d0b169a0",
+      "frame_count": 48,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1467,
+        649
+      ],
+      "source_data": "apparent_sky_sequence.csv",
+      "source_data_sha256": "daf03626c688778667745179b8512a92ecc69f265ce6c379ccbef2df52767aa5",
+      "written": true
+    }
+  ],
+  "provenance": {
+    "catalogue": "Gaia DR3",
+    "catalogue_release": "Gaia DR3",
+    "color_model": "approximate_blackbody_visualization",
+    "coordinate_frame": "Barycentric Cartesian (ICRS-aligned)",
+    "data_kind": "Gaia DR3",
+    "destination_source_id": "5853498713190525696",
+    "generated_from": "c1_metadata.json",
+    "generated_timestamp": "2026-07-27T01:31:08Z",
+    "git_commit": "912d8231e9620df0ff3458b66fa693a03cb366bd",
+    "git_dirty": true,
+    "observer_frame": "LocalShipFrame (instantaneous rest frame)",
+    "physical_parameters": {
+      "acceleration_g": 1,
+      "peak_beta": 0,
+      "total_coordinate_time_yr": 5.871328410588077,
+      "total_proper_time_yr": 3.541697599782593,
+      "worldline_samples": 241
+    },
+    "recomputes_physics": false,
+    "reference_epoch": 2016,
+    "render_parameters": {
+      "alters_physical_quantities": false,
+      "background": "#0b0e14",
+      "beta_source": "saved solver sweep, 48 blocks",
+      "dpi": 160,
+      "exposure": "fixed across frames; the marker mapping is computed once from the whole sweep",
+      "fps": 12,
+      "frames": 48,
+      "glow_passes": 0,
+      "marker_area_meaning": "area scales with apparent brightness proxy; a larger dot means brighter or nearer, never physically larger",
+      "marker_area_range_pt2": [
+        2.0,
+        90.0
+      ],
+      "projection": "mollweide",
+      "recomputed_in_python": "nothing",
+      "theme": "scientific",
+      "trail": false
+    },
+    "simulation_epoch": 2026,
+    "snapshot_checksum": "3617003818486492466",
+    "trajectory_model": "SymmetricProperAcceleration",
+    "units": "parsec; Julian year; parsec per Julian year"
+  }
+}

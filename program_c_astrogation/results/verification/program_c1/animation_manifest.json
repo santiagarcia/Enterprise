@@ -1,0 +1,218 @@
+{
+  "animations": [
+    {
+      "codec": "libx264",
+      "duration_s": 5.0,
+      "filename": "journey_worldline.mp4",
+      "final_frame_sha256": "dd20d9ce2acbd59969f97b3b48f2fdd01df728750f1619cf79e635a7fe1fa460",
+      "first_frame_sha256": "c2ff78d571123b1dbafdae5e4ff5a8aed843b104481d2fe7453937eb6754b842",
+      "frame_count": 120,
+      "frame_rate": 24,
+      "note": null,
+      "resolution": [
+        886,
+        593
+      ],
+      "source_data": "worldline_proxima_1g.csv",
+      "source_data_sha256": "baae780c55cad31f73c606804fa83f8b5b2e774b8b7374e1aa0fa1e463d65807",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 6.0,
+      "filename": "journey_worldline.gif",
+      "final_frame_sha256": "dd20d9ce2acbd59969f97b3b48f2fdd01df728750f1619cf79e635a7fe1fa460",
+      "first_frame_sha256": "c2ff78d571123b1dbafdae5e4ff5a8aed843b104481d2fe7453937eb6754b842",
+      "frame_count": 120,
+      "frame_rate": 20,
+      "note": null,
+      "resolution": [
+        886,
+        593
+      ],
+      "source_data": "worldline_proxima_1g.csv",
+      "source_data_sha256": "baae780c55cad31f73c606804fa83f8b5b2e774b8b7374e1aa0fa1e463d65807",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 5.0,
+      "filename": "communication_delay.mp4",
+      "final_frame_sha256": "f06126c734e2052c8cca33120076638ea973d8a84ce76285bed3e89bf0de3927",
+      "first_frame_sha256": "0b16794944a4a93160b46c92d471f601563e04a759fe5781004c372f8635df18",
+      "frame_count": 120,
+      "frame_rate": 24,
+      "note": null,
+      "resolution": [
+        979,
+        593
+      ],
+      "source_data": "light_cones.csv",
+      "source_data_sha256": "2e35670ff023921d61f06a92f13babe5ffcf4bcff80e6399b2816eece6f0a87d",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 6.0,
+      "filename": "communication_delay.gif",
+      "final_frame_sha256": "f06126c734e2052c8cca33120076638ea973d8a84ce76285bed3e89bf0de3927",
+      "first_frame_sha256": "0b16794944a4a93160b46c92d471f601563e04a759fe5781004c372f8635df18",
+      "frame_count": 120,
+      "frame_rate": 20,
+      "note": null,
+      "resolution": [
+        979,
+        593
+      ],
+      "source_data": "light_cones.csv",
+      "source_data_sha256": "2e35670ff023921d61f06a92f13babe5ffcf4bcff80e6399b2816eece6f0a87d",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 4.0,
+      "filename": "relativistic_aberration.mp4",
+      "final_frame_sha256": "7f6b6241fe6bf988b51079849dcfb8f10f57d8e0862721df133a49d6152fcbfe",
+      "first_frame_sha256": "ff3ec5f08f667bfd78291a4947cc9e0d217d97784d8d4c820621b45c517e234b",
+      "frame_count": 48,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1467,
+        649
+      ],
+      "source_data": "apparent_sky_sequence.csv",
+      "source_data_sha256": "daf03626c688778667745179b8512a92ecc69f265ce6c379ccbef2df52767aa5",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 4.0,
+      "filename": "relativistic_aberration.gif",
+      "final_frame_sha256": "7f6b6241fe6bf988b51079849dcfb8f10f57d8e0862721df133a49d6152fcbfe",
+      "first_frame_sha256": "ff3ec5f08f667bfd78291a4947cc9e0d217d97784d8d4c820621b45c517e234b",
+      "frame_count": 48,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1467,
+        649
+      ],
+      "source_data": "apparent_sky_sequence.csv",
+      "source_data_sha256": "daf03626c688778667745179b8512a92ecc69f265ce6c379ccbef2df52767aa5",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 4.0,
+      "filename": "doppler_sky.mp4",
+      "final_frame_sha256": "66a9e557076e619dff91e0b3a07ac32a7e114e9a080990ff4dac41b104848533",
+      "first_frame_sha256": "e9f376550b6b05c78305a02dede0a1d3267a814e832d80774ef82943d0b169a0",
+      "frame_count": 48,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1467,
+        649
+      ],
+      "source_data": "apparent_sky_sequence.csv",
+      "source_data_sha256": "daf03626c688778667745179b8512a92ecc69f265ce6c379ccbef2df52767aa5",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 4.0,
+      "filename": "doppler_sky.gif",
+      "final_frame_sha256": "66a9e557076e619dff91e0b3a07ac32a7e114e9a080990ff4dac41b104848533",
+      "first_frame_sha256": "e9f376550b6b05c78305a02dede0a1d3267a814e832d80774ef82943d0b169a0",
+      "frame_count": 48,
+      "frame_rate": 12,
+      "note": null,
+      "resolution": [
+        1467,
+        649
+      ],
+      "source_data": "apparent_sky_sequence.csv",
+      "source_data_sha256": "daf03626c688778667745179b8512a92ecc69f265ce6c379ccbef2df52767aa5",
+      "written": true
+    },
+    {
+      "codec": "libx264",
+      "duration_s": 4.5,
+      "filename": "local_neighborhood_rotation.mp4",
+      "final_frame_sha256": "480d5bd3ec66f36b48463f84cf7f827229231a33584ed1ba3fd67c272d6d7124",
+      "first_frame_sha256": "aca7d3464b81e4aa90849b37685dc585881f5282eb6d088b2d13f6f5d8989256",
+      "frame_count": 90,
+      "frame_rate": 20,
+      "note": null,
+      "resolution": [
+        670,
+        783
+      ],
+      "source_data": "local_neighborhood.csv",
+      "source_data_sha256": "f76c9eafbf789a87c52d3ea02a635f002b4b502d660439316e6fe547d5b026b1",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "duration_s": 4.5,
+      "filename": "local_neighborhood_rotation.gif",
+      "final_frame_sha256": "480d5bd3ec66f36b48463f84cf7f827229231a33584ed1ba3fd67c272d6d7124",
+      "first_frame_sha256": "aca7d3464b81e4aa90849b37685dc585881f5282eb6d088b2d13f6f5d8989256",
+      "frame_count": 90,
+      "frame_rate": 20,
+      "note": null,
+      "resolution": [
+        670,
+        783
+      ],
+      "source_data": "local_neighborhood.csv",
+      "source_data_sha256": "f76c9eafbf789a87c52d3ea02a635f002b4b502d660439316e6fe547d5b026b1",
+      "written": true
+    }
+  ],
+  "provenance": {
+    "catalogue": "Gaia DR3",
+    "catalogue_release": "Gaia DR3",
+    "color_model": "catalogue_photometric_proxy",
+    "coordinate_frame": "Barycentric Cartesian (ICRS-aligned)",
+    "data_kind": "Gaia DR3",
+    "destination_source_id": "5853498713190525696",
+    "generated_from": "c1_metadata.json",
+    "generated_timestamp": "2026-07-27T01:30:28Z",
+    "git_commit": "912d8231e9620df0ff3458b66fa693a03cb366bd",
+    "git_dirty": true,
+    "observer_frame": "BarycentricCartesian (camera orbit only; no observer motion is modelled)",
+    "physical_parameters": {
+      "acceleration_g": 1,
+      "peak_beta": 0,
+      "total_coordinate_time_yr": 5.871328410588077,
+      "total_proper_time_yr": 3.541697599782593,
+      "worldline_samples": 241
+    },
+    "recomputes_physics": false,
+    "reference_epoch": 2016,
+    "render_parameters": {
+      "alters_physical_quantities": false,
+      "axis_limits": "frozen",
+      "background": "#0b0e14",
+      "camera": "closed form azimuth, elev fixed at 18 deg",
+      "dpi": 160,
+      "exposure": "fixed",
+      "fps": 20,
+      "frames": 90,
+      "glow_passes": 0,
+      "marker_area_meaning": "area scales with apparent brightness proxy; a larger dot means brighter or nearer, never physically larger",
+      "marker_area_range_pt2": [
+        2.0,
+        90.0
+      ],
+      "theme": "scientific",
+      "trail": false
+    },
+    "simulation_epoch": 2026,
+    "snapshot_checksum": "3617003818486492466",
+    "trajectory_model": "SymmetricProperAcceleration",
+    "units": "parsec; Julian year; parsec per Julian year"
+  }
+}

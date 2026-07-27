@@ -489,6 +489,40 @@ if(EXISTS "${PROGRAM_C_ROOT}/verification/c0_verify.cpp")
     target_compile_options(c0_real_verify PRIVATE -Wall -Wextra -Wpedantic -Werror)
   endif()
 
+  # --- C1: relativistic astrogation ---------------------------------------
+  if(EXISTS "${PROGRAM_C_ROOT}/verification/c1_verify.cpp")
+    add_executable(c1_verify "${PROGRAM_C_ROOT}/verification/c1_verify.cpp")
+    target_include_directories(c1_verify PRIVATE "${PROGRAM_C_ROOT}/include")
+    target_link_libraries(c1_verify PRIVATE warp_hypad_core)
+    if(MSVC)
+      target_compile_options(c1_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+    else()
+      target_compile_options(c1_verify PRIVATE -Wall -Wextra -Wpedantic -Werror)
+    endif()
+    set(WARP_HYPAD_C1_RESULTS "${PROGRAM_C_ROOT}/results/verification/program_c1")
+    add_test(NAME programc1.gate COMMAND c1_verify
+      --snapshot "${PROGRAM_C_ROOT}/snapshots/gaia_dr3_10pc.txt"
+      --out "${WARP_HYPAD_C1_RESULTS}")
+    # The visualization chain, in order: the solver writes the records, the
+    # driver draws them, the regression gate checks them. CTest DEPENDS enforces
+    # the ordering, so a visual can never be checked against a stale record.
+    if(Python3_Interpreter_FOUND)
+      add_test(NAME programc1.visuals COMMAND "${Python3_EXECUTABLE}"
+        "${PROGRAM_C_ROOT}/visualization/make_c1_visuals.py"
+        --results "${WARP_HYPAD_C1_RESULTS}")
+      add_test(NAME programc1.visualgate COMMAND "${Python3_EXECUTABLE}"
+        "${PROGRAM_C_ROOT}/visualization/tests/c1_visual_verify.py"
+        --results "${WARP_HYPAD_C1_RESULTS}"
+        --visualization "${PROGRAM_C_ROOT}/visualization")
+      # One assignment per test: repeated set_tests_properties(... DEPENDS ...)
+      # calls REPLACE the property rather than appending to it.
+      set_tests_properties(programc1.visuals PROPERTIES DEPENDS "programc1.gate")
+      set_tests_properties(programc1.visualgate PROPERTIES
+        DEPENDS "programc1.visuals")
+    endif()
+    message(STATUS "  program C: C1 enabled")
+  endif()
+
   set(WARP_HYPAD_C0_RESULTS "${CMAKE_BINARY_DIR}/results/verification/program_c0")
   add_test(NAME programc0.gate COMMAND c0_verify --out "${WARP_HYPAD_C0_RESULTS}")
   add_test(NAME programc0.demo COMMAND c0_demo --out "${WARP_HYPAD_C0_RESULTS}")

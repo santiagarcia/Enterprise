@@ -1,0 +1,101 @@
+{
+  "milestone": "program_c1_visual",
+  "title": "C1-RELATIVISTIC-ASTROGATION visualization cases 21-30",
+  "num_cases": 10,
+  "num_passed": 10,
+  "num_failed": 0,
+  "num_skipped": 0,
+  "all_passed": true,
+  "cases": [
+    {
+      "name": "c1vis.static_3d_neighborhood_generated",
+      "claim": "the 3-D neighbourhood figure exists in raster and vector form with sane dimensions",
+      "passed": true,
+      "expected": "PNG and SVG present, both dimensions above 400 px",
+      "computed": "local_neighborhood_3d.png at (1036, 1204)",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "c1vis.worldline_figures_generated",
+      "claim": "every required worldline, interception and clock figure exists",
+      "passed": true,
+      "expected": "6 figures",
+      "computed": "all 6 present",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "c1vis.earth_and_ship_sky_figures_generated",
+      "claim": "both apparent-sky figures exist, one per observer frame",
+      "passed": true,
+      "expected": "sky_earth_frame.png and sky_ship_frame.png",
+      "computed": "present",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "c1vis.aberration_animation_generated",
+      "claim": "the aberration and Doppler sky animations exist",
+      "passed": true,
+      "expected": "relativistic_aberration and doppler_sky",
+      "computed": "aberration=True doppler=True",
+      "note": "",
+      "seconds": 0.001
+    },
+    {
+      "name": "c1vis.journey_animation_generated",
+      "claim": "the journey, communication-delay and neighbourhood-rotation animations exist",
+      "passed": true,
+      "expected": "three animation families",
+      "computed": "journey=True comms=True rotation=True",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "c1vis.contact_sheets_generated",
+      "claim": "every animation has a contact sheet, so a regression is visible without opening a video",
+      "passed": true,
+      "expected": "5 contact sheets",
+      "computed": "all 5 present",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "c1vis.animation_manifest_valid",
+      "claim": "every manifest entry carries codec, resolution, frame rate, frame count, duration and three checksums, and the animation actually moves",
+      "passed": true,
+      "expected": "10 complete entries",
+      "computed": "10 entries valid",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "c1vis.visuals_derived_from_saved_output_only",
+      "claim": "no visualization source recomputes a trajectory, aberration, Doppler shift, catalogue propagation or light-time solve",
+      "passed": true,
+      "expected": "zero physics recomputation in the visualization tree",
+      "computed": "clean across the visualization tree",
+      "note": "the visuals read solver CSVs and draw them; this case is what keeps that true as the tree grows",
+      "seconds": 0.0397
+    },
+    {
+      "name": "c1vis.no_blank_or_nonfinite_frames",
+      "claim": "no contact sheet is blank, and no nonfinite value reached a renderer",
+      "passed": true,
+      "expected": "every sheet carries real content",
+      "computed": "all sheets have rich content",
+      "note": "records.column refuses NaN and infinity at the read boundary, so a nonfinite value fails loudly instead of vanishing from a plot",
+      "seconds": 0.6359
+    },
+    {
+      "name": "c1vis.deterministic_rerender_metadata",
+      "claim": "re-rendering from the same input reproduces the plotted numbers and the figure metadata exactly",
+      "passed": true,
+      "expected": "identical plotted CSV and identical metadata",
+      "computed": "plotted CSV sha256 matches; metadata matches",
+      "note": "image hashes are NOT compared: they are pinned to matplotlib and freetype versions, and the requirement allows pixel hashes only in a pinned environment. The plotted numbers are the invariant",
+      "seconds": 3.5467
+    }
+  ]
+}
