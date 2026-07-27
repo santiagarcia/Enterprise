@@ -5,6 +5,10 @@
 #include <string>
 
 #include "b1c_checks.hpp"
+// Compiling this header IS the test: it carries static_asserts proving the
+// laboratory/effective type boundary, so a regression in the public interface
+// breaks the build rather than a runtime check.
+#include "program_b/effective_metric/type_boundary.hpp"
 #include "warp_hypad/core/metadata.hpp"
 
 // Program B Milestone B1C: correction gate.
