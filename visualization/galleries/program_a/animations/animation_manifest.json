@@ -48,7 +48,7 @@
         721
       ],
       "source_data": "velocity_sweep.csv",
-      "source_data_sha256": "23496c93c29931ea3ed6cc3f2a9e13cf8c0173dab2f51350adf4b51548b55787",
+      "source_data_sha256": "a6e23c14896b74846ab526192322cd7672243892a8cdd9f289e508cfed9b7f30",
       "written": true
     },
     {
@@ -65,7 +65,7 @@
         721
       ],
       "source_data": "velocity_sweep.csv",
-      "source_data_sha256": "23496c93c29931ea3ed6cc3f2a9e13cf8c0173dab2f51350adf4b51548b55787",
+      "source_data_sha256": "a6e23c14896b74846ab526192322cd7672243892a8cdd9f289e508cfed9b7f30",
       "written": true
     },
     {
@@ -184,7 +184,7 @@
         721
       ],
       "source_data": "sensitivity_sweep.csv",
-      "source_data_sha256": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "source_data_sha256": "5902d2c9c6db26b3ff9e61c24bb6eb115c1f8fe4406e37c27d3a892cfab3b2f8",
       "written": true
     },
     {
@@ -201,7 +201,7 @@
         721
       ],
       "source_data": "sensitivity_sweep.csv",
-      "source_data_sha256": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "source_data_sha256": "5902d2c9c6db26b3ff9e61c24bb6eb115c1f8fe4406e37c27d3a892cfab3b2f8",
       "written": true
     },
     {
@@ -218,7 +218,7 @@
         721
       ],
       "source_data": "sensitivity_sweep.csv",
-      "source_data_sha256": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "source_data_sha256": "5902d2c9c6db26b3ff9e61c24bb6eb115c1f8fe4406e37c27d3a892cfab3b2f8",
       "written": true
     },
     {
@@ -235,15 +235,15 @@
         721
       ],
       "source_data": "sensitivity_sweep.csv",
-      "source_data_sha256": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "source_data_sha256": "5902d2c9c6db26b3ff9e61c24bb6eb115c1f8fe4406e37c27d3a892cfab3b2f8",
       "written": true
     },
     {
       "codec": "libx264",
       "duration_s": 2.0,
       "filename": "sensitivity_sigma_evolution.mp4",
-      "final_frame_sha256": "897f4b40c8de5ce22c93344b3e83c2f89c202d2a62fe274103ae0d02e0c7ed77",
-      "first_frame_sha256": "95cf52e31a4da778ad97770f571deeb37e1ced6a21996622b9b3937c1e2bd8d8",
+      "final_frame_sha256": "ce00d13359c96e8cf649c71923ab200dbc537c7182c2726021277642cef18a05",
+      "first_frame_sha256": "28a595fbf4911e63da480bb99a19937170ceba003feacea425fd413fb6795711",
       "frame_count": 24,
       "frame_rate": 12,
       "note": null,
@@ -252,15 +252,15 @@
         721
       ],
       "source_data": "sensitivity_sweep.csv",
-      "source_data_sha256": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "source_data_sha256": "5902d2c9c6db26b3ff9e61c24bb6eb115c1f8fe4406e37c27d3a892cfab3b2f8",
       "written": true
     },
     {
       "codec": "gif",
       "duration_s": 2.0,
       "filename": "sensitivity_sigma_evolution.gif",
-      "final_frame_sha256": "897f4b40c8de5ce22c93344b3e83c2f89c202d2a62fe274103ae0d02e0c7ed77",
-      "first_frame_sha256": "95cf52e31a4da778ad97770f571deeb37e1ced6a21996622b9b3937c1e2bd8d8",
+      "final_frame_sha256": "ce00d13359c96e8cf649c71923ab200dbc537c7182c2726021277642cef18a05",
+      "first_frame_sha256": "28a595fbf4911e63da480bb99a19937170ceba003feacea425fd413fb6795711",
       "frame_count": 24,
       "frame_rate": 12,
       "note": null,
@@ -269,15 +269,15 @@
         721
       ],
       "source_data": "sensitivity_sweep.csv",
-      "source_data_sha256": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "source_data_sha256": "5902d2c9c6db26b3ff9e61c24bb6eb115c1f8fe4406e37c27d3a892cfab3b2f8",
       "written": true
     },
     {
       "codec": "libx264",
       "duration_s": 2.0,
       "filename": "fixed_lab_vs_fixed_center.mp4",
-      "final_frame_sha256": "62373abf3163a85a3b5523710edc2debe63da532c637a39de65550aeabca8230",
-      "first_frame_sha256": "baff817f4bd46c6fe92a57b32d45e2da6c4b0f0353c68e5441b289edeb8e4136",
+      "final_frame_sha256": "940ebea63718ccf733f58200d54ddd5b0c78bca4ab0b318fe0861b0899bfe6ff",
+      "first_frame_sha256": "4cd138bc1a7b5911bea4fa3c5b93d9818ab769f66abfbe047791d910c32e3d29",
       "frame_count": 24,
       "frame_rate": 12,
       "note": null,
@@ -286,15 +286,15 @@
         597
       ],
       "source_data": "fixed_lab_vs_fixed_center.csv",
-      "source_data_sha256": "1eee468865f893097b656b4bab296ee0329e4b9c82f5829c2b07f3d901d0bd21",
+      "source_data_sha256": "9452697344974d5baf227a96148f34c4ab5da36aba19dd5b838cd625d722f701",
       "written": true
     },
     {
       "codec": "gif",
       "duration_s": 2.0,
       "filename": "fixed_lab_vs_fixed_center.gif",
-      "final_frame_sha256": "62373abf3163a85a3b5523710edc2debe63da532c637a39de65550aeabca8230",
-      "first_frame_sha256": "baff817f4bd46c6fe92a57b32d45e2da6c4b0f0353c68e5441b289edeb8e4136",
+      "final_frame_sha256": "940ebea63718ccf733f58200d54ddd5b0c78bca4ab0b318fe0861b0899bfe6ff",
+      "first_frame_sha256": "4cd138bc1a7b5911bea4fa3c5b93d9818ab769f66abfbe047791d910c32e3d29",
       "frame_count": 24,
       "frame_rate": 12,
       "note": null,
@@ -303,7 +303,7 @@
         597
       ],
       "source_data": "fixed_lab_vs_fixed_center.csv",
-      "source_data_sha256": "1eee468865f893097b656b4bab296ee0329e4b9c82f5829c2b07f3d901d0bd21",
+      "source_data_sha256": "9452697344974d5baf227a96148f34c4ab5da36aba19dd5b838cd625d722f701",
       "written": true
     }
   ],
@@ -314,16 +314,16 @@
     "coordinate_frame": "inertial Cartesian laboratory, x_s(t) = x_s0 + v_s t",
     "frame_count": 24,
     "frame_rate": 12,
-    "generated_timestamp": "2026-07-27T22:29:31Z",
-    "git_commit": "893dcfd6c463793a0201d824d20a9d72b7a3bf52",
+    "generated_timestamp": "2026-07-27T23:02:50Z",
+    "git_commit": "cf39f1cc37fe1590ae329224a39bc0fd61f44e5f",
     "git_dirty": true,
     "input_checksums": {
-      "fixed_lab_vs_fixed_center.csv": "1eee468865f893097b656b4bab296ee0329e4b9c82f5829c2b07f3d901d0bd21",
+      "fixed_lab_vs_fixed_center.csv": "9452697344974d5baf227a96148f34c4ab5da36aba19dd5b838cd625d722f701",
       "radius_sweep.csv": "9b881bfdb995fb1eebf6fd7ddc78e1687282ab9a2718bf09b85373cfdf52085b",
-      "sensitivity_sweep.csv": "c734c380ad000d324b5be1a3e45355cfad338351f59a73da91a49d23e5537f6a",
+      "sensitivity_sweep.csv": "5902d2c9c6db26b3ff9e61c24bb6eb115c1f8fe4406e37c27d3a892cfab3b2f8",
       "steepness_sweep.csv": "ee347e59378ed90fe51b1da52e569f2172ed4f171db6d9f71fe0ef78f9a025a2",
       "translation_sweep.csv": "79803fdc7ebee4c90dd1fb92fa6d5585377d4cd03537afb4bc31042ca1581e74",
-      "velocity_sweep.csv": "23496c93c29931ea3ed6cc3f2a9e13cf8c0173dab2f51350adf4b51548b55787"
+      "velocity_sweep.csv": "a6e23c14896b74846ab526192322cd7672243892a8cdd9f289e508cfed9b7f30"
     },
     "input_files": [
       "translation_sweep.csv",

@@ -650,7 +650,7 @@
           "detail": "fixed-lab minus fixed-centre minus the trajectory term",
           "diagnostic": "chain_rule_residual",
           "fired": false,
-          "measured": 4.440892099e-10,
+          "measured": 2.679518829e-10,
           "threshold": 0.0001
         },
         {

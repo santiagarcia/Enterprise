@@ -24,7 +24,7 @@
       "expected": "11 figures",
       "computed": "all 11 valid",
       "note": "",
-      "seconds": 0.001
+      "seconds": 0.1284
     },
     {
       "name": "v0a.svgs_parse",
@@ -34,7 +34,7 @@
       "expected": "11 SVGs",
       "computed": "all parse",
       "note": "",
-      "seconds": 0.0469
+      "seconds": 0.473
     },
     {
       "name": "v0a.manifest_matches_frames",
@@ -44,7 +44,7 @@
       "expected": "18 complete entries",
       "computed": "18 entries valid",
       "note": "",
-      "seconds": 0.0151
+      "seconds": 0.0171
     },
     {
       "name": "v0a.contact_sheets_exist",
@@ -64,7 +64,7 @@
       "expected": "every sheet carries real content",
       "computed": "all sheets rich",
       "note": "",
-      "seconds": 0.4832
+      "seconds": 0.5132
     },
     {
       "name": "v0a.no_renderer_calls_production_physics",
@@ -74,7 +74,7 @@
       "expected": "zero physics in the visualization tree",
       "computed": "clean",
       "note": "this is the case that keeps the contract true as the tree grows",
-      "seconds": 0.038
+      "seconds": 0.0436
     },
     {
       "name": "v0a.metadata_checksums_agree",
@@ -84,7 +84,7 @@
       "expected": "all inputs unchanged",
       "computed": "9 input checksums checked, 0 mismatched, 0 sidecars missing",
       "note": "a figure whose input bytes have changed is stale, and stale is indistinguishable from correct by eye",
-      "seconds": 0.1779
+      "seconds": 0.2014
     },
     {
       "name": "v0a.anomaly_report_clean",
@@ -94,7 +94,7 @@
       "expected": "0 fired",
       "computed": "0 fired of 120 diagnostics",
       "note": "a fired anomaly does not suppress the figure; it fails this gate while the evidence survives",
-      "seconds": 0.0141
+      "seconds": 0.0142
     },
     {
       "name": "v0a.sweep_manifest_scope_and_time_mode",
@@ -104,7 +104,7 @@
       "expected": "scope stated, frozen time not used",
       "computed": "manifest present and consistent",
       "note": "",
-      "seconds": 0.0
+      "seconds": 0.001
     },
     {
       "name": "v0a.plotted_rows_match_source",
@@ -114,7 +114,7 @@
       "expected": "3609 rows",
       "computed": "3609 plotted against 3609 in shape_profiles.csv",
       "note": "",
-      "seconds": 0.1782
+      "seconds": 0.2114
     },
     {
       "name": "v0a.blocked.curvature_norm_slice",

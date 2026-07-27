@@ -6,8 +6,8 @@
   "coordinate_frame": "inertial Cartesian, comoving bubble coordinates",
   "frame_count": 1,
   "frame_rate": null,
-  "generated_timestamp": "2026-07-27T22:09:19Z",
-  "git_commit": "893dcfd6c463793a0201d824d20a9d72b7a3bf52",
+  "generated_timestamp": "2026-07-27T23:00:44Z",
+  "git_commit": "cf39f1cc37fe1590ae329224a39bc0fd61f44e5f",
   "git_dirty": true,
   "input_checksums": {
     "metric_slice_xy.csv": "ad02f92f9a8a9b846aab82db85ae50b62ca07d80ff203521858eeaafa29fd9bc"

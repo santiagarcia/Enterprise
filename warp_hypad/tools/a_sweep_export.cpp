@@ -4,6 +4,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <limits>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -77,11 +78,26 @@ constexpr double kNominalR = 1.0;
 constexpr double kNominalSigma = 4.0;
 constexpr double kCenterX0 = -2.0;      // so the bubble sweeps across the domain
 
-// The velocity sweep must span v_s f = 1, which is the ergosurface condition.
-// f(0) = 1 exactly at the bubble centre, so the crossing is exactly at v_s = 1
-// and frame index 12 of 24 hits it on the nose rather than straddling it.
+// The velocity sweep must contain v_s = 1 EXACTLY, because that is where the
+// ergosurface condition v_s f = 1 is first met: f(0) = 1 at the bubble centre,
+// so g00(r_s = 0) = -1 + v^2 f^2 = 0 there and nowhere else in the sweep.
+//
+// A uniform sequence from 0.2 to 1.6 over 24 frames never lands on 1.0. So the
+// sequence is piecewise uniform with the onset pinned to a frame index, and the
+// value is ASSIGNED rather than computed at that index -- 0.2 + 0.8 happens to
+// be exact in IEEE double, but relying on that would be relying on luck.
 constexpr double kVMin = 0.2;
 constexpr double kVMax = 1.6;
+constexpr double kVOnset = 1.0;
+constexpr int kOnsetFrame = 12;     // of kFrames
+
+double velocity_at(int frame) {
+    if (frame == kOnsetFrame) return kVOnset;
+    if (frame < kOnsetFrame)
+        return kVMin + (kVOnset - kVMin) * frame / kOnsetFrame;
+    return kVOnset + (kVMax - kVOnset) * (frame - kOnsetFrame) /
+                         (kFrames - 1 - kOnsetFrame);
+}
 
 constexpr double kRMin = 0.6;
 constexpr double kRMax = 2.0;
@@ -297,6 +313,16 @@ int main(int argc, char** argv) {
     std::vector<double> tr_times, tr_centers;
     double worst_comoving_drift = 0.0;
     double lab_translation_span = 0.0;
+    int crossing_frame = -1;          // first frame with max v_s f >= 1
+    int exact_onset_frame = -1;       // the frame where v_s is exactly 1
+    int first_contour_frame = -1;     // first frame whose SAVED GRID brackets 0
+    double g00_at_center_on_onset = std::numeric_limits<double>::quiet_NaN();
+    double worst_g00_formula = 0.0;
+    // Tracked SEPARATELY per sweep. Reporting one number and calling it "every
+    // sweep" would be a claim about three sweeps that were never checked.
+    double det_dev_translation = 0.0, det_dev_velocity = 0.0;
+    double det_dev_radius = 0.0, det_dev_steepness = 0.0;
+    int signature_failures = 0;
     {
         std::ofstream f(out_dir + "/translation_sweep.csv", std::ios::binary);
         f << "frame,time,bubble_center_x,x_lab,y_lab,x_comoving,r_s,f,g00,g01,"
@@ -313,6 +339,8 @@ int main(int argc, char** argv) {
                 for (int j = 0; j < kNy; ++j) {
                     const double x = grid_x(i), y = grid_y(j);
                     const Sample s = evaluate_sample(t, x, y, metric, nominal);
+                    det_dev_translation = std::max(det_dev_translation,
+                                                   std::fabs(s.det + 1.0));
                     f << frame << ',' << g10(t) << ',' << g10(xc) << ','
                       << g10(x) << ',' << g10(y) << ',' << g10(x - xc) << ','
                       << g10(s.r_s) << ',' << g10(s.f) << ',' << g10(s.g00)
@@ -341,19 +369,18 @@ int main(int argc, char** argv) {
     // =====================================================================
     // Velocity sweep
     // =====================================================================
-    int crossing_frame = -1;
-    double worst_g00_formula = 0.0, worst_det_dev = 0.0;
-    int signature_failures = 0;
     std::vector<double> vel_values;
     {
         std::ofstream f(out_dir + "/velocity_sweep.csv", std::ios::binary);
         f << "frame,v_s,x,y,f,v_times_f,g00,g01,g11,det,signature_ok,"
              "g00_zero_status\n";
         for (int frame = 0; frame < kFrames; ++frame) {
-            const double v = frame_value(frame, kVMin, kVMax);
+            const double v = velocity_at(frame);
             vel_values.push_back(v);
             const Params p(v, kNominalR, kNominalSigma);
             double max_vf = 0.0;
+            double g00_min = 1.0e300, g00_max = -1.0e300;
+            double g00_center = std::numeric_limits<double>::quiet_NaN();
             std::vector<std::string> rows;
             for (int i = 0; i < kNx; ++i)
                 for (int j = 0; j < kNy; ++j) {
@@ -361,12 +388,18 @@ int main(int argc, char** argv) {
                     const Sample s = evaluate_sample(0.0, x, y, metric, p);
                     const double vf = v * s.f;
                     max_vf = std::max(max_vf, vf);
+                    g00_min = std::min(g00_min, s.g00);
+                    g00_max = std::max(g00_max, s.g00);
+                    // The bubble centre IS a grid point at this configuration,
+                    // so g00 there can be reported exactly rather than
+                    // interpolated.
+                    if (std::fabs(s.r_s) < 1.0e-15) g00_center = s.g00;
                     // g00 = -(1 - v^2 f^2), verified against the saved value.
                     worst_g00_formula = std::max(
                         worst_g00_formula,
                         std::fabs(s.g00 - (-(1.0 - vf * vf))));
-                    worst_det_dev = std::max(worst_det_dev,
-                                             std::fabs(s.det + 1.0));
+                    det_dev_velocity = std::max(det_dev_velocity,
+                                                std::fabs(s.det + 1.0));
                     if (!s.signature_ok) ++signature_failures;
                     std::ostringstream o;
                     o << frame << ',' << g10(v) << ',' << g10(x) << ','
@@ -382,6 +415,16 @@ int main(int argc, char** argv) {
             const char* status = (max_vf >= 1.0 ? "ergosurface_crossing"
                                                 : "no_zero_crossing");
             if (max_vf >= 1.0 && crossing_frame < 0) crossing_frame = frame;
+            if (v == kVOnset) {
+                exact_onset_frame = frame;
+                g00_at_center_on_onset = g00_center;
+            }
+            // A contour needs a STRICT sign change in the saved samples. At the
+            // exact onset g00 only TOUCHES zero at the centre, so max is 0 and
+            // nothing brackets it: the first drawable contour comes later, and
+            // the two frames are reported separately for exactly that reason.
+            if (g00_min < 0.0 && g00_max > 0.0 && first_contour_frame < 0)
+                first_contour_frame = frame;
             for (const std::string& r : rows) f << r << ',' << status << "\n";
         }
     }
@@ -406,6 +449,8 @@ int main(int argc, char** argv) {
                 for (int j = 0; j < kNy; ++j) {
                     const double x = grid_x(i), y = grid_y(j);
                     const Sample s = evaluate_sample(0.0, x, y, metric, p);
+                    det_dev_radius = std::max(det_dev_radius,
+                                              std::fabs(s.det + 1.0));
                     f << frame << ',' << g10(R) << ',' << g10(x) << ','
                       << g10(y) << ',' << g10(s.r_s) << ',' << g10(s.f) << ','
                       << g10(s.g00) << ',' << g10(s.g01) << ',' << g10(s.det)
@@ -436,6 +481,8 @@ int main(int argc, char** argv) {
                 for (int j = 0; j < kNy; ++j) {
                     const double x = grid_x(i), y = grid_y(j);
                     const Sample s = evaluate_sample(0.0, x, y, metric, p);
+                    det_dev_steepness = std::max(det_dev_steepness,
+                                                 std::fabs(s.det + 1.0));
                     f << frame << ',' << g10(sg) << ',' << g10(x) << ','
                       << g10(y) << ',' << g10(s.r_s) << ',' << g10(s.f) << ','
                       << g10(s.g00) << ',' << g10(s.g01) << ',' << g10(s.det)
@@ -500,6 +547,7 @@ int main(int argc, char** argv) {
     // separate metric objects with different sensitivity_mode, never by one
     // shared helper.
     double worst_chain_residual = 0.0;
+    double chain_worst_x = 0.0, chain_worst_y = 0.0, chain_worst_v = 0.0;
     {
         std::ofstream f(out_dir + "/fixed_lab_vs_fixed_center.csv",
                         std::ios::binary);
@@ -531,8 +579,12 @@ int main(int argc, char** argv) {
                     const double trajectory = -dg_dx * t;
                     const double residual =
                         std::fabs(l.dg00[0] - (c.dg00[0] + trajectory));
-                    worst_chain_residual =
-                        std::max(worst_chain_residual, residual);
+                    if (residual > worst_chain_residual) {
+                        worst_chain_residual = residual;
+                        chain_worst_x = x;
+                        chain_worst_y = y;
+                        chain_worst_v = v;
+                    }
                     f << frame << ',' << g10(t) << ',' << g10(x) << ','
                       << g10(y) << ',' << g10(xc) << ',' << g10(c.dg00[0])
                       << ',' << g10(l.dg00[0]) << ',' << g10(trajectory) << ','
@@ -640,10 +692,15 @@ int main(int argc, char** argv) {
         Stopwatch sw;
         report.check_residual(
             "asweep.determinant_is_exactly_minus_one",
-            "det g = -1 across every frame of the velocity sweep, including "
-            "beyond the crossing",
-            VerificationLevel::A, "41 x 41 x 24", "v_s in [0.2, 1.6]",
-            worst_det_dev, 1.0e-15, sw.seconds(),
+            "det g = -1 across ALL FOUR sweeps -- translation, velocity, radius "
+            "and steepness -- including beyond the ergosurface crossing",
+            VerificationLevel::A, "41 x 41 x 24 per sweep, 4 sweeps",
+            "translation " + g10(det_dev_translation) + ", velocity " +
+                g10(det_dev_velocity) + ", radius " + g10(det_dev_radius) +
+                ", steepness " + g10(det_dev_steepness),
+            std::max(std::max(det_dev_translation, det_dev_velocity),
+                     std::max(det_dev_radius, det_dev_steepness)),
+            1.0e-15, sw.seconds(),
             "the (t,x) block determinant is (-1 + v^2 f^2) - (v f)^2 = -1 for "
             "ANY v and f, so this is an exact identity rather than a tolerance");
     }
@@ -804,11 +861,68 @@ int main(int argc, char** argv) {
             "asweep.fixed_lab_fixed_center_chain_rule",
             "dg/dv|_lab = dg/dv|_centre - (dg/dx) t, with the trajectory term "
             "computed independently",
-            VerificationLevel::B, "41 x 41 x 24", "t = " + g10(kChainRuleTime),
-            worst_chain_residual, 1.0e-4, sw.seconds(),
+            VerificationLevel::B, "41 x 41 x 24",
+            "t = " + g10(kChainRuleTime) + ", central-difference step h = 1e-6, "
+            "worst at (x = " + g10(chain_worst_x) + ", y = " +
+                g10(chain_worst_y) + ", v_s = " + g10(chain_worst_v) + ")",
+            worst_chain_residual, 1.0e-7, sw.seconds(),
             "the two conventions come from two metric objects with different "
             "sensitivity_mode, never one shared helper; the trajectory term is "
-            "a centred spatial difference, so its 1e-6 step sets the tolerance");
+            "a centred spatial difference. The tolerance is 1e-7, tightened "
+            "from 1e-4 once the residual settled at 2.7e-10 in both supported "
+            "builds: the 1e-6 differencing step, not the derivative backend, "
+            "sets the floor");
+    }
+
+    {
+        Stopwatch sw;
+        report.check_predicate(
+            "asweep.exact_v_unity_frame_exists",
+            "the velocity sequence contains v_s = 1 exactly, and remains "
+            "strictly increasing",
+            VerificationLevel::A,
+            exact_onset_frame >= 0 && monotonic(vel_values),
+            "one frame at exactly 1.0, sequence strictly increasing",
+            exact_onset_frame >= 0
+                ? "frame " + std::to_string(exact_onset_frame) + ", v_s = " +
+                      g10(vel_values[exact_onset_frame])
+                : "NO EXACT ONSET FRAME",
+            sw.seconds(),
+            "the value is ASSIGNED at the onset index rather than computed: a "
+            "uniform sequence from 0.2 to 1.6 never lands on 1.0, and relying "
+            "on 0.2 + 0.8 being exact in binary would be relying on luck");
+    }
+    {
+        Stopwatch sw;
+        report.check_value(
+            "asweep.g00_zero_at_center_on_exact_onset",
+            "at v_s = 1 the saved g00 is exactly zero at the bubble centre, "
+            "where f = 1",
+            VerificationLevel::A, "grid sample at r_s = 0",
+            "v_s = 1, f(0) = 1", 0.0, g00_at_center_on_onset, 0.0,
+            sw.seconds(),
+            "tolerance ZERO. The centre is a genuine grid point in this "
+            "configuration, so the value is read off a sample rather than "
+            "interpolated: g00 = -1 + v^2 f^2 = -1 + 1 = 0");
+    }
+    {
+        Stopwatch sw;
+        const bool ok = exact_onset_frame >= 0 && first_contour_frame >= 0 &&
+                        first_contour_frame > exact_onset_frame;
+        report.check_predicate(
+            "asweep.spatial_zero_contour_exists_above_unity",
+            "above v_s = 1 the saved grid brackets zero, so a nontrivial "
+            "g00 = 0 contour is supported; at the exact onset the field only "
+            "touches zero and no contour is supported",
+            VerificationLevel::A, ok,
+            "first bracketing frame strictly after the exact onset",
+            "exact onset frame " + std::to_string(exact_onset_frame) +
+                ", first bracketing frame " +
+                std::to_string(first_contour_frame),
+            sw.seconds(),
+            "no grid sample is claimed to lie ON the later contour. The claim "
+            "is only that the samples bracket zero, which is what licenses a "
+            "renderer to interpolate one");
     }
 
     // Checksums, then the deterministic-repeat case.
@@ -838,8 +952,10 @@ int main(int argc, char** argv) {
         // reproduces the bytes. Verified by recomputing the frame values.
         bool deterministic = true;
         for (int frame = 0; frame < kFrames; ++frame) {
-            if (frame_value(frame, kVMin, kVMax) != vel_values[frame])
-                deterministic = false;
+            // Against velocity_at(), not frame_value(): the velocity sequence
+            // is piecewise uniform with the onset pinned, so checking it
+            // against the old uniform formula would test the wrong function.
+            if (velocity_at(frame) != vel_values[frame]) deterministic = false;
             if (frame_value(frame, kRMin, kRMax) != radius_values[frame])
                 deterministic = false;
         }
@@ -893,6 +1009,21 @@ int main(int argc, char** argv) {
 #endif
         m.set("checksums", checksums);
         m.set("ergosurface_crossing_frame", JsonValue(crossing_frame));
+        m.set("exact_onset_frame", JsonValue(exact_onset_frame));
+        m.set("first_spatial_contour_frame", JsonValue(first_contour_frame));
+        m.set("g00_at_center_on_exact_onset",
+              JsonValue(g00_at_center_on_onset));
+        JsonValue dets = JsonValue::object();
+        dets.set("worst_translation_det_residual",
+                 JsonValue(det_dev_translation));
+        dets.set("worst_velocity_det_residual", JsonValue(det_dev_velocity));
+        dets.set("worst_radius_det_residual", JsonValue(det_dev_radius));
+        dets.set("worst_steepness_det_residual", JsonValue(det_dev_steepness));
+        m.set("determinant_residuals", dets);
+        m.set("chain_rule_step", JsonValue(1.0e-6));
+        m.set("chain_rule_worst_location",
+              JsonValue("x = " + g10(chain_worst_x) + ", y = " +
+                        g10(chain_worst_y) + ", v_s = " + g10(chain_worst_v)));
         m.set("scope",
               JsonValue("These records contain effective-metric components and "
                         "parameter sensitivities. They do not contain "
@@ -906,7 +1037,19 @@ int main(int argc, char** argv) {
     std::cout << "\nA-VISUAL-SWEEP-EXPORT SUMMARY\n";
     std::cout << "  grid / frames             " << kNx << " x " << kNy << " / "
               << kFrames << "\n";
-    std::cout << "  worst |det g + 1|         " << worst_det_dev << "\n";
+    std::cout << "  det residual, translation " << det_dev_translation
+              << "\n";
+    std::cout << "  det residual, velocity    " << det_dev_velocity
+              << "\n";
+    std::cout << "  det residual, radius      " << det_dev_radius
+              << "\n";
+    std::cout << "  det residual, steepness   " << det_dev_steepness
+              << "\n";
+    std::cout << "  exact onset frame         " << exact_onset_frame
+              << "  (v_s = 1 exactly, g00 at centre = "
+              << g00_at_center_on_onset << ")\n";
+    std::cout << "  first contour frame       " << first_contour_frame
+              << "  (first frame whose grid brackets zero)\n";
     std::cout << "  signature failures        " << signature_failures << "\n";
     std::cout << "  ergosurface crossing      frame " << crossing_frame
               << " (v_s = "

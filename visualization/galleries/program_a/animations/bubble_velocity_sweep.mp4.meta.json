@@ -5,11 +5,11 @@
   "coordinate_frame": "inertial Cartesian laboratory, x_s(t) = x_s0 + v_s t",
   "frame_count": 24,
   "frame_rate": 12,
-  "generated_timestamp": "2026-07-27T22:28:05Z",
-  "git_commit": "893dcfd6c463793a0201d824d20a9d72b7a3bf52",
+  "generated_timestamp": "2026-07-27T23:01:18Z",
+  "git_commit": "cf39f1cc37fe1590ae329224a39bc0fd61f44e5f",
   "git_dirty": true,
   "input_checksums": {
-    "velocity_sweep.csv": "23496c93c29931ea3ed6cc3f2a9e13cf8c0173dab2f51350adf4b51548b55787"
+    "velocity_sweep.csv": "a6e23c14896b74846ab526192322cd7672243892a8cdd9f289e508cfed9b7f30"
   },
   "input_files": [
     "velocity_sweep.csv"

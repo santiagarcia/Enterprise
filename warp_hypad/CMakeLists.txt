@@ -452,13 +452,43 @@ if(MSVC)
 else()
   target_compile_options(a_sweep_export PRIVATE -Wall -Wextra -Wpedantic -Werror)
 endif()
+# BUILD-LOCAL outputs. The OTI-enabled and OTI-disabled configurations must not
+# write into the same directory: they produce different sensitivity backends, and
+# whichever suite ran last would silently define the committed record. Each build
+# consumes its own sweeps, and running either suite leaves the source tree clean.
 set(WARP_HYPAD_A_SWEEPS
-    "${CMAKE_CURRENT_SOURCE_DIR}/results/verification/v0_program_a_sweeps")
+    "${CMAKE_BINARY_DIR}/results/verification/v0_program_a_sweeps")
 set(WARP_HYPAD_A_GALLERY
+    "${CMAKE_BINARY_DIR}/results/visualization/program_a")
+# The canonical committed records. Nothing writes here automatically.
+set(WARP_HYPAD_M3_RESULTS_SRC
+    "${CMAKE_CURRENT_SOURCE_DIR}/results/verification/milestone_03")
+set(WARP_HYPAD_A_SWEEPS_CANONICAL
+    "${CMAKE_CURRENT_SOURCE_DIR}/results/verification/v0_program_a_sweeps")
+set(WARP_HYPAD_A_GALLERY_CANONICAL
     "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_a")
+
+# Explicit, opt-in promotion. A test must never do this: promotion is a decision
+# about which verified build defines the committed record, and a test that made
+# it silently would let the last suite to run rewrite the repository.
+#
+#   cmake --build build --target promote_a_sweeps
+add_custom_target(promote_a_sweeps
+  COMMAND ${CMAKE_COMMAND} -E make_directory "${WARP_HYPAD_A_SWEEPS_CANONICAL}"
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+          "${WARP_HYPAD_A_SWEEPS}" "${WARP_HYPAD_A_SWEEPS_CANONICAL}"
+  COMMAND ${CMAKE_COMMAND} -E make_directory "${WARP_HYPAD_A_GALLERY_CANONICAL}"
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+          "${WARP_HYPAD_A_GALLERY}" "${WARP_HYPAD_A_GALLERY_CANONICAL}"
+  COMMENT "Promoting this build's Program A sweeps and visuals to the source tree"
+  VERBATIM)
 add_test(NAME programa.visual_sweep_export
          COMMAND a_sweep_export --out "${WARP_HYPAD_A_SWEEPS}")
 if(Python3_Interpreter_FOUND)
+  add_test(NAME programa.visual_static COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_a/plot_metric_fields.py"
+    --results "${WARP_HYPAD_M3_RESULTS_SRC}"
+    --out "${WARP_HYPAD_A_GALLERY}")
   add_test(NAME programa.visual_render COMMAND "${Python3_EXECUTABLE}"
     "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_a/animate_sweeps.py"
     --sweeps "${WARP_HYPAD_A_SWEEPS}"
@@ -471,10 +501,13 @@ if(Python3_Interpreter_FOUND)
     --visualization "${CMAKE_CURRENT_SOURCE_DIR}/../visualization")
   # One DEPENDS assignment per test: repeated set_tests_properties(... DEPENDS)
   # calls REPLACE the property rather than appending to it.
+  # One DEPENDS assignment per test: repeated set_tests_properties(... DEPENDS)
+  # calls REPLACE the property rather than appending, so the gate names both
+  # producers in a single list.
   set_tests_properties(programa.visual_render PROPERTIES
     DEPENDS "programa.visual_sweep_export")
   set_tests_properties(programa.visual_gate PROPERTIES
-    DEPENDS "programa.visual_render")
+    DEPENDS "programa.visual_render;programa.visual_static")
 endif()
 
 # --- Program C, Milestone C0: catalogue-grounded astrogation -----------------
