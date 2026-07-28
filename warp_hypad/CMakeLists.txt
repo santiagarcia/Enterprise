@@ -578,6 +578,47 @@ add_test(NAME milestone5.gate
 set_tests_properties(milestone5.gate PROPERTIES
   DEPENDS "milestone4.gate;milestone5.reference;milestone5.desitter;milestone5.alcubierre;milestone5.identities;milestone5.bianchi;milestone5.convergence;milestone5.units;milestone5.policy")
 
+# --- A5 Einstein sweep and animation ----------------------------------------
+
+add_executable(a5_einstein_sweep tools/a5_einstein_sweep.cpp)
+target_link_libraries(a5_einstein_sweep PRIVATE warp_hypad_core)
+if(MSVC)
+  target_compile_options(a5_einstein_sweep PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(a5_einstein_sweep PRIVATE -Wall -Wextra -Wpedantic -Werror)
+endif()
+
+set(WARP_HYPAD_A5_SWEEP
+    "${CMAKE_BINARY_DIR}/results/verification/v0_program_a5_einstein")
+set(WARP_HYPAD_A5_GALLERY
+    "${CMAKE_BINARY_DIR}/results/visualization/program_a5")
+
+add_custom_target(promote_a5_einstein
+  COMMAND ${CMAKE_COMMAND} -E make_directory
+          "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_a5"
+  COMMAND ${CMAKE_COMMAND} -E copy_directory "${WARP_HYPAD_A5_GALLERY}"
+          "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_a5"
+  COMMENT "Promoting this build's A5 Einstein animations to the source tree"
+  VERBATIM)
+
+add_test(NAME milestone5.sweep_export
+         COMMAND a5_einstein_sweep --out "${WARP_HYPAD_A5_SWEEP}")
+set_tests_properties(milestone5.sweep_export PROPERTIES DEPENDS "milestone5.gate")
+
+if(Python3_Interpreter_FOUND)
+  add_test(NAME milestone5.figures COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/plot_milestone5.py"
+    "${WARP_HYPAD_M5_RESULTS}")
+  set_tests_properties(milestone5.figures PROPERTIES DEPENDS "milestone5.gate")
+
+  add_test(NAME milestone5.animations COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_a/animate_einstein.py"
+    --sweep "${WARP_HYPAD_A5_SWEEP}"
+    --out "${WARP_HYPAD_A5_GALLERY}")
+  set_tests_properties(milestone5.animations PROPERTIES
+    DEPENDS "milestone5.sweep_export")
+endif()
+
 # --- A4 curvature sweep and animation ---------------------------------------
 #
 # The exporter MAY evaluate physics: it calls the same compute_curvature path

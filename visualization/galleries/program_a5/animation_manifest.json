@@ -1,0 +1,84 @@
+{
+  "animations": [
+    {
+      "codec": "gif",
+      "duration_s": 3.75,
+      "filename": "einstein_vs_velocity_scientific.gif",
+      "final_frame_sha256": "9d1e833ee3c08e9b5625c110fc6d8d797a8eb8be8db32b4d398a121d21905a5f",
+      "first_frame_sha256": "601007409f661ec934c009ceeebb8997af1572e5cb7622e26804221fce074846",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        1760,
+        528
+      ],
+      "source_data": "einstein_velocity_sweep.csv",
+      "source_data_sha256": "3b6ed08fc2ad5560ab76ac46dd7a6bb581a54c275cf68be358c6b10f61625b4c",
+      "written": true
+    },
+    {
+      "codec": "h264",
+      "duration_s": 3.75,
+      "filename": null,
+      "final_frame_sha256": "9d1e833ee3c08e9b5625c110fc6d8d797a8eb8be8db32b4d398a121d21905a5f",
+      "first_frame_sha256": "601007409f661ec934c009ceeebb8997af1572e5cb7622e26804221fce074846",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": "encoder unavailable; frames and PNG output are unaffected and remain deterministic",
+      "resolution": [
+        1760,
+        528
+      ],
+      "source_data": "einstein_velocity_sweep.csv",
+      "source_data_sha256": "3b6ed08fc2ad5560ab76ac46dd7a6bb581a54c275cf68be358c6b10f61625b4c",
+      "written": false
+    },
+    {
+      "codec": "gif",
+      "duration_s": 3.75,
+      "filename": "einstein_vs_velocity_cinematic.gif",
+      "final_frame_sha256": "479a432d20bfa4bf4a0058098e2c5c56611e8b473222b2ec5747fd506599cdcf",
+      "first_frame_sha256": "2e4e37361c4365976fe2d64d16130fc2cc80b09348fb49ae70a9003b7e0907d4",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        1760,
+        528
+      ],
+      "source_data": "einstein_velocity_sweep.csv",
+      "source_data_sha256": "3b6ed08fc2ad5560ab76ac46dd7a6bb581a54c275cf68be358c6b10f61625b4c",
+      "written": true
+    },
+    {
+      "codec": "h264",
+      "duration_s": 3.75,
+      "filename": null,
+      "final_frame_sha256": "479a432d20bfa4bf4a0058098e2c5c56611e8b473222b2ec5747fd506599cdcf",
+      "first_frame_sha256": "2e4e37361c4365976fe2d64d16130fc2cc80b09348fb49ae70a9003b7e0907d4",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": "encoder unavailable; frames and PNG output are unaffected and remain deterministic",
+      "resolution": [
+        1760,
+        528
+      ],
+      "source_data": "einstein_velocity_sweep.csv",
+      "source_data_sha256": "3b6ed08fc2ad5560ab76ac46dd7a6bb581a54c275cf68be358c6b10f61625b4c",
+      "written": false
+    }
+  ],
+  "provenance": {
+    "colour_scale": "fixed globally across frames, per field",
+    "cosmological_constant_treatment": "geometric_einstein_only",
+    "exact_onset_frame": 8,
+    "first_spatial_contour_frame": 9,
+    "git_commit": "f9e54b5ded4ecec519f1ed81ab3847d8fb88ca6f",
+    "not_an_energy_density": "These are coordinate-basis Einstein-tensor components. They are NOT observer-measured energy densities. An energy density is T_{mu nu} u^mu u^nu for a specified normalised observer, which Milestone A6 introduces.",
+    "quantity": "coordinate-basis components of the geometric Einstein tensor G_{mu nu}",
+    "renderer_computes_physics": false,
+    "scope": "A5 computes the geometric Einstein tensor and the stress-energy tensor inferred through Einstein's equation for the selected metric. It does not establish that this source can be generated physically, that energy conditions are satisfied, or that FTL travel is realizable.",
+    "source_sweep": "v0_program_a5_einstein"
+  }
+}
