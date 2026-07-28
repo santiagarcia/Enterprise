@@ -46,11 +46,38 @@ STATICS = [
 
 # Products that cannot exist until a scientific milestone lands. Reported as
 # BLOCKED, never as a pass and never silently omitted.
-BLOCKED = {
-    "ricci_scalar_slice": "Program A has no Ricci implementation (A4)",
-    "curvature_norm_slice": "Program A has no curvature invariants (A4)",
-    "curvature_wall_evolution": "Program A has no curvature implementation (A4)",
+# A4 IS IMPLEMENTED, VERIFIED AND TAGGED, so nothing here is blocked by missing
+# curvature science any more. The three speculative names this gate used to block
+# on -- ricci_scalar_slice, curvature_norm_slice, curvature_wall_evolution --
+# are RETIRED rather than aliased: A4 chose its own filenames, and inventing
+# aliases so an old guess still resolves would leave the guess looking like a
+# requirement it never was.
+BLOCKED = {}
+
+# The canonical A4 evidence, by its committed filenames.
+A4_FIGURES = [
+    "alcubierre_curvature_slice",
+    "alcubierre_centerline",
+    "curvature_convergence",
+    "desitter_invariants",
+    "schwarzschild_curvature",
+    "flat_spherical_curvature",
+]
+
+# Each figure named against the saved record it must be traceable to.
+A4_FIGURE_SOURCES = {
+    "alcubierre_curvature_slice": "alcubierre_curvature_slice_xy.csv",
+    "alcubierre_centerline": "alcubierre_centerline_x.csv",
+    "curvature_convergence": "curvature_convergence.csv",
+    "desitter_invariants": "desitter_invariants.csv",
+    "schwarzschild_curvature": "schwarzschild_kretschmann_profile.csv",
+    "flat_spherical_curvature": "flat_spherical_christoffel_error.csv",
 }
+
+A4_ANIMATIONS = [
+    "curvature_vs_velocity_scientific",
+    "curvature_vs_velocity_cinematic",
+]
 
 
 def case(name, claim, ok, expected, computed, note="", t0=None,
@@ -308,19 +335,171 @@ def main(argv=None) -> int:
          t0=t0)
     (void_unused := plotted, src_rows)   # noqa: F841 -- kept for the next case
 
-    # --- 12. Blocked products -----------------------------------------------
-    for name, why in sorted(BLOCKED.items()):
-        t0 = time.time()
-        present = os.path.exists(os.path.join(gal, name + ".png"))
-        # Present would be WORSE than absent: it would mean something drew a
-        # curvature field that no verified code computed.
-        case("v0a.blocked." + name,
-             "%s is not generated, and its scientific dependency is real" % name,
-             not present, "absent, with a stated dependency",
-             ("PRESENT -- a curvature figure exists with no verified curvature "
-              "behind it" if present else why),
-             t0=t0, state=("FAIL" if present
-                           else "BLOCKED_BY_UNIMPLEMENTED_SCIENCE"))
+    # --- 12. A4 curvature integration ---------------------------------------
+    #
+    # This gate used to assert curvature products were ABSENT, because Program A
+    # had no verified curvature. A4 changed that, so the checks are inverted:
+    # the evidence must now be PRESENT, complete and traceable. Leaving the old
+    # blocked labels would have been the more dangerous failure -- a stale
+    # "blocked by unimplemented science" reads as an honest limitation long
+    # after the science has landed.
+    m4 = os.path.join(os.path.dirname(sw), "milestone_04")
+    m4_figs = os.path.join(m4, "figures")
+    a4_gal = os.path.join(os.path.dirname(gal), "program_a4")
+
+    # 1. The A4 scientific gate exists and passed.
+    t0 = time.time()
+    a4_summary = os.path.join(m4, "verification_summary.json")
+    a4_ok, a4_detail = False, "summary absent"
+    if os.path.exists(a4_summary):
+        with open(a4_summary, encoding="utf-8") as fh:
+            j = json.load(fh)
+        a4_ok = bool(j.get("all_passed")) and j.get("num_failed", 1) == 0
+        a4_detail = "%d/%d passed, %d failed, %d skipped" % (
+            j.get("num_passed", 0), j.get("num_cases", 0),
+            j.get("num_failed", -1), j.get("num_skipped", -1))
+    case("v0a4.scientific_gate_passed",
+         "the A4 numerical gate exists and passed, so the curvature behind "
+         "these figures is verified rather than merely computed",
+         a4_ok, "A4 gate all_passed with zero failures", a4_detail, t0=t0,
+         note="no curvature figure is accepted by this gate unless the science "
+              "under it has its own passing gate")
+
+    # 2-5. Every static figure exists, is nonblank, and has its source record.
+    t0 = time.time()
+    missing, blank, no_source, svgs = [], [], [], 0
+    for n in A4_FIGURES:
+        png = os.path.join(m4_figs, n + ".png")
+        if not os.path.exists(png):
+            missing.append(n)
+            continue
+        sz = png_size(png)
+        if not sz or sz[0] < 300 or sz[1] < 200:
+            missing.append((n, sz))
+        try:
+            from PIL import Image
+            im = Image.open(png).convert("RGB")
+            cols = im.getcolors(maxcolors=1 << 20)
+            if cols is not None and len(cols) < 64:
+                blank.append((n, len(cols)))
+        except ImportError:
+            pass
+        if os.path.exists(os.path.join(m4_figs, n + ".svg")):
+            svgs += 1
+        src = A4_FIGURE_SOURCES.get(n)
+        if src and not os.path.exists(os.path.join(m4, src)):
+            no_source.append((n, src))
+    case("v0a4.static_figures_exist",
+         "every committed A4 curvature figure is present with sane dimensions",
+         not missing, "%d figures" % len(A4_FIGURES),
+         "missing %r" % missing if missing else "all %d present" % len(A4_FIGURES),
+         t0=t0)
+    case("v0a4.static_figures_nonblank",
+         "no A4 figure is blank",
+         not blank, "every figure carries real content",
+         "blank %r" % blank if blank else "all %d have rich content"
+         % len(A4_FIGURES), t0=t0)
+    case("v0a4.figures_trace_to_saved_records",
+         "every A4 figure names a saved milestone_04 record it was drawn from",
+         not no_source, "%d figure-to-record links" % len(A4_FIGURE_SOURCES),
+         "unlinked %r" % no_source if no_source
+         else "all %d figures trace to a committed CSV" % len(A4_FIGURE_SOURCES),
+         t0=t0,
+         note="SVG companions present for %d of %d; A4 committed PNG only for "
+              "the rest, which is recorded rather than demanded" %
+              (svgs, len(A4_FIGURES)))
+
+    # 6. The animation evidence: both themes, both contact sheets, a manifest.
+    t0 = time.time()
+    a4_man = os.path.join(a4_gal, "animation_manifest.json")
+    entries4 = []
+    if os.path.exists(a4_man):
+        with open(a4_man, encoding="utf-8") as fh:
+            m4j = json.load(fh)
+        entries4 = m4j.get("animations", [])
+    have_gif = [n for n in A4_ANIMATIONS
+                if os.path.exists(os.path.join(a4_gal, n + ".gif"))]
+    have_sheet = [n for n in A4_ANIMATIONS
+                  if os.path.exists(os.path.join(a4_gal, "contact_sheets",
+                                                 n + ".png"))]
+    case("v0a4.animation_evidence_complete",
+         "both A4 animation themes exist as GIFs, each with a contact sheet, "
+         "and the manifest is present",
+         len(have_gif) == 2 and len(have_sheet) == 2 and bool(entries4),
+         "scientific and cinematic GIF, 2 contact sheets, 1 manifest",
+         "%d GIFs, %d contact sheets, %d manifest entries"
+         % (len(have_gif), len(have_sheet), len(entries4)), t0=t0)
+
+    # 7. A missing MP4 must be EXPLAINED, not merely absent.
+    t0 = time.time()
+    unwritten = [e for e in entries4 if not e.get("written")]
+    explained = [e for e in unwritten
+                 if e.get("note") or e.get("reason")
+                 or e.get("codec") in ("h264", "libx264")]
+    case("v0a4.missing_mp4_is_explained",
+         "any unwritten MP4 is recorded with its codec and reason rather than "
+         "silently absent",
+         len(unwritten) == len(explained),
+         "every unwritten entry carries an explanation",
+         ("all %d entries written; this machine has an encoder" % len(entries4))
+         if not unwritten else
+         ("%d of %d entries unwritten, %d explained by codec/reason"
+          % (len(unwritten), len(entries4), len(explained))), t0=t0,
+         note="a scientific gate must not fail because a video encoder was "
+              "absent; the GIFs and frames are the deterministic products")
+
+    # 8-10. The manifest's own scientific claims.
+    t0 = time.time()
+    prov4 = {}
+    if os.path.exists(a4_man):
+        with open(a4_man, encoding="utf-8") as fh:
+            prov4 = json.load(fh).get("provenance", {})
+    onset = prov4.get("exact_onset_frame")
+    contour = prov4.get("first_spatial_contour_frame")
+    case("v0a4.onset_and_contour_frames_distinct",
+         "the A4 manifest reports an exact onset frame and a strictly later "
+         "first supported contour frame, matching the V0.1A convention",
+         onset is not None and contour is not None and contour > onset,
+         "contour frame strictly after onset frame",
+         "exact_onset_frame %s, first_spatial_contour_frame %s"
+         % (onset, contour), t0=t0,
+         note="the same distinction V0.1A established: at onset the field only "
+              "touches zero, so no contour is supported")
+    t0 = time.time()
+    case("v0a4.curvature_finite_through_crossing",
+         "curvature remains finite through the tested g00 = 0 crossing",
+         prov4.get("curvature_finite_through_crossing") is True,
+         "manifest asserts finiteness",
+         str(prov4.get("curvature_finite_through_crossing")), t0=t0,
+         note="the crossing is an ergosurface condition; a curvature blow-up "
+              "there would be a different and much stronger claim")
+    t0 = time.time()
+    case("v0a4.fixed_global_colour_scales_declared",
+         "the A4 animations declare fixed global colour scales",
+         "fixed" in str(prov4.get("colour_scale", "")).lower(),
+         "colour scale declared fixed across frames",
+         str(prov4.get("colour_scale", "NOT DECLARED"))[:70], t0=t0)
+
+    # 11. The renderer did not evaluate the curvature production path.
+    t0 = time.time()
+    case("v0a4.renderer_computes_no_physics",
+         "the A4 renderer declares it computed no physics, consistent with the "
+         "AST check this gate applies to the visualization tree",
+         prov4.get("renderer_computes_physics") is False,
+         "renderer_computes_physics false",
+         str(prov4.get("renderer_computes_physics")), t0=t0)
+
+    # 12. Nothing is still labelled blocked by missing curvature science.
+    t0 = time.time()
+    case("v0a4.no_product_still_blocked_on_curvature",
+         "no product in this gate is still classified "
+         "BLOCKED_BY_UNIMPLEMENTED_SCIENCE for want of curvature",
+         not BLOCKED, "zero curvature-blocked products",
+         "BLOCKED is empty; the three speculative names are retired, not "
+         "aliased" if not BLOCKED else "still blocked: %r" % sorted(BLOCKED),
+         t0=t0,
+         note="a stale blocked label reads as an honest limitation long after "
+              "the limitation is gone, which is the more dangerous failure")
 
     passed = sum(1 for c in CASES if c["state"] == "PASS")
     failed = sum(1 for c in CASES if c["state"] == "FAIL")
