@@ -1,0 +1,82 @@
+{
+  "animations": [
+    {
+      "codec": "gif",
+      "duration_s": 3.75,
+      "filename": "curvature_vs_velocity_scientific.gif",
+      "final_frame_sha256": "2c407fe2ccdd3c1385f0288ae872ad6dd974eea6b9aeabf39d0b2e57ae698d60",
+      "first_frame_sha256": "2e106ad82e7a2c4322e73f0f9f812f929837cff3ec9d2da855ce94cc7459abd9",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        1430,
+        506
+      ],
+      "source_data": "curvature_velocity_sweep.csv",
+      "source_data_sha256": "24b2e2dd58bccb5ae5c7563ee9e498d37227a9afdc0bb73e33f69c61f653c9af",
+      "written": true
+    },
+    {
+      "codec": "h264",
+      "duration_s": 3.75,
+      "filename": null,
+      "final_frame_sha256": "2c407fe2ccdd3c1385f0288ae872ad6dd974eea6b9aeabf39d0b2e57ae698d60",
+      "first_frame_sha256": "2e106ad82e7a2c4322e73f0f9f812f929837cff3ec9d2da855ce94cc7459abd9",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": "encoder unavailable; frames and PNG output are unaffected and remain deterministic",
+      "resolution": [
+        1430,
+        506
+      ],
+      "source_data": "curvature_velocity_sweep.csv",
+      "source_data_sha256": "24b2e2dd58bccb5ae5c7563ee9e498d37227a9afdc0bb73e33f69c61f653c9af",
+      "written": false
+    },
+    {
+      "codec": "gif",
+      "duration_s": 3.75,
+      "filename": "curvature_vs_velocity_cinematic.gif",
+      "final_frame_sha256": "0168aacb05e640b518776c54fff1260c260e6d07e09fe30795955dd8d60d31ba",
+      "first_frame_sha256": "726e42ff63de85bbe42a39287b7848e78989bf09a34e7ff2c5351841bc4092bb",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        1430,
+        506
+      ],
+      "source_data": "curvature_velocity_sweep.csv",
+      "source_data_sha256": "24b2e2dd58bccb5ae5c7563ee9e498d37227a9afdc0bb73e33f69c61f653c9af",
+      "written": true
+    },
+    {
+      "codec": "h264",
+      "duration_s": 3.75,
+      "filename": null,
+      "final_frame_sha256": "0168aacb05e640b518776c54fff1260c260e6d07e09fe30795955dd8d60d31ba",
+      "first_frame_sha256": "726e42ff63de85bbe42a39287b7848e78989bf09a34e7ff2c5351841bc4092bb",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": "encoder unavailable; frames and PNG output are unaffected and remain deterministic",
+      "resolution": [
+        1430,
+        506
+      ],
+      "source_data": "curvature_velocity_sweep.csv",
+      "source_data_sha256": "24b2e2dd58bccb5ae5c7563ee9e498d37227a9afdc0bb73e33f69c61f653c9af",
+      "written": false
+    }
+  ],
+  "provenance": {
+    "colour_scale": "fixed globally across frames, per field",
+    "curvature_finite_through_crossing": true,
+    "exact_onset_frame": 8,
+    "first_spatial_contour_frame": 9,
+    "git_commit": "8755d34880c4e72686a854562ce045dfe4ea30b6",
+    "renderer_computes_physics": false,
+    "scope": "These outputs visualize the curvature of a chosen metric. They do not demonstrate a stress-energy distribution, an energy condition, or any statement about whether this geometry can be sourced. No quantity here may be called an energy.",
+    "source_sweep": "v0_program_a4_curvature"
+  }
+}

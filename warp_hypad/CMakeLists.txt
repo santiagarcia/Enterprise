@@ -551,6 +551,50 @@ if(Python3_Interpreter_FOUND)
     DEPENDS "programa.visual_render;programa.visual_static")
 endif()
 
+# --- A4 curvature sweep and animation ---------------------------------------
+#
+# The exporter MAY evaluate physics: it calls the same compute_curvature path
+# the A4 gate verifies. The Python renderer may not, and reads only the CSVs.
+
+add_executable(a4_curvature_sweep tools/a4_curvature_sweep.cpp)
+target_link_libraries(a4_curvature_sweep PRIVATE warp_hypad_core)
+if(MSVC)
+  target_compile_options(a4_curvature_sweep PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(a4_curvature_sweep PRIVATE
+    -Wall -Wextra -Wpedantic -Werror)
+endif()
+
+set(WARP_HYPAD_A4_SWEEP
+    "${CMAKE_BINARY_DIR}/results/verification/v0_program_a4_curvature")
+set(WARP_HYPAD_A4_GALLERY
+    "${CMAKE_BINARY_DIR}/results/visualization/program_a4")
+
+# Explicit, opt-in promotion, exactly as promote_a_sweeps: a test must never
+# decide which verified build defines the committed record.
+#
+#   cmake --build build --target promote_a4_curvature
+add_custom_target(promote_a4_curvature
+  COMMAND ${CMAKE_COMMAND} -E make_directory
+          "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_a4"
+  COMMAND ${CMAKE_COMMAND} -E copy_directory "${WARP_HYPAD_A4_GALLERY}"
+          "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_a4"
+  COMMENT "Promoting this build's A4 curvature animations to the source tree"
+  VERBATIM)
+
+add_test(NAME milestone4.curvature_sweep
+         COMMAND a4_curvature_sweep --out "${WARP_HYPAD_A4_SWEEP}")
+set_tests_properties(milestone4.curvature_sweep PROPERTIES DEPENDS "milestone4.gate")
+
+if(Python3_Interpreter_FOUND)
+  add_test(NAME milestone4.curvature_animation COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_a/animate_curvature.py"
+    --sweep "${WARP_HYPAD_A4_SWEEP}"
+    --out "${WARP_HYPAD_A4_GALLERY}")
+  set_tests_properties(milestone4.curvature_animation PROPERTIES
+    DEPENDS "milestone4.curvature_sweep")
+endif()
+
 # --- Program C, Milestone C0: catalogue-grounded astrogation -----------------
 #
 # A SEPARATE program. It gets its own directory, namespace and gate, and Programs
