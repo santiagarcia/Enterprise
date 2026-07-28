@@ -650,7 +650,25 @@ if(WARP_HYPAD_WITH_OTILIB)
   # sensitivity gate that passes against an unknown OTIlib revision is not a
   # gate. An absent git history is reported and tolerated, since a source
   # tarball is a legitimate way to supply the dependency.
-  if(GIT_FOUND)
+  # The VENDORED case is tested FIRST, and deliberately so. Removing a nested
+  # .git does not make `git rev-parse` fail in that directory: git simply walks
+  # up and answers for the ENCLOSING repository, so the check would compare
+  # OTIlib's pin against this project's own HEAD and fail with a baffling
+  # message. Presence of otilib/.git is therefore the condition, not the exit
+  # status of a git command.
+  if(NOT EXISTS "${OTILIB_ROOT}/.git" AND EXISTS "${OTILIB_ROOT}/PINNED_SHA.txt")
+    file(READ "${OTILIB_ROOT}/PINNED_SHA.txt" _oti_recorded)
+    string(STRIP "${_oti_recorded}" _oti_recorded)
+    if(NOT _oti_recorded STREQUAL WARP_HYPAD_OTILIB_PIN)
+      message(FATAL_ERROR
+        "Vendored OTIlib records the wrong revision.\n"
+        "  expected ${WARP_HYPAD_OTILIB_PIN}\n"
+        "  recorded ${_oti_recorded}")
+    endif()
+    message(STATUS
+      "  otilib pin recorded: ${WARP_HYPAD_OTILIB_PIN} (vendored working tree; "
+      "PINNED_SHA.txt, not verified against git history)")
+  elseif(GIT_FOUND)
     execute_process(
       COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
       WORKING_DIRECTORY "${OTILIB_ROOT}"
@@ -666,7 +684,7 @@ if(WARP_HYPAD_WITH_OTILIB)
           "  found    ${_oti_head}\n"
           "  git -C external/otilib checkout ${WARP_HYPAD_OTILIB_PIN}")
       endif()
-      message(STATUS "  otilib pin verified: ${WARP_HYPAD_OTILIB_PIN}")
+      message(STATUS "  otilib pin verified: ${WARP_HYPAD_OTILIB_PIN} (git history)")
     else()
       message(STATUS
         "  otilib pin NOT verified: no git history at ${OTILIB_ROOT}. "

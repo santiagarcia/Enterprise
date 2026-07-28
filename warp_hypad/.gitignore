@@ -22,7 +22,14 @@ cmake-build-*/
 # A git submodule would record the same pin and is an equally valid choice; the
 # external checkout plus bootstrap script was kept because it needs no submodule
 # ceremony from contributors who never enable the backend.
-external/otilib/
+# VENDORED, so a clone builds without a bootstrap step. Only the working tree at
+# the pinned revision is committed -- the upstream git history is NOT, and the
+# revision is recorded in external/otilib/PINNED_SHA.txt and checked by CMake.
+#
+# OTIlib is GPL-3.0, which this project has accepted for the research prototype.
+# Vendoring means the GPL now travels WITH this repository rather than sitting
+# behind a separate clone step.
+# external/otilib/
 
 # Python
 __pycache__/

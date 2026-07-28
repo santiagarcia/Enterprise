@@ -1,0 +1,21 @@
+name: pyoti
+channels:
+  - conda-forge
+  - anaconda
+  - default
+dependencies:
+  - python=3.9.*
+  - numpy
+  - scipy
+  - cython=0.29.*
+  - pandas
+  - make
+  - cmake
+  - pip
+  - ipykernel
+  - conda-forge::pyvista
+  - conda-forge::gmsh
+  - conda-forge::python-gmsh
+  - conda-forge::vtk
+  - conda-forge::scikit-sparse
+  - conda-forge::scikit-umfpack
