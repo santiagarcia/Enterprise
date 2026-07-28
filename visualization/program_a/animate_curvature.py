@@ -155,9 +155,13 @@ def make_factory(frames, summary, meta, theme, ranges):
         fig.text(0.012, 0.018,
                  "Fixed colour scale across all frames. Dashed circle is the "
                  "nominal radius R = 2. det g = −1 identically for every "
-                 "$v_s$: the crossing is not a degeneracy, not a signature "
-                 "change and not automatically a horizon. Curvature only — no "
-                 "stress-energy, no energy condition.",
+                 "$v_s$, and every invariant stays finite through the crossing "
+                 "— which is a statement about CURVATURE ONLY. It does not "
+                 "establish the absence of a horizon, the absence of causal "
+                 "disconnection, safe traversal or physical realizability. "
+                 "Sign changes in R are geometric and imply nothing about the "
+                 "sign of any energy: no stress-energy, no observer, no energy "
+                 "condition exists yet.",
                  fontsize=6.5, color=theme.foreground, alpha=0.75, ha="left",
                  va="bottom")
         fig.tight_layout(rect=(0, 0.05, 1, 0.90))

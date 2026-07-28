@@ -1,0 +1,4 @@
+case,n,h,divergence_absolute,divergence_relative,einstein_scale
+contracted_bianchi,17,0.5,0.00705115,0.0527418,0.133692
+contracted_bianchi,25,0.333333,0.00526847,0.0367602,0.14332
+contracted_bianchi,33,0.25,0.00389911,0.02626,0.148481

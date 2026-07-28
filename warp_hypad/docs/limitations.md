@@ -1,7 +1,7 @@
 # Missing features and current limitations
 
-Honest state of Program A as of Milestones 1, A2, A2T, A3 and A4, with the OTIlib
-backend integrated. Program B keeps its own register at
+Honest state of Program A as of Milestones 1, A2, A2T, A3, A4 and A5, with the
+OTIlib backend integrated. Program B keeps its own register at
 [../../program_b_em_inverse_design/docs/claims_and_limitations.md](../../program_b_em_inverse_design/docs/claims_and_limitations.md).
 
 ## What exists
@@ -25,8 +25,13 @@ backend integrated. Program B keeps its own register at
 - **Program B1** — metric ↔ electromagnetic constitutive mapping. **20 cases**,
   tracked separately.
 
-**258 verification cases pass, 0 fail, 0 skipped** across seven gates (with the
-OTIlib backend on; 2 skipped with it off). Full CTest: 43/43 with OTIlib, 42/42
+- **Milestone A5** — Einstein tensor (raw and symmetric projection kept
+  separately), its trace and square, the contracted Bianchi residual, the
+  cosmological-constant treatment policy, the inferred stress-energy tensor and
+  the geometrized/SI units layer. **27 cases.**
+
+**285 verification cases pass, 0 fail, 0 skipped** across eight gates (with the
+OTIlib backend on; 2 skipped with it off). Full CTest: 55/55 with OTIlib, 54/54
 without.
 
 - **Milestone A4** — Christoffel symbols, Riemann and Ricci tensors, Ricci
@@ -37,10 +42,13 @@ without.
 
 ## What does not exist
 
-**No stress-energy.** Curvature now exists, but there is still no Einstein
-tensor, no stress-energy tensor, no observer frame, no energy condition, no
-objective and no optimizer. Nothing in this repository may yet be called an
-energy, and there is therefore nothing to minimise.
+**No observers, so no energy.** The Einstein tensor now exists and a
+stress-energy tensor can be *inferred* from it, but there is still no observer
+frame, no energy density, no energy condition, no objective and no optimizer.
+Nothing in this repository may yet be called an energy: a coordinate component
+of G or of T is not one, and A6 is what introduces the observer four-velocities
+that would make `ρ = T_{μν}u^μu^ν` meaningful. There is therefore still nothing
+to minimise.
 
 Specifically absent:
 
@@ -50,12 +58,36 @@ Specifically absent:
 | ~~3~~ | *done (A3); time dependence now resolved, see §1* |
 | ~~4~~ | *done (A4): Christoffel, Riemann, Ricci, invariants, metric compatibility, Bianchi* |
 | ~~5~~ | *done (A4), which absorbed the Riemann/Ricci/invariant scope* |
-| 6 | Einstein tensor, stress-energy, contracted Bianchi ∇<sub>μ</sub>G<sup>μν</sup> = 0 |
+| ~~6~~ | *done (A5): Einstein tensor, inferred stress-energy, contracted Bianchi, units* |
 | 7 | observer frames, four-velocity normalization, energy density |
 | 8 | energy conditions, smooth negative-energy objective, integration |
 | 9 | HDF5/VTK export, full Python plotting package |
 | 10 | *(scalar, seeding and extraction are DONE ahead of schedule — see §2; sensitivity **fields** still need the stress-energy code from Milestone 6)* |
 | 11+ | optimization, scaling study, Warp Factory cross-validation. *(FD verification of the AD scalar itself is done; FD verification of full-field sensitivities is not.)* |
+
+### A5-specific limitations
+
+- **The contracted Bianchi identity is the weakest-converging quantity in the
+  project.** It costs a *third* nested derivative pass, so at 17–33³ it carries
+  more pre-asymptotic error than anything else here: measured order 1.17 against
+  a design order of 2, and gated with a deliberately wide band. What the case
+  establishes is that it converges at all — a non-converging Bianchi residual
+  would mean the Einstein tensor is wrong.
+
+- **`compute_einstein` with a resampling policy costs three full curvature
+  computations.** The temporal slot of ∇<sub>μ</sub>G<sup>μν</sup> needs G on
+  neighbouring time slices. Those are scoped so only one extra `CurvatureFields`
+  is alive at a time, but the Bianchi cases still run on smaller grids than the
+  rest of A5 for that reason.
+
+- **SI values are a presentation layer, and nothing verifies them against
+  physics.** Dimensional consistency and the 1/L₀² scaling are checked; whether a
+  particular declared `CoordinateScale` is the *right* one for a given model is a
+  modelling decision the code cannot check.
+
+- **`inferred_stress_energy` has no mechanism behind it.** It is what Einstein's
+  equation says would have to be present to source the chosen geometry. Whether
+  such a source can exist is not addressed, and A5 makes no claim either way.
 
 ### A4-specific limitations
 

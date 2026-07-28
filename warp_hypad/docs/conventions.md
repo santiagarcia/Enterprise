@@ -109,8 +109,8 @@ In the Misner–Thorne–Wheeler sign classification this project is **(+, +, +)
 reference geometry in the A4 suite with nonzero Ricci, and
 `curvature.desitter_ricci_scalar_sign` asserts R > 0 there. A pipeline built with
 the opposite Riemann sign returns −12/L² and passes every index identity in the
-suite; that one case is what catches it, and it therefore fixes the sign of every
-energy density Milestone A6 will report.
+suite; that one case is what catches it. What it fixes is the **sign convention**
+that A5 and A6 inherit — not the sign of any energy. See §7b.
 
 ## 7. Ricci tensor and scalar — implemented and verified (A4)
 
@@ -157,23 +157,79 @@ instead at twice the measured value **with** a companion convergence case, and
 Milestone A5 inherits exactly this asymmetry when it forms
 G<sub>μν</sub> = R<sub>μν</sub> − ½ g<sub>μν</sub> R.
 
-## 8. Einstein tensor — declared (not implemented)
+## 8. Einstein tensor — implemented and verified (A5)
 
     G_{μν} = R_{μν} − ½ g_{μν} R
 
-Identities Milestone 6 must verify: symmetry, the trace identity
-G<sup>μ</sup><sub>μ</sub> = −R in four dimensions, and the contracted Bianchi
-identity ∇<sub>μ</sub> G<sup>μν</sup> = 0.
+Verified: Minkowski and flat-spherical give exactly and effectively zero
+(6.7e-3 interior on a large connection — a coordinate connection does *not*
+become a false source); Schwarzschild gives 1.1e-3 while remaining curved;
+static de Sitter gives the analytic −(3/L²)g<sub>μν</sub>; and the Alcubierre
+components agree with an independent symbolic reference to 8.9e-3.
 
-## 9. Stress-energy tensor and units — declared (not implemented)
+**Raw and symmetric are stored separately.** A4 established that Ricci symmetry
+is O(h²), not roundoff, and G inherits that. `raw_einstein` preserves the
+directly computed tensor and its antisymmetry is *measured* (3.1e-3, converging
+at order 2.08); `symmetric_einstein` is the explicitly labelled projection
+½(G<sub>μν</sub> + G<sub>νμ</sub>) used downstream. Symmetrising in place would
+destroy the only direct measure of the discretisation error, and a large
+antisymmetric part would become invisible.
 
-    T_{μν} = G_{μν} / (8π)
+| Identity | Class | Residual |
+|---|---|---|
+| G<sup>μ</sup><sub>μ</sub> = −R | exact | 2.8e-17 |
+| ½(G + Gᵀ) is symmetric | exact | 0 |
+| ∇<sub>μ</sub>G<sup>μν</sup> = 0 | truncation | 6.0e-3 absolute, 4.3e-2 relative |
 
-**Geometrized units: G = c = 1.** The factor 1/(8π) is a single configurable
-normalization constant so SI can be added later without touching the geometry
-code; Milestone 6 verifies that changing it rescales T exactly.
+The trace identity is exact because g<sup>μν</sup>g<sub>μν</sub> = 4 holds for
+whatever R<sub>μν</sub> the discretisation produced — it needs no product rule.
+The contracted Bianchi identity is **not** an exact finite-difference identity:
+it costs a third nested derivative pass. Both an absolute and a relative
+residual are reported, because a vacuum's absolute residual is tiny purely
+because its G is tiny.
 
-`conventions.units` currently accepts only `"geometrized"`.
+## 8a. Cosmological constant — three distinct readings (A5)
+
+Never absorbed silently. `CosmologicalConstantTreatment` is recorded on every
+result:
+
+| Treatment | Quantity | de Sitter, Λ = 3/L² |
+|---|---|---|
+| `GeometricEinsteinOnly` | G<sub>μν</sub> | −(3/L²)g<sub>μν</sub>, **nonzero** |
+| `LambdaOnGeometricSide` | G<sub>μν</sub> + Λg<sub>μν</sub> | **0** — a vacuum |
+| `LambdaAsEffectiveStressEnergy` | (G<sub>μν</sub> + Λg<sub>μν</sub>)/8π | reported as source |
+
+de Sitter is the case that forces the distinction: G is large there and the
+spacetime still contains no matter. Choosing a treatment silently is how a
+vacuum comes to be reported as containing matter. Warp-drive metrics use
+**Λ = 0** unless a model explicitly says otherwise.
+
+## 9. Stress-energy tensor and units — implemented (A5)
+
+    T_{μν}^inferred = G_{μν} / (8π)          geometrized, G = c = 1
+
+**The name is deliberate.** The tensor is *inferred* by inserting a chosen
+geometry into Einstein's equation and reading off what source would have to be
+present. It is not a material model, not a physical source, not a fabricated
+source and not a realizable source; no mechanism generating it has been
+demonstrated. The A5 gate checks the naming.
+
+**Coordinate components are not energy densities.** G<sub>00</sub> is positive
+throughout the sampled Alcubierre points, and that is *not* a statement that
+the inferred source has positive energy density. An energy density is
+T<sub>μν</sub>u<sup>μ</sup>u<sup>ν</sup> for a specified normalised observer,
+which A6 introduces. No A5 output may be labelled an energy density.
+
+**SI conversion requires an explicit scale and refuses to invent one.** A grid
+coordinate is a pure number, not metres:
+
+    G^SI = G / L₀²                    1/m²
+    T^SI = c⁴/(8πG_N) · G^SI          J/m³ = Pa
+
+with `c⁴/(8πG_N) ≈ 4.82e42 Pa per 1/m²`. `si_stress_energy` returns NaN when no
+`CoordinateScale` is supplied, and every converted output records the scale.
+T^SI scales as 1/L₀², so the *same* dimensionless geometry means a very
+different source depending on how large you declare it to be.
 
 ## 10. Observer frame and energy density — declared (not implemented)
 
@@ -189,6 +245,40 @@ for an explicitly specified, normalized four-velocity `u` with
 g<sub>μν</sub> u<sup>μ</sup> u<sup>ν</sup> = −1. Milestone 7 exists to make this
 distinction and to verify the normalization; until then, no quantity in this
 project may be labelled "energy density".
+
+## 7b. What a curvature invariant does NOT tell you — interpretation guard
+
+Two inferences are invalid and are called out here because both are easy to make
+from an A4 figure, and both would poison every later milestone.
+
+**A sign change in R or in the Kretschmann invariant says nothing about the sign
+of an energy.** Curvature invariants characterise geometry. An energy density is
+`ρ = T_{μν} u^μ u^ν` for an explicitly specified, normalised observer, and it
+requires the Einstein tensor (A5), a stress-energy interpretation (A5) and a
+declared observer family (A6). Neither R nor `R_{αβγδ}R^{αβγδ}` is proportional
+to any energy density, and the Alcubierre invariants change sign across the wall
+for reasons that are purely geometric. Nothing in A4 licenses reading those
+lobes as regions of positive or negative energy.
+
+The remark in §6 that these conventions give "positive energy density for
+ordinary matter" is a statement identifying *which* sign convention this project
+uses, in the standard MTW classification. It is not a rule for inferring an
+energy from a curvature invariant.
+
+**Finite curvature at g₀₀ = 0 is a statement about curvature and nothing else.**
+The A4 velocity sweep establishes exactly one thing at the crossing: every
+curvature invariant stays finite, and `det g = −1` identically. That is *not*:
+
+| Not established by A4 | Why |
+|---|---|
+| no horizon | a horizon is a global causal-structure property of null congruences, not a pointwise curvature statement |
+| no causal disconnection | requires tracing null geodesics, which does not exist in this repository |
+| safe traversal | requires tidal accelerations on a worldline, i.e. geodesic deviation |
+| physical realizability | requires a source, energy conditions, and a mechanism — none of which exist |
+
+`g₀₀ = 0` in these coordinates marks where the coordinate-stationary observer
+stops being timelike. Whether that surface is a horizon, and what lies causally
+beyond it, are questions A4 does not ask and cannot answer.
 
 ## 10a. Coordinate charts — implemented (A4)
 

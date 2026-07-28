@@ -7,15 +7,17 @@ from the same code that computes the objective.
 
     p → g_μν(x; p) → ∂_α g_μν → Γ^ρ_μν → R_μν → R → G_μν → T_μν → J(p)
 
-> **Status: Milestones 1, A2, A2T, A3 and A4 complete, plus a verified AD backend
-> and Program B1.** **258 / 258 verification cases pass**, 43/43 CTest.
-> **Curvature exists as of A4** — Christoffel, Riemann, Ricci, and the
-> R<sub>μν</sub>R<sup>μν</sup> and Kretschmann invariants, checked against
-> Schwarzschild, static de Sitter and flat space in spherical coordinates.
-> **Still no stress-energy:** no Einstein tensor, no T<sub>μν</sub>, no observer
-> frames, no energy conditions, no optimizer. Nothing here supports any claim
-> about warp-drive energy requirements, and there is as yet no quantity in this
-> repository that may be called an energy.
+> **Status: Milestones 1, A2, A2T, A3, A4 and A5 complete, plus a verified AD
+> backend and Program B1.** **285 / 285 verification cases pass**, 55/55 CTest.
+> **Curvature (A4) and the Einstein tensor (A5) exist** — Christoffel, Riemann,
+> Ricci, the R<sub>μν</sub>R<sup>μν</sup> and Kretschmann invariants,
+> G<sub>μν</sub>, the contracted Bianchi residual, and a stress-energy tensor
+> *inferred* from the field equation.
+> **Still no observers, so still no energy:** no observer frames, no energy
+> density, no energy conditions, no optimizer. A coordinate component of
+> G<sub>μν</sub> or T<sub>μν</sub> is **not** an energy density — that needs
+> `T_{μν}u^μu^ν` for a specified normalised observer, which A6 introduces.
+> Nothing here supports any claim about warp-drive energy requirements.
 > See [docs/limitations.md](docs/limitations.md) and
 > [Program B's claims register](../program_b_em_inverse_design/docs/claims_and_limitations.md).
 
@@ -44,6 +46,7 @@ Each milestone gate is a process that returns a status:
 ./build/milestone2_verify --out results/verification/milestone_02
 ./build/milestone3_verify --out results/verification/milestone_03
 ./build/milestone4_verify --out results/verification/milestone_04
+./build/milestone5_verify --out results/verification/milestone_05
 ./build/otilib_verify     --out results/verification/otilib
 echo $?          # 0 = the milestone passes; anything else blocks the next one
 ```
@@ -58,9 +61,9 @@ python python/plot_milestone3.py results/verification/milestone_03
 
 ## Current result
 
-**258 / 258 verification cases pass**, 0 failed, 0 skipped
+**285 / 285 verification cases pass**, 0 failed, 0 skipped
 (MSVC 19.44, RelWithDebInfo, Windows-AMD64, `-DWARP_HYPAD_WITH_OTILIB=ON`).
-43 / 43 CTest tests pass (42 / 42 with the backend off), zero compiler warnings
+55 / 55 CTest tests pass (54 / 54 with the backend off), zero compiler warnings
 at `/W4 /WX`.
 
 | Gate | Cases | Highlights |
@@ -70,11 +73,43 @@ at `/W4 /WX`.
 | A2T — temporal derivatives | 23 | `∂ₜg = −v_s ∂ₓg` residual converges at order 1.82 |
 | A3 — metric generation | 31 | `det g = −1` exactly; HyPAD vs analytic **1.1e-16** |
 | A4 — covariant curvature | 43 | Schwarzschild `K = 48M²/r⁶`; de Sitter `R = +12/L²` fixes the sign |
+| A5 — Einstein and inferred T | 27 | de Sitter `G ≠ 0` yet `G + Λg = 0`; trace identity 2.8e-17 |
 | OTIlib AD backend | 23 | `d(A⁻¹)/dp = −A⁻¹(dA/dp)A⁻¹` at **1.9e-16** |
 | [Program B1](../program_b_em_inverse_design/) | 20 | conformal invariance 4.4e-16; 3/3 non-metric media rejected |
 
-By level: 152 × A (exact identity), 57 × B (analytic), 34 × E (grid
+By level: 171 × A (exact identity), 63 × B (analytic), 36 × E (grid
 convergence), 15 × D (independent method).
+
+### What A5 adds
+
+`G_μν = R_μν − ½g_μν R`, and the stress-energy **inferred** by inserting a chosen
+geometry into the field equation. The word is load-bearing: no mechanism that
+generates that source has been demonstrated, and the gate checks the naming.
+
+- **Flat space in spherical coordinates gives `G = 0`** despite a large
+  connection — the case where coordinate terms would otherwise become a false
+  source.
+- **Static de Sitter separates geometry from matter.** `G = −(3/L²)g` is large,
+  yet `G + Λg = 0`: a vacuum containing nothing. The three
+  cosmological-constant treatments are kept distinct and recorded on every
+  result, because choosing one silently is how a vacuum comes to be reported as
+  containing matter.
+- **Raw and symmetric Einstein tensors are stored separately.** A4 showed Ricci
+  symmetry is O(h²), not roundoff; G inherits it. The antisymmetry is measured
+  (3.1e-3, converging at order **2.08**) rather than projected away — and both
+  tensors stay reachable, with a case that fails if they ever become the same
+  object.
+- **`G^μ_μ = −R` to 2.8e-17**, exact because it needs no product rule.
+- **The contracted Bianchi residual is reported absolutely and relatively.** A
+  vacuum's absolute residual is tiny purely because its `G` is tiny, so only the
+  relative figure (4.3e-2) is comparable across geometries.
+- **SI conversion refuses to invent a scale.** A grid coordinate is a pure
+  number, not metres; `si_stress_energy` returns NaN without an explicit
+  `CoordinateScale`, and `T^SI` scales as `1/L₀²`.
+
+`G_00` is **positive** across the sampled Alcubierre points. That is not a claim
+about the sign of any energy density — a coordinate component is not an
+observer-measured scalar, and A5 has no observers.
 
 ### What A4 actually establishes
 

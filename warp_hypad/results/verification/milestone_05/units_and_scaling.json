@@ -1,0 +1,16 @@
+{
+  "system": "geometrized (G = c = 1)",
+  "coordinate_length_units": "dimensionless grid units",
+  "coordinate_time_units": "dimensionless grid units, same unit as length (c = 1)",
+  "curvature_units": "1 / (coordinate length)^2",
+  "stress_energy_units_geometrized": "1 / (coordinate length)^2, i.e. G/(8 pi); dimensionless",
+  "stress_energy_units_si": "J / m^3 (= Pa)",
+  "einstein_coupling_si_Pa_per_inverse_m2": 4.81545e+42,
+  "speed_of_light_m_per_s": 2.99792e+08,
+  "newton_G_si": 6.6743e-11,
+  "example_scale_length_metres": 100,
+  "example_scale_time_seconds": 3.33564e-07,
+  "example_scale_name": "one grid unit = 100 m, so the R = 2 bubble is 200 m across",
+  "conversion_note": "SI values require an explicit CoordinateScale. A grid coordinate is a pure number; it is not metres. No SI quantity is emitted without the scale that produced it.",
+  "scope": "A5 computes the geometric Einstein tensor and the stress-energy tensor inferred through Einstein's equation for the selected metric. It does not establish that this source can be generated physically, that energy conditions are satisfied, or that FTL travel is realizable."
+}

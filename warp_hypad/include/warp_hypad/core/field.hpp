@@ -77,6 +77,41 @@ private:
     std::vector<Scalar> data_;
 };
 
+// Four components per grid point. Added at A5 for the contracted Bianchi
+// residual nabla_mu G^{mu nu}, which is a vector field indexed by nu.
+template <typename Scalar>
+class Rank1Field {
+public:
+    static constexpr int kComponents = 4;
+
+    Rank1Field() = default;
+
+    explicit Rank1Field(const Grid& grid)
+        : grid_(&grid),
+          data_(grid.num_points() * kComponents, scalar_cast<Scalar>(0.0)) {}
+
+    const Grid& grid() const { return *grid_; }
+    std::size_t num_points() const { return data_.size() / kComponents; }
+
+    Scalar& at(std::size_t p, int mu) {
+        const std::size_t idx = p * kComponents + static_cast<std::size_t>(mu);
+        assert(idx < data_.size());
+        return data_[idx];
+    }
+    const Scalar& at(std::size_t p, int mu) const {
+        const std::size_t idx = p * kComponents + static_cast<std::size_t>(mu);
+        assert(idx < data_.size());
+        return data_[idx];
+    }
+
+    std::vector<Scalar>& raw() { return data_; }
+    const std::vector<Scalar>& raw() const { return data_; }
+
+private:
+    const Grid* grid_ = nullptr;
+    std::vector<Scalar> data_;
+};
+
 template <typename Scalar>
 class Rank2Field {
 public:

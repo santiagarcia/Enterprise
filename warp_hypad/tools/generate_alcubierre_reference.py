@@ -166,6 +166,11 @@ def curvature_at(g_fn, dg_fn, ddg_fn, t, x, y, z):
     Ric = np.einsum("rsrn->sn", Riem, optimize=True)
     R = float(np.einsum("mn,mn->", gi, Ric, optimize=True))
 
+    # G_{mu nu} = R_{mu nu} - (1/2) g_{mu nu} R, assembled here from THIS
+    # script's own Ricci rather than read back from the C++ -- the whole point
+    # of the reference is that the two routes never touch.
+    Ein = Ric - 0.5 * g * R
+
     Ric_up = gi @ Ric @ gi
     ricci_square = float(np.einsum("mn,mn->", Ric_up, Ric, optimize=True))
 
@@ -174,7 +179,7 @@ def curvature_at(g_fn, dg_fn, ddg_fn, t, x, y, z):
                         optimize=True)
     kretschmann = float(np.einsum("abcd,abcd->", Riem_down, Riem_up, optimize=True))
 
-    return Ric, R, ricci_square, kretschmann
+    return Ric, R, ricci_square, kretschmann, Ein
 
 
 def main() -> int:
@@ -186,8 +191,8 @@ def main() -> int:
 
     rows = []
     for (x, y, z) in SAMPLE_POINTS:
-        Ric, R, rsq, K = curvature_at(g_fn, dg_fn, ddg_fn, T_EVAL, x, y, z)
-        rows.append((x, y, z, Ric, R, rsq, K))
+        Ric, R, rsq, K, Ein = curvature_at(g_fn, dg_fn, ddg_fn, T_EVAL, x, y, z)
+        rows.append((x, y, z, Ric, R, rsq, K, Ein))
 
     out = pathlib.Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -214,7 +219,8 @@ def main() -> int:
     lines.append("    double ricci_scalar;")
     lines.append("    double ricci_square;")
     lines.append("    double kretschmann;")
-    lines.append("    double ricci[16];  // R_{mu nu}, row-major")
+    lines.append("    double ricci[16];    // R_{mu nu}, row-major")
+    lines.append("    double einstein[16]; // G_{mu nu} = R_{mu nu} - g R / 2")
     lines.append("};")
     lines.append("")
     lines.append(f"inline constexpr double kAlcubierreRefVelocity = {V_S!r};")
@@ -223,14 +229,16 @@ def main() -> int:
     lines.append(f"inline constexpr double kAlcubierreRefTime = {T_EVAL!r};")
     lines.append("")
     lines.append("inline const AlcubierreCurvaturePoint kAlcubierreCurvature[] = {")
-    for (x, y, z, Ric, R, rsq, K) in rows:
+    for (x, y, z, Ric, R, rsq, K, Ein) in rows:
         ric_flat = ", ".join(f"{Ric[m, n]:.17e}" for m in range(4) for n in range(4))
+        ein_flat = ", ".join(f"{Ein[m, n]:.17e}" for m in range(4) for n in range(4))
         lines.append("    {")
         lines.append(f"        {x!r}, {y!r}, {z!r},")
         lines.append(f"        {R:.17e},")
         lines.append(f"        {rsq:.17e},")
         lines.append(f"        {K:.17e},")
         lines.append(f"        {{{ric_flat}}},")
+        lines.append(f"        {{{ein_flat}}},")
         lines.append("    },")
     lines.append("};")
     lines.append("")
@@ -244,9 +252,9 @@ def main() -> int:
     out.write_text("\n".join(lines), encoding="utf-8")
 
     print(f"wrote {out} with {len(rows)} reference points")
-    for (x, y, z, _Ric, R, rsq, K) in rows:
+    for (x, y, z, _Ric, R, rsq, K, Ein) in rows:
         print(f"  ({x:5.2f},{y:5.2f},{z:5.2f})  R={R: .8e}  "
-              f"RicSq={rsq: .8e}  K={K: .8e}")
+              f"K={K: .8e}  G00={Ein[0, 0]: .8e}  G11={Ein[1, 1]: .8e}")
     return 0
 
 

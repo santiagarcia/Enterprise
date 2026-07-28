@@ -125,7 +125,7 @@ def fig_desitter(results, out):
     axes[2].set_title("", fontsize=9)
 
     S.title_block(
-        fig, "Static de Sitter fixes the sign of every energy density to come",
+        fig, "Static de Sitter fixes the curvature sign convention",
         "The only reference here with nonzero Ricci, so the only one that can "
         "detect a flipped Riemann sign.")
     S.footer(fig, wrap("L = 2 (horizon at r = 2), domain r ∈ [0.5,1.5]. L is "

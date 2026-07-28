@@ -551,6 +551,33 @@ if(Python3_Interpreter_FOUND)
     DEPENDS "programa.visual_render;programa.visual_static")
 endif()
 
+# --- Milestone A5: Einstein tensor and inferred stress-energy ---------------
+
+add_executable(milestone5_verify
+  tests/milestone5_verify.cpp
+  tests/einstein_checks.cpp
+)
+target_link_libraries(milestone5_verify PRIVATE warp_hypad_core)
+target_include_directories(milestone5_verify PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+if(MSVC)
+  target_compile_options(milestone5_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(milestone5_verify PRIVATE
+    -Wall -Wextra -Wpedantic -Werror -Wshadow -Wconversion)
+endif()
+
+set(WARP_HYPAD_M5_RESULTS "${CMAKE_BINARY_DIR}/results/verification/milestone_05")
+
+foreach(_group reference desitter alcubierre identities bianchi convergence units policy)
+  add_test(NAME milestone5.${_group}
+           COMMAND milestone5_verify --group ${_group} --out "${WARP_HYPAD_M5_RESULTS}")
+endforeach()
+
+add_test(NAME milestone5.gate
+         COMMAND milestone5_verify --out "${WARP_HYPAD_M5_RESULTS}")
+set_tests_properties(milestone5.gate PROPERTIES
+  DEPENDS "milestone4.gate;milestone5.reference;milestone5.desitter;milestone5.alcubierre;milestone5.identities;milestone5.bianchi;milestone5.convergence;milestone5.units;milestone5.policy")
+
 # --- A4 curvature sweep and animation ---------------------------------------
 #
 # The exporter MAY evaluate physics: it calls the same compute_curvature path
