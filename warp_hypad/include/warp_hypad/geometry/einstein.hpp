@@ -43,41 +43,35 @@
 namespace warp_hypad {
 namespace geometry {
 
-// How a cosmological constant enters. Recorded on every result: the three
-// readings below are numerically different tensors, and silently choosing one
-// is how a de Sitter spacetime comes to be reported as containing matter.
-enum class CosmologicalConstantTreatment {
-    // G_{mu nu} alone. The pure geometric object. For de Sitter this is
-    // NONZERO: G = -(3/L^2) g.
-    GeometricEinsteinOnly,
-
-    // G_{mu nu} + Lambda g_{mu nu}, kept on the geometry side of the field
-    // equation. For de Sitter with Lambda = 3/L^2 this vanishes, which is the
-    // statement that de Sitter is a VACUUM solution with a cosmological
-    // constant -- it contains no matter.
-    LambdaOnGeometricSide,
-
-    // Lambda moved to the source side and reported as part of the inferred
-    // stress-energy: T = (1/8pi)(G + Lambda g). A legitimate choice, but a
-    // different physical statement, and never the default.
-    LambdaAsEffectiveStressEnergy
-};
-
-inline const char* to_string(CosmologicalConstantTreatment t) {
-    switch (t) {
-        case CosmologicalConstantTreatment::GeometricEinsteinOnly:
-            return "geometric_einstein_only";
-        case CosmologicalConstantTreatment::LambdaOnGeometricSide:
-            return "lambda_on_geometric_side";
-        case CosmologicalConstantTreatment::LambdaAsEffectiveStressEnergy:
-            return "lambda_as_effective_stress_energy";
-    }
-    return "unknown";
-}
-
+// --- Cosmological constant, corrected at A5C ---------------------------------
+//
+// A5 carried an enum member named `LambdaAsEffectiveStressEnergy` whose
+// arithmetic computed (G + Lambda g)/(8 pi). That quantity is the MATTER source,
+// not the effective cosmological-constant source, so the name asserted one
+// physical interpretation while the code implemented another. That is precisely
+// the failure this project's naming discipline exists to prevent, and the fix is
+// not a rename: a single policy-selected "the source" field cannot express the
+// decomposition, because there are three distinct source tensors and a caller
+// needs all of them.
+//
+// The field equation, with Lambda written on the geometric side:
+//
+//     G_{mu nu} + Lambda g_{mu nu} = 8 pi T^matter_{mu nu}
+//
+// from which:
+//
+//     T^matter_{mu nu} = ( G_{mu nu} + Lambda g_{mu nu} ) / (8 pi)
+//     T^Lambda_{mu nu} = -Lambda g_{mu nu} / (8 pi)
+//     T^total_{mu nu}  = T^matter + T^Lambda = G_{mu nu} / (8 pi)
+//
+// The last identity is the closure that makes the decomposition meaningful: the
+// total effective source is always G/(8 pi) regardless of Lambda, because moving
+// Lambda between the two sides is bookkeeping and not physics.
+//
+// For de Sitter, where G = -Lambda g:  T^matter = 0 (a vacuum), T^Lambda is
+// nonzero, and T^total = T^Lambda. For Lambda = 0:  T^matter = T^total = G/(8 pi)
+// and T^Lambda = 0.
 struct CosmologicalConstantPolicy {
-    CosmologicalConstantTreatment treatment =
-        CosmologicalConstantTreatment::GeometricEinsteinOnly;
     double lambda = 0.0;
     std::string justification;
 
@@ -86,11 +80,45 @@ struct CosmologicalConstantPolicy {
     // change what the inferred source means.
     static CosmologicalConstantPolicy none() {
         CosmologicalConstantPolicy p;
-        p.treatment = CosmologicalConstantTreatment::GeometricEinsteinOnly;
         p.lambda = 0.0;
         p.justification = "warp-drive metrics carry no cosmological constant";
         return p;
     }
+
+    static CosmologicalConstantPolicy with_lambda(double l, std::string why) {
+        CosmologicalConstantPolicy p;
+        p.lambda = l;
+        p.justification = std::move(why);
+        return p;
+    }
+};
+
+// The four meanings, separately accessible. No policy flag selects "the" source,
+// because no single tensor is it.
+template <typename Scalar>
+struct SourceDecomposition {
+    // G_{mu nu}. Pure geometry, no 1/(8 pi), no Lambda.
+    Rank2Field<Scalar> geometric_einstein;
+
+    // ( G + Lambda g ) / (8 pi). Zero for de Sitter with Lambda = 3/L^2.
+    Rank2Field<Scalar> matter_stress_energy;
+
+    // -Lambda g / (8 pi). Zero when Lambda = 0.
+    Rank2Field<Scalar> lambda_effective_stress_energy;
+
+    // G / (8 pi). Always equal to matter + lambda, by construction and by test.
+    Rank2Field<Scalar> total_effective_stress_energy;
+
+    double lambda = 0.0;
+
+    // True for the convention implemented here: the field equation is written
+    // G + Lambda g = 8 pi T^matter. Recorded rather than assumed, because the
+    // opposite convention flips the sign of T^Lambda.
+    bool lambda_on_geometric_side = true;
+
+    std::string field_equation_convention =
+        "G_{mu nu} + Lambda g_{mu nu} = 8 pi T^matter_{mu nu}; "
+        "T^Lambda = -Lambda g/(8 pi); T^total = T^matter + T^Lambda = G/(8 pi)";
 };
 
 template <typename Scalar>
@@ -110,8 +138,10 @@ struct EinsteinFields {
     // identity; O(h^2) here, and NOT an exact finite-difference identity.
     Rank1Field<Scalar> divergence;
 
-    // T^inferred = (1/8pi) * (G [+ Lambda g, per policy]), geometrized units.
-    Rank2Field<Scalar> inferred_stress_energy;
+    // The inferred source, decomposed. See SourceDecomposition: there is no
+    // single "the stress-energy" field, because matter, Lambda and total are
+    // three different tensors and a caller needs to name which one it means.
+    SourceDecomposition<Scalar> source;
 
     double antisymmetry_residual = 0.0;   // max |G_{mu nu} - G_{nu mu}|
     double divergence_residual = 0.0;     // max |nabla_mu G^{mu nu}|
@@ -174,7 +204,12 @@ EinsteinFields<Scalar> assemble_einstein(const Grid& grid,
     e.symmetric_einstein = Rank2Field<Scalar>(grid);
     e.trace = ScalarField<Scalar>(grid);
     e.square = ScalarField<Scalar>(grid);
-    e.inferred_stress_energy = Rank2Field<Scalar>(grid);
+
+    e.source.geometric_einstein = Rank2Field<Scalar>(grid);
+    e.source.matter_stress_energy = Rank2Field<Scalar>(grid);
+    e.source.lambda_effective_stress_energy = Rank2Field<Scalar>(grid);
+    e.source.total_effective_stress_energy = Rank2Field<Scalar>(grid);
+    e.source.lambda = lp.lambda;
 
     const Scalar half = scalar_cast<Scalar>(0.5);
     const Scalar inv8pi = scalar_cast<Scalar>(1.0 / (8.0 * 3.14159265358979323846));
@@ -212,16 +247,20 @@ EinsteinFields<Scalar> assemble_einstein(const Grid& grid,
         const Mat4<Scalar> G_up = mat_mul(mat_mul(gi, Gs), gi);
         e.square.at(p) = full_contract(G_up, Gs);
 
-        // The inferred source. What enters depends entirely on the declared
-        // policy, which is why the policy travels with the result.
-        Mat4<Scalar> source = Gs;
-        if (lp.treatment ==
-            CosmologicalConstantTreatment::LambdaAsEffectiveStressEnergy) {
-            for (int mu = 0; mu < 4; ++mu)
-                for (int nu = 0; nu < 4; ++nu)
-                    source(mu, nu) = source(mu, nu) + lambda * gm(mu, nu);
-        }
-        e.inferred_stress_energy.set_matrix(p, mat_scale(source, inv8pi));
+        // The three source tensors, all of them, every time. Deriving them here
+        // rather than selecting one keeps the arithmetic and the names in step.
+        Mat4<Scalar> t_matter, t_lambda;
+        for (int mu = 0; mu < 4; ++mu)
+            for (int nu = 0; nu < 4; ++nu) {
+                t_matter(mu, nu) = (Gs(mu, nu) + lambda * gm(mu, nu)) * inv8pi;
+                t_lambda(mu, nu) = -lambda * gm(mu, nu) * inv8pi;
+            }
+
+        e.source.geometric_einstein.set_matrix(p, Gs);
+        e.source.matter_stress_energy.set_matrix(p, t_matter);
+        e.source.lambda_effective_stress_energy.set_matrix(p, t_lambda);
+        e.source.total_effective_stress_energy.set_matrix(p,
+                                                          mat_scale(Gs, inv8pi));
     }
 
     e.ok = true;

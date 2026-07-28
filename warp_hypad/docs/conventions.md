@@ -188,21 +188,50 @@ it costs a third nested derivative pass. Both an absolute and a relative
 residual are reported, because a vacuum's absolute residual is tiny purely
 because its G is tiny.
 
-## 8a. Cosmological constant — three distinct readings (A5)
+## 8a. Cosmological constant — the source decomposition (A5, corrected at A5C)
 
-Never absorbed silently. `CosmologicalConstantTreatment` is recorded on every
-result:
+**A5 got this wrong and A5C fixes it.** A5 carried an enum member named
+`LambdaAsEffectiveStressEnergy` whose arithmetic computed
+(G<sub>μν</sub> + Λg<sub>μν</sub>)/8π. That quantity is the **matter** source.
+The effective cosmological-constant source is −Λg<sub>μν</sub>/8π — a different
+tensor, not a sign slip. The name asserted one physical interpretation while the
+code implemented another, which is the exact failure this project's naming
+discipline exists to prevent.
 
-| Treatment | Quantity | de Sitter, Λ = 3/L² |
-|---|---|---|
-| `GeometricEinsteinOnly` | G<sub>μν</sub> | −(3/L²)g<sub>μν</sub>, **nonzero** |
-| `LambdaOnGeometricSide` | G<sub>μν</sub> + Λg<sub>μν</sub> | **0** — a vacuum |
-| `LambdaAsEffectiveStressEnergy` | (G<sub>μν</sub> + Λg<sub>μν</sub>)/8π | reported as source |
+The fix is not a rename. A single policy-selected "the source" field cannot
+express the decomposition, because there are three distinct tensors and a caller
+needs all of them. `CosmologicalConstantTreatment` is **removed**, not renamed,
+and replaced by `SourceDecomposition`.
 
-de Sitter is the case that forces the distinction: G is large there and the
-spacetime still contains no matter. Choosing a treatment silently is how a
-vacuum comes to be reported as containing matter. Warp-drive metrics use
-**Λ = 0** unless a model explicitly says otherwise.
+Writing the field equation with Λ on the geometric side:
+
+    G_{μν} + Λ g_{μν} = 8π T^matter_{μν}
+
+| Field | Definition | Λ = 0 | de Sitter, Λ = 3/L² |
+|---|---|---|---|
+| `geometric_einstein` | G<sub>μν</sub> | G | −Λg, **nonzero** |
+| `matter_stress_energy` | (G + Λg)/8π | G/8π | **0** — a vacuum |
+| `lambda_effective_stress_energy` | −Λg/8π | **0** | −Λg/8π |
+| `total_effective_stress_energy` | G/8π | G/8π | = T<sup>Λ</sup> |
+
+Four identities, all verified exact at ~1e-16:
+
+    8π T^matter = G + Λg      8π T^Λ = −Λg
+    T^total = T^matter + T^Λ  8π T^total = G
+
+The last is the closure that makes it a decomposition. `T^total` is independent
+of Λ, because moving Λ between the two sides of the field equation is
+bookkeeping and not physics.
+
+de Sitter is where the distinction is sharpest and where A5's error would have
+misled: it contains **no matter** (T<sup>matter</sup> → 5.2e-4) and is
+nonetheless **sourced** (|T<sup>Λ</sup>| = 0.068). A5's mislabelled field
+computed T<sup>matter</sup> while calling it the Λ source, so a reader would
+have concluded de Sitter's Λ source was zero.
+
+**The A5 numerical results are unaffected.** Warp-drive metrics use Λ = 0, where
+the decomposition collapses to the single tensor A5 reported: T<sup>matter</sup>
+= T<sup>total</sup> = G/8π exactly, and T<sup>Λ</sup> = 0 exactly.
 
 ## 9. Stress-energy tensor and units — implemented (A5)
 

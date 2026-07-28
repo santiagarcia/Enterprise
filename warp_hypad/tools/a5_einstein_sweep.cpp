@@ -186,9 +186,15 @@ int main(int argc, char** argv) {
         << kLastK << "\",\n";
     man << "  \"exact_onset_frame\": " << exact_onset_frame << ",\n";
     man << "  \"first_spatial_contour_frame\": " << first_contour_frame << ",\n";
-    man << "  \"cosmological_constant_treatment\": \""
-        << geometry::to_string(lp.treatment) << "\",\n";
     man << "  \"lambda\": " << lp.lambda << ",\n";
+    man << "  \"field_equation_convention\": \"G_{mu nu} + Lambda g_{mu nu} = "
+           "8 pi T^matter_{mu nu}; T^Lambda = -Lambda g/(8 pi); T^total = "
+           "T^matter + T^Lambda = G/(8 pi)\",\n";
+    man << "  \"source_decomposition_note\": \"With Lambda = 0 the "
+           "decomposition collapses: T^matter = T^total = G/(8 pi) exactly and "
+           "T^Lambda = 0 exactly. The panels below therefore show the geometric "
+           "Einstein tensor, which for this model is 8 pi times every source "
+           "tensor alike.\",\n";
     man << "  \"all_finite\": " << (all_finite ? "true" : "false") << ",\n";
     man << "  \"quantity\": \"coordinate-basis components of the geometric "
            "Einstein tensor G_{mu nu}\",\n";

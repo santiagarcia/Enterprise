@@ -46,5 +46,11 @@ void run_units_checks(VerificationReport& report, const std::string& out_dir);
 void run_einstein_policy_checks(VerificationReport& report,
                                 const std::string& out_dir);
 
+// Group "lambda" (gate A5C-LAMBDA-SOURCE-SEMANTICS): the matter / Lambda /
+// total source decomposition and the four identities that define it. Writes
+// lambda_source_decomposition.csv.
+void run_lambda_source_checks(VerificationReport& report,
+                              const std::string& out_dir);
+
 }  // namespace checks
 }  // namespace warp_hypad

@@ -35,7 +35,6 @@ namespace checks {
 namespace {
 
 using geometry::CosmologicalConstantPolicy;
-using geometry::CosmologicalConstantTreatment;
 using geometry::EinsteinFields;
 using geometry::TemporalPolicy;
 
@@ -331,43 +330,32 @@ void run_einstein_desitter_checks(VerificationReport& report,
         "the case that separates the GEOMETRIC Einstein tensor from MATTER "
         "stress-energy: G is large here, yet the spacetime contains nothing");
 
-    // The three treatments are numerically different objects.
+    // The matter source and the Lambda source are different tensors, and for de
+    // Sitter they are maximally different: one vanishes and the other does not.
+    // The full set of identities is verified by the A5C group; this case exists
+    // so the de Sitter group states the physical consequence in place.
     sw.reset();
-    CosmologicalConstantPolicy lp_eff;
-    lp_eff.treatment = CosmologicalConstantTreatment::LambdaAsEffectiveStressEnergy;
-    lp_eff.lambda = lambda;
-    lp_eff.justification = "de Sitter, Lambda moved to the source side";
-    auto e_eff = geometry::assemble_einstein(g, c, lp_eff);
+    auto e_lam = geometry::assemble_einstein(
+        g, c, CosmologicalConstantPolicy::with_lambda(
+                  lambda, "de Sitter with L = 2, Lambda = 3/L^2"));
 
     const std::size_t q0 = center_point(g);
-    const double t_geom = max_abs_real(e.inferred_stress_energy.matrix_at(q0));
-    const double t_eff = max_abs_real(e_eff.inferred_stress_energy.matrix_at(q0));
+    const double t_matter =
+        max_abs_real(e_lam.source.matter_stress_energy.matrix_at(q0));
+    const double t_lambda =
+        max_abs_real(e_lam.source.lambda_effective_stress_energy.matrix_at(q0));
 
     report.check_predicate(
-        "einstein.lambda_treatments_distinct",
-        "GeometricEinsteinOnly and LambdaAsEffectiveStressEnergy give different "
-        "inferred sources",
-        VerificationLevel::A, std::fabs(t_geom - t_eff) > 1.0e-3,
-        "the two policies differ",
-        "geometric |T| = " + std::to_string(t_geom) + ", effective |T| = " +
-            std::to_string(t_eff),
+        "einstein.desitter_matter_and_lambda_sources_differ",
+        "T^matter vanishes for de Sitter while T^Lambda does not",
+        VerificationLevel::A, t_matter < 1.0e-2 && t_lambda > 1.0e-2,
+        "T^matter ~ 0 and T^Lambda != 0",
+        "|T^matter| = " + std::to_string(t_matter) + ", |T^Lambda| = " +
+            std::to_string(t_lambda),
         sw.seconds(),
-        "under the effective policy de Sitter's inferred source is ~0 because "
-        "Lambda cancels G; under the geometric policy it is not. Choosing one "
-        "silently is how a vacuum comes to be reported as containing matter");
-
-    report.check_predicate(
-        "einstein.lambda_policy_recorded",
-        "every result carries the treatment that produced it",
-        VerificationLevel::A,
-        std::string(geometry::to_string(e.lambda_policy.treatment)) ==
-                "geometric_einstein_only" &&
-            std::string(geometry::to_string(e_eff.lambda_policy.treatment)) ==
-                "lambda_as_effective_stress_energy",
-        "policies recorded and distinct",
-        std::string(geometry::to_string(e.lambda_policy.treatment)) + " / " +
-            geometry::to_string(e_eff.lambda_policy.treatment),
-        sw.seconds(), "");
+        "de Sitter contains no matter and is nonetheless sourced. Reporting a "
+        "single 'the stress-energy' number here would have to pick one of these "
+        "two and would be wrong about the other");
 
     std::ofstream f(out_dir + "/einstein_desitter.csv");
     f << "r,G00,G11,G22,G33,expected_G00,trace,ricci_scalar,"

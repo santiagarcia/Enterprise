@@ -232,8 +232,9 @@ def main(argv=None) -> int:
             "exact_onset_frame": meta.get("exact_onset_frame"),
             "first_spatial_contour_frame":
                 meta.get("first_spatial_contour_frame"),
-            "cosmological_constant_treatment":
-                meta.get("cosmological_constant_treatment"),
+            "lambda": meta.get("lambda"),
+            "field_equation_convention": meta.get("field_equation_convention"),
+            "source_decomposition_note": meta.get("source_decomposition_note"),
             "colour_scale": "fixed globally across frames, per field",
             "renderer_computes_physics": False,
             "quantity": meta.get("quantity"),

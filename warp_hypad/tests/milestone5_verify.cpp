@@ -69,6 +69,8 @@ int main(int argc, char** argv) {
         checks::run_units_checks(report, out_dir);
     if (all || group == "policy")
         checks::run_einstein_policy_checks(report, out_dir);
+    if (all || group == "lambda")
+        checks::run_lambda_source_checks(report, out_dir);
 
     if (report.num_cases() == 0) {
         std::cerr << "no cases ran: unknown group '" << group << "'\n";

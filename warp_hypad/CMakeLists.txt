@@ -556,6 +556,7 @@ endif()
 add_executable(milestone5_verify
   tests/milestone5_verify.cpp
   tests/einstein_checks.cpp
+  tests/lambda_source_checks.cpp
 )
 target_link_libraries(milestone5_verify PRIVATE warp_hypad_core)
 target_include_directories(milestone5_verify PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
@@ -568,7 +569,7 @@ endif()
 
 set(WARP_HYPAD_M5_RESULTS "${CMAKE_BINARY_DIR}/results/verification/milestone_05")
 
-foreach(_group reference desitter alcubierre identities bianchi convergence units policy)
+foreach(_group reference desitter alcubierre identities bianchi convergence units policy lambda)
   add_test(NAME milestone5.${_group}
            COMMAND milestone5_verify --group ${_group} --out "${WARP_HYPAD_M5_RESULTS}")
 endforeach()
@@ -576,7 +577,7 @@ endforeach()
 add_test(NAME milestone5.gate
          COMMAND milestone5_verify --out "${WARP_HYPAD_M5_RESULTS}")
 set_tests_properties(milestone5.gate PROPERTIES
-  DEPENDS "milestone4.gate;milestone5.reference;milestone5.desitter;milestone5.alcubierre;milestone5.identities;milestone5.bianchi;milestone5.convergence;milestone5.units;milestone5.policy")
+  DEPENDS "milestone4.gate;milestone5.reference;milestone5.desitter;milestone5.alcubierre;milestone5.identities;milestone5.bianchi;milestone5.convergence;milestone5.units;milestone5.policy;milestone5.lambda")
 
 # --- A5 Einstein sweep and animation ----------------------------------------
 
