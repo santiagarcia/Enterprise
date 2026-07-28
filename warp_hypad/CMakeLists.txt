@@ -579,6 +579,34 @@ add_test(NAME milestone5.gate
 set_tests_properties(milestone5.gate PROPERTIES
   DEPENDS "milestone4.gate;milestone5.reference;milestone5.desitter;milestone5.alcubierre;milestone5.identities;milestone5.bianchi;milestone5.convergence;milestone5.units;milestone5.policy;milestone5.lambda")
 
+# --- Milestone A6: observer frames and energy conditions --------------------
+
+add_executable(milestone6_verify
+  tests/milestone6_verify.cpp
+  tests/observer_checks.cpp
+  tests/energy_integral_checks.cpp
+)
+target_link_libraries(milestone6_verify PRIVATE warp_hypad_core)
+target_include_directories(milestone6_verify PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+if(MSVC)
+  target_compile_options(milestone6_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(milestone6_verify PRIVATE
+    -Wall -Wextra -Wpedantic -Werror -Wshadow -Wconversion)
+endif()
+
+set(WARP_HYPAD_M6_RESULTS "${CMAKE_BINARY_DIR}/results/verification/milestone_06")
+
+foreach(_group frames observers fixtures nec alcubierre integrals)
+  add_test(NAME milestone6.${_group}
+           COMMAND milestone6_verify --group ${_group} --out "${WARP_HYPAD_M6_RESULTS}")
+endforeach()
+
+add_test(NAME milestone6.gate
+         COMMAND milestone6_verify --out "${WARP_HYPAD_M6_RESULTS}")
+set_tests_properties(milestone6.gate PROPERTIES
+  DEPENDS "milestone5.gate;milestone6.frames;milestone6.observers;milestone6.fixtures;milestone6.nec;milestone6.alcubierre;milestone6.integrals")
+
 # --- A5 Einstein sweep and animation ----------------------------------------
 
 add_executable(a5_einstein_sweep tools/a5_einstein_sweep.cpp)

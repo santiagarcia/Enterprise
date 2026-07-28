@@ -1,0 +1,8 @@
+fixture,rho,p1,p2,p3,N_min,worst_nx,worst_ny,worst_nz,WEC_worst,DEC_worst,SEC_worst,NEC_status,WEC_status,DEC_status,SEC_status
+vacuum,0,0,0,0,0,1,0,0,0,-0,0,satisfied,indeterminate_within_discretization,indeterminate_within_discretization,indeterminate_within_discretization
+dust,1,0,0,0,1,1,0,0,1,1,0.5,satisfied,certified_satisfied,certified_satisfied,certified_satisfied
+radiation,1,0.333333,0.333333,0.333333,1.33333,1,0,0,1,1,1,satisfied,certified_satisfied,certified_satisfied,certified_satisfied
+lambda_positive,1,-1,-1,-1,0,1,0,0,1,1,-1,satisfied,certified_satisfied,certified_satisfied,certified_violated
+phantom,1,-1.6,-1.6,-1.6,-0.6,1,0,0,-13.5515,-36.8339,-16.4515,violated,certified_violated,certified_violated,certified_violated
+anisotropic,1,-1.4,-0.2,0.5,-0.4,0,0,1,-7.9848,-21.637,-9.0348,violated,certified_violated,certified_violated,certified_violated
+momentum_flux,1,0.2,0.2,0.2,-0.963331,-0.83205,-0.5547,0,-23.3502,-21.4204,-23.5502,violated,certified_violated,certified_violated,certified_violated
