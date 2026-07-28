@@ -281,6 +281,12 @@ if(Python3_FOUND)
                      "${WARP_HYPAD_M2T_RESULTS}")
     set_tests_properties(milestone2t.figures PROPERTIES DEPENDS "milestone2t.gate")
 
+    add_test(NAME milestone4.figures
+             COMMAND ${Python3_EXECUTABLE}
+                     "${CMAKE_CURRENT_SOURCE_DIR}/python/plot_milestone4.py"
+                     "${WARP_HYPAD_M4_RESULTS}")
+    set_tests_properties(milestone4.figures PROPERTIES DEPENDS "milestone4.gate")
+
     message(STATUS "  figures:  enabled (${Python3_EXECUTABLE})")
   else()
     message(STATUS "  figures:  SKIPPED (matplotlib not importable)")
