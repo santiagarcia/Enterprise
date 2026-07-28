@@ -7,11 +7,15 @@ from the same code that computes the objective.
 
     p → g_μν(x; p) → ∂_α g_μν → Γ^ρ_μν → R_μν → R → G_μν → T_μν → J(p)
 
-> **Status: Milestones 1, A2, A2T and A3 complete, plus a verified AD backend
-> and Program B1.** **215 / 215 verification cases pass**, 17/17 CTest.
-> **No curvature yet:** no Christoffel symbols, Riemann/Ricci/Einstein tensors,
-> stress-energy, observer frames or optimizer. Nothing here supports any claim
-> about warp-drive energy requirements.
+> **Status: Milestones 1, A2, A2T, A3 and A4 complete, plus a verified AD backend
+> and Program B1.** **258 / 258 verification cases pass**, 43/43 CTest.
+> **Curvature exists as of A4** — Christoffel, Riemann, Ricci, and the
+> R<sub>μν</sub>R<sup>μν</sup> and Kretschmann invariants, checked against
+> Schwarzschild, static de Sitter and flat space in spherical coordinates.
+> **Still no stress-energy:** no Einstein tensor, no T<sub>μν</sub>, no observer
+> frames, no energy conditions, no optimizer. Nothing here supports any claim
+> about warp-drive energy requirements, and there is as yet no quantity in this
+> repository that may be called an energy.
 > See [docs/limitations.md](docs/limitations.md) and
 > [Program B's claims register](../program_b_em_inverse_design/docs/claims_and_limitations.md).
 
@@ -39,6 +43,7 @@ Each milestone gate is a process that returns a status:
 ./build/milestone1_verify --out results/verification/milestone_01
 ./build/milestone2_verify --out results/verification/milestone_02
 ./build/milestone3_verify --out results/verification/milestone_03
+./build/milestone4_verify --out results/verification/milestone_04
 ./build/otilib_verify     --out results/verification/otilib
 echo $?          # 0 = the milestone passes; anything else blocks the next one
 ```
@@ -53,9 +58,10 @@ python python/plot_milestone3.py results/verification/milestone_03
 
 ## Current result
 
-**215 / 215 verification cases pass**, 0 failed, 0 skipped
+**258 / 258 verification cases pass**, 0 failed, 0 skipped
 (MSVC 19.44, RelWithDebInfo, Windows-AMD64, `-DWARP_HYPAD_WITH_OTILIB=ON`).
-17 / 17 CTest tests pass, zero compiler warnings at `/W4 /WX`.
+43 / 43 CTest tests pass (42 / 42 with the backend off), zero compiler warnings
+at `/W4 /WX`.
 
 | Gate | Cases | Highlights |
 |---|---:|---|
@@ -63,11 +69,42 @@ python python/plot_milestone3.py results/verification/milestone_03
 | A2 — spatial derivatives | 41 | observed order **1.913–2.026**, interior *and* boundary |
 | A2T — temporal derivatives | 23 | `∂ₜg = −v_s ∂ₓg` residual converges at order 1.82 |
 | A3 — metric generation | 31 | `det g = −1` exactly; HyPAD vs analytic **1.1e-16** |
+| A4 — covariant curvature | 43 | Schwarzschild `K = 48M²/r⁶`; de Sitter `R = +12/L²` fixes the sign |
 | OTIlib AD backend | 23 | `d(A⁻¹)/dp = −A⁻¹(dA/dp)A⁻¹` at **1.9e-16** |
 | [Program B1](../program_b_em_inverse_design/) | 20 | conformal invariance 4.4e-16; 3/3 non-metric media rejected |
 
-By level: 128 × A (exact identity), 42 × B (analytic), 30 × E (grid
+By level: 152 × A (exact identity), 57 × B (analytic), 34 × E (grid
 convergence), 15 × D (independent method).
+
+### What A4 actually establishes
+
+Four reference geometries, chosen so that no single bug passes all of them:
+
+- **Minkowski, Cartesian** — Γ = 0 and Riemann = 0, exactly. Passes trivially for
+  a pipeline that always returns zero, which is why the next case exists.
+- **Flat space, spherical** — Γ ≠ 0 while Riemann = 0. Separates "the connection
+  vanishes" from "the curvature vanishes"; catches a sign error in the ΓΓ terms.
+- **Schwarzschild** — `R_μν = 0` while `K = 48M²/r⁶`. Separates Ricci-flat from
+  flat, and the same geometry in isotropic coordinates gives `K` agreeing to
+  3e-3 across two charts.
+- **Static de Sitter** — the only reference with nonzero Ricci, so the only one
+  that fixes the **sign**: `R = +12/L²` under the MTW (+,+,+) conventions. A
+  pipeline with the opposite Riemann sign passes every index identity here and
+  fails only this.
+
+Plus the Alcubierre metric against an independently generated symbolic reference
+(exact sympy derivatives, algebra written separately in numpy), which is the only
+case exercising the genuinely time-dependent path.
+
+Measured convergence: **1.98** (Schwarzschild K), **2.00** (flat-spherical
+Riemann), **2.08** (Ricci symmetry), **1.63** (Alcubierre R, where the grid only
+just resolves the wall).
+
+Two refusals are verified rather than documented: a frozen-time treatment yields
+no curvature at all, and a false `ExactlyStatic` claim is caught by probing the
+metric before it is used. The size of the error the first one prevents is
+measured, not asserted — discarding `∂₀g` changes the Ricci scalar by more than
+the Ricci scalar itself.
 
 ### Milestone 1 detail
 

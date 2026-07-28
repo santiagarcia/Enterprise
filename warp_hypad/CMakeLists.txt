@@ -204,6 +204,41 @@ add_test(NAME milestone3.gate
          COMMAND milestone3_verify --out "${WARP_HYPAD_M3_RESULTS}")
 set_tests_properties(milestone3.gate PROPERTIES DEPENDS "milestone2.gate")
 
+# --- Milestone A4: covariant curvature --------------------------------------
+#
+# Depends on A2 (spatial stencils), A2T (temporal stencils) and A3 (metrics)
+# through CTest rather than by repeating their cases. It is plain double
+# throughout: curvature SENSITIVITIES are a later milestone, and instantiating
+# the rank-4 fields over an AD scalar would multiply the working set by the
+# channel count before the curvature itself is verified.
+
+add_executable(milestone4_verify
+  tests/milestone4_verify.cpp
+  tests/curvature_checks.cpp
+)
+target_link_libraries(milestone4_verify PRIVATE warp_hypad_core)
+target_include_directories(milestone4_verify PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+if(MSVC)
+  target_compile_options(milestone4_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(milestone4_verify PRIVATE
+    -Wall -Wextra -Wpedantic -Werror -Wshadow -Wconversion)
+endif()
+
+set(WARP_HYPAD_M4_RESULTS "${CMAKE_BINARY_DIR}/results/verification/milestone_04")
+
+# Per-group registration, so a failure names the area that broke. Only the gate
+# writes the record; see the comment in milestone4_verify.cpp.
+foreach(_group connection analytic temporal alcubierre convergence)
+  add_test(NAME milestone4.${_group}
+           COMMAND milestone4_verify --group ${_group} --out "${WARP_HYPAD_M4_RESULTS}")
+endforeach()
+
+add_test(NAME milestone4.gate
+         COMMAND milestone4_verify --out "${WARP_HYPAD_M4_RESULTS}")
+set_tests_properties(milestone4.gate PROPERTIES
+  DEPENDS "milestone2.gate;milestone2t.gate;milestone3.gate;milestone4.connection;milestone4.analytic;milestone4.temporal;milestone4.alcubierre;milestone4.convergence")
+
 # The gate must run last, so the written record reflects a complete run.
 set_tests_properties(milestone1.gate PROPERTIES
   DEPENDS "milestone1.grid;milestone1.layout;milestone1.algebra;milestone1.contraction;milestone1.genericity;milestone1.config")

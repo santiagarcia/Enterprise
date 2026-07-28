@@ -306,5 +306,55 @@ Rank3Field<Scalar> spacetime_gradient_frozen_time(const Rank2Field<Scalar>& gfie
     return spacetime_gradient<Scalar>(gfield, g, nullptr);
 }
 
+// Spacetime gradient of a rank-3 field:
+//
+//     out(p, alpha, a, b, c) = d_alpha T(p, a, b, c)
+//
+// The object the Riemann assembly consumes, with T the Christoffel symbol. Same
+// contract as the rank-2 form above: the alpha = 0 slot is supplied by the
+// caller and is a REQUIRED argument, so a vanishing temporal derivative is a
+// stated claim at the call site rather than a default.
+//
+// Note the storage cost. The result is a Rank4Field, 256 scalars per grid point:
+// 41^3 points is 141 MB in double and proportionally more with derivative
+// channels. Curvature verification therefore runs on modest grids by design, and
+// the memory scaling is a limitation recorded in docs/limitations.md rather than
+// an oversight.
+template <typename Scalar>
+Rank4Field<Scalar> spacetime_gradient_rank3(const Rank3Field<Scalar>& tfield,
+                                            const Grid& g,
+                                            const Rank4Field<Scalar>* time_derivative) {
+    Rank4Field<Scalar> out(g);
+    const std::size_t n = g.num_points();
+
+    ScalarField<Scalar> comp(g);
+
+    for (int a = 0; a < 4; ++a) {
+        for (int b = 0; b < 4; ++b) {
+            for (int c = 0; c < 4; ++c) {
+                for (std::size_t p = 0; p < n; ++p) comp.at(p) = tfield.at(p, a, b, c);
+
+                for (int ax = 0; ax < 3; ++ax) {
+                    const Axis axis = static_cast<Axis>(ax);
+                    for (std::size_t p = 0; p < n; ++p) {
+                        out.at(p, ax + 1, a, b, c) =
+                            first_derivative_at(comp, g, p, axis);
+                    }
+                }
+            }
+        }
+    }
+
+    const Scalar zero = scalar_cast<Scalar>(0.0);
+    for (std::size_t p = 0; p < n; ++p)
+        for (int a = 0; a < 4; ++a)
+            for (int b = 0; b < 4; ++b)
+                for (int c = 0; c < 4; ++c)
+                    out.at(p, 0, a, b, c) =
+                        time_derivative ? time_derivative->at(p, 0, a, b, c) : zero;
+
+    return out;
+}
+
 }  // namespace geometry
 }  // namespace warp_hypad

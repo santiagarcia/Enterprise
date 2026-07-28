@@ -1,0 +1,13 @@
+case,n,h,interior_error,boundary_error
+schwarzschild_kretschmann,9,0.25,0.0199678,
+schwarzschild_kretschmann,17,0.125,0.0052162,
+schwarzschild_kretschmann,33,0.0625,0.00131824,
+flat_spherical_riemann,9,0.5,0.0268575,0.202547
+flat_spherical_riemann,17,0.25,0.00676927,0.113302
+flat_spherical_riemann,33,0.125,0.00169577,0.0625165
+ricci_symmetry,17,0.5,0.00072999,
+ricci_symmetry,25,0.333333,0.00030844,
+ricci_symmetry,33,0.25,0.000169686,
+alcubierre_ricci_scalar,17,0.5,0.0464608,
+alcubierre_ricci_scalar,25,0.333333,0.0268616,
+alcubierre_ricci_scalar,33,0.25,0.0168136,

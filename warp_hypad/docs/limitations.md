@@ -1,6 +1,6 @@
 # Missing features and current limitations
 
-Honest state of Program A as of Milestones 1, A2, A2T and A3, with the OTIlib
+Honest state of Program A as of Milestones 1, A2, A2T, A3 and A4, with the OTIlib
 backend integrated. Program B keeps its own register at
 [../../program_b_em_inverse_design/docs/claims_and_limitations.md](../../program_b_em_inverse_design/docs/claims_and_limitations.md).
 
@@ -25,14 +25,22 @@ backend integrated. Program B keeps its own register at
 - **Program B1** — metric ↔ electromagnetic constitutive mapping. **20 cases**,
   tracked separately.
 
-**215 verification cases pass, 0 fail, 0 skipped** across six gates (with the
-OTIlib backend on; 2 skipped with it off).
+**258 verification cases pass, 0 fail, 0 skipped** across seven gates (with the
+OTIlib backend on; 2 skipped with it off). Full CTest: 43/43 with OTIlib, 42/42
+without.
+
+- **Milestone A4** — Christoffel symbols, Riemann and Ricci tensors, Ricci
+  scalar, R<sub>μν</sub>R<sup>μν</sup> and the Kretschmann invariant; the
+  coordinate-chart abstraction; the temporal-derivative policy and its two
+  refusals; four closed-form reference spacetimes and an independently generated
+  symbolic reference for Alcubierre. **43 cases.**
 
 ## What does not exist
 
-**No curvature.** There is no Christoffel symbol, no Riemann or Ricci tensor, no
-Einstein tensor, no stress-energy tensor, no observer frame, no energy
-condition, no objective and no optimizer.
+**No stress-energy.** Curvature now exists, but there is still no Einstein
+tensor, no stress-energy tensor, no observer frame, no energy condition, no
+objective and no optimizer. Nothing in this repository may yet be called an
+energy, and there is therefore nothing to minimise.
 
 Specifically absent:
 
@@ -40,14 +48,51 @@ Specifically absent:
 |---|---|
 | ~~2~~ | *done (A2)* |
 | ~~3~~ | *done (A3); time dependence now resolved, see §1* |
-| 4 | Christoffel symbols, metric compatibility |
-| 5 | Riemann, Ricci, curvature invariants, Bianchi identities |
-| 6 | Einstein tensor, stress-energy, contracted Bianchi |
+| ~~4~~ | *done (A4): Christoffel, Riemann, Ricci, invariants, metric compatibility, Bianchi* |
+| ~~5~~ | *done (A4), which absorbed the Riemann/Ricci/invariant scope* |
+| 6 | Einstein tensor, stress-energy, contracted Bianchi ∇<sub>μ</sub>G<sup>μν</sup> = 0 |
 | 7 | observer frames, four-velocity normalization, energy density |
 | 8 | energy conditions, smooth negative-energy objective, integration |
 | 9 | HDF5/VTK export, full Python plotting package |
-| 10 | *(scalar, seeding and extraction are DONE ahead of schedule — see §2; sensitivity **fields** still need the metric and curvature code from Milestones 3–6)* |
+| 10 | *(scalar, seeding and extraction are DONE ahead of schedule — see §2; sensitivity **fields** still need the stress-energy code from Milestone 6)* |
 | 11+ | optimization, scaling study, Warp Factory cross-validation. *(FD verification of the AD scalar itself is done; FD verification of full-field sensitivities is not.)* |
+
+### A4-specific limitations
+
+- **Curvature is `double` only.** The pipeline is templated on Scalar and would
+  instantiate over `OTIScalar`, but nothing does. A `Rank4Field` is 256 scalars
+  per grid point — 141 MB at 41³ in plain double — and the AD type multiplies
+  that by the channel count. Curvature *sensitivities* are deliberately deferred
+  until after the curvature itself is verified.
+
+- **Memory sets the grid size, and the grid size sets the accuracy.** The
+  Alcubierre reference comparison runs at 33³ with a peak working set near
+  350 MB. That resolves the σ = 1 wall with about four points, which is why its
+  measured convergence order is 1.63 rather than the 1.98–2.08 the smooth
+  reference geometries reach. The order is real but the finest grid is only just
+  entering the asymptotic regime.
+
+- **Second-order accuracy, twice nested.** Curvature applies the derivative
+  operators twice, so the boundary shell is where a figure goes wrong first.
+  Every A4 residual is reported interior and boundary separately, with a shell
+  depth of 2, and the boundary figure is typically an order of magnitude worse.
+
+- **No second Bianchi identity.** ∇<sub>[λ</sub>R<sup>ρ</sup><sub>|σ|μν]</sub> = 0
+  needs a covariant derivative of a rank-4 field, which needs a third derivative
+  pass. Not implemented; the contracted form ∇<sub>μ</sub>G<sup>μν</sup> = 0 is
+  Milestone 6's obligation and is the more useful of the two.
+
+- **Time is still not gridded.** Temporal derivatives come from re-evaluating the
+  metric at shifted times. `AnalyticResample` costs five metric-field evaluations
+  and three Christoffel assemblies per curvature call. That is exact-in-principle
+  and assumption-free, but it means the pipeline cannot consume a metric that
+  exists only as tabulated data.
+
+- **No co-moving cross-check.** `TimeTreatment::CoMoving` remains declared and
+  unimplemented, so the planned "invariants agree while components differ" check
+  between inertial and co-moving charts has not been run. The
+  Schwarzschild-versus-isotropic case now provides an equivalent statement for a
+  static geometry, but not for a moving one.
 
 ## Known open questions
 

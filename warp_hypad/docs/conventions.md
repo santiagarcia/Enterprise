@@ -71,22 +71,31 @@ See [memory_layout.md](memory_layout.md). Summary:
 - flat grid index `p = (i·n_y + j)·n_z + k`, so a walk along +z is contiguous;
 - fields are **point-major**: `raw()[16p + 4μ + ν]` for rank 2.
 
-## 5. Christoffel symbols — declared (not implemented)
+## 5. Christoffel symbols — implemented and verified (A4)
 
 Levi-Civita connection (metric-compatible and torsion-free):
 
     Γ^ρ_{μν} = ½ g^{ρσ} ( ∂_μ g_{σν} + ∂_ν g_{σμ} − ∂_σ g_{μν} )
 
-Consequences that Milestone 4 must verify independently:
+Implemented as `geometry::christoffel_at` / `christoffel_field`, routed through
+the Milestone 1 `contract_first` so the first-kind-to-second-kind step is the one
+already verified there.
 
-- symmetry in the lower pair, Γ<sup>ρ</sup><sub>μν</sub> = Γ<sup>ρ</sup><sub>νμ</sub>;
-- metric compatibility, ∇<sub>λ</sub> g<sub>μν</sub> = 0.
+Verified independently:
+
+- symmetry in the lower pair, Γ<sup>ρ</sup><sub>μν</sub> = Γ<sup>ρ</sup><sub>νμ</sub>
+  — exactly 0;
+- metric compatibility, ∇<sub>λ</sub> g<sub>μν</sub> = 0 — 3.3e-17;
+- against the closed form for flat space in spherical coordinates
+  (Γ<sup>r</sup><sub>θθ</sub> = −r, Γ<sup>θ</sup><sub>rθ</sub> = 1/r,
+  Γ<sup>φ</sup><sub>θφ</sub> = cot θ) — 3.4e-4 interior.
 
 Metric compatibility is the important one: it is an identity the connection must
 satisfy that does **not** reuse the formula above, so it is a genuine Level A
-check rather than a restatement.
+check rather than a restatement. It comes out exact because its derivation never
+differentiates a product — see §7a.
 
-## 6. Riemann tensor — declared (not implemented)
+## 6. Riemann tensor — implemented and verified (A4)
 
     R^ρ_{σμν} = ∂_μ Γ^ρ_{νσ} − ∂_ν Γ^ρ_{μσ} + Γ^ρ_{μλ} Γ^λ_{νσ} − Γ^ρ_{νλ} Γ^λ_{μσ}
 
@@ -96,14 +105,57 @@ sphere and positive energy density for ordinary matter.
 
 In the Misner–Thorne–Wheeler sign classification this project is **(+, +, +)**.
 
-## 7. Ricci tensor and scalar — declared (not implemented)
+**The sign is verified, not merely declared.** Static de Sitter is the only
+reference geometry in the A4 suite with nonzero Ricci, and
+`curvature.desitter_ricci_scalar_sign` asserts R > 0 there. A pipeline built with
+the opposite Riemann sign returns −12/L² and passes every index identity in the
+suite; that one case is what catches it, and it therefore fixes the sign of every
+energy density Milestone A6 will report.
+
+## 7. Ricci tensor and scalar — implemented and verified (A4)
 
     R_{σν} = R^ρ_{σρν}          (contract slot 1 against slot 3)
     R      = g^{μν} R_{μν}
 
-The contraction is implemented as `contract_13`, and
-`contract.contract_13_slot_selectivity` already verifies that it contracts *that*
-index pair and not one of the other five possibilities.
+The contraction is `contract_13`, and `contract.contract_13_slot_selectivity`
+verifies that it contracts *that* index pair and not one of the other five
+possibilities.
+
+Curvature invariants, added at A4:
+
+    R_{μν} R^{μν}        `ricci_square`
+    R_{αβγδ} R^{αβγδ}    `kretschmann`
+
+## 7a. Which curvature identities survive discretisation — measured (A4)
+
+A result, not a convention, and it decides how every A4 tolerance is written.
+
+The identities whose derivation is a rearrangement of the same discrete
+∂<sub>α</sub> g hold **exactly**, at roundoff:
+
+| Identity | Residual |
+|---|---|
+| Γ<sup>ρ</sup><sub>μν</sub> = Γ<sup>ρ</sup><sub>νμ</sub> | 0 |
+| ∇<sub>λ</sub> g<sub>μν</sub> = 0 | 3.3e-17 |
+| R<sup>ρ</sup><sub>σμν</sub> = −R<sup>ρ</sup><sub>σνμ</sub> | 0 |
+| first Bianchi, R<sup>ρ</sup><sub>[σμν]</sub> = 0 | ~1e-16 |
+| ∂<sub>0</sub> g = −v<sub>s</sub> ∂<sub>x</sub> g (aligned step, §11) | 0 |
+
+The identities whose textbook derivation passes through the **product rule** do
+not, because a difference operator does not satisfy it: D(fg) differs from
+(Df)g + f(Dg) by O(h²) f′g′. These are second-order truncation statements:
+
+| Identity | Residual (17³, v=0.5 R=2 σ=1) | Measured order |
+|---|---|---|
+| R<sub>ρσμν</sub> = −R<sub>σρμν</sub> (lowered) | 7.4e-3 | — |
+| R<sub>ρσμν</sub> = R<sub>μνρσ</sub> | 5.1e-3 | — |
+| R<sub>μν</sub> = R<sub>νμ</sub> | 4.7e-3 | 2.08 |
+
+Writing any of the second group with a roundoff tolerance and then widening it
+until it passed would have converted a check into a calibration. They are gated
+instead at twice the measured value **with** a companion convergence case, and
+Milestone A5 inherits exactly this asymmetry when it forms
+G<sub>μν</sub> = R<sub>μν</sub> − ½ g<sub>μν</sub> R.
 
 ## 8. Einstein tensor — declared (not implemented)
 
@@ -137,6 +189,28 @@ for an explicitly specified, normalized four-velocity `u` with
 g<sub>μν</sub> u<sup>μ</sup> u<sup>ν</sup> = −1. Milestone 7 exists to make this
 distinction and to verify the normalization; until then, no quantity in this
 project may be labelled "energy density".
+
+## 10a. Coordinate charts — implemented (A4)
+
+Up to A3 the three grid axes were always (x, y, z) and the identification was
+implicit. A4 breaks that: the strongest closed-form references are written in
+(r, θ, φ), and flat-space-in-curvilinear-coordinates exists precisely to separate
+"the connection vanishes" from "the curvature vanishes".
+
+Nothing about the finite-difference operators changes — a stencil differentiates
+with respect to a *grid axis*, and which coordinate that axis carries is a
+property of the metric. What changes is that a results directory is ambiguous
+unless the chart is recorded, so `geometry::Chart` is a first-class object.
+
+| Chart | Grid axes | Coordinate singularities to exclude |
+|---|---|---|
+| `CartesianTXYZ` | x, y, z | none |
+| `SphericalTRThetaPhi` | r, θ, φ | r = 0, sin θ = 0, and r = 2M for Schwarzschild |
+| `IsotropicTRhoThetaPhi` | ρ, θ, φ | ρ = 0, sin θ = 0, ρ = M/2 |
+
+A grid that straddles one of those produces large finite numbers that look like
+physics. Every A4 domain excludes them by construction and records the exclusion
+in the case's parameters.
 
 ## 11. Time dependence — DECIDED for A3: frozen-time spatial slice
 

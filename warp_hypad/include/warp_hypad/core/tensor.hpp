@@ -142,6 +142,60 @@ Rank4<Scalar> lower_first(const Mat4<Scalar>& g, const Rank4<Scalar>& t) {
     return out;
 }
 
+// Raise every slot of a fully lowered rank-4:
+//     result^{abcd} = g^{ae} g^{bf} g^{cg} g^{dh} T_{efgh}
+//
+// Done as four successive single-slot contractions rather than one 8-fold loop:
+// 4 * 4^5 multiplies instead of 4^8. Needed for the Kretschmann invariant.
+template <typename Scalar>
+Rank4<Scalar> raise_all_rank4(const Mat4<Scalar>& g_inv, const Rank4<Scalar>& t) {
+    const Scalar zero = scalar_cast<Scalar>(0.0);
+    Rank4<Scalar> s1, s2, s3, s4;
+
+    for (int a = 0; a < 4; ++a)
+        for (int b = 0; b < 4; ++b)
+            for (int c = 0; c < 4; ++c)
+                for (int d = 0; d < 4; ++d) {
+                    Scalar acc = zero;
+                    for (int e = 0; e < 4; ++e) acc = acc + g_inv(a, e) * t(e, b, c, d);
+                    s1(a, b, c, d) = acc;
+                }
+    for (int a = 0; a < 4; ++a)
+        for (int b = 0; b < 4; ++b)
+            for (int c = 0; c < 4; ++c)
+                for (int d = 0; d < 4; ++d) {
+                    Scalar acc = zero;
+                    for (int e = 0; e < 4; ++e) acc = acc + g_inv(b, e) * s1(a, e, c, d);
+                    s2(a, b, c, d) = acc;
+                }
+    for (int a = 0; a < 4; ++a)
+        for (int b = 0; b < 4; ++b)
+            for (int c = 0; c < 4; ++c)
+                for (int d = 0; d < 4; ++d) {
+                    Scalar acc = zero;
+                    for (int e = 0; e < 4; ++e) acc = acc + g_inv(c, e) * s2(a, b, e, d);
+                    s3(a, b, c, d) = acc;
+                }
+    for (int a = 0; a < 4; ++a)
+        for (int b = 0; b < 4; ++b)
+            for (int c = 0; c < 4; ++c)
+                for (int d = 0; d < 4; ++d) {
+                    Scalar acc = zero;
+                    for (int e = 0; e < 4; ++e) acc = acc + g_inv(d, e) * s3(a, b, c, e);
+                    s4(a, b, c, d) = acc;
+                }
+    return s4;
+}
+
+// Full contraction of two rank-4 tensors with opposite index placement:
+//     result = A_{abcd} B^{abcd}
+template <typename Scalar>
+Scalar full_contract_rank4(const Rank4<Scalar>& a, const Rank4<Scalar>& b) {
+    Scalar s = scalar_cast<Scalar>(0.0);
+    for (int i = 0; i < 256; ++i) s = s + a.t[i] * b.t[i];
+    return s;
+}
+
 // --- Residual helpers ------------------------------------------------------
 
 // Largest |real| violation of symmetry in the trailing index pair:
@@ -157,6 +211,77 @@ double lower_pair_symmetry_residual(const Rank3<Scalar>& t) {
                 const double ad = d < 0.0 ? -d : d;
                 if (ad > worst) worst = ad;
             }
+    return worst;
+}
+
+// --- Rank-4 index-symmetry residuals ---------------------------------------
+//
+// These are statements about index slots, not about physics, which is why they
+// live beside the container. Which of them a Riemann tensor is EXPECTED to
+// satisfy identically and which are genuine discretisation tests is a curvature
+// question, and is documented at the call sites in the A4 suite.
+
+// t(a,b,c,d) == -t(a,b,d,c)
+template <typename Scalar>
+double antisymmetry_last_pair_residual(const Rank4<Scalar>& t) {
+    double worst = 0.0;
+    for (int a = 0; a < 4; ++a)
+        for (int b = 0; b < 4; ++b)
+            for (int c = 0; c < 4; ++c)
+                for (int d = c; d < 4; ++d) {
+                    const double v = real_part(t(a, b, c, d)) + real_part(t(a, b, d, c));
+                    const double av = v < 0.0 ? -v : v;
+                    if (av > worst) worst = av;
+                }
+    return worst;
+}
+
+// t(a,b,c,d) == -t(b,a,c,d). For a Riemann tensor this holds only once the
+// leading index is lowered, and only if the connection is metric compatible.
+template <typename Scalar>
+double antisymmetry_first_pair_residual(const Rank4<Scalar>& t) {
+    double worst = 0.0;
+    for (int a = 0; a < 4; ++a)
+        for (int b = a; b < 4; ++b)
+            for (int c = 0; c < 4; ++c)
+                for (int d = 0; d < 4; ++d) {
+                    const double v = real_part(t(a, b, c, d)) + real_part(t(b, a, c, d));
+                    const double av = v < 0.0 ? -v : v;
+                    if (av > worst) worst = av;
+                }
+    return worst;
+}
+
+// t(a,b,c,d) == t(c,d,a,b)
+template <typename Scalar>
+double pair_exchange_residual(const Rank4<Scalar>& t) {
+    double worst = 0.0;
+    for (int a = 0; a < 4; ++a)
+        for (int b = 0; b < 4; ++b)
+            for (int c = 0; c < 4; ++c)
+                for (int d = 0; d < 4; ++d) {
+                    const double v = real_part(t(a, b, c, d)) - real_part(t(c, d, a, b));
+                    const double av = v < 0.0 ? -v : v;
+                    if (av > worst) worst = av;
+                }
+    return worst;
+}
+
+// First Bianchi identity, cyclic over the trailing three slots:
+//     t(a,b,c,d) + t(a,c,d,b) + t(a,d,b,c) == 0
+template <typename Scalar>
+double first_bianchi_residual(const Rank4<Scalar>& t) {
+    double worst = 0.0;
+    for (int a = 0; a < 4; ++a)
+        for (int b = 0; b < 4; ++b)
+            for (int c = 0; c < 4; ++c)
+                for (int d = 0; d < 4; ++d) {
+                    const double v = real_part(t(a, b, c, d)) +
+                                     real_part(t(a, c, d, b)) +
+                                     real_part(t(a, d, b, c));
+                    const double av = v < 0.0 ? -v : v;
+                    if (av > worst) worst = av;
+                }
     return worst;
 }
 
