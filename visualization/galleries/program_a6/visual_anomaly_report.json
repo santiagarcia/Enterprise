@@ -1,0 +1,200 @@
+{
+  "all_clear": true,
+  "note": "These are TESTS, not aesthetic scores. A fired diagnostic fails the V0 gate. Figures are still written when one fires, because suppressing the picture would hide the evidence.",
+  "renderers": {
+    "a6_animation": {
+      "diagnostics": [
+        {
+          "detail": "observer families per frame: up to 0 identifiers missing from a frame",
+          "diagnostic": "lost_object_identifiers",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "frames whose observer family set differs from frame 0",
+          "diagnostic": "observer_identity_changed_between_frames",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "frame-to-frame direction jumps larger than 0.5 with a non-degenerate eigenvalue gap: []",
+          "diagnostic": "nec_direction_jump_without_degeneracy",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "distinct (domain_extent, grid_resolution) pairs across the sweep",
+          "diagnostic": "domain_changed_between_frames",
+          "fired": false,
+          "measured": [
+            [
+              "4",
+              "21"
+            ]
+          ],
+          "threshold": 1
+        },
+        {
+          "detail": "largest deviation of any frame's colour limits from frame 0, over 6 recorded limit sets",
+          "diagnostic": "per_frame_color_rescaling",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 0.0
+        },
+        {
+          "detail": "frames with fewer than 12 distinct colours: []",
+          "diagnostic": "blank_frame",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "records whose SHA-256 differs from the value the figure pass recorded, or which changed during this render: []",
+          "diagnostic": "source_checksum_mismatch",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "AST scan of the A6 renderer package: []",
+          "diagnostic": "python_physics_recomputation",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        }
+      ],
+      "milestone": "A6",
+      "num_fired": 0,
+      "program": "A"
+    },
+    "a6_static": {
+      "diagnostics": [
+        {
+          "detail": "observer frame fields: 0 non-finite of 59535",
+          "diagnostic": "nonfinite_value",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "worst |g(n,n)+1| over every drawn sample",
+          "diagnostic": "eulerian_normalization_failure",
+          "fired": false,
+          "measured": 2.22044604925e-16,
+          "threshold": 1e-10
+        },
+        {
+          "detail": "worst max|g(e_a,e_b) - eta_ab| over every drawn sample",
+          "diagnostic": "tetrad_orthonormality_failure",
+          "fired": false,
+          "measured": 2.22044604925e-16,
+          "threshold": 1e-12
+        },
+        {
+          "detail": "frame determinant range over every drawn sample",
+          "diagnostic": "tetrad_handedness_change",
+          "fired": false,
+          "measured": [
+            1.0,
+            1.0
+          ],
+          "threshold": "one sign throughout"
+        },
+        {
+          "detail": "min over samples of min_a e_a^a; the positive-diagonal convention makes a non-positive value a sign flip",
+          "diagnostic": "tetrad_sign_flip",
+          "fired": false,
+          "measured": 1.0,
+          "threshold": "> 0"
+        },
+        {
+          "detail": "coordinate-stationary rows marked valid where g_00 >= 0: []",
+          "diagnostic": "invalid_stationary_observer_rendered_valid",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "frames whose drawn slice has no off-axis negative sample or whose minimum disagrees with the sweep record: []",
+          "diagnostic": "missed_off_axis_negative_energy",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "worst |N_min - N(n_min) recomputed by production|",
+          "diagnostic": "nec_direction_does_not_reproduce_n_min",
+          "fired": false,
+          "measured": 0.0,
+          "threshold": 1e-12
+        },
+        {
+          "detail": "samples whose status and margin disagree: []",
+          "diagnostic": "status_inconsistent_with_certification_margin",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "samples drawn with a definite sign whose certification margin is not positive",
+          "diagnostic": "uncertified_value_rendered_definite",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "worst |E_net-(E_+-E_-)| and |E_abs-(E_++E_-)|",
+          "diagnostic": "integrated_objective_closure_failure",
+          "fired": false,
+          "measured": [
+            1.55431223448e-15,
+            1.60982338571e-15
+          ],
+          "threshold": 1e-09
+        },
+        {
+          "detail": "worst share of E_abs sitting in the outer shell",
+          "diagnostic": "boundary_dominated_integral",
+          "fired": false,
+          "measured": 0.0170412842491,
+          "threshold": 0.35
+        },
+        {
+          "detail": "fewest samples resolving the wall, measured from the saved ADM shift",
+          "diagnostic": "insufficient_cells_across_wall",
+          "fired": false,
+          "measured": 7,
+          "threshold": 4
+        },
+        {
+          "detail": "[]",
+          "diagnostic": "missing_or_mismatched_source_rows",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "records whose SHA-256 changed while the figures were being drawn: []",
+          "diagnostic": "source_checksum_mismatch",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        },
+        {
+          "detail": "AST scan of the A6 renderer package: []",
+          "diagnostic": "python_physics_recomputation",
+          "fired": false,
+          "measured": 0,
+          "threshold": 0
+        }
+      ],
+      "milestone": "A6",
+      "num_fired": 0,
+      "program": "A"
+    }
+  },
+  "total_fired": 0
+}

@@ -648,6 +648,84 @@ if(Python3_Interpreter_FOUND)
     DEPENDS "milestone5.sweep_export")
 endif()
 
+# --- A6 observer-energy sweep, figures and animations ------------------------
+#
+# The exporter MAY evaluate physics: it calls the same observer.hpp,
+# energy_conditions.hpp and einstein.hpp paths the A6 gate verifies. The Python
+# renderers may not, and the A6 visual gate greps their AST to keep it that way.
+#
+# It exists because the A6 gate writes one slice at one velocity, while the
+# visuals need the same fields across the established velocity sequence plus
+# several quantities production computes and discards -- the per-condition
+# certification margins, NecResult::direct_substitution, the tetrad handedness
+# witness, the interior/boundary split of the integrated objectives, and the
+# contracted-Bianchi diagnostic. See
+# visualization/program_a6/a6_capability_audit.json.
+
+add_executable(a6_energy_sweep tools/a6_energy_sweep.cpp)
+target_link_libraries(a6_energy_sweep PRIVATE warp_hypad_core)
+if(MSVC)
+  target_compile_options(a6_energy_sweep PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(a6_energy_sweep PRIVATE
+    -Wall -Wextra -Wpedantic -Werror)
+endif()
+
+set(WARP_HYPAD_A6_SWEEP
+    "${CMAKE_BINARY_DIR}/results/verification/v0_program_a6_energy")
+set(WARP_HYPAD_A6_GALLERY
+    "${CMAKE_BINARY_DIR}/results/visualization/program_a6")
+
+# Explicit, opt-in promotion, exactly as promote_a_sweeps and
+# promote_a4_curvature. A test must never do this: promotion decides which
+# verified build defines the committed record, and a test that made that
+# decision silently would let the last suite to run rewrite the repository.
+#
+#   cmake --build build --target promote_a6_energy
+add_custom_target(promote_a6_energy
+  COMMAND ${CMAKE_COMMAND} -E make_directory
+          "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_a6"
+  COMMAND ${CMAKE_COMMAND} -E copy_directory "${WARP_HYPAD_A6_GALLERY}"
+          "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_a6"
+  COMMENT "Promoting this build's A6 observer-energy visuals to the source tree"
+  VERBATIM)
+
+# The ordered A6 visual chain. One complete DEPENDS assignment per test:
+# repeated set_tests_properties(... DEPENDS) calls REPLACE the property rather
+# than appending to it, so every dependency a test has is named in one list.
+if(Python3_Interpreter_FOUND)
+  add_test(NAME milestone6.figures COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_a6/plot_a6_energy.py"
+    --sweep "${WARP_HYPAD_A6_SWEEP}"
+    --out "${WARP_HYPAD_A6_GALLERY}")
+endif()
+
+add_test(NAME milestone6.sweep_export
+         COMMAND a6_energy_sweep --out "${WARP_HYPAD_A6_SWEEP}")
+set_tests_properties(milestone6.sweep_export PROPERTIES
+  DEPENDS "milestone6.gate")
+
+if(Python3_Interpreter_FOUND)
+  add_test(NAME milestone6.animations COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_a6/animate_a6_energy.py"
+    --sweep "${WARP_HYPAD_A6_SWEEP}"
+    --out "${WARP_HYPAD_A6_GALLERY}")
+
+  add_test(NAME milestone6.visual_gate COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/regression/v0_program_a6_verify.py"
+    --gallery "${WARP_HYPAD_A6_GALLERY}"
+    --sweep "${WARP_HYPAD_A6_SWEEP}"
+    --results "${WARP_HYPAD_M6_RESULTS}"
+    --visualization "${CMAKE_CURRENT_SOURCE_DIR}/../visualization")
+
+  set_tests_properties(milestone6.figures PROPERTIES
+    DEPENDS "milestone6.gate;milestone6.sweep_export")
+  set_tests_properties(milestone6.animations PROPERTIES
+    DEPENDS "milestone6.sweep_export;milestone6.figures")
+  set_tests_properties(milestone6.visual_gate PROPERTIES
+    DEPENDS "milestone6.gate;milestone6.sweep_export;milestone6.figures;milestone6.animations")
+endif()
+
 # --- A4 curvature sweep and animation ---------------------------------------
 #
 # The exporter MAY evaluate physics: it calls the same compute_curvature path

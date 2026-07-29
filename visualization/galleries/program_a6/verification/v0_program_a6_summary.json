@@ -1,0 +1,238 @@
+{
+  "gate": "V0-PROGRAM-A6-ENERGY-VISUALS",
+  "num_cases": 22,
+  "num_passed": 21,
+  "num_failed": 0,
+  "num_blocked": 1,
+  "all_passed": true,
+  "invalid_observers_presented_as_physical": 0,
+  "uncertified_signs_presented_as_definite": 0,
+  "exact_smooth_objective_conflations": 0,
+  "blocked_products": {
+    "energy_vs_radius": "an A6 production path that varies the Alcubierre radius R and re-evaluates the frame stress-energy, the certification and the integrated objectives. A6 fixes R = 2 (kR in observer_checks.cpp and energy_integral_checks.cpp).",
+    "energy_vs_steepness": "an A6 production path that varies the shape-function steepness sigma and re-evaluates the same quantities. A6 fixes sigma = 1 (kSig).",
+    "stress_eigenvector_field": "an exported eigenbasis of S_ij. geometry::detail::orthonormal_eigenbasis computes one but it is internal to the NEC minimiser and no record carries it."
+  },
+  "cases": [
+    {
+      "name": "v0a6.scientific_gate_passed",
+      "claim": "the A6 numerical gate exists and passed, so the observers, the energy density and the certification behind these visuals are verified rather than merely computed",
+      "state": "PASS",
+      "passed": true,
+      "expected": "A6 gate all_passed with zero failures",
+      "computed": "40/40 passed, 0 failed, 0 skipped",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a6.capability_audit_present",
+      "claim": "the capability audit exists, classifies every quantity with the closed four-value vocabulary, and names a blocked product for every capability it calls unimplemented",
+      "state": "PASS",
+      "passed": true,
+      "expected": "25 capabilities, every classification in the vocabulary",
+      "computed": "25 capabilities, 0 unclassifiable, 2 not implemented, 3 blocked products named",
+      "note": "a quantity absent from production must be visible as absent, not inferred from a neighbouring column",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a6.every_visual_has_a_production_source",
+      "claim": "every produced figure names a saved A6 record it was drawn from, and that record exists",
+      "state": "PASS",
+      "passed": true,
+      "expected": "12 figure-to-record links",
+      "computed": "all 12 figures trace to an exported CSV",
+      "note": "",
+      "seconds": 0.001
+    },
+    {
+      "name": "v0a6.unsupported_products_blocked",
+      "claim": "every product the A6 science cannot support is declared BLOCKED_BY_UNIMPLEMENTED_SCIENCE with its exact dependency, and none of them was drawn anyway",
+      "state": "BLOCKED_BY_UNIMPLEMENTED_SCIENCE",
+      "passed": false,
+      "expected": "3 blocked products",
+      "computed": "3 blocked, all declared, none drawn: energy_vs_radius, energy_vs_steepness, stress_eigenvector_field",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a6.static_figures_exist",
+      "claim": "every required A6 figure is present as a PNG with sane dimensions",
+      "state": "PASS",
+      "passed": true,
+      "expected": "12 figures",
+      "computed": "all 12 present",
+      "note": "",
+      "seconds": 0.1075
+    },
+    {
+      "name": "v0a6.pngs_nonblank",
+      "claim": "no A6 figure is blank",
+      "state": "PASS",
+      "passed": true,
+      "expected": "every figure carries real content",
+      "computed": "all 12 rich",
+      "note": "",
+      "seconds": 0.5092
+    },
+    {
+      "name": "v0a6.svgs_parse",
+      "claim": "every figure has a well-formed SVG companion",
+      "state": "PASS",
+      "passed": true,
+      "expected": "12 SVGs",
+      "computed": "all parse",
+      "note": "",
+      "seconds": 0.3965
+    },
+    {
+      "name": "v0a6.animation_manifest_parses",
+      "claim": "the animation manifest parses and carries an entry for every animation and format",
+      "state": "PASS",
+      "passed": true,
+      "expected": "16 entries for 8 animations",
+      "computed": "16 entries, 8 GIFs present",
+      "note": "",
+      "seconds": 0.0106
+    },
+    {
+      "name": "v0a6.animation_status_is_honest",
+      "claim": "every manifest entry that claims a file exists has one, and every unwritten entry carries a reason",
+      "state": "PASS",
+      "passed": true,
+      "expected": "written flags match the filesystem",
+      "computed": "16 entries honest; 16 written, 0 unwritten with a reason",
+      "note": "a missing video encoder must not fail this gate: the GIFs, the frames and the contact sheets are the deterministic products",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a6.contact_sheets_exist",
+      "claim": "each animation has a nonblank contact sheet, so a regression is visible without opening a video",
+      "state": "PASS",
+      "passed": true,
+      "expected": "8 sheets",
+      "computed": "all 8 present and rich",
+      "note": "",
+      "seconds": 0.2414
+    },
+    {
+      "name": "v0a6.frame_counts_agree",
+      "claim": "the frame records, the summary rows, the manifest entries and the manifest provenance all report the same frame count",
+      "state": "PASS",
+      "passed": true,
+      "expected": "15 everywhere",
+      "computed": "frames 15, sweep 15, integrated 15, manifest [15], provenance 15",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a6.fixed_global_scales_declared",
+      "claim": "the animations declare a colour scale computed once from the whole sweep and frozen, and record the limits themselves",
+      "state": "PASS",
+      "passed": true,
+      "expected": "fixed scale declared with explicit limits",
+      "computed": "fixed globally across all frames, computed once from the who | limits ['N_min', 'rho']",
+      "note": "a per-frame autoscale makes a field that grew by an order of magnitude look constant while only its noise appears to move",
+      "seconds": 0.0016
+    },
+    {
+      "name": "v0a6.observers_remain_distinct",
+      "claim": "all four observer families appear as separate rows in every frame and are never merged",
+      "state": "PASS",
+      "passed": true,
+      "expected": "4 families in every frame",
+      "computed": "families ['bubble_comoving', 'coordinate_stationary', 'eulerian', 'tetrad_boosted'], 1 distinct per-frame sets",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a6.no_invalid_observer_presented_as_physical",
+      "claim": "no inadmissible observer carries a measured energy density, and the coordinate-stationary observer is never marked valid where g_00 >= 0",
+      "state": "PASS",
+      "passed": true,
+      "expected": "zero invalid observers presented as physical",
+      "computed": "7 rejected observer rows, none of them plotted",
+      "note": "normalising by |g_00| there would produce a plausible, plottable, entirely fictitious energy density",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a6.exact_and_smooth_objectives_distinct",
+      "claim": "the exact objective and the softplus surrogate are separate columns with different values, and the surrogate width is recorded",
+      "state": "PASS",
+      "passed": true,
+      "expected": "distinct at every velocity",
+      "computed": "identical at []; softplus width ['200']",
+      "note": "softplus systematically overestimates max(0,x) near zero, which is exactly where certification happens",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a6.integrated_objectives_close",
+      "claim": "the integrated objectives satisfy |E_net-(E_+-E_-)| < eps and |E_abs-(E_++E_-)| < eps on the saved values",
+      "state": "PASS",
+      "passed": true,
+      "expected": "< 1e-09",
+      "computed": "worst net 1.554e-15, worst abs 1.610e-15",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a6.optimization_readiness_is_earned",
+      "claim": "no velocity is marked optimization-ready while its integral is boundary-dominated or its exterior tail is comparable to its value",
+      "state": "PASS",
+      "passed": true,
+      "expected": "boundary share < 0.35 and tail < 25% of E_-",
+      "computed": "worst boundary share 0.0170, 0 velocities failing the tail test, readiness flags ['1']",
+      "note": "",
+      "seconds": 0.0
+    },
+    {
+      "name": "v0a6.certification_status_displayed",
+      "claim": "every figure's sidecar declares that certification status is shown and that the renderer computed no physics",
+      "state": "PASS",
+      "passed": true,
+      "expected": "12 sidecars",
+      "computed": "all 12 declare it",
+      "note": "",
+      "seconds": 0.1219
+    },
+    {
+      "name": "v0a6.source_checksums_agree",
+      "claim": "every figure sidecar names its input records and their SHA-256 still matches the bytes on disk",
+      "state": "PASS",
+      "passed": true,
+      "expected": "all inputs unchanged",
+      "computed": "17 input checksums checked, 0 mismatched, 0 sidecars missing, 0 of 25 recorded record hashes drifted",
+      "note": "a figure whose input bytes have changed is stale, and stale is indistinguishable from correct by eye",
+      "seconds": 0.0125
+    },
+    {
+      "name": "v0a6.renderer_imports_no_a6_physics",
+      "claim": "no A6 renderer imports warp_hypad or calls an observer, tetrad, NEC or certification routine",
+      "state": "PASS",
+      "passed": true,
+      "expected": "zero physics in the A6 renderer package",
+      "computed": "clean across 3 modules",
+      "note": "this is the case that keeps the visualization contract true as the package grows",
+      "seconds": 0.0423
+    },
+    {
+      "name": "v0a6.anomaly_report_clean",
+      "claim": "the anomaly report exists, ran every required diagnostic, and has zero fired cases",
+      "state": "PASS",
+      "passed": true,
+      "expected": "0 fired, 21 required diagnostics all run",
+      "computed": "0 fired of 24 diagnostics; not run: []",
+      "note": "a fired anomaly does not suppress the figure; it fails this gate while the evidence survives",
+      "seconds": 0.002
+    },
+    {
+      "name": "v0a6.deterministic_rerender_metadata",
+      "claim": "the sweep manifest records everything a rerender needs, and the established sequence is preserved: exact_onset_frame 8, first_spatial_contour_frame 9",
+      "state": "PASS",
+      "passed": true,
+      "expected": "complete metadata, onset 8, contour 9",
+      "computed": "missing []; onset 8, contour 9",
+      "note": "at onset the field only touches zero, so no contour is supported until the next frame -- the V0.1A convention, unchanged",
+      "seconds": 0.001
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "audit": "A6 visualization capability audit",
+  "milestone": "A6 -- observer frames and energy conditions",
+  "production_headers": [
+    "warp_hypad/include/warp_hypad/geometry/observer.hpp",
+    "warp_hypad/include/warp_hypad/geometry/energy_conditions.hpp"
+  ],
+  "production_tests": [
+    "warp_hypad/tests/observer_checks.cpp",
+    "warp_hypad/tests/energy_integral_checks.cpp",
+    "warp_hypad/tests/milestone6_verify.cpp"
+  ],
+  "committed_records_dir": "warp_hypad/results/verification/milestone_06",
+  "build_local_records_dir": "${CMAKE_BINARY_DIR}/results/verification/v0_program_a6_energy",
+  "classification_vocabulary": [
+    "available in committed records",
+    "available only in build-local records",
+    "computable by existing A6 production code but not exported",
+    "not implemented"
+  ],
+  "rules": [
+    "No absent value is inferred from a related column.",
+    "No missing physics is computed in Python. Where a quantity existed in A6 production code but was not written to any record, the smallest possible C++ exporter (warp_hypad/tools/a6_energy_sweep.cpp) was added; it calls only observer.hpp, energy_conditions.hpp and einstein.hpp.",
+    "Where the science does not exist at all, the dependent visual is marked BLOCKED_BY_UNIMPLEMENTED_SCIENCE with its exact dependency and is not drawn."
+  ],
+  "capabilities": [
+    {
+      "quantity": "Eulerian energy density rho",
+      "classification": "available in committed records",
+      "production_symbol": "geometry::project_to_frame(...).rho",
+      "record": "milestone_06/alcubierre_energy_slice_xy.csv column rho",
+      "note": "Single velocity (v_s = 0.5) and a single z = 0 slice. The velocity-resolved field needed by the animations is exported by a6_energy_sweep."
+    },
+    {
+      "quantity": "momentum density q_i",
+      "classification": "available in committed records",
+      "production_symbol": "geometry::FrameStress::q, with the stated convention q_i = -T_{0i}",
+      "record": "milestone_06/alcubierre_energy_slice_xy.csv columns q_x, q_y, q_z"
+    },
+    {
+      "quantity": "spatial stress S_ij",
+      "classification": "computable by existing A6 production code but not exported",
+      "production_symbol": "geometry::FrameStress::S (row-major 3x3)",
+      "record": null,
+      "note": "No committed or build-local record contains the six independent components. No required A6 visual consumes them, so the exporter does not add them; the principal pressures, which the required figure does consume, are exported."
+    },
+    {
+      "quantity": "principal pressures",
+      "classification": "available in committed records",
+      "production_symbol": "geometry::symmetric3_eigenvalues(S) via FrameStress::principal, ascending",
+      "record": "milestone_06/principal_stresses.csv, milestone_06/alcubierre_energy_slice_xy.csv"
+    },
+    {
+      "quantity": "stress eigenvectors",
+      "classification": "computable by existing A6 production code but not exported",
+      "production_symbol": "geometry::detail::orthonormal_eigenbasis(S, lam, V)",
+      "record": null,
+      "note": "Used internally by the NEC minimiser. Never written to a record. No required A6 visual consumes them."
+    },
+    {
+      "quantity": "minimum NEC functional N_min",
+      "classification": "available in committed records",
+      "production_symbol": "geometry::nec_minimum(...).n_min",
+      "record": "milestone_06/alcubierre_nec_slice_xy.csv, worst_null_directions.csv"
+    },
+    {
+      "quantity": "worst null direction",
+      "classification": "available in committed records",
+      "production_symbol": "geometry::nec_minimum(...).direction",
+      "record": "milestone_06/worst_null_directions.csv columns nx, ny, nz"
+    },
+    {
+      "quantity": "NEC stationarity residual",
+      "classification": "available in committed records",
+      "production_symbol": "geometry::NecResult::stationarity_residual",
+      "record": "milestone_06/worst_null_directions.csv column stationarity_residual"
+    },
+    {
+      "quantity": "quadrature cross-check residual",
+      "classification": "available in committed records",
+      "production_symbol": "geometry::NecResult::quadrature_crosscheck",
+      "record": "milestone_06/worst_null_directions.csv column quadrature_crosscheck",
+      "note": "NecResult::multistart_crosscheck and NecResult::direct_substitution are computed alongside it and are NOT in any committed record; a6_energy_sweep exports direct_substitution, because the anomaly report has to check that the reported direction reproduces N_min without recomputing N in Python."
+    },
+    {
+      "quantity": "WEC status",
+      "classification": "available in committed records",
+      "production_symbol": "geometry::wec(f, envelope).status",
+      "record": "milestone_06/energy_condition_status.csv, alcubierre_energy_slice_xy.csv"
+    },
+    {
+      "quantity": "DEC status",
+      "classification": "available in committed records",
+      "production_symbol": "geometry::dec(f, envelope).status",
+      "record": "milestone_06/energy_condition_status.csv, alcubierre_energy_slice_xy.csv"
+    },
+    {
+      "quantity": "SEC status",
+      "classification": "available in committed records",
+      "production_symbol": "geometry::sec(f, envelope).status",
+      "record": "milestone_06/energy_condition_status.csv, alcubierre_energy_slice_xy.csv"
+    },
+    {
+      "quantity": "certification margin",
+      "classification": "computable by existing A6 production code but not exported",
+      "production_symbol": "geometry::ConditionResult::certification_margin, one per condition",
+      "record": "milestone_06/alcubierre_energy_slice_xy.csv has ONE column named certification_margin and it carries the WEC margin only",
+      "note": "The NEC, DEC and SEC margins are computed by production on the same call and discarded. They are not inferred from the WEC column; a6_energy_sweep writes all four explicitly so that the 'status inconsistent with certification margin' anomaly can be checked per condition."
+    },
+    {
+      "quantity": "numerical error estimate",
+      "classification": "available in committed records",
+      "production_symbol": "the error envelope argument to geometry::certify / wec / dec / sec",
+      "record": "milestone_06/alcubierre_energy_slice_xy.csv column numerical_error_estimate (fixed conservative 4.0e-4), energy_condition_status.csv column error_envelope",
+      "note": "A6 uses a fixed conservative floor rather than a per-point Richardson estimate. a6_energy_sweep keeps that floor and additionally measures a per-frame two-grid difference, taking the LARGER of the two, so the visuals are never less conservative than the science."
+    },
+    {
+      "quantity": "integrated E_plus",
+      "classification": "available in committed records",
+      "production_symbol": "energy_integral_checks.cpp integrate(): sum sqrt(gamma) max(0, rho) dV",
+      "record": "milestone_06/integrated_energy_vs_velocity.csv column E_plus"
+    },
+    {
+      "quantity": "integrated E_minus",
+      "classification": "available in committed records",
+      "record": "milestone_06/integrated_energy_vs_velocity.csv column E_minus"
+    },
+    {
+      "quantity": "integrated E_net",
+      "classification": "available in committed records",
+      "record": "milestone_06/integrated_energy_vs_velocity.csv column E_net",
+      "note": "Accumulated as sum w*rho, INDEPENDENTLY of E_plus and E_minus, which is what makes the closure check |E_net - (E_plus - E_minus)| < eps a real test rather than an identity."
+    },
+    {
+      "quantity": "integrated E_abs",
+      "classification": "available in committed records",
+      "record": "milestone_06/integrated_energy_vs_velocity.csv column E_abs"
+    },
+    {
+      "quantity": "integrated J_NEC",
+      "classification": "available in committed records",
+      "record": "milestone_06/integrated_energy_vs_velocity.csv column J_NEC"
+    },
+    {
+      "quantity": "velocity sweep",
+      "classification": "available in committed records",
+      "record": "milestone_06/integrated_energy_vs_velocity.csv (v_s = 0.2..1.2 step 0.2), milestone_06/observer_comparison.csv (v_s = 0.2..1.6 step 0.1)",
+      "note": "The observer sweep already uses the established V0.1A sequence v_s = k/10, k = 2..16, whose ninth entry is v_s = 1 exactly. a6_energy_sweep uses that same sequence for every field record, so exact_onset_frame = 8 and first_spatial_contour_frame = 9 as in A4 and A5."
+    },
+    {
+      "quantity": "radius sweep",
+      "classification": "not implemented",
+      "production_symbol": null,
+      "record": null,
+      "note": "A6 fixes R = 2 in every check. No A6 production path varies the bubble radius and re-evaluates rho, the energy conditions or the integrated objectives. Program A's a_sweep_export sweeps R, but it exports METRIC components only and knows nothing about observers, so its output cannot be turned into an energy quantity without computing the missing physics."
+    },
+    {
+      "quantity": "steepness sweep",
+      "classification": "not implemented",
+      "production_symbol": null,
+      "record": null,
+      "note": "A6 fixes sigma = 1 in every check. Same situation as the radius sweep."
+    },
+    {
+      "quantity": "resolution convergence",
+      "classification": "available in committed records",
+      "production_symbol": "energy_integral_checks.cpp run_integral_checks, grids n = 13, 17, 25",
+      "record": "milestone_06/energy_condition_convergence.csv"
+    },
+    {
+      "quantity": "domain convergence",
+      "classification": "available in committed records",
+      "production_symbol": "energy_integral_checks.cpp run_integral_checks, half-widths 3, 4, 5",
+      "record": "milestone_06/domain_convergence.csv"
+    },
+    {
+      "quantity": "Bianchi quality metric",
+      "classification": "computable by existing A6 production code but not exported",
+      "production_symbol": "geometry::EinsteinFields::divergence_relative, populated by geometry::compute_einstein",
+      "record": null,
+      "note": "A6 calls assemble_einstein, which does not compute the divergence at all, so the field is left at zero and never written. a6_energy_sweep calls compute_einstein instead and exports divergence_relative per frame. It is carried as a NUMERICAL DIAGNOSTIC and is not evidence that local conservation is well resolved."
+    }
+  ],
+  "quantities_added_by_the_exporter": [
+    "g00 per sample (from the production metric field)",
+    "observer_valid, observer_rejection_reason and observer_normalization_residual for all four observer families at fixed sample sites",
+    "tetrad_orthonormality_residual, tetrad_handedness and tetrad_min_diagonal per sample",
+    "nec_direct_substitution (NecResult::direct_substitution) and nec_eigen_gap (the lambda_2 - lambda_1 gap of S)",
+    "per-condition certification margins",
+    "interior / boundary-shell split of E_plus, E_minus, E_abs and J_NEC",
+    "a measured exterior tail estimate per frame, from a second integration on an enlarged domain",
+    "cells across the bubble wall, measured from the ADM shift rather than assumed",
+    "N(n) sampled over the whole unit sphere at representative points, from geometry::nec_value and geometry::detail::fibonacci_direction"
+  ],
+  "blocked_products": [
+    {
+      "product": "energy_vs_radius",
+      "state": "BLOCKED_BY_UNIMPLEMENTED_SCIENCE",
+      "dependency": "an A6 production path that varies the Alcubierre radius R and re-evaluates the frame stress-energy, the energy-condition certification and the integrated objectives. A6 fixes R = 2 throughout (kR in observer_checks.cpp and energy_integral_checks.cpp)."
+    },
+    {
+      "product": "energy_vs_steepness",
+      "state": "BLOCKED_BY_UNIMPLEMENTED_SCIENCE",
+      "dependency": "an A6 production path that varies the shape-function steepness sigma and re-evaluates the same quantities. A6 fixes sigma = 1 throughout (kSig in observer_checks.cpp and energy_integral_checks.cpp)."
+    },
+    {
+      "product": "stress_eigenvector_field",
+      "state": "BLOCKED_BY_UNIMPLEMENTED_SCIENCE",
+      "dependency": "an exported eigenbasis of S_ij. geometry::detail::orthonormal_eigenbasis computes one but it is internal to the NEC minimiser and no record carries it. This product is not in the required A6 figure list; it is recorded here so the absence is a statement rather than an omission."
+    }
+  ],
+  "required_products_blocked": 0,
+  "scope": "A6 evaluates observer-dependent energy density and classical pointwise energy conditions for the stress-energy tensor inferred from the selected metric. It does not demonstrate that the source can be generated, that quantum energy inequalities are satisfied, that the geometry is dynamically stable, or that operational FTL travel is possible."
+}

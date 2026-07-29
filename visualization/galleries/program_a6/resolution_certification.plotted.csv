@@ -1,0 +1,5 @@
+n,h,wall_cells,E_minus,J_NEC,min_rho,N_min,numerical_error_estimate,certification_margin,rho_sign_status,NEC_status
+13,0.666666666667,4,0.0280928530658,1.1281263029,-0.000419574907769,-0.0115939161765,0.0004,0.0103939161765,indeterminate_within_discretization,certified_violated
+17,0.5,5,0.029822449195,1.1548298658,-0.000465062764944,-0.0125124380547,0.0004,0.0113124380547,indeterminate_within_discretization,certified_violated
+21,0.4,7,0.0306451214372,1.17496091764,-0.000512437321288,-0.0131827410438,0.0004,0.0119827410438,indeterminate_within_discretization,certified_violated
+25,0.333333333333,8,0.0310994196504,1.18636377599,-0.000559560465358,-0.0136802959194,0.0004,0.0124802959194,indeterminate_within_discretization,certified_violated

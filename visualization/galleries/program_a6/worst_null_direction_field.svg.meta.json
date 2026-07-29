@@ -1,0 +1,47 @@
+{
+  "arrow_scale": 26,
+  "camera_model": "orthographic 2-D slice",
+  "certification_status_displayed": true,
+  "color_model": "illustrative_only",
+  "colour_scale": "fixed globally across the whole velocity sweep",
+  "contract": "production solver -> saved records -> visualization scripts -> PNG/SVG/GIF/MP4",
+  "coordinate_frame": "Alcubierre coordinates (t, x, y, z), z = 0 slice",
+  "exact_and_smooth_objectives_distinct": true,
+  "frame_count": 1,
+  "frame_rate": null,
+  "g00_zero_meaning": "g_00 = 0 is where the coordinate vector d/dt becomes null. It is NOT a metric degeneracy, NOT a signature failure, NOT a curvature singularity and NOT automatically a horizon. The Eulerian observer, built from the ADM normal, remains timelike through it.",
+  "generated_timestamp": "2026-07-29T00:37:42Z",
+  "git_commit": "77b4617a216d1b72e7d71edebeb6da92d8b12259",
+  "git_dirty": true,
+  "input_checksums": {
+    "worst_null_directions.csv": "28d92760b360a1e6b7fabfd372ea4eda7a748b88dede306ce993899032647e2f"
+  },
+  "input_files": [
+    "worst_null_directions.csv"
+  ],
+  "milestone": "A6",
+  "observer": "Eulerian orthonormal frame (null directions)",
+  "program": "A",
+  "recomputes_physics": false,
+  "reference_frame": 3,
+  "render_theme": "scientific",
+  "renderer_computes_physics": false,
+  "scope": "A6 evaluates observer-dependent energy density and classical pointwise energy conditions for the stress-energy tensor INFERRED from the selected metric. It does not demonstrate that the source can be generated, that quantum energy inequalities are satisfied, that the geometry is dynamically stable, or that operational FTL travel is possible.",
+  "simulation_parameters": {
+    "certification_safety_factor": 3,
+    "domain_extent": 4,
+    "exact_onset_frame": 8,
+    "first_spatial_contour_frame": 9,
+    "grid_resolution": 21,
+    "lambda": 0.0,
+    "metric": "Alcubierre",
+    "numerical_error_envelope_floor": 0.0004,
+    "radius": 2,
+    "sigma": 1,
+    "softplus_width": 200,
+    "velocity_sequence": "v_s = k/10 for k = 2..16"
+  },
+  "source_sweep": "v0_program_a6_energy",
+  "time_convention": "t = 0 slice; the sweep parameter is v_s, not time",
+  "units": "geometrised G = c = 1"
+}

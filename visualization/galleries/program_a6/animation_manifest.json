@@ -1,0 +1,369 @@
+{
+  "animations": [
+    {
+      "codec": "gif",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "energy_density_vs_velocity_scientific.png",
+      "duration_s": 3.75,
+      "filename": "energy_density_vs_velocity_scientific.gif",
+      "final_frame_sha256": "c0d7a8338c96b51fc39735ca86f91d752f7f81b094dbba4099d41421befa5380",
+      "first_frame_sha256": "1724d5391224b0ee947341c234b694525dbb5348e57089b4bafc9746073b8546",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "energy_velocity_sweep.csv",
+      "source_data_sha256": "412bc923e1981b4f3151cbcf5e02b61114f30f0862ee687dd28c0cb246ce812c",
+      "theme": "scientific",
+      "written": true
+    },
+    {
+      "codec": "h264",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "energy_density_vs_velocity_scientific.png",
+      "duration_s": 3.75,
+      "filename": "energy_density_vs_velocity_scientific.mp4",
+      "final_frame_sha256": "c0d7a8338c96b51fc39735ca86f91d752f7f81b094dbba4099d41421befa5380",
+      "first_frame_sha256": "1724d5391224b0ee947341c234b694525dbb5348e57089b4bafc9746073b8546",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "energy_velocity_sweep.csv",
+      "source_data_sha256": "412bc923e1981b4f3151cbcf5e02b61114f30f0862ee687dd28c0cb246ce812c",
+      "theme": "scientific",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "energy_density_vs_velocity_cinematic.png",
+      "duration_s": 3.75,
+      "filename": "energy_density_vs_velocity_cinematic.gif",
+      "final_frame_sha256": "c7d46df2c311495e26b1737c2f10f05022c091ebb49727574c54b753250f69a4",
+      "first_frame_sha256": "18ba1e7b4972fd9a03d73243ca052a5e143a8da9fe8620d8d367732b4e1ac013",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "energy_velocity_sweep.csv",
+      "source_data_sha256": "412bc923e1981b4f3151cbcf5e02b61114f30f0862ee687dd28c0cb246ce812c",
+      "theme": "cinematic",
+      "written": true
+    },
+    {
+      "codec": "h264",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "energy_density_vs_velocity_cinematic.png",
+      "duration_s": 3.75,
+      "filename": "energy_density_vs_velocity_cinematic.mp4",
+      "final_frame_sha256": "c7d46df2c311495e26b1737c2f10f05022c091ebb49727574c54b753250f69a4",
+      "first_frame_sha256": "18ba1e7b4972fd9a03d73243ca052a5e143a8da9fe8620d8d367732b4e1ac013",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "energy_velocity_sweep.csv",
+      "source_data_sha256": "412bc923e1981b4f3151cbcf5e02b61114f30f0862ee687dd28c0cb246ce812c",
+      "theme": "cinematic",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "nec_violation_vs_velocity_scientific.png",
+      "duration_s": 3.75,
+      "filename": "nec_violation_vs_velocity_scientific.gif",
+      "final_frame_sha256": "734f5c193fd4e791c3cbe158967d0cb000ffb4c60cf8f6e6799f35a2664874e1",
+      "first_frame_sha256": "4866ac61fa68fa756905aad607744dfedd5f3f813a4f7a031cf922b67d4b4fea",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "nec_velocity_sweep.csv",
+      "source_data_sha256": "4289bbb7e292eecab664f82ee68437130771a8133be83d7f5ed8199cf92c3084",
+      "theme": "scientific",
+      "written": true
+    },
+    {
+      "codec": "h264",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "nec_violation_vs_velocity_scientific.png",
+      "duration_s": 3.75,
+      "filename": "nec_violation_vs_velocity_scientific.mp4",
+      "final_frame_sha256": "734f5c193fd4e791c3cbe158967d0cb000ffb4c60cf8f6e6799f35a2664874e1",
+      "first_frame_sha256": "4866ac61fa68fa756905aad607744dfedd5f3f813a4f7a031cf922b67d4b4fea",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "nec_velocity_sweep.csv",
+      "source_data_sha256": "4289bbb7e292eecab664f82ee68437130771a8133be83d7f5ed8199cf92c3084",
+      "theme": "scientific",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "nec_violation_vs_velocity_cinematic.png",
+      "duration_s": 3.75,
+      "filename": "nec_violation_vs_velocity_cinematic.gif",
+      "final_frame_sha256": "52248161255bc1b6bd96845ca5bf2412005c5bca175c4e5de5fd2c8d0cf03198",
+      "first_frame_sha256": "0260927007d0313ab0b744c82714293499088817ebdedd276bfeb26f210d547e",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "nec_velocity_sweep.csv",
+      "source_data_sha256": "4289bbb7e292eecab664f82ee68437130771a8133be83d7f5ed8199cf92c3084",
+      "theme": "cinematic",
+      "written": true
+    },
+    {
+      "codec": "h264",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "nec_violation_vs_velocity_cinematic.png",
+      "duration_s": 3.75,
+      "filename": "nec_violation_vs_velocity_cinematic.mp4",
+      "final_frame_sha256": "52248161255bc1b6bd96845ca5bf2412005c5bca175c4e5de5fd2c8d0cf03198",
+      "first_frame_sha256": "0260927007d0313ab0b744c82714293499088817ebdedd276bfeb26f210d547e",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "nec_velocity_sweep.csv",
+      "source_data_sha256": "4289bbb7e292eecab664f82ee68437130771a8133be83d7f5ed8199cf92c3084",
+      "theme": "cinematic",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "worst_null_direction_vs_velocity.png",
+      "duration_s": 3.75,
+      "filename": "worst_null_direction_vs_velocity.gif",
+      "final_frame_sha256": "adec7c4433d40125853e4d0319d9a9c3a3d27d7b0a272b049bb071d8c5a2c358",
+      "first_frame_sha256": "ce2cc0f0ccca26c579273f7368b26845851e1e8bc5c19df8cf70f863ceb14ae8",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "worst_null_directions.csv",
+      "source_data_sha256": "28d92760b360a1e6b7fabfd372ea4eda7a748b88dede306ce993899032647e2f",
+      "theme": "scientific",
+      "written": true
+    },
+    {
+      "codec": "h264",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "worst_null_direction_vs_velocity.png",
+      "duration_s": 3.75,
+      "filename": "worst_null_direction_vs_velocity.mp4",
+      "final_frame_sha256": "adec7c4433d40125853e4d0319d9a9c3a3d27d7b0a272b049bb071d8c5a2c358",
+      "first_frame_sha256": "ce2cc0f0ccca26c579273f7368b26845851e1e8bc5c19df8cf70f863ceb14ae8",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "worst_null_directions.csv",
+      "source_data_sha256": "28d92760b360a1e6b7fabfd372ea4eda7a748b88dede306ce993899032647e2f",
+      "theme": "scientific",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "observer_energy_comparison.png",
+      "duration_s": 3.75,
+      "filename": "observer_energy_comparison.gif",
+      "final_frame_sha256": "1d15b6d8e60d09e8b586b2dc4f0c7fe9339607b905018c2eecad54aaf36d41c4",
+      "first_frame_sha256": "a0060d86845bdc11212c76a1ecb4fe2bd6c7cb69511c83128b736633fe9e6de3",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "observer_comparison.csv",
+      "source_data_sha256": "44b88f4c6273dec8f08c3b19f290deb86569d85cfdfc6890116f9167c800b5ae",
+      "theme": "scientific",
+      "written": true
+    },
+    {
+      "codec": "h264",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "observer_energy_comparison.png",
+      "duration_s": 3.75,
+      "filename": "observer_energy_comparison.mp4",
+      "final_frame_sha256": "1d15b6d8e60d09e8b586b2dc4f0c7fe9339607b905018c2eecad54aaf36d41c4",
+      "first_frame_sha256": "a0060d86845bdc11212c76a1ecb4fe2bd6c7cb69511c83128b736633fe9e6de3",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "observer_comparison.csv",
+      "source_data_sha256": "44b88f4c6273dec8f08c3b19f290deb86569d85cfdfc6890116f9167c800b5ae",
+      "theme": "scientific",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "integrated_energy_objectives.png",
+      "duration_s": 3.75,
+      "filename": "integrated_energy_objectives.gif",
+      "final_frame_sha256": "95de5ffca42707aa3d69105e8290598ec6cd440c878ac325f7ac654794794ee6",
+      "first_frame_sha256": "64e514dcf71af9aac6836eed3adf7efa956e863166130562e5b64e756303d02a",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "integrated_objectives.csv",
+      "source_data_sha256": "a0a18f03e3ddd6be927d648a583be83e75db7a33396c889d97eecf6a6ff6d838",
+      "theme": "scientific",
+      "written": true
+    },
+    {
+      "codec": "h264",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "integrated_energy_objectives.png",
+      "duration_s": 3.75,
+      "filename": "integrated_energy_objectives.mp4",
+      "final_frame_sha256": "95de5ffca42707aa3d69105e8290598ec6cd440c878ac325f7ac654794794ee6",
+      "first_frame_sha256": "64e514dcf71af9aac6836eed3adf7efa956e863166130562e5b64e756303d02a",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "integrated_objectives.csv",
+      "source_data_sha256": "a0a18f03e3ddd6be927d648a583be83e75db7a33396c889d97eecf6a6ff6d838",
+      "theme": "scientific",
+      "written": true
+    },
+    {
+      "codec": "gif",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "energy_condition_certification.png",
+      "duration_s": 3.75,
+      "filename": "energy_condition_certification.gif",
+      "final_frame_sha256": "d5621d88b6184064dee49be6a96c0f4e61bd1d583fa17973c365e5ce65289fd0",
+      "first_frame_sha256": "7c19a0c72ab7fa468626306b2adf2c34dc8c8fe3d064bf281b4ee60d83bfdae0",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "energy_velocity_sweep.csv",
+      "source_data_sha256": "412bc923e1981b4f3151cbcf5e02b61114f30f0862ee687dd28c0cb246ce812c",
+      "theme": "scientific",
+      "written": true
+    },
+    {
+      "codec": "h264",
+      "colour_scale": "fixed globally across all frames, computed once from the whole sweep",
+      "contact_sheet": "energy_condition_certification.png",
+      "duration_s": 3.75,
+      "filename": "energy_condition_certification.mp4",
+      "final_frame_sha256": "d5621d88b6184064dee49be6a96c0f4e61bd1d583fa17973c365e5ce65289fd0",
+      "first_frame_sha256": "7c19a0c72ab7fa468626306b2adf2c34dc8c8fe3d064bf281b4ee60d83bfdae0",
+      "frame_count": 15,
+      "frame_rate": 4,
+      "note": null,
+      "resolution": [
+        2805,
+        672
+      ],
+      "source_data": "energy_velocity_sweep.csv",
+      "source_data_sha256": "412bc923e1981b4f3151cbcf5e02b61114f30f0862ee687dd28c0cb246ce812c",
+      "theme": "scientific",
+      "written": true
+    }
+  ],
+  "provenance": {
+    "certification_safety_factor": 3,
+    "cinematic_theme_may_change": [
+      "typography",
+      "easing",
+      "glow"
+    ],
+    "cinematic_theme_may_not_change": [
+      "source data",
+      "positions",
+      "timing",
+      "contours",
+      "certification",
+      "normalisation",
+      "colour limits"
+    ],
+    "colour_limits": {
+      "N_min": 0.0517093128384,
+      "rho": 0.00484921071415
+    },
+    "colour_scale": "fixed globally across all frames, computed once from the whole velocity sweep, shared by both themes",
+    "encoder_available": true,
+    "exact_onset_frame": 8,
+    "exact_vs_smooth": "E_minus and J_NEC are the EXACT objectives, integrals of max(0, -rho) and max(0, -N_min). The softplus columns are a smooth surrogate for a future gradient-based optimizer; softplus systematically overestimates max(0,x) near zero, which is exactly where certification happens, so it is never substituted for the exact value.",
+    "first_spatial_contour_frame": 9,
+    "frame_count": 15,
+    "frame_rate": 4,
+    "g00_zero_meaning": "g_00 = 0 is where the coordinate vector d/dt becomes null: an ergosurface-type condition on the TIME COORDINATE. It is not a metric degeneracy, not a signature failure, not a curvature singularity and not automatically a horizon. det(g) and the spatial metric remain regular there and the ADM foliation persists.",
+    "git_commit": "77b4617a216d1b72e7d71edebeb6da92d8b12259",
+    "git_dirty": true,
+    "milestone": "A6",
+    "numerical_error_envelope_floor": 0.0004,
+    "observer_admissibility": "The coordinate-stationary observer is admissible ONLY where g_00 < 0. At g_00 = 0 the coordinate vector d/dt is NULL and for g_00 > 0 it is SPACELIKE; in both cases it is rejected with a reason and its energy-density cell is left EMPTY. |g_00| is never substituted. The Eulerian observer is built from the ADM normal and remains timelike through the crossing; it is recorded separately.",
+    "observer_families": [
+      "eulerian",
+      "coordinate_stationary",
+      "bubble_comoving",
+      "tetrad_boosted"
+    ],
+    "program": "A",
+    "renderer_computes_physics": false,
+    "scope": "A6 evaluates observer-dependent energy density and classical pointwise energy conditions for the stress-energy tensor INFERRED from the selected metric. It does not demonstrate that the source can be generated, that quantum energy inequalities are satisfied, that the geometry is dynamically stable, or that operational FTL travel is possible.",
+    "source_sweep": "v0_program_a6_energy",
+    "velocity_sequence": "v_s = k/10 for k = 2..16"
+  }
+}

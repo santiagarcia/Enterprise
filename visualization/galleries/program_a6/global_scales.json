@@ -1,0 +1,10 @@
+{
+  "computed_from": "every frame of the velocity sweep",
+  "fixed_across_frames": true,
+  "limits": {
+    "N_min": 0.0517093128384,
+    "q": 0.0188856357841,
+    "q_arrow": 18.532603508888396,
+    "rho": 0.00484921071415
+  }
+}
