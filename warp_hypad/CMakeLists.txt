@@ -648,6 +648,86 @@ if(Python3_Interpreter_FOUND)
     DEPENDS "milestone5.sweep_export")
 endif()
 
+# --- Milestone O0A: constrained quintic spline basis -------------------------
+#
+# The first optimization-program milestone. It builds and verifies the spline
+# COORDINATE SYSTEM a later metric design will use, and nothing else: no metric
+# is assembled, no energy is evaluated and no optimizer runs.
+#
+# Links the OTIlib backend when it is enabled, so the coefficient-derivative
+# cases run against the real HyPAD scalar. With the backend off exactly two cases
+# record themselves as SKIPPED with the backend named; every basis, constraint,
+# projection, resolution and determinism case still runs.
+
+add_executable(o0a_verify
+  tests/o0a_verify.cpp
+  tests/o0a_kernel_checks.cpp
+  tests/o0a_tensor_checks.cpp
+  tests/o0a_constraint_checks.cpp
+  tests/o0a_projection_checks.cpp
+  tests/o0a_derivative_checks.cpp
+  tests/o0a_frame_records.cpp
+)
+target_link_libraries(o0a_verify PRIVATE warp_hypad_core)
+target_include_directories(o0a_verify PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+if(MSVC)
+  target_compile_options(o0a_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(o0a_verify PRIVATE
+    -Wall -Wextra -Wpedantic -Werror -Wshadow -Wconversion)
+endif()
+
+set(WARP_HYPAD_O0A_RESULTS "${CMAKE_BINARY_DIR}/results/verification/o0a_basis")
+set(WARP_HYPAD_O0A_GALLERY "${CMAKE_BINARY_DIR}/results/visualization/program_o0a")
+
+# Explicit, opt-in promotion, as for every other gallery: a test must never
+# decide which verified build defines the committed record.
+#
+#   cmake --build build --target promote_o0a_basis
+add_custom_target(promote_o0a_basis
+  COMMAND ${CMAKE_COMMAND} -E make_directory
+          "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_o0a"
+  COMMAND ${CMAKE_COMMAND} -E copy_directory "${WARP_HYPAD_O0A_GALLERY}"
+          "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_o0a"
+  COMMENT "Promoting this build's O0A spline-basis visuals to the source tree"
+  VERBATIM)
+
+foreach(_group kernel tensor constraints projection derivatives)
+  add_test(NAME o0a.${_group}
+           COMMAND o0a_verify --group ${_group} --out "${WARP_HYPAD_O0A_RESULTS}")
+endforeach()
+
+add_test(NAME o0a.gate COMMAND o0a_verify --out "${WARP_HYPAD_O0A_RESULTS}")
+# One complete DEPENDS assignment per test: repeated set_tests_properties(...
+# DEPENDS) calls REPLACE the property rather than appending to it.
+set_tests_properties(o0a.gate PROPERTIES
+  DEPENDS "o0a.kernel;o0a.tensor;o0a.constraints;o0a.projection;o0a.derivatives")
+
+# Guarded on the renderer's presence, in the same way the Program B and Program C
+# blocks are guarded on theirs. The O0A visual layer is a separate deliverable;
+# registering tests that point at scripts which are not there yet would leave the
+# suite red for a reason that has nothing to do with the code under test.
+if(Python3_Interpreter_FOUND AND EXISTS
+   "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0a/plot_o0a_basis.py")
+  add_test(NAME o0a.figures COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0a/plot_o0a_basis.py"
+    --records "${WARP_HYPAD_O0A_RESULTS}"
+    --out "${WARP_HYPAD_O0A_GALLERY}")
+  add_test(NAME o0a.animations COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0a/animate_o0a_basis.py"
+    --records "${WARP_HYPAD_O0A_RESULTS}"
+    --out "${WARP_HYPAD_O0A_GALLERY}")
+  add_test(NAME o0a.visual_gate COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/regression/v0_o0a_verify.py"
+    --gallery "${WARP_HYPAD_O0A_GALLERY}"
+    --records "${WARP_HYPAD_O0A_RESULTS}"
+    --visualization "${CMAKE_CURRENT_SOURCE_DIR}/../visualization")
+  set_tests_properties(o0a.figures PROPERTIES DEPENDS "o0a.gate")
+  set_tests_properties(o0a.animations PROPERTIES DEPENDS "o0a.gate;o0a.figures")
+  set_tests_properties(o0a.visual_gate PROPERTIES
+    DEPENDS "o0a.gate;o0a.figures;o0a.animations")
+endif()
+
 # --- A6 observer-energy sweep, figures and animations ------------------------
 #
 # The exporter MAY evaluate physics: it calls the same observer.hpp,
@@ -998,6 +1078,10 @@ if(WARP_HYPAD_WITH_OTILIB)
   # field is still exported either way.
   target_link_libraries(a_sweep_export PRIVATE warp_hypad_otilib)
   target_compile_definitions(a_sweep_export PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
+  # O0A's coefficient-derivative cases need the real HyPAD scalar. Without it
+  # they SKIP with the backend named; nothing else in O0A depends on it.
+  target_link_libraries(o0a_verify PRIVATE warp_hypad_otilib)
+  target_compile_definitions(o0a_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(milestone2t_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(milestone2t_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   if(TARGET b1_verify)
