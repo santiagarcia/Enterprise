@@ -648,6 +648,72 @@ if(Python3_Interpreter_FOUND)
     DEPENDS "milestone5.sweep_export")
 endif()
 
+# --- Milestone O0B: constrained ADM metric and analytic metric jets ----------
+#
+# Maps the O0A spline coordinates into structurally valid ADM metrics and their
+# analytic derivative jets. No energy is evaluated and no optimizer runs here.
+#
+# Links OTIlib when it is enabled so the coefficient-gradient cases run against
+# the real HyPAD scalar; without it exactly those cases skip, and the
+# finite-difference cross-check still runs in both configurations.
+
+add_executable(o0b_verify
+  tests/o0b_verify.cpp
+  tests/o0b_metric_checks.cpp
+  tests/o0b_route_checks.cpp
+  tests/o0b_frame_records.cpp
+)
+target_link_libraries(o0b_verify PRIVATE warp_hypad_core)
+target_include_directories(o0b_verify PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+if(MSVC)
+  target_compile_options(o0b_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(o0b_verify PRIVATE
+    -Wall -Wextra -Wpedantic -Werror -Wshadow -Wconversion)
+endif()
+
+set(WARP_HYPAD_O0B_RESULTS "${CMAKE_BINARY_DIR}/results/verification/o0b_metric")
+set(WARP_HYPAD_O0B_GALLERY "${CMAKE_BINARY_DIR}/results/visualization/program_o0b")
+
+add_custom_target(promote_o0b_metric
+  COMMAND ${CMAKE_COMMAND} -E make_directory
+          "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_o0b"
+  COMMAND ${CMAKE_COMMAND} -E copy_directory "${WARP_HYPAD_O0B_GALLERY}"
+          "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_o0b"
+  COMMENT "Promoting this build's O0B ADM-metric visuals to the source tree"
+  VERBATIM)
+
+foreach(_group metric routes)
+  add_test(NAME o0b.${_group}
+           COMMAND o0b_verify --group ${_group} --out "${WARP_HYPAD_O0B_RESULTS}")
+endforeach()
+
+add_test(NAME o0b.gate COMMAND o0b_verify --out "${WARP_HYPAD_O0B_RESULTS}")
+# One complete DEPENDS assignment per test.
+set_tests_properties(o0b.gate PROPERTIES
+  DEPENDS "o0a.gate;o0b.metric;o0b.routes")
+
+if(Python3_Interpreter_FOUND AND EXISTS
+   "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0b/plot_o0b_metric.py")
+  add_test(NAME o0b.figures COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0b/plot_o0b_metric.py"
+    --records "${WARP_HYPAD_O0B_RESULTS}"
+    --out "${WARP_HYPAD_O0B_GALLERY}")
+  add_test(NAME o0b.animations COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0b/animate_o0b_metric.py"
+    --records "${WARP_HYPAD_O0B_RESULTS}"
+    --out "${WARP_HYPAD_O0B_GALLERY}")
+  add_test(NAME o0b.visual_gate COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/regression/v0_o0b_verify.py"
+    --gallery "${WARP_HYPAD_O0B_GALLERY}"
+    --records "${WARP_HYPAD_O0B_RESULTS}"
+    --visualization "${CMAKE_CURRENT_SOURCE_DIR}/../visualization")
+  set_tests_properties(o0b.figures PROPERTIES DEPENDS "o0b.gate")
+  set_tests_properties(o0b.animations PROPERTIES DEPENDS "o0b.gate;o0b.figures")
+  set_tests_properties(o0b.visual_gate PROPERTIES
+    DEPENDS "o0b.gate;o0b.figures;o0b.animations")
+endif()
+
 # --- Milestone O0A: constrained quintic spline basis -------------------------
 #
 # The first optimization-program milestone. It builds and verifies the spline
@@ -1082,6 +1148,8 @@ if(WARP_HYPAD_WITH_OTILIB)
   # they SKIP with the backend named; nothing else in O0A depends on it.
   target_link_libraries(o0a_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(o0a_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
+  target_link_libraries(o0b_verify PRIVATE warp_hypad_otilib)
+  target_compile_definitions(o0b_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(milestone2t_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(milestone2t_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   if(TARGET b1_verify)
