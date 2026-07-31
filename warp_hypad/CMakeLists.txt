@@ -730,6 +730,59 @@ if(Python3_Interpreter_FOUND AND EXISTS
     DEPENDS "o0b.gate;o0b.figures;o0b.animations")
 endif()
 
+# --- Milestone O0C: converged stress-energy and energy objectives -------------
+add_executable(o0c_verify
+  tests/o0c_verify.cpp
+  tests/o0c_geometry_checks.cpp
+  tests/o0c_energy_checks.cpp
+  tests/o0c_convergence_checks.cpp
+  tests/o0c_gradient_checks.cpp
+  tests/o0c_field_records.cpp
+)
+target_link_libraries(o0c_verify PRIVATE warp_hypad_core)
+target_include_directories(o0c_verify PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+if(MSVC)
+  target_compile_options(o0c_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(o0c_verify PRIVATE
+    -Wall -Wextra -Wpedantic -Werror -Wshadow -Wconversion)
+endif()
+set(WARP_HYPAD_O0C_RESULTS "${CMAKE_BINARY_DIR}/results/verification/o0c_energy")
+set(WARP_HYPAD_O0C_GALLERY "${CMAKE_BINARY_DIR}/results/visualization/program_o0c")
+
+add_custom_target(promote_o0c_energy
+  COMMAND ${CMAKE_COMMAND} -E make_directory
+          "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_o0c"
+  COMMAND ${CMAKE_COMMAND} -E copy_directory "${WARP_HYPAD_O0C_GALLERY}"
+          "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/galleries/program_o0c"
+  COMMENT "Promoting this build's O0C energy visuals to the source tree"
+  VERBATIM)
+
+add_test(NAME o0c.gate COMMAND o0c_verify --out "${WARP_HYPAD_O0C_RESULTS}")
+set_tests_properties(o0c.gate PROPERTIES
+  DEPENDS "o0a.gate;o0b.gate;o0bc.gate")
+
+if(Python3_Interpreter_FOUND AND EXISTS
+   "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0c/plot_o0c_energy.py")
+  add_test(NAME o0c.figures COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0c/plot_o0c_energy.py"
+    --records "${WARP_HYPAD_O0C_RESULTS}"
+    --out "${WARP_HYPAD_O0C_GALLERY}")
+  add_test(NAME o0c.animations COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0c/animate_o0c_energy.py"
+    --records "${WARP_HYPAD_O0C_RESULTS}"
+    --out "${WARP_HYPAD_O0C_GALLERY}")
+  add_test(NAME o0c.visual_gate COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/regression/v0_o0c_verify.py"
+    --gallery "${WARP_HYPAD_O0C_GALLERY}"
+    --records "${WARP_HYPAD_O0C_RESULTS}"
+    --visualization "${CMAKE_CURRENT_SOURCE_DIR}/../visualization")
+  set_tests_properties(o0c.figures PROPERTIES DEPENDS "o0c.gate")
+  set_tests_properties(o0c.animations PROPERTIES DEPENDS "o0c.gate;o0c.figures")
+  set_tests_properties(o0c.visual_gate PROPERTIES
+    DEPENDS "o0c.gate;o0c.figures;o0c.animations")
+endif()
+
 # --- Milestone O0B-C: corrected design semantics ------------------------------
 #
 # The corrective gate. It runs after the O0B chain because several of its cases
@@ -1178,6 +1231,8 @@ if(WARP_HYPAD_WITH_OTILIB)
   target_compile_definitions(o0b_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(o0bc_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(o0bc_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
+  target_link_libraries(o0c_verify PRIVATE warp_hypad_otilib)
+  target_compile_definitions(o0c_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(milestone2t_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(milestone2t_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   if(TARGET b1_verify)
