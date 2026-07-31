@@ -672,6 +672,22 @@ else()
     -Wall -Wextra -Wpedantic -Werror -Wshadow -Wconversion)
 endif()
 
+add_executable(o0bc_verify
+  tests/o0bc_verify.cpp
+  tests/o0bc_checks.cpp
+  tests/o0b_metric_checks.cpp
+  tests/o0b_route_checks.cpp
+  tests/o0b_frame_records.cpp
+)
+target_link_libraries(o0bc_verify PRIVATE warp_hypad_core)
+target_include_directories(o0bc_verify PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+if(MSVC)
+  target_compile_options(o0bc_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(o0bc_verify PRIVATE
+    -Wall -Wextra -Wpedantic -Werror -Wshadow -Wconversion)
+endif()
+
 set(WARP_HYPAD_O0B_RESULTS "${CMAKE_BINARY_DIR}/results/verification/o0b_metric")
 set(WARP_HYPAD_O0B_GALLERY "${CMAKE_BINARY_DIR}/results/visualization/program_o0b")
 
@@ -713,6 +729,16 @@ if(Python3_Interpreter_FOUND AND EXISTS
   set_tests_properties(o0b.visual_gate PROPERTIES
     DEPENDS "o0b.gate;o0b.figures;o0b.animations")
 endif()
+
+# --- Milestone O0B-C: corrected design semantics ------------------------------
+#
+# The corrective gate. It runs after the O0B chain because several of its cases
+# read the very records O0B writes, and because a corrected claim is only
+# meaningful once the claim it corrects has been re-measured.
+set(WARP_HYPAD_O0BC_RESULTS "${CMAKE_BINARY_DIR}/results/verification/o0bc_corrections")
+add_test(NAME o0bc.gate COMMAND o0bc_verify --out "${WARP_HYPAD_O0BC_RESULTS}")
+set_tests_properties(o0bc.gate PROPERTIES
+  DEPENDS "o0a.gate;o0b.metric;o0b.routes;o0b.gate")
 
 # --- Milestone O0A: constrained quintic spline basis -------------------------
 #
@@ -1150,6 +1176,8 @@ if(WARP_HYPAD_WITH_OTILIB)
   target_compile_definitions(o0a_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(o0b_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(o0b_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
+  target_link_libraries(o0bc_verify PRIVATE warp_hypad_otilib)
+  target_compile_definitions(o0bc_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(milestone2t_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(milestone2t_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   if(TARGET b1_verify)

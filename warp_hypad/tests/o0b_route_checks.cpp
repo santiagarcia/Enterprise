@@ -255,52 +255,148 @@ void run_o0b_route_checks(VerificationReport& report,
     bool covers_once = true;
     for (int v : seen) if (v != 1) covers_once = false;
 
-    // Reference: d beta / d z_j = sum_i P_ij B_i.
+    // TWO DIFFERENT GRADIENTS, LABELLED AS SUCH.
+    //
+    // An earlier version seeded z, formed c = c0 + P z, and called the result a
+    // whitened gradient. W never appeared, so what was measured was the
+    // CONSTRAINED-coordinate gradient. The optimizer will step in y, so the
+    // whitened gradient is the one that matters, and it is a different vector:
+    //
+    //     d beta / d z_j = sum_i P_ij   B_i        constrained coordinate
+    //     d beta / d y_j = sum_i (PW)_ij B_i       whitened optimizer coordinate
+    //
+    // Both are now computed, against their own references, and recorded in
+    // separate rows.
+    const design::DenseMatrix PW = spaces.PW();
     std::vector<double> ref_z(static_cast<std::size_t>(pr.n_free), 0.0);
+    std::vector<double> ref_y(static_cast<std::size_t>(wr.retained), 0.0);
     for (int j = 0; j < pr.n_free; ++j) {
         double acc = 0.0;
         for (int i = 0; i < pr.n_raw; ++i)
             acc += pr.P(i, j) * Bk[static_cast<std::size_t>(i)];
         ref_z[static_cast<std::size_t>(j)] = acc;
     }
-    double w_batched = 0.0;
+    for (int j = 0; j < wr.retained; ++j) {
+        double acc = 0.0;
+        for (int i = 0; i < pr.n_raw; ++i)
+            acc += PW(i, j) * Bk[static_cast<std::size_t>(i)];
+        ref_y[static_cast<std::size_t>(j)] = acc;
+    }
+    // How different they actually are, so "different vector" is a measurement.
+    double zy_gap = 0.0;
+    for (int j = 0; j < std::min(pr.n_free, wr.retained); ++j)
+        zy_gap = std::fmax(zy_gap,
+                           std::fabs(ref_z[static_cast<std::size_t>(j)] -
+                                     ref_y[static_cast<std::size_t>(j)]));
+
+    // g_00 = -alpha^2 + gamma_ij beta^i beta^j, so d g_00 / d y_j carries a
+    // factor 2 beta^x -- evaluated AT THE POINT THE BATCH EVALUATES, which is
+    // y = 0, i.e. c = c0. beta_here is the shift at `coef`, a different
+    // coefficient vector; using it here left a 2.7e-05 residual that had
+    // nothing to do with the gradient being tested.
+    const double beta_at_c0 = design::shift_value_scalar<double>(
+        cfg, basis, pr.c0, pt[0], pt[1], pt[2], pt[3]);
+
+    double w_batched_z = 0.0, w_batched_y = 0.0;
     const std::size_t probe[3] = {0, batch.size() / 2, batch.size() - 1};
     for (std::size_t bi : probe) {
         const std::vector<int>& b = batch[bi];
-        std::vector<OTIScalar> z(static_cast<std::size_t>(pr.n_free));
-        for (int j = 0; j < pr.n_free; ++j)
-            z[static_cast<std::size_t>(j)] = sensitivity::make_constant(0.0);
-        for (std::size_t d = 0; d < b.size(); ++d)
-            z[static_cast<std::size_t>(b[d])] =
-                sensitivity::seed_parameter(0.0, static_cast<int>(d));
-        std::vector<OTIScalar> c(static_cast<std::size_t>(pr.n_raw));
-        for (int i = 0; i < pr.n_raw; ++i) {
-            OTIScalar acc = sensitivity::make_constant(
-                pr.c0[static_cast<std::size_t>(i)]);
+        // --- constrained z ---
+        {
+            std::vector<OTIScalar> z(static_cast<std::size_t>(pr.n_free));
             for (int j = 0; j < pr.n_free; ++j)
-                acc = acc + z[static_cast<std::size_t>(j)] *
-                                OTIScalar(pr.P(i, j));
-            c[static_cast<std::size_t>(i)] = acc;
+                z[static_cast<std::size_t>(j)] = sensitivity::make_constant(0.0);
+            for (std::size_t d = 0; d < b.size(); ++d)
+                z[static_cast<std::size_t>(b[d])] =
+                    sensitivity::seed_parameter(0.0, static_cast<int>(d));
+            std::vector<OTIScalar> c(static_cast<std::size_t>(pr.n_raw));
+            for (int i = 0; i < pr.n_raw; ++i) {
+                OTIScalar acc = sensitivity::make_constant(
+                    pr.c0[static_cast<std::size_t>(i)]);
+                for (int j = 0; j < pr.n_free; ++j)
+                    acc = acc + z[static_cast<std::size_t>(j)] *
+                                    OTIScalar(pr.P(i, j));
+                c[static_cast<std::size_t>(i)] = acc;
+            }
+            const OTIScalar bv = design::shift_value_scalar<OTIScalar>(
+                cfg, basis, c, pt[0], pt[1], pt[2], pt[3]);
+            for (std::size_t d = 0; d < b.size(); ++d) {
+                const double got =
+                    sensitivity::extract_gradient(bv, static_cast<int>(d));
+                const double want = ref_z[static_cast<std::size_t>(b[d])];
+                w_batched_z = std::fmax(w_batched_z, std::fabs(got - want));
+                cg << "oti_batched_constrained_z,beta_x," << b[d] << "," << bi
+                   << "," << d << "," << want << "," << got << ","
+                   << std::fabs(got - want) << ",constrained_z\n";
+            }
         }
-        const OTIScalar b_val = design::shift_value_scalar<OTIScalar>(
-            cfg, basis, c, pt[0], pt[1], pt[2], pt[3]);
-        for (std::size_t d = 0; d < b.size(); ++d) {
-            const double got =
-                sensitivity::extract_gradient(b_val, static_cast<int>(d));
-            const double want = ref_z[static_cast<std::size_t>(b[d])];
-            w_batched = std::fmax(w_batched, std::fabs(got - want));
-            cg << "oti_batched,beta_x," << b[d] << "," << bi << "," << d << ","
-               << want << "," << got << "," << std::fabs(got - want)
-               << ",z coordinate\n";
+        // --- whitened y: the OPTIMIZER coordinate, seeded through PW ---
+        {
+            std::vector<OTIScalar> y(static_cast<std::size_t>(wr.retained));
+            for (int j = 0; j < wr.retained; ++j)
+                y[static_cast<std::size_t>(j)] = sensitivity::make_constant(0.0);
+            for (std::size_t d = 0; d < b.size(); ++d)
+                y[static_cast<std::size_t>(b[d])] =
+                    sensitivity::seed_parameter(0.0, static_cast<int>(d));
+            std::vector<OTIScalar> c(static_cast<std::size_t>(pr.n_raw));
+            for (int i = 0; i < pr.n_raw; ++i) {
+                OTIScalar acc = sensitivity::make_constant(
+                    pr.c0[static_cast<std::size_t>(i)]);
+                for (int j = 0; j < wr.retained; ++j)
+                    acc = acc + y[static_cast<std::size_t>(j)] *
+                                    OTIScalar(PW(i, j));
+                c[static_cast<std::size_t>(i)] = acc;
+            }
+            const OTIScalar bv = design::shift_value_scalar<OTIScalar>(
+                cfg, basis, c, pt[0], pt[1], pt[2], pt[3]);
+            const OTIScalar g01 = design::metric_component_scalar<OTIScalar>(
+                cfg, basis, c, pt[0], pt[1], pt[2], pt[3], 0, 1);
+            const OTIScalar g00 = design::metric_component_scalar<OTIScalar>(
+                cfg, basis, c, pt[0], pt[1], pt[2], pt[3], 0, 0);
+            for (std::size_t d = 0; d < b.size(); ++d) {
+                const int dd = static_cast<int>(d);
+                const double want = ref_y[static_cast<std::size_t>(b[d])];
+                const double gb = sensitivity::extract_gradient(bv, dd);
+                const double g1 = sensitivity::extract_gradient(g01, dd);
+                const double g0 = sensitivity::extract_gradient(g00, dd);
+                w_batched_y = std::fmax(w_batched_y, std::fabs(gb - want));
+                w_batched_y = std::fmax(w_batched_y, std::fabs(g1 - want));
+                w_batched_y = std::fmax(
+                    w_batched_y, std::fabs(g0 - 2.0 * beta_at_c0 * want));
+                cg << "oti_batched_whitened_y,beta_x," << b[d] << "," << bi
+                   << "," << d << "," << want << "," << gb << ","
+                   << std::fabs(gb - want) << ",whitened_y\n";
+                cg << "oti_batched_whitened_y,g01," << b[d] << "," << bi << ","
+                   << d << "," << want << "," << g1 << ","
+                   << std::fabs(g1 - want) << ",whitened_y\n";
+                cg << "oti_batched_whitened_y,g00," << b[d] << "," << bi << ","
+                   << d << "," << (2.0 * beta_at_c0 * want) << "," << g0 << ","
+                   << std::fabs(g0 - 2.0 * beta_at_c0 * want)
+                   << ",whitened_y\n";
+            }
         }
     }
-    g_state.batched_residual = w_batched;
+    g_state.batched_residual = std::fmax(w_batched_z, w_batched_y);
     report.check_residual(
-        "o0b.separate_batched_oti_agreement",
-        "batched three-direction seeding reproduces the same gradient the "
-        "separate seeding gives",
+        "o0b.constrained_z_gradient",
+        "batched seeding of the CONSTRAINED coordinates z reproduces "
+        "sum_i P_ij B_i",
         VerificationLevel::A, "first, middle and final batches", "onumm3n2",
-        w_batched, 1.0e-14, sw.seconds(), "");
+        w_batched_z, 1.0e-14, sw.seconds(),
+        "labelled for what it is: a z-gradient, not a whitened gradient");
+    sw.reset();
+    report.check_residual(
+        "o0b.whitened_y_gradient",
+        "batched seeding of the WHITENED optimizer coordinates y reproduces "
+        "sum_i (PW)_ij B_i for beta^x and g_01, and 2 beta^x sum_i (PW)_ij B_i "
+        "for g_00",
+        VerificationLevel::A, "first, middle and final batches", "onumm3n2",
+        w_batched_y, 1.0e-14, sw.seconds(),
+        "these are DIFFERENT vectors from the z-gradients: the largest "
+        "component-wise gap between the two references is " +
+            std::to_string(zy_gap) +
+            ", so calling one the other was a real mislabelling and not a "
+            "naming quibble");
     sw.reset();
     {
         char buf[300];
@@ -337,7 +433,7 @@ void run_o0b_route_checks(VerificationReport& report,
     sw.reset();
     for (const char* nm : {"o0b.oti_gradient_of_shift", "o0b.oti_gradient_of_g00",
                            "o0b.oti_gradient_of_g01",
-                           "o0b.separate_batched_oti_agreement"})
+                           "o0b.constrained_z_gradient", "o0b.whitened_y_gradient"})
         report.check_skipped(
             nm, "coefficient gradient through the OTI backend",
             "the OTIlib sensitivity backend is not compiled into this "

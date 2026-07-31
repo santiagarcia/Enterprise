@@ -144,24 +144,46 @@ void run_o0b_metric_checks(VerificationReport& report,
     double compose = 0.0;
     for (std::size_t i = 0; i < c_two.c.size(); ++i)
         compose = std::fmax(compose, std::fabs(c_two.c[i] - c_direct.c[i]));
+    // THE CONSTRAINT RESIDUAL IS MEASURED, NOT MULTIPLIED BY ZERO. An earlier
+    // version wrote `max_abs(...) * 0.0 + compose`, which discarded the
+    // constraint term entirely and tested only the composition -- while the
+    // case name claimed the constraints stayed satisfied. The three quantities
+    // are now separate and each is checked on its own.
+    const design::DenseMatrix C = sys.matrix();
+    auto residual_of = [&](const std::vector<double>& c) {
+        double w = 0.0;
+        for (double v : design::matvec(C, c)) w = std::fmax(w, std::fabs(v));
+        return w;
+    };
+    const double r_z = residual_of(c_two.c);
+    const double r_y = residual_of(c_direct.c);
     report.check_residual(
-        "o0b.raw_to_constrained_conversion",
-        "c = c0 + P z reproduces the raw coefficients, and every constraint "
-        "stays satisfied",
-        VerificationLevel::A, grid, params,
-        design::max_abs(design::multiply(
-            sys.matrix(), design::DenseMatrix(pr.n_raw, 1))) * 0.0 + compose,
-        1.0e-14, sw.seconds(),
-        "conversion statuses: " + std::string(s1 && s2 && s3 ? "all ok" : "FAILED"));
+        "o0b.constrained_constraint_closure",
+        "|C (c0 + P z) - d| for the constrained route, measured directly",
+        VerificationLevel::A, grid, params, r_z, 1.0e-12, sw.seconds(),
+        "conversion statuses: " +
+            std::string(s1 && s2 && s3 ? "all ok" : "FAILED") +
+            ". This is the constraint residual itself, not a composition "
+            "residual standing in for one");
 
     sw.reset();
     report.check_residual(
-        "o0b.constrained_to_whitened_conversion",
+        "o0b.whitened_constraint_closure",
+        "|C (c0 + P W y) - d| for the whitened route, measured directly",
+        VerificationLevel::A, grid, params, r_y, 1.0e-12, sw.seconds(),
+        "a separate quantity from the constrained residual: whitening is an "
+        "extra dense transform, and it is not self-evident that it preserves "
+        "the constraints to the same order");
+
+    sw.reset();
+    report.check_residual(
+        "o0b.conversion_composition_residual",
         "the two-step route y -> z -> c and the composed route y -> c through "
         "PW agree",
         VerificationLevel::A, grid, params, compose, 1.0e-14, sw.seconds(),
         "a discrepancy would mean the recorded PW is not the product of P and W "
-        "that the manifest says it is");
+        "that the manifest says it is. This is a COMPOSITION residual and is "
+        "reported separately from the two constraint residuals");
 
     sw.reset();
     report.check_predicate(
@@ -262,17 +284,46 @@ void run_o0b_metric_checks(VerificationReport& report,
                           j.g_cov.m(0, 1) * j.g_cov.m(1, 0);
         worst_det = std::fmax(worst_det, std::fabs(d2 + 1.0));
     }
+    // THE CLAIM IS NARROWED TO WHAT CAN BE ENFORCED. An earlier version passed
+    // a literal `true` here and asserted that no bypass exists anywhere -- a
+    // hard-coded predicate presented as scientific evidence. What is actually
+    // checkable is that every metric this gate produced came from the ADM
+    // constructor and is structurally valid, plus a recorded API surface. The
+    // absence of any bypass in the whole program is REVIEWED, not proved.
+    int assembled = 0, structurally_valid = 0;
+    for (const Probe& p : probes()) {
+        const MetricJet<double> j =
+            design::f1_metric_jet(cfg, basis, coef, p.t, p.x, p.y, p.z, true);
+        ++assembled;
+        const double d2 = j.g_cov.m(0, 0) * j.g_cov.m(1, 1) -
+                          j.g_cov.m(0, 1) * j.g_cov.m(1, 0);
+        bool finite = true;
+        for (int A = 0; A < 4; ++A)
+            for (int B = 0; B < 4; ++B)
+                if (!std::isfinite(j.g_cov.m(A, B)) ||
+                    !std::isfinite(j.g_contra.m(A, B)))
+                    finite = false;
+        if (j.valid && finite && d2 < 0.0 && j.g_cov.m(2, 2) > 0.0 &&
+            j.g_cov.m(3, 3) > 0.0)
+            ++structurally_valid;
+    }
     report.check_predicate(
         "o0b.adm_metric_assembly",
-        "every metric is produced through the ADM constructor; there is no "
-        "public path that accepts an arbitrary g_mu_nu",
-        VerificationLevel::A, true,
-        "ADMDesignFields is the only public entry point",
-        "assembled at " + std::to_string(probes().size()) +
-            " probes from (alpha, beta^i, gamma_ij) only",
+        "every metric this gate produced was assembled from typed ADM design "
+        "fields and is finite and Lorentzian; the optimizer-facing API surface "
+        "is recorded",
+        VerificationLevel::A,
+        assembled > 0 && structurally_valid == assembled,
+        "all assembled metrics structurally valid",
+        std::to_string(structurally_valid) + " of " +
+            std::to_string(assembled) +
+            " assembled through ADMDesignFields, finite and Lorentzian",
         sw.seconds(),
-        "a bare Mat4 cannot be handed to the design layer: assemble_covariant "
-        "takes ADMDesignFields, which cannot represent an invalid metric");
+        "ARCHITECTURAL INVARIANT REVIEWED AND API SURFACE RECORDED -- not "
+        "proved that no bypass exists. assemble_covariant takes "
+        "ADMDesignFields and there is no optimizer-facing overload accepting a "
+        "bare Mat4, but that is a property of the current source, recorded in "
+        "the API manifest, rather than something this case can demonstrate");
 
     sw.reset();
     report.check_residual(

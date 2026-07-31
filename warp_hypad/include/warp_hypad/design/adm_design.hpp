@@ -2,6 +2,7 @@
 
 #include <array>
 #include <cmath>
+#include <limits>
 #include <string>
 
 #include "warp_hypad/core/mat4.hpp"
@@ -159,18 +160,84 @@ struct ContravariantMetric {
 
 // --- Structural parameterisations --------------------------------------------
 
-// alpha = exp(a). Positive for every finite a; the caller supplies a, never
-// alpha, so a non-positive lapse has no representation.
+// alpha = exp(a).
+//
+// "POSITIVE FOR EVERY FINITE a" IS FALSE IN FLOATING POINT. exp(1000) is +inf
+// and exp(-1000) is exactly 0.0, and both are finite inputs. An unchecked
+// exponential therefore hands a downstream consumer an infinite or a ZERO
+// lapse -- and a zero lapse makes g^00 = -1/alpha^2 infinite, which is exactly
+// the invalid metric the parameterisation was supposed to make unrepresentable.
+//
+// So the exponential is CHECKED, and the structural claim is stated to match
+// what is actually guaranteed:
+//
+//   alpha = exp(a) > 0 and the Cholesky diagonal is positive and finite for
+//   every ACCEPTED REPRESENTABLE log parameter.
+//
+// For an OTI scalar the representability test is applied to the REAL COMPONENT
+// before evaluation: the derivative channels are finite whenever the real part
+// is, and testing them individually would reject perfectly good seeds.
+enum class ExpStatus {
+    Ok,
+    NonFiniteInput,
+    ExponentialOverflow,
+    ExponentialUnderflow,
+};
+
+inline const char* to_string(ExpStatus s) {
+    switch (s) {
+        case ExpStatus::Ok: return "ok";
+        case ExpStatus::NonFiniteInput: return "nonfinite_input";
+        case ExpStatus::ExponentialOverflow: return "exponential_overflow";
+        case ExpStatus::ExponentialUnderflow: return "exponential_underflow";
+    }
+    return "unknown";
+}
+
+// The usable band for a double exponential. It is set by the DOWNSTREAM use of
+// exp(a), not by exp itself:
+//
+//   exp(709.78...) is the last finite double, so a bound on a alone could go
+//   that high; but every accepted lapse is squared, and alpha^2 = exp(2a) must
+//   itself stay normal, which already halves the range to |a| < 354.
+//
+//   assemble_contravariant refuses to invert when |alpha^2| < 1e-300, i.e. when
+//   a < -345.4. Accepting a value the inverse then rejects would mean an
+//   "accepted" parameter with no usable metric, so the lower bound must sit
+//   above that.
+//
+// +-340 clears both with margin: alpha^2 in [3.6e-296, 2.8e+295], and 1/alpha^2
+// in the same band, all normal doubles. Verified by o0bc.finite_accepted_metric,
+// which assembles the metric AND its inverse at both endpoints.
+inline constexpr double kMaxLogLapse = 340.0;
+inline constexpr double kMinLogLapse = -340.0;
+
+inline ExpStatus check_log_parameter(double a) {
+    if (!(a == a) || a == std::numeric_limits<double>::infinity() ||
+        a == -std::numeric_limits<double>::infinity())
+        return ExpStatus::NonFiniteInput;
+    if (a > kMaxLogLapse) return ExpStatus::ExponentialOverflow;
+    if (a < kMinLogLapse) return ExpStatus::ExponentialUnderflow;
+    return ExpStatus::Ok;
+}
+
+// The checked exponential. Scalar-generic: the real part is what is tested.
+template <typename Scalar>
+ExpStatus checked_exp(const Scalar& a, Scalar& out) {
+    using std::exp;
+    const ExpStatus s = check_log_parameter(real_part(a));
+    if (s != ExpStatus::Ok) return s;
+    out = exp(a);
+    return ExpStatus::Ok;
+}
+
+// Unchecked form, retained for call sites that have already validated their
+// input. Every public design path routes through checked_exp.
 template <typename Scalar>
 Scalar lapse_from_log(const Scalar& a) {
     using std::exp;
     return exp(a);
 }
-
-// The largest |a| whose exponential is still comfortably finite. Rejected
-// BEFORE a metric is produced, so an overflowing lapse never reaches a
-// downstream consumer as an infinity.
-inline constexpr double kMaxLogLapse = 300.0;
 
 // gamma = L L^T with L lower triangular, exp on the diagonal. Positive definite
 // for every finite (l1, l2, l3, l21, l31, l32), by construction: det gamma =
@@ -187,6 +254,34 @@ struct CholeskyFactorL {
 
     static CholeskyFactorL identity() { return CholeskyFactorL(); }
 };
+
+template <typename Scalar>
+SymmetricMatrix3<Scalar> spatial_metric_from_cholesky(
+    const CholeskyFactorL<Scalar>& L);
+
+// The checked builder: every diagonal log parameter must be representable
+// before any exponential is evaluated. This is the path a design candidate
+// takes; the unchecked one below is for call sites that have already validated.
+template <typename Scalar>
+ExpStatus checked_spatial_metric_from_cholesky(
+    const CholeskyFactorL<Scalar>& L, SymmetricMatrix3<Scalar>& out) {
+    const Scalar* diag[3] = {&L.l1, &L.l2, &L.l3};
+    for (int i = 0; i < 3; ++i) {
+        const ExpStatus s = check_log_parameter(real_part(*diag[i]));
+        if (s != ExpStatus::Ok) return s;
+    }
+    // The off-diagonal entries are not exponentiated, but a nonfinite one would
+    // still poison gamma, so they are checked for finiteness.
+    const Scalar* off[3] = {&L.l21, &L.l31, &L.l32};
+    for (int i = 0; i < 3; ++i) {
+        const double v = real_part(*off[i]);
+        if (!(v == v) || v == std::numeric_limits<double>::infinity() ||
+            v == -std::numeric_limits<double>::infinity())
+            return ExpStatus::NonFiniteInput;
+    }
+    out = spatial_metric_from_cholesky(L);
+    return ExpStatus::Ok;
+}
 
 template <typename Scalar>
 SymmetricMatrix3<Scalar> spatial_metric_from_cholesky(

@@ -108,10 +108,38 @@ struct QuadratureElement {
     bool in_protected_cabin = false;
 };
 
+// WHAT "EXACT ON EVERY KNOT SPAN" WOULD HAVE MEANT, AND WHY IT IS NOT CLAIMED.
+//
+// Each basis function IS a single polynomial on an element, so a
+// Gauss-Legendre rule of sufficient order integrates the BASIS exactly there.
+// It does not follow that the rule integrates the eventual physical integrand
+// exactly. The metric is built from exp and tanh of spline combinations, the
+// curvature divides by determinants, and the energy objectives take max(0, .)
+// of the result -- none of which is polynomial, and the last of which is not
+// even smooth. A rule that is exact to degree 15 on polynomials has NO
+// exactness guarantee on any of them.
+//
+// So the scaffold records the two facts separately: the rule's formal degree,
+// and the (false) proposition that the full integrand is polynomial. The
+// convergence contract is what carries the actual burden.
+struct QuadratureExactness {
+    int gauss_legendre_nodes_per_coordinate = 8;
+    int polynomial_exactness_per_coordinate = 15;
+    bool spline_basis_piecewise_polynomial = true;
+    bool full_metric_integrand_polynomial = false;
+    bool full_energy_integrand_polynomial = false;
+    bool energy_integral_exact = false;
+    std::string statement =
+        "The rule is exact only for polynomial integrands within its formal "
+        "degree. The complete metric and energy integrands are generally "
+        "nonpolynomial and must be certified through convergence tests.";
+};
+
 struct QuadratureScaffold {
     std::vector<QuadratureElement> element;
     int nodes_per_direction = 8;
-    int polynomial_exactness = 15;   // 8-node Gauss-Legendre
+    int polynomial_exactness = 15;   // 8-node Gauss-Legendre, on POLYNOMIALS
+    QuadratureExactness exactness;
     double total_volume = 0.0;
     double exact_volume = 0.0;       // pi R0^3 * extent, in design coordinates
     std::size_t total_nodes = 0;
@@ -119,9 +147,30 @@ struct QuadratureScaffold {
                        "per unique tensor-product knot span";
     std::string convergence_contract =
         "Route B takes NO finite differences, so the six-cell rule does not "
-        "apply to it. Convergence must instead be demonstrated in quadrature "
-        "order, element subdivision, domain enlargement, and against an "
-        "independent uniform-grid evaluation.";
+        "apply to it. The rule is exact only for polynomial integrands within "
+        "its formal degree, and the complete metric and energy integrands are "
+        "generally nonpolynomial. Convergence must therefore be demonstrated "
+        "in quadrature order (4, 6, 8, 10, 12), element subdivision (1, 2, 4), "
+        "domain enlargement, comparison with an independent uniform-grid case, "
+        "and with separate treatment of nonsmooth max-based objectives. None "
+        "of these is evaluated in O0B or O0B-C.";
+};
+
+// The convergence schedule O0C is required to run. Recorded as data so the
+// requirement travels with the scaffold rather than living in prose.
+struct ConvergenceContract {
+    std::vector<int> quadrature_orders{4, 6, 8, 10, 12};
+    std::vector<int> element_subdivisions{1, 2, 4};
+    bool domain_enlargement_required = true;
+    bool independent_uniform_grid_comparison_required = true;
+    bool nonsmooth_objectives_treated_separately = true;
+    std::string nonsmooth_note =
+        "max(0, -rho) and max(0, -N_min) are continuous but not "
+        "differentiable at the switching surface. A fixed-order polynomial "
+        "rule has no exactness or standard convergence guarantee across such "
+        "a kink, so those objectives need either a located switching surface "
+        "or a separately certified treatment.";
+    bool evaluated_in_o0b = false;
 };
 
 // The distinct knot values bounding spans inside the evaluable range.

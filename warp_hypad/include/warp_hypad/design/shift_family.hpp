@@ -89,12 +89,112 @@ inline ShapeRadialJet shape_radial_jet(double r, double R, double sigma) {
 //     F''' = (R0^6/8)  (f'''/r^3 - 3 f''/r^4 + 3 f'/r^5)
 //
 // Each bracket is finite on the axis because f is EVEN in r: f' = O(r),
-// f'' - f'/r = O(r^2), and so on. Below kAxisRadius the closed-form limits are
-// used instead of the cancelling quotients, which is exact rather than a
-// regularisation -- the same choice, and the same reasoning, as
-// metrics::shape_function_scalar_radius, which returns f = 1 with zero
-// derivative channels inside r^2 <= 1e-24.
-inline constexpr double kAxisRadius = 1e-5;
+// f'' - f'/r = O(r^2), and so on. Near the axis the quotients cancel to
+// rounding, so an EXACT EVEN TAYLOR SERIES is used instead. No finite
+// difference executes anywhere in this path.
+//
+// THE AXIS COEFFICIENTS ARE CLOSED FORM, NOT DIFFERENCED. f is even, so
+//
+//     f(r)  = sum_k c_2k r^2k,        c_2k = f^(2k)(0) / (2k)!
+//     F(w)  = sum_k c_2k R0^2k w^k
+//
+// and therefore F^(k)(0) = k! c_2k R0^2k, i.e.
+//
+//     F'(0)   = R0^2 f''(0)  / 2
+//     F''(0)  = R0^4 f''''(0)/ 12
+//     F'''(0) = R0^6 f6(0)   / 120
+//
+// The even derivatives of f at r = 0 follow from
+// f^(n)(0) = sigma^n g^(n)(sigma R) / T with g = tanh and T = tanh(sigma R),
+// because g^(n) is ODD for even n. Expanding g^(n) as a polynomial in tanh via
+// the recurrence p -> p'(t)(1-t^2) gives the coefficients below; they were
+// checked against that recurrence symbolically and against a high-precision
+// numerical derivative.
+//
+// AN EARLIER VERSION SET F3 = 0 HERE AND OBTAINED F2 FROM A CENTRED DIFFERENCE
+// OF THE ANALYTIC THIRD DERIVATIVE. Both were wrong. F'''(0) is not zero for
+// this shape function -- it is -0.0634 at sigma = 1, -0.306 at sigma = 3 and
+// -9.21 at R = 1.5, sigma = 2 -- so the third design derivative was being
+// silently truncated on the axis, and a finite difference was running inside a
+// production metric path that claims to be analytic throughout.
+//
+// WHERE THE SWITCH GOES, AND WHY IT IS NOT ARBITRARY.
+//
+// The quotient branch above suffers catastrophic cancellation as r -> 0: at
+// sigma r = 0.02 the term 3 f'/r^5 is of order 1e4 while F''' is of order 1e-1,
+// so five or six digits are lost. The Taylor branch has the opposite behaviour,
+// degrading as w grows. Measured against a high-order reference series, the two
+// error curves cross near sigma r = 0.1 for every (R, sigma) in use, where each
+// branch is accurate to about 1e-7 relative or better. That is the switch, and
+// the gate measures the residual jump rather than assuming it is negligible.
+inline constexpr double kAxisSigmaRadius = 0.1;
+inline constexpr int kAxisTaylorTerms = 6;   // through w^6, i.e. f^(12)(0)
+
+// The n-th derivative of tanh at u, as a polynomial in T = tanh(u).
+//
+// p_1(t) = 1 - t^2 and p_{n+1}(t) = p_n'(t) (1 - t^2). Generated rather than
+// transcribed: six hand-copied coefficient lists is six chances to lose a digit,
+// and this repository has already lost one that way. The explicit closed forms
+// for f'', f'''' and f^(6) are retained in the gate as an INDEPENDENT check
+// that this recurrence reproduces them.
+inline double tanh_derivative_poly(int n, double T) {
+    constexpr int kMax = 20;
+    double p[kMax + 3] = {0.0};
+    int deg = 2;
+    p[0] = 1.0; p[2] = -1.0;                 // 1 - t^2
+    for (int k = 1; k < n; ++k) {
+        double d[kMax + 3] = {0.0};
+        for (int i = 1; i <= deg; ++i) d[i - 1] = static_cast<double>(i) * p[i];
+        const int ddeg = deg - 1;
+        double q[kMax + 3] = {0.0};
+        for (int i = 0; i <= ddeg; ++i) { q[i] += d[i]; q[i + 2] -= d[i]; }
+        deg = ddeg + 2;
+        for (int i = 0; i <= deg; ++i) p[i] = q[i];
+    }
+    double acc = 0.0;
+    for (int i = deg; i >= 0; --i) acc = acc * T + p[i];
+    return acc;
+}
+
+// f^(n)(0) for EVEN n.
+//
+// f(r) = [g(sigma(r+R)) - g(sigma(r-R))] / (2 tanh(sigma R)) with g = tanh, so
+// f^(n)(0) = sigma^n [g^(n)(sigma R) - g^(n)(-sigma R)] / (2T). For even n,
+// g^(n) is ODD, so the bracket is 2 g^(n)(sigma R) and
+//
+//     f^(n)(0) = sigma^n g^(n)(sigma R) / T.
+inline double shape_even_derivative_at_axis(int n, double R, double sigma) {
+    const double T = std::tanh(sigma * R);
+    return std::pow(sigma, n) * tanh_derivative_poly(n, T) / T;
+}
+
+// The explicit closed forms the specification supplies, kept so the gate can
+// check the recurrence against them rather than trusting either alone.
+struct ShapeAxisDerivatives {
+    double f2 = 0.0, f4 = 0.0, f6 = 0.0;
+};
+
+inline ShapeAxisDerivatives shape_axis_derivatives_closed_form(double R,
+                                                               double sigma) {
+    const double T = std::tanh(sigma * R);
+    const double T2 = T * T, T4 = T2 * T2, T6 = T4 * T2;
+    const double s2 = sigma * sigma, s4 = s2 * s2, s6 = s4 * s2;
+    ShapeAxisDerivatives d;
+    d.f2 = -2.0 * s2 * (1.0 - T2);
+    d.f4 = s4 * (16.0 - 40.0 * T2 + 24.0 * T4);
+    d.f6 = s6 * (-272.0 + 1232.0 * T2 - 1680.0 * T4 + 720.0 * T6);
+    return d;
+}
+
+// a_k = R0^(2k) f^(2k)(0) / (2k)!, the even Taylor coefficients of F in w.
+inline double shape_w_taylor_coefficient(int k, double R0, double R,
+                                         double sigma) {
+    if (k == 0) return 1.0;                  // f(0) = 1 exactly
+    double fact = 1.0;
+    for (int i = 2; i <= 2 * k; ++i) fact *= static_cast<double>(i);
+    return std::pow(R0, 2 * k) *
+           shape_even_derivative_at_axis(2 * k, R, sigma) / fact;
+}
 
 struct ShapeWJet {
     double F = 1.0;
@@ -107,27 +207,32 @@ struct ShapeWJet {
 inline ShapeWJet shape_w_jet(double w, double R0, double R, double sigma) {
     ShapeWJet j;
     const double r = R0 * std::sqrt(std::fmax(w, 0.0));
-    if (r < kAxisRadius) {
-        // Even-function limits. With f(r) = 1 + c2 r^2 + c4 r^4 + c6 r^6 + ...
-        // we have F(w) = 1 + c2 R0^2 w + c4 R0^4 w^2 + ..., so
-        //     F'(0) = c2 R0^2 = R0^2 f''(0)/2
-        // and the higher limits follow from the Taylor coefficients, which are
-        // obtained from the analytic radial jet at r = 0.
-        const ShapeRadialJet z = shape_radial_jet(0.0, R, sigma);
-        j.F = z.f;
-        j.F1 = 0.5 * R0 * R0 * z.d2;
-        // c4 = f''''(0)/24 and F'' = 2 c4 R0^4. f'''' at r=0 is obtained from
-        // the same tanh expression by one more differentiation of d3; rather
-        // than extend the closed form again, the fourth and sixth coefficients
-        // are taken from a centred difference of the ANALYTIC d2 and d3, which
-        // is a verification-grade quantity used only inside this tiny axis
-        // neighbourhood and is checked by the near-axis case of the gate.
-        const double h = 1e-3;
-        const ShapeRadialJet a = shape_radial_jet(h, R, sigma);
-        const ShapeRadialJet b = shape_radial_jet(-h, R, sigma);
-        const double f4 = (a.d3 - b.d3) / (2.0 * h);
-        j.F2 = 2.0 * (f4 / 24.0) * R0 * R0 * R0 * R0;
-        j.F3 = 0.0;
+    if (sigma * r < kAxisSigmaRadius) {
+        // The exact even Taylor series in w, carried to w^kAxisTaylorTerms --
+        // three orders beyond the third derivative -- so that F, F', F'' and
+        // F''' are all continuous across the branch to rounding.
+        //
+        //   F    = sum_k       a_k w^k
+        //   F'   = sum_k     k a_k w^(k-1)
+        //   F''  = sum_k k(k-1) a_k w^(k-2)
+        //   F''' = sum_k k(k-1)(k-2) a_k w^(k-3)
+        //
+        // with a_k = R0^2k f^(2k)(0) / (2k)!, evaluated by Horner below.
+        double a[kAxisTaylorTerms + 1];
+        for (int k = 0; k <= kAxisTaylorTerms; ++k)
+            a[k] = shape_w_taylor_coefficient(k, R0, R, sigma);
+        double F = 0.0, F1 = 0.0, F2 = 0.0, F3 = 0.0;
+        for (int k = kAxisTaylorTerms; k >= 0; --k) {
+            F = F * w + a[k];
+            if (k >= 1) F1 = F1 * w + static_cast<double>(k) * a[k];
+            if (k >= 2) F2 = F2 * w + static_cast<double>(k * (k - 1)) * a[k];
+            if (k >= 3)
+                F3 = F3 * w + static_cast<double>(k * (k - 1) * (k - 2)) * a[k];
+        }
+        j.F = F;
+        j.F1 = F1;
+        j.F2 = F2;
+        j.F3 = F3;
         j.axis_branch = true;
         return j;
     }
@@ -139,6 +244,21 @@ inline ShapeWJet shape_w_jet(double w, double R0, double R, double sigma) {
     j.F2 = 0.25 * R2 * R2 * (s.d2 / r2 - s.d1 / r3);
     j.F3 = 0.125 * R2 * R2 * R2 *
            (s.d3 / r3 - 3.0 * s.d2 / r4 + 3.0 * s.d1 / r5);
+    return j;
+}
+
+// The exact axis limits, for the gate to check directly rather than through the
+// branch.
+inline ShapeWJet shape_w_jet_axis_limits(double R0, double R, double sigma) {
+    // F^(k)(0) = k! a_k. Equivalently F'(0) = R0^2 f''(0)/2,
+    // F''(0) = R0^4 f4(0)/12 and F'''(0) = R0^6 f6(0)/120, which is the form the
+    // specification states and the gate checks against the closed forms.
+    ShapeWJet j;
+    j.F = 1.0;
+    j.F1 = shape_w_taylor_coefficient(1, R0, R, sigma);
+    j.F2 = 2.0 * shape_w_taylor_coefficient(2, R0, R, sigma);
+    j.F3 = 6.0 * shape_w_taylor_coefficient(3, R0, R, sigma);
+    j.axis_branch = true;
     return j;
 }
 

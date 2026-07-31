@@ -56,6 +56,8 @@ void run_o0b_metric_checks(VerificationReport& report,
 void run_o0b_route_checks(VerificationReport& report,
                           const std::string& out_dir);
 
+void run_o0bc_checks(VerificationReport& report, const std::string& out_dir);
+
 void write_o0b_frame_records(const std::string& out_dir);
 void write_o0b_readiness(const VerificationReport& report,
                          const std::string& out_dir);
