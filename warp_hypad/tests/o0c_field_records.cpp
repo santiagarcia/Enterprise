@@ -220,6 +220,119 @@ void write_o0c_field_records(const std::string& out_dir) {
                 }
     }
 
+    // --- Local null cones ----------------------------------------------------
+    //
+    // THE COMPLETE ALGEBRA, WRITTEN OUT, BECAUSE IT IS SHORT AND BECAUSE THE
+    // RENDERER MUST NOT DERIVE IT. A tangent vector (1, v^i) is null when
+    //
+    //     g_00 + 2 g_0i v^i + g_ij v^i v^j = 0.
+    //
+    // In ADM variables g_00 = -alpha^2 + gamma_ij beta^i beta^j and
+    // g_0i = gamma_ij beta^j, so completing the square in v gives
+    //
+    //     gamma_ij (v^i + beta^i)(v^j + beta^j) = alpha^2.
+    //
+    // The cone's cross-section at unit coordinate time is therefore an ELLIPSOID
+    // in velocity space, centred at -beta^i, with radius alpha in the gamma
+    // metric. That single statement is the whole of local cone tipping: the
+    // bubble does not open or close the cone, it TRANSLATES it, by -beta^x =
+    // +v_s f. For F1, gamma = I and alpha = 1, so it is a unit sphere centred at
+    // +v_s f on the x axis.
+    //
+    // On the axis the two null slopes in the (t, x) plane follow immediately:
+    //
+    //     dx/dt = -beta^x +- alpha  ->  v_s f +- 1.
+    //
+    // WHAT THIS IS NOT. This is pointwise algebra on the metric coefficients at
+    // a single event. No geodesic is integrated, no worldline is followed, and
+    // nothing here says whether any two events are causally connected or how
+    // long a trip takes. Cone tipping is a local property of g; turning it into
+    // a statement about reachability requires the geodesic work A7 exists for,
+    // and this record deliberately stops short of it.
+    {
+        std::ofstream f(out_dir + "/null_cone_samples.csv");
+        f.precision(12);
+        f << "# local null cones from the metric coefficients at each event; "
+             "no geodesic is integrated and no causal claim is made\n";
+        f << "frame,t,x,rho,site,alpha,beta_x,gamma_xx,gamma_rr,g00,"
+             "cone_center_vx,cone_radius,slope_forward,slope_backward,"
+             "coordinate_stationary_inside_cone,cone_is_tipped\n";
+
+        struct ConeSite { const char* label; double xi_offset, rho; };
+        const ConeSite sites[] = {
+            {"centerline_far_back",  -3.2, 0.0},
+            {"centerline_back_wall", -2.0, 0.0},
+            {"centerline_inner",     -1.0, 0.0},
+            {"centerline_cabin",      0.0, 0.0},
+            {"centerline_inner_fwd",  1.0, 0.0},
+            {"centerline_front_wall", 2.0, 0.0},
+            {"centerline_far_front",  3.2, 0.0},
+            {"wall_off_axis_low",     0.0, 1.0},
+            {"wall_off_axis_mid",     0.0, 2.0},
+            {"wall_off_axis_high",    0.0, 3.0},
+            {"wall_shoulder",         1.4, 1.4},
+            {"wall_shoulder_back",   -1.4, 1.4},
+        };
+
+        for (int frame = 0; frame < kFrames; ++frame) {
+            const double t = -3.0 + 6.0 * frame / (kFrames - 1);
+            const double xc = cfg.bubble_center_x0 + cfg.velocity * t;
+            for (const ConeSite& s : sites) {
+                const double x = xc + s.xi_offset;
+                const MetricJet<double> jet =
+                    design::f1_metric_jet(cfg, f1, zero, t, x, s.rho, 0.0);
+                const geometry::AdmDecomposition adm =
+                    geometry::adm_decompose(jet.g_cov.m, jet.g_contra.m);
+                if (!adm.valid) continue;
+                const double a = adm.alpha;
+                const double b = adm.beta[0];
+                const double gxx = adm.gamma[0], grr = adm.gamma[4];
+                const double centre = -b;
+                // Radius along x, in coordinate velocity: alpha / sqrt(gamma_xx).
+                const double radius = a / std::sqrt(gxx);
+                const double fwd = centre + radius;
+                const double back = centre - radius;
+                // v = 0 is inside the cone exactly when the coordinate-stationary
+                // observer is timelike, i.e. when g_00 < 0.
+                const bool inside = jet.g_cov.m(0, 0) < 0.0;
+                f << frame << "," << t << "," << x << "," << s.rho << ","
+                  << s.label << "," << a << "," << b << "," << gxx << ","
+                  << grr << "," << jet.g_cov.m(0, 0) << "," << centre << ","
+                  << radius << "," << fwd << "," << back << ","
+                  << (inside ? 1 : 0) << ","
+                  << (std::fabs(centre) > 1e-12 ? 1 : 0) << "\n";
+            }
+        }
+
+        std::ofstream m(out_dir + "/null_cone_manifest.json");
+        m.precision(17);
+        m << "{\n"
+          << "  \"kind\": \"local_null_cones\",\n"
+          << "  \"derivation\": \"gamma_ij (v^i + beta^i)(v^j + beta^j) = "
+             "alpha^2, from g_00 + 2 g_0i v^i + g_ij v^i v^j = 0 in ADM "
+             "variables\",\n"
+          << "  \"meaning\": \"the cone cross-section at unit coordinate time "
+             "is an ellipsoid centred at -beta^i with radius alpha in the "
+             "gamma metric; the bubble TRANSLATES the cone rather than opening "
+             "or closing it\",\n"
+          << "  \"geodesics_integrated\": false,\n"
+          << "  \"causal_reachability_claimed\": false,\n"
+          << "  \"travel_time_claimed\": false,\n"
+          << "  \"ftl_motion_claimed\": false,\n"
+          << "  \"limitation\": \"Cone tipping is a LOCAL property of the "
+             "metric coefficients at one event. It says nothing about whether "
+             "two events are causally connected, about trip duration, or about "
+             "faster-than-light travel. Converting it into any of those "
+             "statements requires geodesic integration, which O0C does not "
+             "perform.\",\n"
+          << "  \"sites\": " << (sizeof(sites) / sizeof(sites[0])) << ",\n"
+          << "  \"frames\": " << kFrames << ",\n"
+          << "  \"velocity\": " << cfg.velocity << ",\n"
+          << "  \"renderer_must_not_rederive\": \"cone_center_vx, cone_radius "
+             "and both null slopes are written here so the renderer draws "
+             "numbers rather than computing them\"\n}\n";
+    }
+
     // --- The pointwise objective samples the 2D figures read ------------------
     {
         std::ofstream f(out_dir + "/pointwise_objective_samples.csv");
@@ -319,6 +432,82 @@ void run_o0c_product_checks(VerificationReport& report,
             "a camera orbit is not physical time, and a revolved half-plane is "
             "not an independently sampled volume; both distinctions travel "
             "with the data rather than living in a caption");
+        sw.reset();
+    }
+
+    // --- 48b. The null-cone record, and the line it does not cross ------------
+    {
+        std::ifstream c(out_dir + "/null_cone_samples.csv");
+        std::string line;
+        std::getline(c, line);   // comment
+        std::getline(c, line);   // header
+        std::size_t rows = 0, tipped = 0, outside = 0;
+        double worst_identity = 0.0;
+        while (std::getline(c, line)) {
+            if (line.empty()) continue;
+            ++rows;
+            // Re-derive the two null slopes from the recorded centre and radius
+            // and check they bracket it: an independent read of the same row.
+            std::vector<std::string> f;
+            std::string cur;
+            for (char ch : line) {
+                if (ch == ',') { f.push_back(cur); cur.clear(); }
+                else cur.push_back(ch);
+            }
+            f.push_back(cur);
+            if (f.size() < 16) continue;
+            const double centre = std::stod(f[10]);
+            const double radius = std::stod(f[11]);
+            const double fwd = std::stod(f[12]);
+            const double back = std::stod(f[13]);
+            // Judged RELATIVE to the magnitude, because the CSV is written at
+            // twelve significant digits for the renderer's benefit: a recorded
+            // slope of 1.31098569804 cannot agree with centre + radius =
+            // 1.310985698042 to better than the file's own precision, and a
+            // tighter absolute tolerance would be testing the write format
+            // rather than the algebra.
+            const double scale = std::fmax(1.0, std::fabs(fwd));
+            worst_identity = std::fmax(
+                worst_identity,
+                std::fmax(std::fabs(fwd - (centre + radius)),
+                          std::fabs(back - (centre - radius))) / scale);
+            if (f[15] == "1" || f[15] == "1\r") ++tipped;
+            if (f[14] == "0" || f[14] == "0\r") ++outside;
+        }
+
+        std::ifstream mm(out_dir + "/null_cone_manifest.json");
+        std::string all((std::istreambuf_iterator<char>(mm)),
+                        std::istreambuf_iterator<char>());
+        const bool no_geodesics =
+            all.find("\"geodesics_integrated\": false") != std::string::npos;
+        const bool no_causal =
+            all.find("\"causal_reachability_claimed\": false") !=
+                std::string::npos &&
+            all.find("\"travel_time_claimed\": false") != std::string::npos &&
+            all.find("\"ftl_motion_claimed\": false") != std::string::npos;
+
+        report.check_predicate(
+            "o0c.local_null_cones_recorded",
+            "the local null cone is written from the metric coefficients at "
+            "each event, with the slopes consistent with the recorded centre "
+            "and radius, and with every causal claim explicitly disclaimed",
+            VerificationLevel::A,
+            rows > 0 && worst_identity < 1e-11 && tipped > 0 && no_geodesics &&
+                no_causal,
+            "slopes = centre +- radius to the record's twelve-digit write "
+            "precision; cones observably tipped; no "
+            "geodesic, reachability, travel-time or FTL claim",
+            std::to_string(rows) + " cone samples, " + std::to_string(tipped) +
+                " tipped, " + std::to_string(outside) +
+                " with the coordinate-stationary observer OUTSIDE the cone "
+                "(g_00 >= 0); slope identity residual " +
+                std::to_string(worst_identity) +
+                "; geodesics integrated: no; causal claims: none",
+            sw.seconds(),
+            "gamma_ij (v^i + beta^i)(v^j + beta^j) = alpha^2 -- the bubble "
+            "TRANSLATES the cone rather than opening it. That is a local "
+            "property of g at one event and says nothing about reachability, "
+            "which is what A7 exists for and what this record stops short of");
         sw.reset();
     }
 

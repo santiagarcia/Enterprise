@@ -772,6 +772,10 @@ if(Python3_Interpreter_FOUND AND EXISTS
     "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0c/animate_o0c_energy.py"
     --records "${WARP_HYPAD_O0C_RESULTS}"
     --out "${WARP_HYPAD_O0C_GALLERY}")
+  add_test(NAME o0c.explorer COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0c/explore_o0c_spacetime.py"
+    --records "${WARP_HYPAD_O0C_RESULTS}"
+    --out "${WARP_HYPAD_O0C_GALLERY}")
   add_test(NAME o0c.visual_gate COMMAND "${Python3_EXECUTABLE}"
     "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/regression/v0_o0c_verify.py"
     --gallery "${WARP_HYPAD_O0C_GALLERY}"
@@ -779,8 +783,10 @@ if(Python3_Interpreter_FOUND AND EXISTS
     --visualization "${CMAKE_CURRENT_SOURCE_DIR}/../visualization")
   set_tests_properties(o0c.figures PROPERTIES DEPENDS "o0c.gate")
   set_tests_properties(o0c.animations PROPERTIES DEPENDS "o0c.gate;o0c.figures")
+  set_tests_properties(o0c.explorer PROPERTIES
+    DEPENDS "o0c.gate;o0c.figures")
   set_tests_properties(o0c.visual_gate PROPERTIES
-    DEPENDS "o0c.gate;o0c.figures;o0c.animations")
+    DEPENDS "o0c.gate;o0c.figures;o0c.animations;o0c.explorer")
 endif()
 
 # --- Milestone O0B-C: corrected design semantics ------------------------------

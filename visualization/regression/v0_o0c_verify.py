@@ -194,7 +194,8 @@ def main():
     offenders = []
     scanned = 0
     for mod in ("program_o0c/o0c_common.py", "program_o0c/plot_o0c_energy.py",
-                "program_o0c/animate_o0c_energy.py"):
+                "program_o0c/animate_o0c_energy.py",
+                "program_o0c/explore_o0c_spacetime.py"):
         path = os.path.join(vis, mod)
         if not os.path.exists(path):
             continue
@@ -219,7 +220,7 @@ def main():
     case("v0o0c.no_python_gr_computation",
          "no renderer defines or calls a metric, curvature, stress-energy, "
          "observer, NEC or objective evaluation",
-         not offenders and scanned == 3, "clean across all 3 modules",
+         not offenders and scanned == 4, "clean across all 4 modules",
          "clean across %d modules" % scanned if not offenders
          else "offenders: " + ", ".join(sorted(set(offenders))[:6]), t0)
 
@@ -437,6 +438,104 @@ def main():
          "manifest and %d of %d sidecars carry it verbatim"
          % (sum(1 for c in checked if c.get("scope") == O.SCOPE),
             len(O.STATICS + O.STATICS_3D)), t0)
+
+    # --- the spacetime explorer -----------------------------------------------
+    t0 = time.time()
+    ex = read_json(os.path.join(gal, "explorer_manifest.json"))
+    figs = [n for n in ex["figures"]
+            if os.path.exists(os.path.join(gal, n + ".png"))]
+    anims = [e for e in ex["animations"]
+             if e["gif_written"] and
+             os.path.exists(os.path.join(gal, e["name"] + ".gif"))]
+    case("v0o0c.explorer_products_exist",
+         "the spacetime explorer wrote its figures and animations",
+         len(figs) == len(ex["figures"]) and len(anims) == len(ex["animations"]),
+         "%d figures, %d animations" % (len(ex["figures"]),
+                                        len(ex["animations"])),
+         "%d of %d figures, %d of %d animations"
+         % (len(figs), len(ex["figures"]), len(anims),
+            len(ex["animations"])), t0)
+
+    t0 = time.time()
+    # Only the WORLDTUBE view carries worldtube properties. null_cone_tipping
+    # is an ordinary two-dimensional plot and correctly declares neither, so
+    # requiring it to would be testing the wrong thing.
+    worldtube_figs = ["spacetime_explorer_4d"]
+    side = [sidecar(gal, n) for n in worldtube_figs]
+    side = [c for c in side if c is not None]
+    declared = [c for c in side
+                if c.get("is_four_spatial_dimensions") is False]
+    case("v0o0c.worldtube_is_not_four_spatial_dimensions",
+         "the explorer is described as a spacetime worldtube with a TIME axis, "
+         "never as a view of four spatial dimensions",
+         ex["is_four_spatial_dimensions"] is False and
+         ex["view_kind"] == "spacetime_worldtube" and
+         "TIME axis" in ex["worldtube_note"] and
+         all(e.get("is_four_spatial_dimensions") is False
+             for e in ex["animations"]) and
+         len(declared) == len(worldtube_figs),
+         "declared a worldtube everywhere, four spatial dimensions nowhere",
+         "manifest view_kind '%s'; %d of %d worldtube figure sidecars and "
+         "%d of %d animation entries declare it"
+         % (ex["view_kind"], len(declared), len(worldtube_figs),
+            sum(1 for e in ex["animations"]
+                if e.get("is_four_spatial_dimensions") is False),
+            len(ex["animations"])), t0)
+
+    t0 = time.time()
+    third = [e for e in ex["animations"] if e.get("third_axis") ==
+             "coordinate time"]
+    case("v0o0c.time_axis_named",
+         "the third axis of the worldtube is named as coordinate time",
+         len(third) == len(ex["animations"]) and
+         all(c.get("third_axis") == "coordinate time" for c in side),
+         "coordinate time, everywhere",
+         "%d of %d animation entries and %d of %d worldtube sidecars name it"
+         % (len(third), len(ex["animations"]),
+            sum(1 for c in side if c.get("third_axis") == "coordinate time"),
+            len(side)), t0)
+
+    t0 = time.time()
+    cone_man = read_json(os.path.join(rec, "null_cone_manifest.json"))
+    disclaimed = (cone_man["geodesics_integrated"] is False and
+                  cone_man["causal_reachability_claimed"] is False and
+                  cone_man["travel_time_claimed"] is False and
+                  cone_man["ftl_motion_claimed"] is False and
+                  ex["geodesics_integrated"] is False and
+                  ex["causal_reachability_claimed"] is False and
+                  ex["travel_time_claimed"] is False and
+                  ex["ftl_motion_claimed"] is False)
+    cone_side = sidecar(gal, "null_cone_tipping")
+    case("v0o0c.null_cones_make_no_causal_claim",
+         "the causal overlay is local metric algebra, with geodesic "
+         "integration and every causal claim explicitly disclaimed",
+         disclaimed and cone_side is not None and
+         cone_side.get("geodesics_integrated") is False and
+         cone_side.get("ftl_motion_claimed") is False,
+         "no geodesics, no reachability, no travel time, no FTL",
+         "production and renderer manifests and the figure sidecar all "
+         "disclaim it; production derives the cone as %s"
+         % cone_man["derivation"][:64], t0)
+
+    t0 = time.time()
+    all_axes = set()
+    for e in entries + ex["animations"]:
+        all_axes.add(e.get("frame_axis"))
+    required = {"physical time", "camera angle", "correction amplitude",
+                "quadrature refinement"}
+    orbit2 = [e for e in ex["animations"]
+              if e["name"] == "spacetime_worldtube_orbit"]
+    case("v0o0c.four_frame_axes_distinguished",
+         "physical time, camera motion, correction amplitude and quadrature "
+         "refinement are all present and all distinguished",
+         required.issubset(all_axes) and
+         bool(orbit2) and orbit2[0]["frame_axis_is_physical_time"] is False and
+         orbit2[0]["camera_moves"] is True,
+         "all four axes present and separately labelled",
+         "axes present: %s; worldtube orbit is camera-angle with "
+         "physical_time=%s" % (", ".join(sorted(all_axes)),
+                               orbit2[0]["frame_axis_is_physical_time"]
+                               if orbit2 else "?"), t0)
 
     # --- report ---------------------------------------------------------------
     passed = sum(1 for r in _RESULTS if r["passed"])

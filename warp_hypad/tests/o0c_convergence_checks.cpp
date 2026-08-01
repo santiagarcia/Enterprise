@@ -68,6 +68,19 @@ void run_o0c_convergence_checks(VerificationReport& report,
     const double xi_ref = reg.xi_max;
     const double s_ref = reg.s_max;
 
+    // TIMING LIVES IN ITS OWN FILE, AND THAT IS NOT A COSMETIC CHOICE.
+    // Wall time changes on every run even when the science does not, so a
+    // scientific record carrying it can never be byte-reproducible, and any
+    // digest check over it can only pass by accident. The spec requires wall
+    // time to be recorded; it does not require it to contaminate the data the
+    // figures are drawn from. So it goes here, and the convergence CSVs stay
+    // reproducible.
+    std::ofstream timing(out_dir + "/convergence_timing.csv");
+    timing.precision(6);
+    timing << "# wall time and evaluation counts; NON-REPRODUCIBLE by nature, "
+              "which is why it is not in the convergence records themselves\n";
+    timing << "study,objective,parameter,elements,points,wall_time_seconds\n";
+
     auto run = [&](int order, int sub, double xi_e, double s_e, bool nec) {
         const IntegrationSet set = design::build_elementwise_set(
             f1, order, sub, xi_e, s_e, 0.0, cfg.velocity);
@@ -83,7 +96,7 @@ void run_o0c_convergence_checks(VerificationReport& report,
         std::ofstream f(out_dir + "/quadrature_order_convergence.csv");
         f.precision(17);
         f << "objective,order,subdivision,xi_extent,s_extent,elements,points,"
-             "value,absolute_change,relative_change,wall_time_seconds\n";
+             "value,absolute_change,relative_change\n";
         double prev_net = 0.0, prev_neg = 0.0;
         bool first = true;
         bool ok_net = true, ok_neg = true;
@@ -104,11 +117,14 @@ void run_o0c_convergence_checks(VerificationReport& report,
             f << "E_net," << order << ",1," << xi_ref << "," << s_ref << ","
               << r.second.elements << "," << v.points << "," << v.E_net << ","
               << dn << "," << (v.E_net != 0.0 ? dn / std::fabs(v.E_net) : 0.0)
-              << "," << wall << "\n";
+              << "\n";
             f << "E_neg," << order << ",1," << xi_ref << "," << s_ref << ","
               << r.second.elements << "," << v.points << "," << v.E_neg << ","
               << dg << "," << (v.E_neg != 0.0 ? dg / std::fabs(v.E_neg) : 0.0)
-              << "," << wall << "\n";
+              << "\n";
+            timing << "quadrature_order,E_neg," << order << ","
+                   << r.second.elements << "," << v.points << "," << wall
+                   << "\n";
             prev_net = v.E_net;
             prev_neg = v.E_neg;
             first = false;
@@ -137,7 +153,7 @@ void run_o0c_convergence_checks(VerificationReport& report,
         std::ofstream f(out_dir + "/subdivision_convergence.csv");
         f.precision(17);
         f << "objective,order,subdivision,elements,points,value,"
-             "absolute_change,relative_change,wall_time_seconds\n";
+             "absolute_change,relative_change\n";
         double prev_net = 0.0, prev_neg = 0.0;
         bool first = true, ok = true;
         double last = 0.0;
@@ -155,12 +171,15 @@ void run_o0c_convergence_checks(VerificationReport& report,
             }
             f << "E_net,8," << sub << "," << r.second.elements << ","
               << v.points << "," << v.E_net << "," << dn << ","
-              << (v.E_net != 0.0 ? dn / std::fabs(v.E_net) : 0.0) << "," << wall
+              << (v.E_net != 0.0 ? dn / std::fabs(v.E_net) : 0.0)
               << "\n";
             f << "E_neg,8," << sub << "," << r.second.elements << ","
               << v.points << "," << v.E_neg << "," << dg << ","
-              << (v.E_neg != 0.0 ? dg / std::fabs(v.E_neg) : 0.0) << "," << wall
+              << (v.E_neg != 0.0 ? dg / std::fabs(v.E_neg) : 0.0)
               << "\n";
+            timing << "subdivision,E_neg," << sub << ","
+                   << r.second.elements << "," << v.points << "," << wall
+                   << "\n";
             prev_net = v.E_net;
             prev_neg = v.E_neg;
             first = false;
@@ -186,8 +205,7 @@ void run_o0c_convergence_checks(VerificationReport& report,
         std::ofstream f(out_dir + "/domain_convergence.csv");
         f.precision(17);
         f << "objective,xi_extent,s_extent,r_max_comoving,elements,points,"
-             "value,absolute_change,relative_change,estimated_tail,"
-             "wall_time_seconds\n";
+             "value,absolute_change,relative_change,estimated_tail\n";
         double prev_net = 0.0, prev_neg = 0.0;
         bool first = true, ok = true;
         double tail = 0.0;
@@ -210,11 +228,13 @@ void run_o0c_convergence_checks(VerificationReport& report,
             f << "E_net," << e.xi << "," << e.s << "," << rmax << ","
               << r.second.elements << "," << v.points << "," << v.E_net << ","
               << dn << "," << (v.E_net != 0.0 ? dn / std::fabs(v.E_net) : 0.0)
-              << "," << dn << "," << wall << "\n";
+              << "," << dn << "\n";
             f << "E_neg," << e.xi << "," << e.s << "," << rmax << ","
               << r.second.elements << "," << v.points << "," << v.E_neg << ","
               << dg << "," << (v.E_neg != 0.0 ? dg / std::fabs(v.E_neg) : 0.0)
-              << "," << dg << "," << wall << "\n";
+              << "," << dg << "\n";
+            timing << "domain,E_neg," << rmax << "," << r.second.elements
+                   << "," << v.points << "," << wall << "\n";
             prev_net = v.E_net;
             prev_neg = v.E_neg;
             first = false;
