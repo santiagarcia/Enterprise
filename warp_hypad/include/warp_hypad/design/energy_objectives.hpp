@@ -557,20 +557,42 @@ inline IntegrationSet build_elementwise_set(const AxisymmetricBasis& basis,
     // Element boundaries: the basis knot spans, clipped to the requested extent,
     // then subdivided. Beyond the basis range the integrand is still the
     // BASELINE, which is what the domain-enlargement study needs, so the tail is
-    // tiled uniformly at the same element size.
+    // tiled at the basis's own element size.
+    //
+    // BOTH TAILS, WHICH THE FIRST VERSION DID NOT DO. It tiled only above
+    // b.upper() and left everything below b.lower() as a single element. At
+    // xi_extent = 5 over a basis spanning [-1.75, 1.75] that produced a node
+    // range of [-9.53, 9.93] instead of [-10, 10]: the domain was ASYMMETRIC and
+    // narrower than the extent the record claimed. The integrand out there is
+    // tiny, so the converged value barely moved -- but a domain-extent
+    // CERTIFICATION whose domain is not the one it names is a mislabelled
+    // record, and correcting it is cheaper than explaining it forever.
+    //
+    // The tail step is taken from the basis rather than hard-coded, so a finer
+    // lattice tiles its tail more finely too.
     auto edges = [&](const QuinticBSplineBasis1D& b, double lo, double hi) {
+        const std::vector<double>& knots = b.distinct_interior_knots();
+        double h = 0.5;
+        if (knots.size() >= 2) {
+            double narrowest = 1e300;
+            for (std::size_t i = 0; i + 1 < knots.size(); ++i)
+                narrowest = std::fmin(narrowest, knots[i + 1] - knots[i]);
+            if (narrowest > 1e-9 && narrowest < 1e300) h = narrowest;
+        }
+
         std::vector<double> e;
         e.push_back(lo);
-        for (double t : b.distinct_interior_knots())
-            if (t > lo + 1e-12 && t < hi - 1e-12) e.push_back(t);
-        if (b.upper() < hi - 1e-12) {
-            const double step = (hi - b.upper()) /
-                                std::fmax(1.0, std::floor((hi - b.upper()) /
-                                                          std::fmax(1e-9, 0.5)));
-            for (double t = b.upper(); t < hi - 1e-12; t += step)
-                if (t > lo + 1e-12) e.push_back(t);
-        }
         e.push_back(hi);
+        for (double t : knots)
+            if (t > lo + 1e-12 && t < hi - 1e-12) e.push_back(t);
+        if (b.lower() > lo + 1e-12) {
+            e.push_back(b.lower());
+            for (double t = b.lower() - h; t > lo + 1e-12; t -= h) e.push_back(t);
+        }
+        if (b.upper() < hi - 1e-12) {
+            e.push_back(b.upper());
+            for (double t = b.upper() + h; t < hi - 1e-12; t += h) e.push_back(t);
+        }
         std::sort(e.begin(), e.end());
         e.erase(std::unique(e.begin(), e.end(),
                             [](double a, double c) {

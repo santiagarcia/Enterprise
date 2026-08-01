@@ -789,6 +789,50 @@ if(Python3_Interpreter_FOUND AND EXISTS
     DEPENDS "o0c.gate;o0c.figures;o0c.animations;o0c.explorer")
 endif()
 
+# --- Milestone O0D: F1W objective-resolution certification --------------------
+add_executable(o0d_verify
+  tests/o0d_verify.cpp
+  tests/o0d_convergence_checks.cpp
+  tests/o0d_gradient_checks.cpp
+  tests/o0d_probe_checks.cpp
+  tests/o0d_readiness.cpp
+  tests/o0c_geometry_checks.cpp
+  tests/o0c_energy_checks.cpp
+  tests/o0c_convergence_checks.cpp
+  tests/o0c_gradient_checks.cpp
+  tests/o0c_field_records.cpp
+)
+target_link_libraries(o0d_verify PRIVATE warp_hypad_core)
+target_include_directories(o0d_verify PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+if(MSVC)
+  target_compile_options(o0d_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(o0d_verify PRIVATE
+    -Wall -Wextra -Wpedantic -Werror -Wshadow -Wconversion)
+endif()
+
+set(WARP_HYPAD_O0D_RESULTS "${CMAKE_BINARY_DIR}/results/verification/o0d_f1w_certification")
+set(WARP_HYPAD_O0D_GALLERY "${CMAKE_BINARY_DIR}/results/visualization/program_o0d")
+
+add_test(NAME o0d.gate COMMAND o0d_verify --out "${WARP_HYPAD_O0D_RESULTS}")
+set_tests_properties(o0d.gate PROPERTIES DEPENDS "o0c.gate")
+
+if(Python3_Interpreter_FOUND AND EXISTS
+   "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0d/plot_o0d_certification.py")
+  add_test(NAME o0d.figures COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o0d/plot_o0d_certification.py"
+    --records "${WARP_HYPAD_O0D_RESULTS}"
+    --out "${WARP_HYPAD_O0D_GALLERY}")
+  add_test(NAME o0d.visual_gate COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/regression/v0_o0d_verify.py"
+    --gallery "${WARP_HYPAD_O0D_GALLERY}"
+    --records "${WARP_HYPAD_O0D_RESULTS}"
+    --visualization "${CMAKE_CURRENT_SOURCE_DIR}/../visualization")
+  set_tests_properties(o0d.figures PROPERTIES DEPENDS "o0d.gate")
+  set_tests_properties(o0d.visual_gate PROPERTIES
+    DEPENDS "o0d.gate;o0d.figures")
+endif()
+
 # --- Milestone O0B-C: corrected design semantics ------------------------------
 #
 # The corrective gate. It runs after the O0B chain because several of its cases
@@ -1239,6 +1283,8 @@ if(WARP_HYPAD_WITH_OTILIB)
   target_compile_definitions(o0bc_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(o0c_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(o0c_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
+  target_link_libraries(o0d_verify PRIVATE warp_hypad_otilib)
+  target_compile_definitions(o0d_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(milestone2t_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(milestone2t_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   if(TARGET b1_verify)
