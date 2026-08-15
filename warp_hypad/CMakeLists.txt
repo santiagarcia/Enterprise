@@ -789,6 +789,55 @@ if(Python3_Interpreter_FOUND AND EXISTS
     DEPENDS "o0c.gate;o0c.figures;o0c.animations;o0c.explorer")
 endif()
 
+# --- Milestone O1: safeguarded F1W source-requirement optimization ------------
+add_executable(o1_verify
+  tests/o1_verify.cpp
+  tests/o1_optimizer.cpp
+  tests/o1_gate_checks.cpp
+  tests/o0d_convergence_checks.cpp
+)
+target_link_libraries(o1_verify PRIVATE warp_hypad_core)
+target_include_directories(o1_verify PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+if(MSVC)
+  target_compile_options(o1_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(o1_verify PRIVATE
+    -Wall -Wextra -Wpedantic -Werror -Wshadow -Wconversion)
+endif()
+
+set(WARP_HYPAD_O1_RESULTS "${CMAKE_BINARY_DIR}/results/verification/o1_optimization")
+set(WARP_HYPAD_O1_GALLERY "${CMAKE_BINARY_DIR}/results/visualization/program_o1")
+
+# The O0D results path is spelled out rather than reused from
+# WARP_HYPAD_O0D_RESULTS: that variable is set in the O0D section, which appears
+# LATER in this file, so referencing it here expanded to the empty string and
+# the gate silently read no readiness record at all.
+add_test(NAME o1.gate COMMAND o1_verify --out "${WARP_HYPAD_O1_RESULTS}"
+         --o0d "${CMAKE_BINARY_DIR}/results/verification/o0d_f1w_certification")
+set_tests_properties(o1.gate PROPERTIES DEPENDS "o0d.gate")
+
+# The O1 visuals draw an optimization, so they are registered only where the
+# optimizer can actually run. Without the verified OTI gradient backend O1
+# produces no accepted trace by design, and rendering tests that must fail for a
+# correct reason are worse than no tests at all.
+if(Python3_Interpreter_FOUND AND WARP_HYPAD_WITH_OTILIB AND EXISTS
+   "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o1/plot_o1_optimization.py")
+  add_test(NAME o1.figures COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o1/plot_o1_optimization.py"
+    --records "${WARP_HYPAD_O1_RESULTS}" --out "${WARP_HYPAD_O1_GALLERY}")
+  add_test(NAME o1.animations COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/program_o1/animate_o1_optimization.py"
+    --records "${WARP_HYPAD_O1_RESULTS}" --out "${WARP_HYPAD_O1_GALLERY}")
+  add_test(NAME o1.visual_gate COMMAND "${Python3_EXECUTABLE}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../visualization/regression/v0_o1_verify.py"
+    --gallery "${WARP_HYPAD_O1_GALLERY}" --records "${WARP_HYPAD_O1_RESULTS}"
+    --visualization "${CMAKE_CURRENT_SOURCE_DIR}/../visualization")
+  set_tests_properties(o1.figures PROPERTIES DEPENDS "o1.gate")
+  set_tests_properties(o1.animations PROPERTIES DEPENDS "o1.gate;o1.figures")
+  set_tests_properties(o1.visual_gate PROPERTIES
+    DEPENDS "o1.gate;o1.figures;o1.animations")
+endif()
+
 # --- Milestone O0D: F1W objective-resolution certification --------------------
 add_executable(o0d_verify
   tests/o0d_verify.cpp
@@ -1285,6 +1334,8 @@ if(WARP_HYPAD_WITH_OTILIB)
   target_compile_definitions(o0c_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(o0d_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(o0d_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
+  target_link_libraries(o1_verify PRIVATE warp_hypad_otilib)
+  target_compile_definitions(o1_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(milestone2t_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(milestone2t_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   if(TARGET b1_verify)
