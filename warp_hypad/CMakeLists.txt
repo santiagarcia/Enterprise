@@ -838,6 +838,24 @@ if(Python3_Interpreter_FOUND AND WARP_HYPAD_WITH_OTILIB AND EXISTS
     DEPENDS "o1.gate;o1.figures;o1.animations")
 endif()
 
+# --- Milestone O2: positive-energy ADM feasibility search ---------------------
+add_executable(o2_verify
+  tests/o2_verify.cpp
+  tests/o0d_convergence_checks.cpp
+)
+target_link_libraries(o2_verify PRIVATE warp_hypad_core)
+target_include_directories(o2_verify PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+if(MSVC)
+  target_compile_options(o2_verify PRIVATE /W4 /WX /permissive- /Zc:__cplusplus)
+else()
+  target_compile_options(o2_verify PRIVATE
+    -Wall -Wextra -Wpedantic -Werror -Wshadow -Wconversion)
+endif()
+
+set(WARP_HYPAD_O2_RESULTS "${CMAKE_BINARY_DIR}/results/verification/o2_feasibility")
+add_test(NAME o2.gate COMMAND o2_verify --out "${WARP_HYPAD_O2_RESULTS}")
+set_tests_properties(o2.gate PROPERTIES DEPENDS "o1.gate")
+
 # --- Milestone O0D: F1W objective-resolution certification --------------------
 add_executable(o0d_verify
   tests/o0d_verify.cpp
@@ -1336,6 +1354,8 @@ if(WARP_HYPAD_WITH_OTILIB)
   target_compile_definitions(o0d_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(o1_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(o1_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
+  target_link_libraries(o2_verify PRIVATE warp_hypad_otilib)
+  target_compile_definitions(o2_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   target_link_libraries(milestone2t_verify PRIVATE warp_hypad_otilib)
   target_compile_definitions(milestone2t_verify PRIVATE WARP_HYPAD_HAVE_OTILIB=1)
   if(TARGET b1_verify)
