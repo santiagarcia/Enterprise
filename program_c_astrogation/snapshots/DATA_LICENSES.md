@@ -13,9 +13,25 @@ embedded in the snapshot files (see "Erratum").
 
 The `.manifest.json` files record the queries and retrieval times
 (Gaia retrieval: 2026-07-26, table `gaiadr3.gaia_source`).
-`../results/verification/program_c0/c0_demonstration_gaia_dr3_10pc.txt` and
-`../results/verification/program_c0_real/` contain output derived from these
-snapshots and carry the same terms.
+
+### Outputs derived from these snapshots
+
+The following tracked outputs were computed from these snapshots. They contain
+Gaia DR3 source identifiers and derived astrometry (distances, positions,
+directions), and some contain SIMBAD names or NASA Exoplanet Archive planet
+data. They carry the same terms and acknowledgements as the snapshots:
+
+- `../results/verification/program_c0/c0_demonstration_gaia_dr3_10pc.txt`;
+- `../results/verification/program_c0_real/` (all files);
+- `../results/verification/program_c1/`: `data/*.csv` (for example
+  `local_neighborhood.csv` and `apparent_sky_*.csv`, 315 objects with SIMBAD
+  names; `interception.csv`, `trajectory_comparison.csv` and
+  `worldline_proxima_1g.csv` for Proxima Centauri), the `figures/` (PNG, SVG
+  and the `*.plotted.csv` data behind them), `animations/`, `contact_sheets/`
+  and `verification/`, all of which were made from the 10 pc snapshot.
+
+Purely synthetic outputs (`data_kind` `SYNTHETIC`, for example
+`../results/verification/program_c0/c0_snapshot_50pc.txt`) contain no Gaia data.
 
 ## Gaia DR3 (ESA)
 
@@ -35,7 +51,8 @@ snapshots and carry the same terms.
 
   > Credit: ESA, Gaia DPAC
 
-- **Required attribution for these files:**
+- **Attribution for these files** (composed to meet the credit-line, licence-link
+  and indication-of-changes requirements; not ESA-supplied wording):
 
   > Contains data from the European Space Agency (ESA) mission Gaia, Data
   > Release 3, processed by the Gaia Data Processing and Analysis Consortium

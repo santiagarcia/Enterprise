@@ -21,17 +21,25 @@ Research prototypes for warp-spacetime analysis and related programs:
   from upstream are listed in `warp_hypad/external/otilib/VENDORING_NOTE.md`.
   Some upstream build files carry their own notices (for example the Kitware
   CMake modules, Apache License 2.0).
-- **Data snapshots** in `program_c_astrogation/snapshots/` (Gaia DR3, with
-  SIMBAD identifiers and NASA Exoplanet Archive records) are third-party data
-  under their own terms and are **not** covered by the code licence. Gaia data
-  are CC BY-NC 3.0 IGO. See
+- **Third-party data** are **not** covered by the code licence: the Gaia DR3
+  snapshots in `program_c_astrogation/snapshots/` (with SIMBAD identifiers and
+  NASA Exoplanet Archive records), and the outputs derived from them under
+  `program_c_astrogation/results/verification/` (`program_c0_real/`,
+  `program_c1/`, and the C0 Gaia demonstration file). Gaia data are
+  CC BY-NC 3.0 IGO. See
   [`program_c_astrogation/snapshots/DATA_LICENSES.md`](program_c_astrogation/snapshots/DATA_LICENSES.md)
-  for the terms and the required acknowledgements.
+  for the terms, the full list of affected files and the required
+  acknowledgements.
 
 ## AI assistance
 
-All 45 commits up to `477141d` (2026-08-15) carry a `Co-Authored-By` trailer
-naming Claude (Anthropic): 38 name "Claude Opus 5" and 7 name "Claude Opus 5
-(1M context)". The trailers record that an AI coding assistant contributed to
-those commits; they do not identify which lines it wrote. The human author
-reviewed the changes and is responsible for the contents of this repository.
+Commits made with AI assistance carry a `Co-Authored-By` trailer naming the
+assistant. All 45 commits up to `477141d` (2026-08-15) carry one naming Claude
+(Anthropic): 38 name "Claude Opus 5" and 7 name "Claude Opus 5 (1M context)".
+The trailers record that an AI coding assistant contributed to those commits;
+they do not identify which lines it wrote or how the changes were checked.
+
+> **[AUTHOR STATEMENT REQUIRED: the author's own statement of how the
+> AI-assisted work was reviewed and verified, and of responsibility for this
+> repository's contents. To be written by the author; not filled in by the AI
+> assistant.]**
