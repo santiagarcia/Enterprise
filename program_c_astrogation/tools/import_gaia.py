@@ -67,7 +67,13 @@ PINNED_REFERENCE_EPOCH_JYEAR = 2016.0
 GAIA_TAP_SYNC = "https://gea.esac.esa.int/tap-server/tap/sync"
 SIMBAD_TAP_SYNC = "https://simbad.cds.unistra.fr/simbad/sim-tap/sync"
 EXOPLANET_TAP_SYNC = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync"
-GAIA_LICENCE = "ESA/Gaia/DPAC, CC BY-SA 3.0 IGO; cite Gaia Collaboration 2016, 2023"
+# Verified 2026-10-27 at https://www.cosmos.esa.int/web/gaia-users/license
+# ("Gaia data are distributed under the CC BY-NC 3.0 IGO license") and
+# https://www.cosmos.esa.int/web/esdc/terms-and-conditions (credit line
+# "Credit: ESA, Gaia DPAC"). Earlier snapshots carry the erroneous string
+# "CC BY-SA 3.0 IGO"; see snapshots/DATA_LICENSES.md.
+GAIA_LICENCE = ("ESA/Gaia/DPAC, CC BY-NC 3.0 IGO; Credit: ESA, Gaia DPAC; "
+                "cite Gaia Collaboration 2016, 2023")
 
 MIN_PARALLAX_SNR = 10.0
 SCHEMA_VERSION = 1

@@ -286,7 +286,7 @@ inline Snapshot build_snapshot(double radius_pc) {
         "n/a: no retrieval was performed; fixtures are SYNTHETIC";
     snap.release.adql_query = adql_for_radius(radius_pc, kMinParallaxSignalToNoise);
     snap.release.licence =
-        "Gaia data would be ESA/Gaia/DPAC, CC BY-SA 3.0 IGO; NOT APPLICABLE here "
+        "Gaia data would be ESA/Gaia/DPAC, CC BY-NC 3.0 IGO; NOT APPLICABLE here "
         "because no Gaia data is present";
     snap.release.data_kind = kSyntheticTag;
 
