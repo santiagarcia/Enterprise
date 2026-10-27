@@ -3,7 +3,10 @@ build/
 out/
 cmake-build-*/
 
-# Third-party checkout. Pinned dependency, not vendored source: re-create with
+# Third-party checkout. SUPERSEDED: the paragraph below describes the original
+# external-checkout arrangement. Since commit bd262fb OTIlib IS vendored (see the
+# VENDORED paragraph further down and external/otilib/VENDORING_NOTE.md).
+# Original text: pinned dependency, not vendored source: re-create with
 #   git clone https://github.com/mauriaristi/otilib.git external/otilib
 #   git -C external/otilib checkout de3f7fa2b1ba667dff054ad5ba1f6f41f4ba8b54
 # Committing it would also import GPL-3.0 sources into this tree, which is

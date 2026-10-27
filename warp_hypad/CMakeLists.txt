@@ -1215,8 +1215,8 @@ endif()
 # What opt-in buys is that the core library and every non-sensitivity gate build
 # and pass without the dependency, so the suite stays runnable for anyone who
 # does not want it, and the OTIlib-disabled configuration is checked on every
-# release. The backend is isolated behind include/warp_hypad/sensitivity/ and
-# pinned externally rather than vendored.
+# release. The backend is isolated behind include/warp_hypad/sensitivity/. The
+# pinned revision is vendored in external/otilib/ (since commit bd262fb).
 #
 #   cmake -S . -B build -DWARP_HYPAD_WITH_OTILIB=ON
 #
@@ -1228,11 +1228,11 @@ endif()
 
 option(WARP_HYPAD_WITH_OTILIB "Build the OTIlib (GPL-3.0) sensitivity backend" OFF)
 
-# The pin. OTIlib is a pinned external dependency, NOT vendored source: the
-# checkout is git-ignored (see .gitignore, and docs/otilib_discovery_report.md
-# for why: GPL-3.0 is accepted, and the checkout is kept external so a large
-# upstream history stays out of this repository. Fetch it with
-# scripts/bootstrap_otilib.sh or .ps1).
+# The pin. Since commit bd262fb the working tree of OTIlib (GPL-3.0) at this
+# revision is VENDORED in external/otilib/, with the pin recorded in
+# external/otilib/PINNED_SHA.txt and the differences from upstream listed in
+# external/otilib/VENDORING_NOTE.md. A fresh upstream checkout with history can
+# still be fetched with scripts/bootstrap_otilib.sh or .ps1.
 #
 # The consequence of ignoring it is that the pin used to live only in a comment,
 # so a silently different checkout would have produced a green gate against the

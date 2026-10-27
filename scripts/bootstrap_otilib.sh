@@ -2,11 +2,12 @@
 #
 # Fetch the pinned OTIlib checkout.
 #
-# OTIlib is a PINNED EXTERNAL DEPENDENCY, not vendored source. GPL-3.0 is
-# accepted for this research prototype; keeping the checkout external is an
-# architectural choice, not an unresolved licensing question. It keeps a large
-# upstream history out of this repository while the backend stays optional and
-# isolated behind include/warp_hypad/sensitivity/.
+# OTIlib is GPL-3.0, accepted for this research prototype. Since commit bd262fb
+# the working tree at the pinned revision IS VENDORED in
+# warp_hypad/external/otilib/ (see VENDORING_NOTE.md there), so a normal clone
+# does not need this script. It remains for fetching a fresh upstream checkout
+# with git history. The backend stays optional and isolated behind
+# include/warp_hypad/sensitivity/.
 #
 # This script does NOT modify or patch upstream source. It clones, checks out the
 # recorded revision, verifies the resulting SHA, and exits nonzero on any

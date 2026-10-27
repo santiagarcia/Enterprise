@@ -208,6 +208,10 @@ inverses had lost every useful digit. See [docs/design.md](docs/design.md).
    despite upstream documenting "Windows only under WSL".
 
    GPL-3.0 is adopted for the research prototype. The backend stays **optional
-   and isolated** behind `include/warp_hypad/sensitivity/`, and OTIlib is a
-   pinned external checkout — never vendored into this tree.
+   and isolated** behind `include/warp_hypad/sensitivity/`. OTIlib at the pinned
+   revision **is vendored** in `external/otilib/` (since commit `bd262fb`), so
+   this repository redistributes GPL-3.0 OTIlib source under its own `LICENSE`.
+   The differences from upstream (omitted checkpoint and build-artefact files,
+   line-ending normalisation) are listed in
+   [external/otilib/VENDORING_NOTE.md](external/otilib/VENDORING_NOTE.md).
    ([otilib_discovery_report.md](docs/otilib_discovery_report.md))

@@ -150,6 +150,12 @@ Three properties are maintained deliberately:
   keeps the repository free of a large upstream history while making the pin
   machine-checked rather than a comment.
 
+  *Correction (2026-10-27):* superseded by commit `bd262fb` (2026-07-28),
+  which vendored the working tree of OTIlib at the pinned revision into
+  `external/otilib/`. For the vendored copy CMake checks
+  `external/otilib/PINNED_SHA.txt`. The differences from upstream are listed
+  in `external/otilib/VENDORING_NOTE.md`.
+
 ## 5. Windows / MSVC compatibility — better than upstream documents
 
 Upstream states the library works on "Windows (only working under WSL)". That is

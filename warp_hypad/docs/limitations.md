@@ -176,8 +176,10 @@ than the order-1-only Fortran variants present locally.
 See [otilib_discovery_report.md](otilib_discovery_report.md).
 
 **Licence: RESOLVED.** GPL-3.0 adopted for the research prototype. The backend
-stays optional (`-DWARP_HYPAD_WITH_OTILIB=ON`) and isolated behind the adapter,
-and OTIlib is a pinned external checkout, never vendored into this tree.
+stays optional (`-DWARP_HYPAD_WITH_OTILIB=ON`) and isolated behind the adapter.
+OTIlib at the pinned revision is vendored in `external/otilib/` (since commit
+`bd262fb`); see `external/otilib/VENDORING_NOTE.md` for the differences from
+upstream.
 
 ### 3. The project specification is truncated
 
