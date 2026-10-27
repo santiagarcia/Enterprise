@@ -24,15 +24,17 @@ from the same code that computes the objective.
 ## Build and verify
 
 Requires a C++17 compiler and CMake ≥ 3.20. The core has no third-party
-dependencies; the AD backend needs the pinned OTIlib checkout.
+dependencies; the AD backend needs OTIlib at the pinned revision, which is
+vendored in `external/otilib/`.
 
 ```sh
 # core only (no GPL dependency)
 cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
-# with the HyPAD backend (GPL-3.0, see below)
-git clone https://github.com/mauriaristi/otilib.git external/otilib
-git -C external/otilib checkout de3f7fa2b1ba667dff054ad5ba1f6f41f4ba8b54
+# with the HyPAD backend (GPL-3.0, see below); uses the vendored external/otilib.
+# Only if external/otilib is absent, fetch it first:
+#   git clone https://github.com/mauriaristi/otilib.git external/otilib
+#   git -C external/otilib checkout de3f7fa2b1ba667dff054ad5ba1f6f41f4ba8b54
 cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DWARP_HYPAD_WITH_OTILIB=ON
 
 cmake --build build
