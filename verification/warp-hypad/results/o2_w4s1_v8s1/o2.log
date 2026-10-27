@@ -1,0 +1,9 @@
+block (active coeffs/field) = 36, tau = 0.001, parent coeffs = 272
+working set: order 4 sub 1 -> 6624 nodes; validation: order 8 sub 1 -> 246656 nodes; n=108
+baseline rho_min -9.602400e-04  E_neg 4.634569e-02  negfrac 1.0000  refined -9.604194e-04  eps_E 1.000e-08 eps_rho 4.640e-12
+  baseline_zero              R 1.4990e-04 -> 1.1757e-04  rho_min(v) -1.037949e-03  refined -1.037949e-03  E_neg(v) 2.073573e-02  acc 12  accepted_iteration_limit  91s
+  lapse_perturbation         R 1.4986e-04 -> 1.1829e-04  rho_min(v) -1.257580e-03  refined -1.257580e-03  E_neg(v) 2.123212e-02  acc 12  accepted_iteration_limit  91s
+  axial_shift_perturbation   R 1.6287e-04 -> 1.4102e-04  rho_min(v) -1.580295e-03  refined -1.580295e-03  E_neg(v) 3.855423e-02  acc 12  accepted_iteration_limit  91s
+  radial_shift_perturbation  R 1.5410e-04 -> 1.3865e-04  rho_min(v) -1.457057e-03  refined -1.457057e-03  E_neg(v) 3.677778e-02  acc 12  accepted_iteration_limit  90s
+  combined_perturbation      R 1.6264e-04 -> 1.4241e-04  rho_min(v) -1.649649e-03  refined -1.649649e-03  E_neg(v) 3.884053e-02  acc 12  accepted_iteration_limit  91s
+BASELINE rho_min -9.602400e-04 E_neg 4.634569e-02 | BEST(baseline_zero) rho_min -1.037949e-03 E_neg 2.073573e-02 | dE -55.26% drho -8.09%

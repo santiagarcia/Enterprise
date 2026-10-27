@@ -1,0 +1,8 @@
+w3s1_it12 ws=3:1:1.7:2.6 maxacc=12 rc=0 wall=67s
+w4s2_it12 ws=4:2:1.7:2.6 maxacc=12 rc=0 wall=395s
+w8s1_it12 ws=8:1:1.7:2.6 maxacc=12 rc=0 wall=393s
+w4s1_it60 ws=4:1:1.7:2.6 maxacc=60 rc=0 wall=479s
+w2s1_it12 ws=2:1:1.7:2.6 maxacc=12 rc=0 wall=35s
+w4s1_it40v ws=4:1:1.7:2.6 maxacc=40 rc=0 wall=859s
+w8s2_it12 ws=8:2:1.7:2.6 maxacc=12 rc=0 wall=1574s
+w8s1_it40v ws=8:1:1.7:2.6 maxacc=40 rc=0 wall=1759s

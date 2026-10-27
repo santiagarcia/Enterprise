@@ -1,0 +1,5 @@
+block (active coeffs/field) = 36, tau = 0.001, parent coeffs = 272
+working set: order 8 sub 1 -> 26496 nodes; validation: order 8 sub 1 -> 246656 nodes; n=108
+baseline rho_min -9.602400e-04  E_neg 4.634569e-02  negfrac 1.0000  refined -9.604194e-04  eps_E 1.000e-08 eps_rho 4.640e-12
+  baseline_zero              R 1.4990e-04 -> 1.0657e-04  rho_min(v) -6.894644e-04  refined -1.176028e-03  E_neg(v) 1.637613e-02  acc 40  accepted_iteration_limit  1755s
+BASELINE rho_min -9.602400e-04 E_neg 4.634569e-02 | BEST(baseline_zero) rho_min -6.894644e-04 E_neg 1.637613e-02 | dE -64.67% drho 28.20%

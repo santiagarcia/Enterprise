@@ -1,0 +1,445 @@
+diff --git a/program_c_astrogation/results/verification/program_c1/c1_metadata.json b/program_c_astrogation/results/verification/program_c1/c1_metadata.json
+index 3379bef..84373f8 100644
+--- a/program_c_astrogation/results/verification/program_c1/c1_metadata.json
++++ b/program_c_astrogation/results/verification/program_c1/c1_metadata.json
+@@ -32,13 +32,13 @@
+     }
+   ],
+   "effective_metric": "NONE. C1 is special-relativistic kinematics in flat spacetime. No warp metric, no propulsion energy, no collision hazard, no interstellar medium.",
+-  "generated_timestamp": "2026-07-27T22:29:32Z",
++  "generated_timestamp": "2026-10-27T15:32:54Z",
+   "git_commit": {
+-    "build_type": "Release",
+-    "compiler_id": "MSVC",
+-    "compiler_version": "19.44.35223.0",
++    "build_type": "RelWithDebInfo",
++    "compiler_id": "GNU",
++    "compiler_version": "16.1.0",
+     "cxx_standard": "C++17",
+-    "git_commit": "893dcfd6c463793a0201d824d20a9d72b7a3bf52",
++    "git_commit": "477141dd4a322edff4b71b6e02416dacd923a676",
+     "git_dirty": true,
+     "platform": "Windows-AMD64"
+   },
+@@ -53,7 +53,7 @@
+   },
+   "reference_epoch": 2016,
+   "simulation_epoch": 2026,
+-  "snapshot": "C:/Users/sgb10/Documents/GitHub/Mine/Enterprise/warp_hypad/../program_c_astrogation/snapshots/gaia_dr3_10pc.txt",
++  "snapshot": "C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/../program_c_astrogation/snapshots/gaia_dr3_10pc.txt",
+   "snapshot_checksum": "3617003818486492466",
+   "speed_of_light_pc_per_yr": 0.3066013937855505,
+   "standard_gravity_pc_per_yr2": 0.3165031702829716,
+diff --git a/program_c_astrogation/results/verification/program_c1/verification/verification_report.md b/program_c_astrogation/results/verification/program_c1/verification/verification_report.md
+index 52c7437..de5c5fa 100644
+--- a/program_c_astrogation/results/verification/program_c1/verification/verification_report.md
++++ b/program_c_astrogation/results/verification/program_c1/verification/verification_report.md
+@@ -4,10 +4,10 @@
+ 
+ | | |
+ |---|---|
+-| Generated (UTC) | 2026-07-27T22:29:32Z |
+-| Git commit | `893dcfd6c463793a0201d824d20a9d72b7a3bf52` **(working tree dirty)** |
+-| Compiler | MSVC 19.44.35223.0 |
+-| Build type | Release |
++| Generated (UTC) | 2026-10-27T15:32:54Z |
++| Git commit | `477141dd4a322edff4b71b6e02416dacd923a676` **(working tree dirty)** |
++| Compiler | GNU 16.1.0 |
++| Build type | RelWithDebInfo |
+ | C++ standard | C++17 |
+ | Platform | Windows-AMD64 |
+ | Cases | 22 |
+@@ -20,28 +20,28 @@
+ 
+ | Result | Level | Test | Reference | Grid | Parameters | Expected | Computed | Abs error | Rel error | Tolerance | Runtime (s) |
+ |---|---|---|---|---|---|---|---|---|---|---|---|
+-| PASS | A | c1.constant_velocity_worldline | x = v t for a constant coordinate velocity of 0.5 c over 4 yr | analytic | beta = 0.5, t = 4 yr | 6.132027875711e-01 | 6.132027875711e-01 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-15 | 5.000000000000e-07 |
+-| PASS | A | c1.proper_time_integration | Simpson integration of dtau = dt sqrt(1-beta^2) against the exact tau = t/gamma at beta = 0.8 | 1000 intervals | beta = 0.8, t = 10 yr | 6.000000000000e+00 | 6.000000000000e+00 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-14 | 2.900000000000e-06 |
+-| PASS | A | c1.proper_acceleration_analytic_position | x(tau) = (c^2/a)[cosh(a tau/c) - 1] at 1 g for tau = 2 yr | analytic | a = 1 g, tau = 2 yr | 8.923558363143e-01 | 8.923558363143e-01 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-15 | 5.200000000000e-06 |
+-| PASS | A | c1.proper_acceleration_analytic_coordinate_time | c t(tau) = (c^2/a) sinh(a tau/c) at 1 g for tau = 2 yr | analytic | a = 1 g, tau = 2 yr | 3.756289449781e+00 | 3.756289449781e+00 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-15 | 9.300000000000e-06 |
+-| PASS | A | c1.proper_acceleration_analytic_velocity_and_gamma | beta = tanh(a tau/c), gamma = cosh(a tau/c), and gamma = 1/sqrt(1-beta^2) all agree | analytic | a = 1 g, tau = 2 yr | 0 | 2.664535259100e-15 | 2.664535259100e-15 | - | 1.000000000000e-14 | 1.800000000000e-06 |
+-| PASS | A | c1.symmetric_journey_endpoint | a symmetric 1 g journey arrives at the destination distance and at rest | analytic reflection | a = 1 g, D = 1.3019705311704333 pc | 0 | 2.220446049250e-16 | 2.220446049250e-16 | - | 1.000000000000e-13 | 1.110000000000e-05 |
+-| PASS | A | c1.moving_destination_interception | the interception solve converges and places the ship on the destination's worldline, not at its catalogue position | n/a | n/a | both solves converge below 1e-9 pc | Proxima residual 7.4851236320228054e-13 pc in 39 iterations; Barnard residual 8.3000273320976703e-13 pc in 38 iterations | - | - | exact | 3.470000000000e-04 |
+-| PASS | A | c1.stale_position_targeting_error | aiming at the stale catalogue position misses, and misses more for the faster-moving star | n/a | n/a | Barnard's error exceeds Proxima's, and both are nonzero | Proxima 79.747097422293933 au, Barnard 335.42125009883409 au | - | - | exact | 3.000000000000e-07 |
+-| PASS | B | c1.interception_uncertainty | the interception position uncertainty exceeds the catalogue position uncertainty, because velocity errors integrate over the flight | n/a | n/a | arrival sigma at least the epoch sigma | epoch 8.4540921002773233e-05 pc, arrival 8.4613680339280109e-05 pc over 5.8713284105906496 yr | - | - | exact | 2.300000000000e-06 |
+-| PASS | A | c1.lorentz_norm_preservation | the boost preserves the Minkowski norm of a null and a timelike four-vector, and the four-velocity is unit timelike | signature (-,+,+,+) | beta = (0.3,-0.4,0.2) | 0 | 1.415534356397e-15 | 1.415534356397e-15 | - | 1.000000000000e-14 | 5.000000000000e-07 |
+-| PASS | A | c1.aberration_analytic | the four-vector boost reproduces cos t' = (cos t + b)/(1 + b cos t) for the source direction, over 37 angles | 37 angles | beta = 0.6 | 0 | 2.220446049250e-16 | 2.220446049250e-16 | - | 1.000000000000e-14 | 2.800000000000e-06 |
+-| PASS | A | c1.aberration_crowds_toward_motion | apparent source positions crowd toward the direction of motion at every angle | n/a | n/a | cos of the apparent angle never below the geometric one | holds at all 37 angles | - | - | exact | 5.900000000000e-06 |
+-| PASS | A | c1.doppler_approaching | nu'/nu = sqrt((1+b)/(1-b)) for a source directly ahead | analytic | beta = 0.6 | 2.000000000000e+00 | 2.000000000000e+00 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-15 | 2.600000000000e-06 |
+-| PASS | A | c1.doppler_receding | nu'/nu = sqrt((1-b)/(1+b)) for a source directly behind | analytic | beta = 0.6 | 5.000000000000e-01 | 5.000000000000e-01 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-15 | 3.100000000000e-06 |
+-| PASS | A | c1.zero_velocity_sky_recovery_doppler | at zero velocity every Doppler factor is exactly 1 | 21 directions | beta = 0 | 0 | 0.000000000000e+00 | 0.000000000000e+00 | - | exact | 1.500000000000e-06 |
+-| PASS | A | c1.zero_velocity_sky_recovery_directions | at zero velocity every apparent direction equals the geometric direction to within one renormalisation rounding | 21 directions | beta = 0 | 0 | 2.237726045656e-16 | 2.237726045656e-16 | - | 4.000000000000e-16 | 4.000000000000e-06 |
+-| PASS | A | c1.retarded_source_state | the emission time satisfies \|x_obs - x_star(t_e)\| = c (t_obs - t_e) | 5 iterations | Proxima from Earth | 4.246038798014e+00 | 4.246038798014e+00 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-12 | 6.200000000000e-06 |
+-| PASS | A | c1.earth_to_ship_signal_delay | the Earth clock the ship can SEE lags coordinate time by \|x\|/c | single event | one third of the way to Proxima | 2.025584513359e+03 | 2.025584513359e+03 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-14 | 2.500000000000e-06 |
+-| PASS | A | c1.ship_to_earth_signal_delay | a message sent by the ship reaches Earth at t + \|x\|/c, and the round trip is 2\|x\|/c | single event | one third of the way to Proxima | 2.028415486641e+03 | 2.028415486641e+03 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-14 | 1.800000000000e-06 |
+-| PASS | A | c1.apparent_sky_source_count | the apparent-sky table has exactly one row per placeable catalogue source, in both the rest and moving observer frames | n/a | n/a | 315 rows in each frame | 315 rest, 315 moving, from 315 snapshot objects | - | - | exact | 3.087000000000e-04 |
+-| PASS | B | c1.uncertainty_angle_propagation | every apparent-sky row carries a finite, non-negative angular uncertainty, and the small-angle form remains defensible | n/a | n/a | all finite and below 0.1 rad | worst 0.034074858474507121 rad over 315 sources | - | - | exact | 3.200000000000e-06 |
+-| PASS | A | c1.deterministic_worldline | rebuilding the worldline from the same inputs reproduces it bit for bit | 241 samples | 1 g symmetric to Proxima | 0 | 0.000000000000e+00 | 0.000000000000e+00 | - | exact | 1.855000000000e-04 |
++| PASS | A | c1.constant_velocity_worldline | x = v t for a constant coordinate velocity of 0.5 c over 4 yr | analytic | beta = 0.5, t = 4 yr | 6.132027875711e-01 | 6.132027875711e-01 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-15 | 3.000000000000e-07 |
++| PASS | A | c1.proper_time_integration | Simpson integration of dtau = dt sqrt(1-beta^2) against the exact tau = t/gamma at beta = 0.8 | 1000 intervals | beta = 0.8, t = 10 yr | 6.000000000000e+00 | 6.000000000000e+00 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-14 | 2.800000000000e-06 |
++| PASS | A | c1.proper_acceleration_analytic_position | x(tau) = (c^2/a)[cosh(a tau/c) - 1] at 1 g for tau = 2 yr | analytic | a = 1 g, tau = 2 yr | 8.923558363143e-01 | 8.923558363143e-01 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-15 | 9.900000000000e-06 |
++| PASS | A | c1.proper_acceleration_analytic_coordinate_time | c t(tau) = (c^2/a) sinh(a tau/c) at 1 g for tau = 2 yr | analytic | a = 1 g, tau = 2 yr | 3.756289449781e+00 | 3.756289449781e+00 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-15 | 2.800000000000e-06 |
++| PASS | A | c1.proper_acceleration_analytic_velocity_and_gamma | beta = tanh(a tau/c), gamma = cosh(a tau/c), and gamma = 1/sqrt(1-beta^2) all agree | analytic | a = 1 g, tau = 2 yr | 0 | 2.664535259100e-15 | 2.664535259100e-15 | - | 1.000000000000e-14 | 1.100000000000e-06 |
++| PASS | A | c1.symmetric_journey_endpoint | a symmetric 1 g journey arrives at the destination distance and at rest | analytic reflection | a = 1 g, D = 1.3019705311704333 pc | 0 | 2.220446049250e-16 | 2.220446049250e-16 | - | 1.000000000000e-13 | 1.180000000000e-05 |
++| PASS | A | c1.moving_destination_interception | the interception solve converges and places the ship on the destination's worldline, not at its catalogue position | n/a | n/a | both solves converge below 1e-9 pc | Proxima residual 7.4851236320228054e-13 pc in 39 iterations; Barnard residual 8.3000273320976703e-13 pc in 38 iterations | - | - | exact | 1.767000000000e-04 |
++| PASS | A | c1.stale_position_targeting_error | aiming at the stale catalogue position misses, and misses more for the faster-moving star | n/a | n/a | Barnard's error exceeds Proxima's, and both are nonzero | Proxima 79.747097422293933 au, Barnard 335.42125009883409 au | - | - | exact | 3.100000000000e-06 |
++| PASS | B | c1.interception_uncertainty | the interception position uncertainty exceeds the catalogue position uncertainty, because velocity errors integrate over the flight | n/a | n/a | arrival sigma at least the epoch sigma | epoch 8.4540921002773233e-05 pc, arrival 8.4613680339280109e-05 pc over 5.8713284105906496 yr | - | - | exact | 1.000000000000e-07 |
++| PASS | A | c1.lorentz_norm_preservation | the boost preserves the Minkowski norm of a null and a timelike four-vector, and the four-velocity is unit timelike | signature (-,+,+,+) | beta = (0.3,-0.4,0.2) | 0 | 1.415534356397e-15 | 1.415534356397e-15 | - | 1.000000000000e-14 | 2.000000000000e-07 |
++| PASS | A | c1.aberration_analytic | the four-vector boost reproduces cos t' = (cos t + b)/(1 + b cos t) for the source direction, over 37 angles | 37 angles | beta = 0.6 | 0 | 2.220446049250e-16 | 2.220446049250e-16 | - | 1.000000000000e-14 | 1.800000000000e-06 |
++| PASS | A | c1.aberration_crowds_toward_motion | apparent source positions crowd toward the direction of motion at every angle | n/a | n/a | cos of the apparent angle never below the geometric one | holds at all 37 angles | - | - | exact | 3.900000000000e-06 |
++| PASS | A | c1.doppler_approaching | nu'/nu = sqrt((1+b)/(1-b)) for a source directly ahead | analytic | beta = 0.6 | 2.000000000000e+00 | 2.000000000000e+00 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-15 | 1.100000000000e-06 |
++| PASS | A | c1.doppler_receding | nu'/nu = sqrt((1-b)/(1+b)) for a source directly behind | analytic | beta = 0.6 | 5.000000000000e-01 | 5.000000000000e-01 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-15 | 2.100000000000e-06 |
++| PASS | A | c1.zero_velocity_sky_recovery_doppler | at zero velocity every Doppler factor is exactly 1 | 21 directions | beta = 0 | 0 | 0.000000000000e+00 | 0.000000000000e+00 | - | exact | 8.000000000000e-07 |
++| PASS | A | c1.zero_velocity_sky_recovery_directions | at zero velocity every apparent direction equals the geometric direction to within one renormalisation rounding | 21 directions | beta = 0 | 0 | 2.237726045656e-16 | 2.237726045656e-16 | - | 4.000000000000e-16 | 5.100000000000e-06 |
++| PASS | A | c1.retarded_source_state | the emission time satisfies \|x_obs - x_star(t_e)\| = c (t_obs - t_e) | 5 iterations | Proxima from Earth | 4.246038798014e+00 | 4.246038798014e+00 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-12 | 2.300000000000e-06 |
++| PASS | A | c1.earth_to_ship_signal_delay | the Earth clock the ship can SEE lags coordinate time by \|x\|/c | single event | one third of the way to Proxima | 2.025584513359e+03 | 2.025584513359e+03 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-14 | 4.100000000000e-06 |
++| PASS | A | c1.ship_to_earth_signal_delay | a message sent by the ship reaches Earth at t + \|x\|/c, and the round trip is 2\|x\|/c | single event | one third of the way to Proxima | 2.028415486641e+03 | 2.028415486641e+03 | 0.000000000000e+00 | 0.000000000000e+00 | 1.000000000000e-14 | 1.200000000000e-06 |
++| PASS | A | c1.apparent_sky_source_count | the apparent-sky table has exactly one row per placeable catalogue source, in both the rest and moving observer frames | n/a | n/a | 315 rows in each frame | 315 rest, 315 moving, from 315 snapshot objects | - | - | exact | 1.424000000000e-04 |
++| PASS | B | c1.uncertainty_angle_propagation | every apparent-sky row carries a finite, non-negative angular uncertainty, and the small-angle form remains defensible | n/a | n/a | all finite and below 0.1 rad | worst 0.034074858474507121 rad over 315 sources | - | - | exact | 2.100000000000e-06 |
++| PASS | A | c1.deterministic_worldline | rebuilding the worldline from the same inputs reproduces it bit for bit | 241 samples | 1 g symmetric to Proxima | 0 | 0.000000000000e+00 | 0.000000000000e+00 | - | exact | 7.910000000000e-05 |
+ 
+ ## Verification levels
+ 
+diff --git a/program_c_astrogation/results/verification/program_c1/verification/verification_summary.json b/program_c_astrogation/results/verification/program_c1/verification/verification_summary.json
+index a516bb2..c6ea27c 100644
+--- a/program_c_astrogation/results/verification/program_c1/verification/verification_summary.json
++++ b/program_c_astrogation/results/verification/program_c1/verification/verification_summary.json
+@@ -1,11 +1,11 @@
+ {
+   "all_passed": true,
+   "build": {
+-    "build_type": "Release",
+-    "compiler_id": "MSVC",
+-    "compiler_version": "19.44.35223.0",
++    "build_type": "RelWithDebInfo",
++    "compiler_id": "GNU",
++    "compiler_version": "16.1.0",
+     "cxx_standard": "C++17",
+-    "git_commit": "893dcfd6c463793a0201d824d20a9d72b7a3bf52",
++    "git_commit": "477141dd4a322edff4b71b6e02416dacd923a676",
+     "git_dirty": true,
+     "platform": "Windows-AMD64"
+   },
+@@ -25,7 +25,7 @@
+       "passed": true,
+       "reference": "x = v t for a constant coordinate velocity of 0.5 c over 4 yr",
+       "relative_error": 0,
+-      "runtime_seconds": 5e-07,
++      "runtime_seconds": 3e-07,
+       "skipped": false,
+       "tolerance": 1e-15
+     },
+@@ -44,7 +44,7 @@
+       "passed": true,
+       "reference": "Simpson integration of dtau = dt sqrt(1-beta^2) against the exact tau = t/gamma at beta = 0.8",
+       "relative_error": 0,
+-      "runtime_seconds": 2.9e-06,
++      "runtime_seconds": 2.8e-06,
+       "skipped": false,
+       "tolerance": 1e-14
+     },
+@@ -63,7 +63,7 @@
+       "passed": true,
+       "reference": "x(tau) = (c^2/a)[cosh(a tau/c) - 1] at 1 g for tau = 2 yr",
+       "relative_error": 0,
+-      "runtime_seconds": 5.2e-06,
++      "runtime_seconds": 9.9e-06,
+       "skipped": false,
+       "tolerance": 1e-15
+     },
+@@ -82,7 +82,7 @@
+       "passed": true,
+       "reference": "c t(tau) = (c^2/a) sinh(a tau/c) at 1 g for tau = 2 yr",
+       "relative_error": 0,
+-      "runtime_seconds": 9.3e-06,
++      "runtime_seconds": 2.8e-06,
+       "skipped": false,
+       "tolerance": 1e-15
+     },
+@@ -101,7 +101,7 @@
+       "passed": true,
+       "reference": "beta = tanh(a tau/c), gamma = cosh(a tau/c), and gamma = 1/sqrt(1-beta^2) all agree",
+       "relative_error": null,
+-      "runtime_seconds": 1.8e-06,
++      "runtime_seconds": 1.1e-06,
+       "skipped": false,
+       "tolerance": 1e-14
+     },
+@@ -120,7 +120,7 @@
+       "passed": true,
+       "reference": "a symmetric 1 g journey arrives at the destination distance and at rest",
+       "relative_error": null,
+-      "runtime_seconds": 1.11e-05,
++      "runtime_seconds": 1.18e-05,
+       "skipped": false,
+       "tolerance": 1e-13
+     },
+@@ -135,7 +135,7 @@
+       "parameters": "n/a",
+       "passed": true,
+       "reference": "the interception solve converges and places the ship on the destination's worldline, not at its catalogue position",
+-      "runtime_seconds": 0.000347,
++      "runtime_seconds": 0.0001767,
+       "skipped": false,
+       "tolerance": 0
+     },
+@@ -150,7 +150,7 @@
+       "parameters": "n/a",
+       "passed": true,
+       "reference": "aiming at the stale catalogue position misses, and misses more for the faster-moving star",
+-      "runtime_seconds": 3e-07,
++      "runtime_seconds": 3.1e-06,
+       "skipped": false,
+       "tolerance": 0
+     },
+@@ -165,7 +165,7 @@
+       "parameters": "n/a",
+       "passed": true,
+       "reference": "the interception position uncertainty exceeds the catalogue position uncertainty, because velocity errors integrate over the flight",
+-      "runtime_seconds": 2.3e-06,
++      "runtime_seconds": 1e-07,
+       "skipped": false,
+       "tolerance": 0
+     },
+@@ -184,7 +184,7 @@
+       "passed": true,
+       "reference": "the boost preserves the Minkowski norm of a null and a timelike four-vector, and the four-velocity is unit timelike",
+       "relative_error": null,
+-      "runtime_seconds": 5e-07,
++      "runtime_seconds": 2e-07,
+       "skipped": false,
+       "tolerance": 1e-14
+     },
+@@ -203,7 +203,7 @@
+       "passed": true,
+       "reference": "the four-vector boost reproduces cos t' = (cos t + b)/(1 + b cos t) for the source direction, over 37 angles",
+       "relative_error": null,
+-      "runtime_seconds": 2.8e-06,
++      "runtime_seconds": 1.8e-06,
+       "skipped": false,
+       "tolerance": 1e-14
+     },
+@@ -218,7 +218,7 @@
+       "parameters": "n/a",
+       "passed": true,
+       "reference": "apparent source positions crowd toward the direction of motion at every angle",
+-      "runtime_seconds": 5.9e-06,
++      "runtime_seconds": 3.9e-06,
+       "skipped": false,
+       "tolerance": 0
+     },
+@@ -237,7 +237,7 @@
+       "passed": true,
+       "reference": "nu'/nu = sqrt((1+b)/(1-b)) for a source directly ahead",
+       "relative_error": 0,
+-      "runtime_seconds": 2.6e-06,
++      "runtime_seconds": 1.1e-06,
+       "skipped": false,
+       "tolerance": 1e-15
+     },
+@@ -256,7 +256,7 @@
+       "passed": true,
+       "reference": "nu'/nu = sqrt((1-b)/(1+b)) for a source directly behind",
+       "relative_error": 0,
+-      "runtime_seconds": 3.1e-06,
++      "runtime_seconds": 2.1e-06,
+       "skipped": false,
+       "tolerance": 1e-15
+     },
+@@ -275,7 +275,7 @@
+       "passed": true,
+       "reference": "at zero velocity every Doppler factor is exactly 1",
+       "relative_error": null,
+-      "runtime_seconds": 1.5e-06,
++      "runtime_seconds": 8e-07,
+       "skipped": false,
+       "tolerance": 0
+     },
+@@ -294,7 +294,7 @@
+       "passed": true,
+       "reference": "at zero velocity every apparent direction equals the geometric direction to within one renormalisation rounding",
+       "relative_error": null,
+-      "runtime_seconds": 4e-06,
++      "runtime_seconds": 5.1e-06,
+       "skipped": false,
+       "tolerance": 4e-16
+     },
+@@ -313,7 +313,7 @@
+       "passed": true,
+       "reference": "the emission time satisfies |x_obs - x_star(t_e)| = c (t_obs - t_e)",
+       "relative_error": 0,
+-      "runtime_seconds": 6.2e-06,
++      "runtime_seconds": 2.3e-06,
+       "skipped": false,
+       "tolerance": 1e-12
+     },
+@@ -332,7 +332,7 @@
+       "passed": true,
+       "reference": "the Earth clock the ship can SEE lags coordinate time by |x|/c",
+       "relative_error": 0,
+-      "runtime_seconds": 2.5e-06,
++      "runtime_seconds": 4.1e-06,
+       "skipped": false,
+       "tolerance": 1e-14
+     },
+@@ -351,7 +351,7 @@
+       "passed": true,
+       "reference": "a message sent by the ship reaches Earth at t + |x|/c, and the round trip is 2|x|/c",
+       "relative_error": 0,
+-      "runtime_seconds": 1.8e-06,
++      "runtime_seconds": 1.2e-06,
+       "skipped": false,
+       "tolerance": 1e-14
+     },
+@@ -366,7 +366,7 @@
+       "parameters": "n/a",
+       "passed": true,
+       "reference": "the apparent-sky table has exactly one row per placeable catalogue source, in both the rest and moving observer frames",
+-      "runtime_seconds": 0.0003087,
++      "runtime_seconds": 0.0001424,
+       "skipped": false,
+       "tolerance": 0
+     },
+@@ -381,7 +381,7 @@
+       "parameters": "n/a",
+       "passed": true,
+       "reference": "every apparent-sky row carries a finite, non-negative angular uncertainty, and the small-angle form remains defensible",
+-      "runtime_seconds": 3.2e-06,
++      "runtime_seconds": 2.1e-06,
+       "skipped": false,
+       "tolerance": 0
+     },
+@@ -400,7 +400,7 @@
+       "passed": true,
+       "reference": "rebuilding the worldline from the same inputs reproduces it bit for bit",
+       "relative_error": null,
+-      "runtime_seconds": 0.0001855,
++      "runtime_seconds": 7.91e-05,
+       "skipped": false,
+       "tolerance": 0
+     }
+@@ -410,6 +410,6 @@
+   "num_failed": 0,
+   "num_passed": 22,
+   "num_skipped": 0,
+-  "timestamp_utc": "2026-07-27T22:29:32Z",
++  "timestamp_utc": "2026-10-27T15:32:54Z",
+   "title": "C1-RELATIVISTIC-ASTROGATION: ship worldlines, clocks, moving-target interception, aberration, Doppler and the retarded apparent sky"
+ }
+diff --git a/program_c_astrogation/results/verification/program_c1/verification/verification_table.csv b/program_c_astrogation/results/verification/program_c1/verification/verification_table.csv
+index 2e8f4e6..3db5d32 100644
+--- a/program_c_astrogation/results/verification/program_c1/verification/verification_table.csv
++++ b/program_c_astrogation/results/verification/program_c1/verification/verification_table.csv
+@@ -1,23 +1,23 @@
+ milestone,test_name,level,reference,grid,parameters,expected,computed,absolute_error,relative_error,tolerance,result,runtime_seconds,git_commit,compiler,build_type,notes
+-program_c1,c1.constant_velocity_worldline,A,x = v t for a constant coordinate velocity of 0.5 c over 4 yr,analytic,"beta = 0.5, t = 4 yr",6.132027875711e-01,6.132027875711e-01,0.000000000000e+00,0.000000000000e+00,1.000000000000e-15,PASS,5.000000000000e-07,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"the constant-velocity model is a VERIFICATION MODEL ONLY: it needs infinite acceleration at both ends. It earns its place because tau = t/gamma is exact, which makes it the right instrument for testing the proper-time integrator"
+-program_c1,c1.proper_time_integration,A,Simpson integration of dtau = dt sqrt(1-beta^2) against the exact tau = t/gamma at beta = 0.8,1000 intervals,"beta = 0.8, t = 10 yr",6.000000000000e+00,6.000000000000e+00,0.000000000000e+00,0.000000000000e+00,1.000000000000e-14,PASS,2.900000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"constant integrand, so Simpson is exact here up to rounding; the accelerated case below is the one that exercises the quadrature order"
+-program_c1,c1.proper_acceleration_analytic_position,A,x(tau) = (c^2/a)[cosh(a tau/c) - 1] at 1 g for tau = 2 yr,analytic,"a = 1 g, tau = 2 yr",8.923558363143e-01,8.923558363143e-01,0.000000000000e+00,0.000000000000e+00,1.000000000000e-15,PASS,5.200000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"1 g is 0.31648 pc/yr^2, converted in one place from the defined 9.80665 m/s^2; a/c is 1.0322952755535963 per year, the familiar 'one gravity is about one c per year'"
+-program_c1,c1.proper_acceleration_analytic_coordinate_time,A,c t(tau) = (c^2/a) sinh(a tau/c) at 1 g for tau = 2 yr,analytic,"a = 1 g, tau = 2 yr",3.756289449781e+00,3.756289449781e+00,0.000000000000e+00,0.000000000000e+00,1.000000000000e-15,PASS,9.300000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,coordinate time already exceeds proper time by 1.8781447248904473 at only two years of ship time
+-program_c1,c1.proper_acceleration_analytic_velocity_and_gamma,A,"beta = tanh(a tau/c), gamma = cosh(a tau/c), and gamma = 1/sqrt(1-beta^2) all agree",analytic,"a = 1 g, tau = 2 yr",0,2.664535259100e-15,2.664535259100e-15,,1.000000000000e-14,PASS,1.800000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,the three relations are checked together because a wrong rapidity can satisfy any one of them alone
+-program_c1,c1.symmetric_journey_endpoint,A,a symmetric 1 g journey arrives at the destination distance and at rest,analytic reflection,"a = 1 g, D = 1.3019705311704333 pc",0,2.220446049250e-16,2.220446049250e-16,,1.000000000000e-13,PASS,1.110000000000e-05,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"total ship time 3.5420808280945368 yr against coordinate time 5.8725514839370438 yr, peak beta 0.94965327739394345"
+-program_c1,c1.moving_destination_interception,A,"the interception solve converges and places the ship on the destination's worldline, not at its catalogue position",n/a,n/a,both solves converge below 1e-9 pc,Proxima residual 7.4851236320228054e-13 pc in 39 iterations; Barnard residual 8.3000273320976703e-13 pc in 38 iterations,,,exact,PASS,3.470000000000e-04,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"bisection, not Newton: the residual is monotone in t for any profile bounded by c, so bracketing cannot diverge"
+-program_c1,c1.stale_position_targeting_error,A,"aiming at the stale catalogue position misses, and misses more for the faster-moving star",n/a,n/a,"Barnard's error exceeds Proxima's, and both are nonzero","Proxima 79.747097422293933 au, Barnard 335.42125009883409 au",,,exact,PASS,3.000000000000e-07,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"the comparison is the assertion: Barnard's star has the largest proper motion of any known star, so if the stale error were not larger for it the propagator would be wrong"
+-program_c1,c1.interception_uncertainty,B,"the interception position uncertainty exceeds the catalogue position uncertainty, because velocity errors integrate over the flight",n/a,n/a,arrival sigma at least the epoch sigma,"epoch 8.4540921002773233e-05 pc, arrival 8.4613680339280109e-05 pc over 5.8713284105906496 yr",,,exact,PASS,2.300000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"this is the number that decides whether you arrive in the system or merely near it, and it is not the catalogue's quoted error"
+-program_c1,c1.lorentz_norm_preservation,A,"the boost preserves the Minkowski norm of a null and a timelike four-vector, and the four-velocity is unit timelike","signature (-,+,+,+)","beta = (0.3,-0.4,0.2)",0,1.415534356397e-15,1.415534356397e-15,,1.000000000000e-14,PASS,5.000000000000e-07,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"the boost is written out in full rather than as a rotation to the z axis plus a 1-D boost, because the round trip through a rotation is where an axis convention slips in unnoticed. The tolerance is a few ulps on order-one quantities, not a physical allowance: the norm is preserved EXACTLY in real arithmetic and the residual here is the rounding of the gamma products"
+-program_c1,c1.aberration_analytic,A,"the four-vector boost reproduces cos t' = (cos t + b)/(1 + b cos t) for the source direction, over 37 angles",37 angles,beta = 0.6,0,2.220446049250e-16,2.220446049250e-16,,1.000000000000e-14,PASS,2.800000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"implemented by boosting the photon four-vector; the scalar formula is the TEST, not the implementation, which is the right way round because the boost generalises to any velocity direction"
+-program_c1,c1.aberration_crowds_toward_motion,A,apparent source positions crowd toward the direction of motion at every angle,n/a,n/a,cos of the apparent angle never below the geometric one,holds at all 37 angles,,,exact,PASS,5.900000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,the case that catches a sign inversion. Reproducing one formula from itself would pass with the sign wrong; this asserts the physical direction of the effect
+-program_c1,c1.doppler_approaching,A,nu'/nu = sqrt((1+b)/(1-b)) for a source directly ahead,analytic,beta = 0.6,2.000000000000e+00,2.000000000000e+00,0.000000000000e+00,0.000000000000e+00,1.000000000000e-15,PASS,2.600000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"computed from -(u_ship.k)/(u_ref.k), so the longitudinal limit is a consequence rather than the definition. D = 2 is a blueshift, as it must be for an approaching source"
+-program_c1,c1.doppler_receding,A,nu'/nu = sqrt((1-b)/(1+b)) for a source directly behind,analytic,beta = 0.6,5.000000000000e-01,5.000000000000e-01,0.000000000000e+00,0.000000000000e+00,1.000000000000e-15,PASS,3.100000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"the reciprocal of the approaching case to 0. The transverse case gives 1.25 = gamma, pure time dilation, which has no classical counterpart"
+-program_c1,c1.zero_velocity_sky_recovery_doppler,A,at zero velocity every Doppler factor is exactly 1,21 directions,beta = 0,0,0.000000000000e+00,0.000000000000e+00,,exact,PASS,1.500000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"tolerance ZERO and it holds: boost() returns its argument unchanged when beta is zero, and the time component was set to the frequency exactly"
+-program_c1,c1.zero_velocity_sky_recovery_directions,A,at zero velocity every apparent direction equals the geometric direction to within one renormalisation rounding,21 directions,beta = 0,0,2.237726045656e-16,2.237726045656e-16,,4.000000000000e-16,PASS,4.000000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"the tolerance is four ulps and the reason is stated rather than assumed: the input direction (cos t, sin t, 0) has norm 1 only to rounding, and the code renormalises it. A stationary observer's sky is the geometric sky to the last bit the representation allows"
+-program_c1,c1.retarded_source_state,A,the emission time satisfies |x_obs - x_star(t_e)| = c (t_obs - t_e),5 iterations,Proxima from Earth,4.246038798014e+00,4.246038798014e+00,0.000000000000e+00,0.000000000000e+00,1.000000000000e-12,PASS,6.200000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"the star is seen where it WAS 4.2460387980143866 yr earlier, at epoch 2021.7539612019857, not where it is"
+-program_c1,c1.earth_to_ship_signal_delay,A,the Earth clock the ship can SEE lags coordinate time by |x|/c,single event,one third of the way to Proxima,2.025584513359e+03,2.025584513359e+03,0.000000000000e+00,0.000000000000e+00,1.000000000000e-14,PASS,2.500000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"this is NOT 'the current time on Earth'. It is the latest Earth event whose light has arrived, 1.4154866411349765 yr stale, and no display aboard the ship may show otherwise"
+-program_c1,c1.ship_to_earth_signal_delay,A,"a message sent by the ship reaches Earth at t + |x|/c, and the round trip is 2|x|/c",single event,one third of the way to Proxima,2.028415486641e+03,2.028415486641e+03,0.000000000000e+00,0.000000000000e+00,1.000000000000e-14,PASS,1.800000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,round trip 2.8309732822699529 yr; the destination signal solve is separate because the destination MOVES and the outgoing light cone has to catch it
+-program_c1,c1.apparent_sky_source_count,A,"the apparent-sky table has exactly one row per placeable catalogue source, in both the rest and moving observer frames",n/a,n/a,315 rows in each frame,"315 rest, 315 moving, from 315 snapshot objects",,,exact,PASS,3.087000000000e-04,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"aberration MOVES stars, it never creates or destroys them; a row count that changed with beta would mean the renderer and the science disagree about what is in the sky"
+-program_c1,c1.uncertainty_angle_propagation,B,"every apparent-sky row carries a finite, non-negative angular uncertainty, and the small-angle form remains defensible",n/a,n/a,all finite and below 0.1 rad,worst 0.034074858474507121 rad over 315 sources,,,exact,PASS,3.200000000000e-06,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"sigma/d is a small-angle statement; at 0.034074858474507121 rad the neglected term is of order its cube, which is beyond the fourth decimal"
+-program_c1,c1.deterministic_worldline,A,rebuilding the worldline from the same inputs reproduces it bit for bit,241 samples,1 g symmetric to Proxima,0,0.000000000000e+00,0.000000000000e+00,,exact,PASS,1.855000000000e-04,893dcfd6c463793a0201d824d20a9d72b7a3bf52,MSVC 19.44.35223.0,Release,"tolerance ZERO. Every visual downstream is generated from these samples, so a worldline that is merely reproducible to a tolerance would make animation frames irreproducible"
++program_c1,c1.constant_velocity_worldline,A,x = v t for a constant coordinate velocity of 0.5 c over 4 yr,analytic,"beta = 0.5, t = 4 yr",6.132027875711e-01,6.132027875711e-01,0.000000000000e+00,0.000000000000e+00,1.000000000000e-15,PASS,3.000000000000e-07,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"the constant-velocity model is a VERIFICATION MODEL ONLY: it needs infinite acceleration at both ends. It earns its place because tau = t/gamma is exact, which makes it the right instrument for testing the proper-time integrator"
++program_c1,c1.proper_time_integration,A,Simpson integration of dtau = dt sqrt(1-beta^2) against the exact tau = t/gamma at beta = 0.8,1000 intervals,"beta = 0.8, t = 10 yr",6.000000000000e+00,6.000000000000e+00,0.000000000000e+00,0.000000000000e+00,1.000000000000e-14,PASS,2.800000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"constant integrand, so Simpson is exact here up to rounding; the accelerated case below is the one that exercises the quadrature order"
++program_c1,c1.proper_acceleration_analytic_position,A,x(tau) = (c^2/a)[cosh(a tau/c) - 1] at 1 g for tau = 2 yr,analytic,"a = 1 g, tau = 2 yr",8.923558363143e-01,8.923558363143e-01,0.000000000000e+00,0.000000000000e+00,1.000000000000e-15,PASS,9.900000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"1 g is 0.31648 pc/yr^2, converted in one place from the defined 9.80665 m/s^2; a/c is 1.0322952755535963 per year, the familiar 'one gravity is about one c per year'"
++program_c1,c1.proper_acceleration_analytic_coordinate_time,A,c t(tau) = (c^2/a) sinh(a tau/c) at 1 g for tau = 2 yr,analytic,"a = 1 g, tau = 2 yr",3.756289449781e+00,3.756289449781e+00,0.000000000000e+00,0.000000000000e+00,1.000000000000e-15,PASS,2.800000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,coordinate time already exceeds proper time by 1.8781447248904473 at only two years of ship time
++program_c1,c1.proper_acceleration_analytic_velocity_and_gamma,A,"beta = tanh(a tau/c), gamma = cosh(a tau/c), and gamma = 1/sqrt(1-beta^2) all agree",analytic,"a = 1 g, tau = 2 yr",0,2.664535259100e-15,2.664535259100e-15,,1.000000000000e-14,PASS,1.100000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,the three relations are checked together because a wrong rapidity can satisfy any one of them alone
++program_c1,c1.symmetric_journey_endpoint,A,a symmetric 1 g journey arrives at the destination distance and at rest,analytic reflection,"a = 1 g, D = 1.3019705311704333 pc",0,2.220446049250e-16,2.220446049250e-16,,1.000000000000e-13,PASS,1.180000000000e-05,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"total ship time 3.5420808280945368 yr against coordinate time 5.8725514839370438 yr, peak beta 0.94965327739394345"
++program_c1,c1.moving_destination_interception,A,"the interception solve converges and places the ship on the destination's worldline, not at its catalogue position",n/a,n/a,both solves converge below 1e-9 pc,Proxima residual 7.4851236320228054e-13 pc in 39 iterations; Barnard residual 8.3000273320976703e-13 pc in 38 iterations,,,exact,PASS,1.767000000000e-04,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"bisection, not Newton: the residual is monotone in t for any profile bounded by c, so bracketing cannot diverge"
++program_c1,c1.stale_position_targeting_error,A,"aiming at the stale catalogue position misses, and misses more for the faster-moving star",n/a,n/a,"Barnard's error exceeds Proxima's, and both are nonzero","Proxima 79.747097422293933 au, Barnard 335.42125009883409 au",,,exact,PASS,3.100000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"the comparison is the assertion: Barnard's star has the largest proper motion of any known star, so if the stale error were not larger for it the propagator would be wrong"
++program_c1,c1.interception_uncertainty,B,"the interception position uncertainty exceeds the catalogue position uncertainty, because velocity errors integrate over the flight",n/a,n/a,arrival sigma at least the epoch sigma,"epoch 8.4540921002773233e-05 pc, arrival 8.4613680339280109e-05 pc over 5.8713284105906496 yr",,,exact,PASS,1.000000000000e-07,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"this is the number that decides whether you arrive in the system or merely near it, and it is not the catalogue's quoted error"
++program_c1,c1.lorentz_norm_preservation,A,"the boost preserves the Minkowski norm of a null and a timelike four-vector, and the four-velocity is unit timelike","signature (-,+,+,+)","beta = (0.3,-0.4,0.2)",0,1.415534356397e-15,1.415534356397e-15,,1.000000000000e-14,PASS,2.000000000000e-07,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"the boost is written out in full rather than as a rotation to the z axis plus a 1-D boost, because the round trip through a rotation is where an axis convention slips in unnoticed. The tolerance is a few ulps on order-one quantities, not a physical allowance: the norm is preserved EXACTLY in real arithmetic and the residual here is the rounding of the gamma products"
++program_c1,c1.aberration_analytic,A,"the four-vector boost reproduces cos t' = (cos t + b)/(1 + b cos t) for the source direction, over 37 angles",37 angles,beta = 0.6,0,2.220446049250e-16,2.220446049250e-16,,1.000000000000e-14,PASS,1.800000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"implemented by boosting the photon four-vector; the scalar formula is the TEST, not the implementation, which is the right way round because the boost generalises to any velocity direction"
++program_c1,c1.aberration_crowds_toward_motion,A,apparent source positions crowd toward the direction of motion at every angle,n/a,n/a,cos of the apparent angle never below the geometric one,holds at all 37 angles,,,exact,PASS,3.900000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,the case that catches a sign inversion. Reproducing one formula from itself would pass with the sign wrong; this asserts the physical direction of the effect
++program_c1,c1.doppler_approaching,A,nu'/nu = sqrt((1+b)/(1-b)) for a source directly ahead,analytic,beta = 0.6,2.000000000000e+00,2.000000000000e+00,0.000000000000e+00,0.000000000000e+00,1.000000000000e-15,PASS,1.100000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"computed from -(u_ship.k)/(u_ref.k), so the longitudinal limit is a consequence rather than the definition. D = 2 is a blueshift, as it must be for an approaching source"
++program_c1,c1.doppler_receding,A,nu'/nu = sqrt((1-b)/(1+b)) for a source directly behind,analytic,beta = 0.6,5.000000000000e-01,5.000000000000e-01,0.000000000000e+00,0.000000000000e+00,1.000000000000e-15,PASS,2.100000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"the reciprocal of the approaching case to 0. The transverse case gives 1.25 = gamma, pure time dilation, which has no classical counterpart"
++program_c1,c1.zero_velocity_sky_recovery_doppler,A,at zero velocity every Doppler factor is exactly 1,21 directions,beta = 0,0,0.000000000000e+00,0.000000000000e+00,,exact,PASS,8.000000000000e-07,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"tolerance ZERO and it holds: boost() returns its argument unchanged when beta is zero, and the time component was set to the frequency exactly"
++program_c1,c1.zero_velocity_sky_recovery_directions,A,at zero velocity every apparent direction equals the geometric direction to within one renormalisation rounding,21 directions,beta = 0,0,2.237726045656e-16,2.237726045656e-16,,4.000000000000e-16,PASS,5.100000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"the tolerance is four ulps and the reason is stated rather than assumed: the input direction (cos t, sin t, 0) has norm 1 only to rounding, and the code renormalises it. A stationary observer's sky is the geometric sky to the last bit the representation allows"
++program_c1,c1.retarded_source_state,A,the emission time satisfies |x_obs - x_star(t_e)| = c (t_obs - t_e),5 iterations,Proxima from Earth,4.246038798014e+00,4.246038798014e+00,0.000000000000e+00,0.000000000000e+00,1.000000000000e-12,PASS,2.300000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"the star is seen where it WAS 4.2460387980143866 yr earlier, at epoch 2021.7539612019857, not where it is"
++program_c1,c1.earth_to_ship_signal_delay,A,the Earth clock the ship can SEE lags coordinate time by |x|/c,single event,one third of the way to Proxima,2.025584513359e+03,2.025584513359e+03,0.000000000000e+00,0.000000000000e+00,1.000000000000e-14,PASS,4.100000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"this is NOT 'the current time on Earth'. It is the latest Earth event whose light has arrived, 1.4154866411349765 yr stale, and no display aboard the ship may show otherwise"
++program_c1,c1.ship_to_earth_signal_delay,A,"a message sent by the ship reaches Earth at t + |x|/c, and the round trip is 2|x|/c",single event,one third of the way to Proxima,2.028415486641e+03,2.028415486641e+03,0.000000000000e+00,0.000000000000e+00,1.000000000000e-14,PASS,1.200000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,round trip 2.8309732822699529 yr; the destination signal solve is separate because the destination MOVES and the outgoing light cone has to catch it
++program_c1,c1.apparent_sky_source_count,A,"the apparent-sky table has exactly one row per placeable catalogue source, in both the rest and moving observer frames",n/a,n/a,315 rows in each frame,"315 rest, 315 moving, from 315 snapshot objects",,,exact,PASS,1.424000000000e-04,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"aberration MOVES stars, it never creates or destroys them; a row count that changed with beta would mean the renderer and the science disagree about what is in the sky"
++program_c1,c1.uncertainty_angle_propagation,B,"every apparent-sky row carries a finite, non-negative angular uncertainty, and the small-angle form remains defensible",n/a,n/a,all finite and below 0.1 rad,worst 0.034074858474507121 rad over 315 sources,,,exact,PASS,2.100000000000e-06,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"sigma/d is a small-angle statement; at 0.034074858474507121 rad the neglected term is of order its cube, which is beyond the fourth decimal"
++program_c1,c1.deterministic_worldline,A,rebuilding the worldline from the same inputs reproduces it bit for bit,241 samples,1 g symmetric to Proxima,0,0.000000000000e+00,0.000000000000e+00,,exact,PASS,7.910000000000e-05,477141dd4a322edff4b71b6e02416dacd923a676,GNU 16.1.0,RelWithDebInfo,"tolerance ZERO. Every visual downstream is generated from these samples, so a worldline that is merely reproducible to a tolerance would make animation frames irreproducible"
+diff --git a/program_c_astrogation/results/verification/program_c1/verification/visual_summary.json b/program_c_astrogation/results/verification/program_c1/verification/visual_summary.json
+index 4d4abab..0ff5f0c 100644
+--- a/program_c_astrogation/results/verification/program_c1/verification/visual_summary.json
++++ b/program_c_astrogation/results/verification/program_c1/verification/visual_summary.json
+@@ -2,10 +2,10 @@
+   "milestone": "program_c1_visual",
+   "title": "C1-RELATIVISTIC-ASTROGATION visualization cases 21-30",
+   "num_cases": 10,
+-  "num_passed": 10,
+-  "num_failed": 0,
++  "num_passed": 9,
++  "num_failed": 1,
+   "num_skipped": 0,
+-  "all_passed": true,
++  "all_passed": false,
+   "cases": [
+     {
+       "name": "c1vis.static_3d_neighborhood_generated",
+@@ -14,7 +14,7 @@
+       "expected": "PNG and SVG present, both dimensions above 400 px",
+       "computed": "local_neighborhood_3d.png at (1036, 1204)",
+       "note": "",
+-      "seconds": 0.012
++      "seconds": 0.001
+     },
+     {
+       "name": "c1vis.worldline_figures_generated",
+@@ -41,7 +41,7 @@
+       "expected": "relativistic_aberration and doppler_sky",
+       "computed": "aberration=True doppler=True",
+       "note": "",
+-      "seconds": 0.0
++      "seconds": 0.029
+     },
+     {
+       "name": "c1vis.journey_animation_generated",
+@@ -77,7 +77,7 @@
+       "expected": "zero physics recomputation in the visualization tree",
+       "computed": "clean across the visualization tree",
+       "note": "the visuals read solver CSVs and draw them; this case is what keeps that true as the tree grows",
+-      "seconds": 0.035
++      "seconds": 0.1055
+     },
+     {
+       "name": "c1vis.no_blank_or_nonfinite_frames",
+@@ -86,16 +86,16 @@
+       "expected": "every sheet carries real content",
+       "computed": "all sheets have rich content",
+       "note": "records.column refuses NaN and infinity at the read boundary, so a nonfinite value fails loudly instead of vanishing from a plot",
+-      "seconds": 0.3331
++      "seconds": 0.001
+     },
+     {
+       "name": "c1vis.deterministic_rerender_metadata",
+       "claim": "re-rendering from the same input reproduces the plotted numbers and the figure metadata exactly",
+-      "passed": true,
++      "passed": false,
+       "expected": "identical plotted CSV and identical metadata",
+-      "computed": "plotted CSV sha256 matches; metadata matches",
++      "computed": "rerender failed: [\"ModuleNotFoundError: No module named 'matplotlib'\"]",
+       "note": "image hashes are NOT compared: they are pinned to matplotlib and freetype versions, and the requirement allows pixel hashes only in a pinned environment. The plotted numbers are the invariant",
+-      "seconds": 2.3855
++      "seconds": 0.0395
+     }
+   ]
+ }
+\ No newline at end of file

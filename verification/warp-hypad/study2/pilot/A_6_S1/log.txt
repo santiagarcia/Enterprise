@@ -1,0 +1,4 @@
+it   1 f 1.49898175e-04 |g|/g0 9.994e-01 step 2.487e-05 trust 1 nodes 14904 splits 0 C1 0 C2 0 C3 1  17s
+it   2 f 1.49112941e-04 |g|/g0 4.156e-01 step 6.004e-02 trust 2 nodes 14904 splits 0 C1 0 C2 0 C3 1  26s
+it   3 f 1.48943936e-04 |g|/g0 3.898e-01 step 2.575e-02 trust 4 nodes 14904 splits 0 C1 0 C2 0 C3 1  34s
+TERMINATION ITERATION_LIMIT it=3 nfev=4 wall=34s

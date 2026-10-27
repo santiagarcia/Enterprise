@@ -1,0 +1,2 @@
+AXI BASELINE: max|rho3D - rho_meridian| 2.351e-18  max|rho| 9.571e-04  ratio 2.457e-15  PASS
+AXI ../results/refine/w4s1_it60/y_baseline_zero.txt: max|rho3D - rho_meridian| 2.093e-14  max|rho| 1.751e-01  ratio 1.195e-13  PASS

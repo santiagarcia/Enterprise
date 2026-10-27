@@ -1,0 +1,1 @@
+ITERATION_LIMIT it=150 nfev=169 ngev=151 nodes=14904 capped=0 last_set_change=0 gnorm_rel=0.00602754 f=0.000104409 wall_s=4451.37

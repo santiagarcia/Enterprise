@@ -1,0 +1,2 @@
+start,accepted,rejected,R_init,R_final,rho_min_init_w,rho_min_final_v,refined_rho_min,E_neg_init_w,E_neg_final_v,negfrac_final,termination,feasible,seconds
+baseline_zero,12,0,0.0001498987939,0.0001175692771,-0.0009606950252,-0.00103897193,-0.00103897193,0.0451462923,0.02073654848,0.9895946941,accepted_iteration_limit,0,391.2872349

@@ -1,0 +1,13 @@
+form B
+order 4
+sub 1
+start lapse_perturbation
+kmax 150
+maxfev 1500
+base_nodes 6624
+tau 0.001
+threads 8
+C1 1e-3 rel ||g0||
+C2 5-window 1e-6
+stall 20-window 1e-6
+lbfgs m=8 c1=1e-4 trust0=0.5 trustmax=4 trustmin=1e-8 ls_trials=10
