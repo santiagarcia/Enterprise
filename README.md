@@ -33,7 +33,7 @@ Research prototypes for warp-spacetime analysis and related programs:
 
 ## AI assistance
 
-Commits made with AI assistance carry a `Co-Authored-By` trailer naming the
+Some commits carry a `Co-Authored-By` trailer that names an AI
 assistant. All 45 commits up to `477141d` (2026-08-15) carry one naming Claude
 (Anthropic): 38 name "Claude Opus 5" and 7 name "Claude Opus 5 (1M context)".
 The trailers record that an AI coding assistant contributed to those commits;
