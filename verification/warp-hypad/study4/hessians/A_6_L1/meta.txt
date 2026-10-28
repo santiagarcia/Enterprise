@@ -1,0 +1,17 @@
+tag A_6_L1
+nodes 14904
+leaves 414
+base_nodes 14904
+lambda 3.7499999999999998e-08
+R_fwd 0.00011007322695285483
+R_rev 0.00011007322695285492
+R_comp 0.00011007322695285451
+R_ld 0.00011007322695285451
+R_bound 1.8212334987648354e-16
+H1a_diag_mismatch 0
+H1a_passgrad_mismatch 0
+H1a_grad_vs_gradient_mismatch 0
+pair_errors 0
+secs 597.50407359981909
+threads 12
+ld_digits 64

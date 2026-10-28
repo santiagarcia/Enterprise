@@ -1,0 +1,17 @@
+tag B_6_L2
+nodes 18036
+leaves 501
+base_nodes 14904
+lambda 3.7499999999999997e-09
+R_fwd 0.0001052612929352095
+R_rev 0.00010526129293520994
+R_comp 0.00010526129293520969
+R_ld 0.00010526129293520969
+R_bound 2.1076334212183395e-16
+H1a_diag_mismatch 0
+H1a_passgrad_mismatch 0
+H1a_grad_vs_gradient_mismatch 0
+pair_errors 0
+secs 765.54462680034339
+threads 12
+ld_digits 64

@@ -1,0 +1,5 @@
+Pilot (PROTOCOL 6), B 4:1 S1 lambda1 = 3.75e-8, 20 iterates, 12 threads: |y_0|=0, |y_10|=11.0520, |y_20|=16.9485.
+Delta1 = 11.052, Delta2 = 5.896 -> Delta2 < Delta1: PASS. lambda1 = 3.75e-8 and lambda2 = 3.75e-9 unchanged.
+Timing (timing mode): gradient 4:1 = 28.5 s @2 thr, 6:1 = 64.4 s @2 thr; 8:1 diag 2.1 s @2 thr (~7% of an iterate at 4:1)
+-> diagnostics every iterate (cost rule, PROTOCOL 5).
+Pilot end 16:11:13 CDT (epoch 1793135473). Global run deadline = pilot end + 3h30 = Tue Oct 27 19:41:13 CDT 2026 (epoch 1793148073).

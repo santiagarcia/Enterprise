@@ -1,0 +1,48 @@
+{
+ "D1b_limitation_v4": "\u03c4_H covers node-sum roundoff; a sign change by per-node evaluation error requires a coherent relative error \u2265 \u03b5*_all (reported).",
+ "D3_lambda2_P1": {
+  "A": "failed (not converged): A4L2m LINESEARCH_FAIL, A6L2m CONVERGED",
+  "B": "failed (not converged): B4L2 ITERATION_LIMIT, B6L2 LINESEARCH_FAIL; n_outer 1/0, n_check 1/0"
+ },
+ "D3_P1A_vs_P2A": {
+  "4": "P1 not converged",
+  "6": "same point"
+ },
+ "D6": {
+  "A": "not evaluable (D3 failed)",
+  "B": "not evaluable (D3 failed)"
+ },
+ "D3_lambda1_P4": {
+  "A": "resolution-dependent",
+  "B": "no concentration at convergence"
+ },
+ "D6x": {
+  "label": "budget-dependent (not converged)",
+  "arms": {
+   "X4L1fromL2": {
+    "char": "shallow",
+    "keeps": false,
+    "conv": true,
+    "strict": [
+     true,
+     false
+    ],
+    "ref": "A4L1f",
+    "q_final": 0.7227955279908655,
+    "ynorm": 16.6950320717
+   },
+   "X4L2fromL1": {
+    "char": "pocket",
+    "keeps": false,
+    "conv": false,
+    "strict": [
+     false,
+     false
+    ],
+    "ref": "A4L2f",
+    "q_final": 62.61871032683446,
+    "ynorm": 36.466733023
+   }
+  }
+ }
+}

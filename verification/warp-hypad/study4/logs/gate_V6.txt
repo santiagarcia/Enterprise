@@ -1,0 +1,5 @@
+4:1 s0=84 qA=2.668913 qB=1.052128 D0=+1.616785 (reg +1.617) | Dpre(W=20)=+2.286958 (reg +2.287) ok | Dpre(W=25)=+2.272608 (reg +2.273) ok
+6:1 s0=90 qA=2.019599 qB=0.873894 D0=+1.145705 (reg +1.146) | Dpre(W=20)=-0.092778 (reg -0.093) ok | Dpre(W=25)=-0.083572 (reg -0.084) ok
+A 6:1 in-loop q at iterate 87 = 0.714510 (reg 0.71) ok
+A 6:1 in-loop q at iterate 90 = 2.019599 (reg 2.02) ok
+V6 PASS

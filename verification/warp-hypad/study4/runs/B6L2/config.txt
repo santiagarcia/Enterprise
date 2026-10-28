@@ -1,0 +1,25 @@
+form B
+order 6
+sub 1
+y0 C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study3/runs/B_6_L2/y_final.txt
+recon C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study3/runs/B_6_L2
+set 
+hessian C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/hessians/B_6_L2
+lambda 3.7499999999999997e-09
+kmax 200
+maxfev 600
+deadline_epoch 1793205648
+diag_every 1
+base_nodes 14904
+nodes 18036
+leaves 501
+tau 0.001
+threads 4
+W0_modified_eigs 14
+W0_mu_min -6.8524598931332066e-09
+W0_mu_max 2.0830965195030419e-05
+F = R + lambda/2 |y|^2
+C1' |gradF| <= 1e-5 F / max(|y|,1)
+C2' 10-window 1e-8 since last set change
+STALLED label: C2' & !C1' for 30 consecutive iterates on one set (not terminal)
+dense BFGS, W0 = Q diag(1/max(|mu|,lambda)) Q^T; c1=1e-4 trust0=0.5 trustmax=4 trustmin=1e-8 ls_trials=10; skip if s.t <= 1e-14|s||t|; refresh rule PROTOCOL-v3 s3; B: refine only at inner convergence, outer cap 10, trust reset 0.5 after SPLIT

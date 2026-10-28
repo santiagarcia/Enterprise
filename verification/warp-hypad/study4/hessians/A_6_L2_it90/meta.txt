@@ -1,0 +1,17 @@
+tag A_6_L2_it90
+nodes 14904
+leaves 414
+base_nodes 14904
+lambda 3.7499999999999997e-09
+R_fwd 0.00010485677325987489
+R_rev 0.00010485677325987501
+R_comp 0.00010485677325987455
+R_ld 0.00010485677325987455
+R_bound 1.7349238622309698e-16
+H1a_diag_mismatch 0
+H1a_passgrad_mismatch 0
+H1a_grad_vs_gradient_mismatch 0
+pair_errors 0
+secs 594.71311180014163
+threads 12
+ld_digits 64

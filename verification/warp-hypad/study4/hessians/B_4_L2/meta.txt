@@ -1,0 +1,17 @@
+tag B_4_L2
+nodes 8688
+leaves 543
+base_nodes 6624
+lambda 3.7499999999999997e-09
+R_fwd 0.00010551849294055451
+R_rev 0.00010551849294055478
+R_comp 0.00010551849294055426
+R_ld 0.00010551849294055426
+R_bound 1.0176738875762281e-16
+H1a_diag_mismatch 0
+H1a_passgrad_mismatch 0
+H1a_grad_vs_gradient_mismatch 0
+pair_errors 0
+secs 384.12068889988586
+threads 12
+ld_digits 64

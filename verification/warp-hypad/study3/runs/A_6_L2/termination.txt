@@ -1,0 +1,1 @@
+WALL_LIMIT it=126 nfev=132 ngev=127 nodes=14904 capped=0 last_set_change=0 resets=0 gF=1.621447887e-07 C1tol=2.858980554e-11 F=0.0001073294147 R=0.0001046869062 ynorm=37.54114891 wall_s=4493.620951

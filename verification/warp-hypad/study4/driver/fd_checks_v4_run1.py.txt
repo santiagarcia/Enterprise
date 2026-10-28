@@ -1,0 +1,287 @@
+"""Gate V4 H2/H3 under PROTOCOL-v4 (NV1, NV2) with Vera's resumption conditions R1-R3.
+
+Usage:
+  python -I fd_checks_v4.py STUDY4_DIR        # writes logs/gate_H2H3_v4.txt and hessians/fd/fd_checks_v4.csv
+
+Reads only archived files: hessians/fd/<d>.out, <d>.dirs, hessians/<d>/{H_R_fwd.bin,y.bin,meta.txt}.
+No FD or OTI evaluation is made. driver/fd_checks.py (v3 analysis) is not changed.
+
+R1: input SHA-256 values from REVIEW-vera-v4.md section 4 are verified first; any mismatch stops (exit 2).
+R2: a row whose minimum error is at the largest step h_1 has no truncation-side pair and FAILS its slope gate
+    (H2, H3 a/b/c); "not resolvable" in H3(c) needs >= 1 truncation-side pair, all failing resolvability.
+R3: Vera's section-1 table is reproduced to the printed digits; any mismatch is flagged and the gate is
+    reported "STOP (R3 disagreement)" (exit 3).
+Readings (PROTOCOL-v4 2.2): (i) truncation side = steps up to and including the minimum; (ii) rho over k in {3,4}
+(lenient, Vera F4); (iii) (b) relative to |0.5 v.(g+ + g-)| at the minimising step; (iv) signed descriptive errors.
+"""
+from __future__ import annotations
+
+import csv
+import hashlib
+import sys
+from pathlib import Path
+
+import numpy as np
+
+N = 108
+HS = [1e-2, 1e-3, 1e-4, 1e-5]
+H2D = ["A_4_L1", "A_4_L2"]
+H3D = ["A_4_L1", "A_4_L2", "B_4_L2", "A_6_L2", "B_6_L2"]
+TOL = 1e-4
+FD_OUT = {
+    "A_4_L1": "cb51116fc307d159f03f53b71674e14533987f24b9a9aa110356b18460491c74",
+    "A_4_L2": "b2065fa63229fd4ee4d461c58d65f461bdf96701472c1a2627aad0d229d9c2c1",
+    "A_6_L2": "c8aa47af91bae5928bcc35521ee5b46ef95bebe993ce3d6c9e99d3ad8e06eaa4",
+    "B_4_L2": "2ac91679e3b548f02a58979239758abea1d9843e3759718a342c09b2409e9c97",
+    "B_6_L2": "f6ea3fbf0ab67f4596b64ed885884c0f75c29bfcc419f10d182c29063c6cb1ed",
+}
+R1 = {
+    "A_4_L1/H_R_fwd.bin": "7a697703b416f007dc90499c3c980ea3c5a154cd6616b334fe4a7d6781c6c1b1",
+    "A_4_L1/y.bin": "dfb00f93a87dce39cbefbb03c9dfb2b775577886eb8d0895759ee4c73150bd5a",
+    "A_4_L1/meta.txt": "41e1b8a93a180630a66c97176d0f4c2c78088346e215af5b4e189ee44276ba82",
+    "A_4_L2/H_R_fwd.bin": "11a70bae2aa4cd7e48cefcd5e06ba17bfc65f52242b6bdd5f15d3c224285b27a",
+    "A_4_L2/y.bin": "526ce11b6b5d77108f1f252407e3d257cc956acb65cab4d259f698baec8a8162",
+    "A_4_L2/meta.txt": "e706826a6682c0955cd40f2808d195b1b6afd4287ee4cb6d466354567259040d",
+    "A_6_L2/H_R_fwd.bin": "8624a733e390a005b46a831ec7ad7434648f68beacddb6521063782455dad64e",
+    "A_6_L2/y.bin": "a0afb16db415b3a370634375cca278eec3b3b879fc03cc82cf2caa6ffb0d6d64",
+    "A_6_L2/meta.txt": "463b2091f413a5a293237ea3ef32e52dcc52fd1997b8d7c07b6abda5745c7190",
+    "B_4_L2/H_R_fwd.bin": "9b048b6fc38ec921e9f70a98185cec91763547af7f598f8abe8b3caba6f6b8c5",
+    "B_4_L2/y.bin": "68256a4a8e47a9600b1ca21a0dd1106f7a03afa8e035bb118f356598e7332765",
+    "B_4_L2/meta.txt": "041740e4f61dd8c6884cc480328cfd63aea4ef869972096c41577174170b0c3a",
+    "B_6_L2/H_R_fwd.bin": "400b9570a8e8c3921cae43a8bb15e8c32bb531511c3913effcf3e05b55f9aaa8",
+    "B_6_L2/y.bin": "89a91b9debbd114b6bc2b80ecf06475804234763c5d02997d09b3777f05359ec",
+    "B_6_L2/meta.txt": "8d23b0d1c9147e3806c4908d330bf8f24d9358df672306afcf0801640aadfbd7",
+    "fd/A_4_L1.dirs": "2448f82d0d61dfe1bf1a9c885cac982dc1c4c578c409e349b88f965ebd5890dd",
+    "fd/A_4_L2.dirs": "027f49938231decdcdafaa6bb457cca64e9fb5f2354331a231ffcd91d0287790",
+    "fd/A_6_L2.dirs": "cb10441fe6b18c691e57c1f85ceaa8235a1672052485b635eac39d5cc3287a4d",
+    "fd/B_4_L2.dirs": "cb10441fe6b18c691e57c1f85ceaa8235a1672052485b635eac39d5cc3287a4d",
+    "fd/B_6_L2.dirs": "cb10441fe6b18c691e57c1f85ceaa8235a1672052485b635eac39d5cc3287a4d",
+}
+# Vera's printed values (REVIEW-vera-v4.md section 1). None = elided ("...") in her table.
+VERA = {
+    "A_4_L1": dict(ea=["1.28e-4", "1.28e-6", "1.27e-8", "2.05e-8"], c=["5.0e-3", "5.0e-5", "8.2e-7", "1.1e-6"],
+                   ec=["5.15e-5", "1.13e-6", "7.66e-5", "7.66e-3"], rho="7.7e-7", thr="1.7e-6", res=True,
+                   fac="45.5", pg=["1.03e-4", None, "9.99e-9", None], rich="0.49996"),
+    "A_4_L2": dict(ea=["1.23e-3", None, None, "6.37e-8"], c=["3.1e-3", None, None, "4.0e-7"],
+                   ec=["1.85e-4", "3.35e-6", "1.47e-4", "1.08e-2"], rho="1.5e-6", thr="6.2e-6", res=True,
+                   fac="55.3", pg=[None, None, "5.1e-9", None], rich="0.49984"),
+    "B_4_L2": dict(ea=["1.04e-3", None, None, "3.42e-8"], c=["5.9e-4", None, None, "1.4e-8"],
+                   ec=["3.26e-4", "2.12e-6", "1.94e-4", "4.12e-2"], rho="4.1e-6", thr="1.1e-5", res=True,
+                   fac="153.9", pg=[None, None, "1.4e-10", None], rich="0.49981"),
+    "A_6_L2": dict(ea=["4.93e-5", "4.93e-7", "7.12e-9", "9.61e-8"], c=["1.45e-3", "1.42e-5", "1.16e-7", "3.2e-5"],
+                   ec=["1.67e-5", "2.48e-6", "9.21e-5", "1.00e-1"], rho="1.0e-5", thr="5.6e-7", res=False,
+                   fac=None, pg=["3.34e-5", "3.34e-7", "2.41e-9", "-1.30e-8"], rich="0.49949"),
+    "B_6_L2": dict(ea=["5.38e-4", None, None, "5.42e-8"], c=["1.3e-2", None, None, "6.6e-6"],
+                   ec=["2.01e-4", "2.81e-6", "2.35e-4", "5.08e-2"], rho="5.1e-6", thr="6.7e-6", res=True,
+                   fac="71.6", pg=[None, None, "9.9e-10", None], rich="0.49991"),
+}
+
+
+def sha(p: Path) -> str:
+    """Return the SHA-256 hex digest of a file."""
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def same_printed(mine: float, printed: str) -> bool:
+    """True if `mine` rounds to the value printed by Vera at her printed precision."""
+    if "e" in printed:
+        sig = len(printed.split("e")[0].lstrip("-").replace(".", ""))
+        return float(f"{mine:.{sig - 1}e}") == float(printed)
+    dec = len(printed.split(".")[1]) if "." in printed else 0
+    return round(mine, dec) == float(printed)
+
+
+def slope(e: list[float]) -> tuple[bool, bool, int, list[float]]:
+    """Return (primary, strict, argmin, ratios). R2: argmin at h_1 -> empty pair set -> primary False."""
+    k = int(np.argmin(e))
+    rat = [e[i] / e[i + 1] for i in range(k)]
+    ok = [r >= 30 for r in rat]
+    strict = any(ok[i] and ok[i + 1] for i in range(len(ok) - 1))
+    return any(ok), strict, k, rat
+
+
+def read_out(path: Path) -> tuple[float, dict]:
+    """Parse an archived FD output file into R0 and per-label step records."""
+    lines = path.read_text().splitlines()
+    R0 = float(lines[0].split()[1])
+    data: dict = {}
+    for ln in lines[1:]:
+        t = ln.split()
+        data.setdefault(t[0], []).append(
+            (float(t[1]), float(t[2]), float(t[3]), np.array(t[4:4 + N], float), np.array(t[4 + N:4 + 2 * N], float)))
+    return R0, data
+
+
+def main(root: Path) -> int:
+    """Run the v4 H2/H3 analysis; return the process exit status."""
+    out: list[str] = []
+    P = out.append
+    P("# gate_H2H3_v4 (PROTOCOL-v4 NV1/NV2 + Vera R1-R3); driver/fd_checks_v4.py sha256 "
+      + sha(Path(__file__)))
+    # ---- R1 and FD output hashes
+    bad = []
+    for rel, h in R1.items():
+        got = sha(root / "hessians" / rel)
+        P(f"R1 {rel} {got} {'OK' if got == h else 'MISMATCH'}")
+        if got != h:
+            bad.append(rel)
+    for d, h in FD_OUT.items():
+        got = sha(root / "hessians" / "fd" / f"{d}.out")
+        P(f"v4s9 fd/{d}.out {got} {'OK' if got == h else 'MISMATCH'}")
+        if got != h:
+            bad.append(d + ".out")
+    if bad:
+        P("R1/v4s9: HASH MISMATCH -> STUDY STOPS: " + ", ".join(bad))
+        (root / "logs" / "gate_H2H3_v4.txt").write_text("\n".join(out) + "\n")
+        print("\n".join(out))
+        return 2
+    P("R1 PASS: all 20 pinned inputs match; v4 s9 FD output hashes match.")
+
+    v = np.random.default_rng(4).standard_normal(N)
+    v /= np.linalg.norm(v)
+    rows = []
+    r3 = []
+    gate_ok = True
+
+    # ---- H2 (NV1)
+    for d in H2D:
+        H = np.fromfile(root / "hessians" / d / "H_R_fwd.bin", dtype="<f8").reshape(N, N)
+        y = np.fromfile(root / "hessians" / d / "y.bin", dtype="<f8")
+        _, data = read_out(root / "hessians" / "fd" / f"{d}.out")
+        fdc = {}
+        for lab, L in data.items():
+            if not lab.startswith("col"):
+                continue
+            i = int(lab[3:])
+            ref = H[:, i]
+            es = []
+            for k, (s, _, _, gp, gm) in enumerate(L):
+                assert s == float(f"{HS[k] * max(1.0, abs(y[i])):.17g}"), (d, lab, s)
+                c = (gp - gm) / (2 * s)
+                es.append(float(np.linalg.norm(c - ref) / np.linalg.norm(ref)))
+                fdc.setdefault(i, []).append(c)
+            p, st, k, rat = slope(es)
+            ok = p and es[k] <= TOL
+            gate_ok &= ok
+            rows.append(dict(gate="H2", design=d, dir=lab, e=";".join(f"{x:.3e}" for x in es),
+                             ratios=";".join(f"{x:.1f}" for x in rat), argmin=k + 1, slope=p, strict_desc=st,
+                             best=f"{es[k]:.3e}", status="PASS" if ok else "FAIL"))
+        ks = sorted(fdc)
+        for a in ks:
+            for b in ks:
+                if a < b:
+                    rs = [abs(fdc[a][j][b] - fdc[b][j][a]) / abs(H[a, b]) for j in range(4)]
+                    rows.append(dict(gate="H2-sym(desc)", design=d, dir=f"{a},{b}",
+                                     e=";".join(f"{x:.3e}" for x in rs), ratios="", argmin="", slope="",
+                                     strict_desc="", best=f"{min(rs):.3e}", status="desc"))
+
+    # ---- H3 (NV2)
+    for d in H3D:
+        H = np.fromfile(root / "hessians" / d / "H_R_fwd.bin", dtype="<f8").reshape(N, N)
+        y = np.fromfile(root / "hessians" / d / "y.bin", dtype="<f8")
+        R0, data = read_out(root / "hessians" / "fd" / f"{d}.out")
+        dirs = (root / "hessians" / "fd" / f"{d}.dirs").read_text().splitlines()
+        vd = np.array([ln.split()[2:] for ln in dirs if ln.startswith("v4")][0], float)
+        assert np.array_equal(vd, v), "dirs v != rng(4) v"
+        L = data["v4"]
+        sc = max(1.0, abs(float(v @ y)))
+        Hv = H @ v
+        vHv = float(v @ Hv)
+        ea, cabs, crel, ec, pg, sds = [], [], [], [], [], []
+        ss = []
+        for k, (s, Rp, Rm, gp, gm) in enumerate(L):
+            assert s == float(f"{HS[k] * sc:.17g}"), (d, s)
+            ss.append(s)
+            ea.append(float(np.linalg.norm((gp - gm) / (2 * s) - Hv) / np.linalg.norm(Hv)))
+            phi = 0.5 * float(v @ (gp + gm))
+            cc = abs((Rp - Rm) / (2 * s) - phi)
+            cabs.append(cc)
+            crel.append(cc / abs(phi))
+            sd = (Rp - 2 * R0 + Rm) / s ** 2
+            sds.append(sd)
+            ec.append(abs(sd - vHv) / abs(vHv))
+            pg.append((float(v @ (gp - gm)) / (2 * s) - vHv) / vHv)
+        # (a)
+        pa, sa, ka, ra = slope(ea)
+        oka = pa and ea[ka] <= TOL
+        # (b): slope on absolute c; tolerance relative to |phi'| at the minimising step (reading iii)
+        pb, sb, kb, rb = slope(cabs)
+        okb = pb and crel[kb] <= TOL
+        # (c)
+        kc = int(np.argmin(ec))
+        okc_tol = ec[kc] <= TOL
+
+        def rho(s: float) -> float:
+            return max(ec[2] * (ss[2] / s) ** 2, ec[3] * (ss[3] / s) ** 2)
+
+        pairs = list(range(kc))  # truncation-side pairs (k, k+1), 0-based
+        resolv = [rho(ss[k + 1]) <= ec[k] / 30 for k in pairs]
+        rc = [ec[k] / ec[k + 1] for k in pairs]
+        if not pairs:
+            cstat, okc_slope = "FAIL (min at h_1; R2)", False
+        elif any(resolv):
+            okc_slope = any(rc[k] >= 30 for k in pairs if resolv[k])
+            cstat = "resolvable; slope " + ("PASS" if okc_slope else "FAIL")
+        else:
+            cstat, okc_slope = "slope not resolvable by the R reference", True
+        okc = okc_tol and okc_slope
+        rich = (sds[0] - vHv) / (pg[0] * vHv)
+        for nm, E, p, st, k, rat, ok in (("H3a-Hv", ea, pa, sa, ka, ra, oka), ("H3b-c(abs)", cabs, pb, sb, kb, rb, okb)):
+            rows.append(dict(gate=nm, design=d, dir="v4", e=";".join(f"{x:.3e}" for x in E),
+                             ratios=";".join(f"{x:.1f}" for x in rat), argmin=k + 1, slope=p, strict_desc=st,
+                             best=f"{E[k]:.3e}" + (f" rel {crel[k]:.3e}" if nm.startswith("H3b") else ""),
+                             status="PASS" if ok else "FAIL"))
+        rows.append(dict(gate="H3c-vHv", design=d, dir="v4", e=";".join(f"{x:.3e}" for x in ec),
+                         ratios=";".join(f"{x:.1f}" for x in rc), argmin=kc + 1, slope=cstat,
+                         strict_desc=slope(ec)[1], best=f"{ec[kc]:.3e}",
+                         status="PASS" if okc else "FAIL"))
+        rows.append(dict(gate="H3-desc", design=d, dir="v4",
+                         e="c_rel " + ";".join(f"{x:.2e}" for x in crel) + " | pg_err " + ";".join(f"{x:.3e}" for x in pg),
+                         ratios="rho(s2..s4) " + ";".join(f"{rho(s):.2e}" for s in ss[1:]),
+                         argmin="", slope="", strict_desc="", best=f"Richardson r(s1)={rich:.5f}; |v.y|={abs(float(v @ y)):.3f}",
+                         status="desc"))
+        gate_ok &= oka and okb and okc
+        # ---- R3 comparison against Vera's printed digits
+        V = VERA[d]
+        for nm, mine, theirs in (("e_a", ea, V["ea"]), ("c", crel, V["c"]), ("e_c", ec, V["ec"]), ("pg", pg, V["pg"])):
+            for k, t in enumerate(theirs):
+                if t is not None:
+                    r3.append((d, f"{nm}(h{k + 1})", mine[k], t, same_printed(mine[k], t)))
+        r3.append((d, "rho(s2)", rho(ss[1]), V["rho"], same_printed(rho(ss[1]), V["rho"])))
+        r3.append((d, "e_c(h1)/30", ec[0] / 30, V["thr"], same_printed(ec[0] / 30, V["thr"])))
+        res_mine = bool(resolv[0]) if pairs else False
+        r3.append((d, "pair(h1,h2) resolvable", res_mine, str(V["res"]), res_mine == V["res"]))
+        if V["fac"] is not None:
+            r3.append((d, "e_c(h1)/e_c(h2)", rc[0], V["fac"], same_printed(rc[0], V["fac"])))
+        r3.append((d, "Richardson r(s1)", rich, V["rich"], same_printed(rich, V["rich"])))
+        r3.append((d, "row pass (a,b,c) [Vera: pass]", oka and okb and okc, "True", oka and okb and okc))
+
+    P("")
+    P("## H2 (NV1) and H3 (NV2 with R2); h_1..h_4 = 1e-2..1e-5")
+    keys = list(rows[0].keys())
+    P(" | ".join(keys))
+    for r in rows:
+        P(" | ".join(str(r[k_]) for k_ in keys))
+    P("")
+    P("## R3: reproduction of REVIEW-vera-v4.md section 1 (mine at full precision | Vera printed | match)")
+    for d, item, mine, t, m in r3:
+        ms = f"{mine:.6e}" if isinstance(mine, float) else str(mine)
+        P(f"R3 {d} {item}: {ms} | {t} | {'MATCH' if m else 'MISMATCH'}")
+    n_mis = sum(1 for x in r3 if not x[4])
+    P(f"R3: {len(r3) - n_mis}/{len(r3)} items match" + ("" if n_mis == 0 else f"; {n_mis} MISMATCH -> STOP for review"))
+    P("")
+    P("Carried over from the v3 execution (v4 s9 step 5; logs not regenerated): H1a PASS, H1b PASS (logs/step0_analysis.txt).")
+    verdict = "PASS" if gate_ok and n_mis == 0 else ("STOP (R3 disagreement)" if gate_ok else "FAIL")
+    P(f"GATE V4 (H1a, H1b carried; H2 NV1; H3 a, b, c NV2 + R2; R1; R3) under PROTOCOL-v4: {verdict}")
+    (root / "logs" / "gate_H2H3_v4.txt").write_text("\n".join(out) + "\n", encoding="utf-8")
+    with open(root / "hessians" / "fd" / "fd_checks_v4.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=keys)
+        w.writeheader()
+        for r in rows:
+            w.writerow(r)
+    print("\n".join(out))
+    return 0 if verdict == "PASS" else 3
+
+
+if __name__ == "__main__":
+    sys.exit(main(Path(sys.argv[1])))

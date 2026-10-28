@@ -1,0 +1,6 @@
+order 4: gradient 5.09s (|g| 2.487443e-05)
+order 4: residual 0.07s (R 1.498987939237e-04)
+order 6: gradient 10.96s (|g| 2.487443e-05)
+order 6: residual 0.15s (R 1.498987939237e-04)
+in-loop search 0.39s: 1 distinct, 1 polished, 0 dup, 1 lattice minima, best -9.60726526e-04 at (-0.0000,2.0013)
+8:1 diag 0.45s (E8 4.634569439e-02, EnegW 4.514147e-02, vtail 0.000000e+00, L4 1.831495e-03)

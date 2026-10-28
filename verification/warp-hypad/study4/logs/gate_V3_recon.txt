@@ -1,0 +1,8 @@
+RECON study3/runs/B_4_L1 split_rows 35 nodes 8304 leaves 519 rhomin_w -0.00056904060374041729
+RECON study3/runs/B_6_L1 split_rows 16 nodes 16632 leaves 462 rhomin_w -0.00056331435753752962
+RECON study3/runs/B_4_L2 split_rows 43 nodes 8688 leaves 543 rhomin_w -0.00099416261387350047
+RECON study3/runs/B_6_L2 split_rows 29 nodes 18036 leaves 501 rhomin_w -0.0008368694904790086
+B_4_L1 term: nodes=8304 last row leaves,rhomin_w_post: 519,-0.00056904060374
+B_6_L1 term: nodes=16632 last row leaves,rhomin_w_post: 462,-0.000563314357538
+B_4_L2 term: nodes=8688 last row leaves,rhomin_w_post: 543,-0.000994162613874
+B_6_L2 term: nodes=18036 last row leaves,rhomin_w_post: 501,-0.000836869490479

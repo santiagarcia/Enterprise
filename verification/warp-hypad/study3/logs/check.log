@@ -1,0 +1,8 @@
+base set order 4: 6624 nodes, bit-identical to build_elementwise_set: yes
+base set order 6: 14904 nodes, bit-identical to build_elementwise_set: yes
+base set order 8: 246656 nodes, bit-identical to build_elementwise_set: yes
+baseline_zero: E_neg parallel 4.634569438814265e-02 vs evaluate_feasibility 4.634569438814265e-02; rho_min -9.602400469032838e-04 vs -9.602400469032838e-04
+   R(4:1) 1.49898793923666508e-04 vs feasibility_residual 1.49898793923666508e-04 identical
+combined_perturbation: E_neg parallel 4.988687244534097e-02 vs evaluate_feasibility 4.988687244534097e-02; rho_min -2.763223339507739e-03 vs -2.763223339507739e-03
+   R(4:1) 1.62639806195089839e-04 vs feasibility_residual 1.62639806195089839e-04 identical
+CHECK PASS

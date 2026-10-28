@@ -1,0 +1,30 @@
+== 2026-10-27T23:38:04-05:00 pre-P1 hash re-verification
+b2c0af84b8c9449d97864cf518ad911b5bf51f5c66d4f068dcbf16cb176885da *PROTOCOL-v2.md
+768b60361ecb425d11ef81ad87ef4502587104518ae36063bf42a571ae2b70a3 *PROTOCOL-v3.md
+0d77d7d52abf819d19c9eb8cf66cf0dbdbfb6d7261e0070f1341486499d7c3ad *PROTOCOL-v4.md
+a21e0ff65283875bf98b441652e777d028999bc5bc67317921eb76e7758bf64c *PROTOCOL.md
+0d77d7d52abf819d19c9eb8cf66cf0dbdbfb6d7261e0070f1341486499d7c3ad *PROTOCOL-v4.md
+driver/s4.cpp: OK
+driver/analyze_runs.py: OK
+driver/assemble_s4.py: OK
+driver/d5w.py: OK
+driver/fd_checks.py: OK
+driver/figures.py: OK
+driver/hess_analyze.py: OK
+driver/make_hessian_passes.py: OK
+driver/v5_check.py: OK
+driver/v6_baselines.py: OK
+driver/assess.sh: OK
+driver/build.sh: OK
+driver/fd_run.sh: OK
+driver/lane.sh: OK
+driver/step0_hessians.sh: OK
+driver/fd_checks_v4.py: FAILED
+driver/fd_checks_v4.py: OK
+sha256sum: WARNING: 1 computed checksum did NOT match
+cb51116fc307d159f03f53b71674e14533987f24b9a9aa110356b18460491c74 *hessians/fd/A_4_L1.out
+b2065fa63229fd4ee4d461c58d65f461bdf96701472c1a2627aad0d229d9c2c1 *hessians/fd/A_4_L2.out
+c8aa47af91bae5928bcc35521ee5b46ef95bebe993ce3d6c9e99d3ad8e06eaa4 *hessians/fd/A_6_L2.out
+2ac91679e3b548f02a58979239758abea1d9843e3759718a342c09b2409e9c97 *hessians/fd/B_4_L2.out
+f6ea3fbf0ab67f4596b64ed885884c0f75c29bfcc419f10d182c29063c6cb1ed *hessians/fd/B_6_L2.out
+b6c0ad75c6fc4b32d88c8ab63f05edabec77e399ec520b2c0e137a0f38dd52ff *driver/s4.exe

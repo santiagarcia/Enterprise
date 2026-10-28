@@ -1,0 +1,47 @@
+2026-10-28T08:59:23-05:00 part3 mirror build
+2026-10-28T08:59:26-05:00 P4 converged-final Hessians
+HESSIAN final_A4L1f nodes 6624 passes 1962 secs 267.3 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T09:03:59-05:00 final_A4L1f done
+HESSIAN final_B4L1f nodes 8304 passes 1962 secs 367.0 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T09:10:14-05:00 final_B4L1f done
+HESSIAN final_A6L1f nodes 14904 passes 1962 secs 591.4 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T09:20:17-05:00 final_A6L1f done
+HESSIAN final_B6L1f nodes 16632 passes 1962 secs 693.2 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T09:32:04-05:00 final_B6L1f done
+2026-10-28T09:32:04-05:00 P4 finals assessment (seeds 1, 2, --full 1)
+A4L1f seed 1: rho*_D -6.94407742e-04 at (0.69869,2.35713) | sample -6.913945e-04 | est_min -8.119e-04 flagged 27 d7 1 | outside-Ab mismatches 0/34266 | E8 1.968206e-02 | 14.2s
+A4L1f seed 2: rho*_D -6.94407742e-04 at (0.69869,2.35713) | sample -6.917238e-04 | est_min -8.119e-04 flagged 26 d7 0 | outside-Ab mismatches 0/34266 | E8 1.968206e-02 | 14.1s
+B4L1f seed 1: rho*_D -5.54119574e-04 at (1.05033,1.93159) | sample -5.532599e-04 | est_min -6.054e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.970758e-02 | 13.9s
+B4L1f seed 2: rho*_D -5.54119574e-04 at (1.05033,1.93159) | sample -5.536827e-04 | est_min -6.054e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.970758e-02 | 14.0s
+A6L1f seed 1: rho*_D -5.47905073e-04 at (-1.05568,1.95475) | sample -5.478729e-04 | est_min -6.103e-04 flagged 3 d7 0 | outside-Ab mismatches 0/34266 | E8 1.971133e-02 | 14.0s
+A6L1f seed 2: rho*_D -5.47905073e-04 at (-1.05568,1.95475) | sample -5.478729e-04 | est_min -6.103e-04 flagged 3 d7 0 | outside-Ab mismatches 0/34266 | E8 1.971133e-02 | 13.9s
+B6L1f seed 1: rho*_D -5.48351798e-04 at (1.05477,1.95361) | sample -5.479346e-04 | est_min -6.006e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.969940e-02 | 14.1s
+B6L1f seed 2: rho*_D -5.48351798e-04 at (1.05477,1.95361) | sample -5.476399e-04 | est_min -6.006e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.969940e-02 | 14.0s
+2026-10-28T09:33:58-05:00 P4 trajectory assessment
+47 iterates selected
+A4L1f@25 seed 1: rho*_D -5.84765668e-04 at (0.45869,2.22668) | sample -5.844447e-04 | est_min -6.205e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.987868e-02 | 11.3s
+A4L1f@50 seed 1: rho*_D -7.35487146e-04 at (0.70038,2.35489) | sample -7.353639e-04 | est_min -8.616e-04 flagged 25 d7 0 | outside-Ab mismatches 0/34266 | E8 1.970828e-02 | 11.3s
+A4L1f@51 seed 1: rho*_D -8.23211090e-04 at (-0.78601,2.31275) | sample -8.201363e-04 | est_min -9.011e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.968011e-02 | 11.3s
+A4L1f@75 seed 1: rho*_D -6.94409729e-04 at (0.69869,2.35713) | sample -6.913963e-04 | est_min -8.119e-04 flagged 27 d7 1 | outside-Ab mismatches 0/34266 | E8 1.968206e-02 | 11.2s
+B4L1f@18 seed 1: rho*_D -6.71968810e-04 at (-0.68242,2.34872) | sample -6.684878e-04 | est_min -7.597e-04 flagged 13 d7 0 | outside-Ab mismatches 0/34266 | E8 1.965241e-02 | 11.3s
+B4L1f@25 seed 1: rho*_D -5.56878571e-04 at (1.05015,1.93256) | sample -5.564723e-04 | est_min -6.077e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.968404e-02 | 11.4s
+A6L1f@13 seed 1: rho*_D -6.62744304e-04 at (-0.67957,2.35613) | sample -6.620530e-04 | est_min -7.537e-04 flagged 11 d7 0 | outside-Ab mismatches 0/34266 | E8 1.979162e-02 | 11.4s
+A6L1f@25 seed 1: rho*_D -5.49987030e-04 at (-1.05471,1.95451) | sample -5.498974e-04 | est_min -6.050e-04 flagged 1 d7 0 | outside-Ab mismatches 0/34266 | E8 1.970033e-02 | 11.3s
+B6L1f@9 seed 1: rho*_D -9.47429244e-04 at (0.69726,2.24944) | sample -9.459741e-04 | est_min -1.029e-03 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.995517e-02 | 11.3s
+B6L1f@25 seed 1: rho*_D -5.50037540e-04 at (1.05378,1.95206) | sample -5.486708e-04 | est_min -6.033e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.971043e-02 | 11.3s
+2026-10-28T09:35:55-05:00 X4L1fromL2 iterate 1 (Part 2 deviation 4; Vera recommendation)
+X4L1fromL2@1 seed 1: rho*_D -2.83163873e-02 at (0.00077,2.43980) | sample -2.830730e-02 | est_min -3.273e-02 flagged 15 d7 0 | outside-Ab mismatches 0/34266 | E8 1.900069e-02 | 11.5s
+2026-10-28T09:36:07-05:00 PART3 POST DONE
+final_A4L1f newton_step_norm 9.028478938016552e-07 rel 5.4078840393178605e-08
+HESSIAN s2_A4L1f nodes 6624 passes 1962 secs 267.4 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T09:41:19-05:00 s2_A4L1f done
+final_B4L1f newton_step_norm 2.6845643026832683e-07 rel 1.6288429411684592e-08
+HESSIAN s2_B4L1f nodes 8304 passes 1962 secs 363.4 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T09:47:30-05:00 s2_B4L1f done
+final_A6L1f newton_step_norm 5.478240789858765e-07 rel 3.341295094408517e-08
+HESSIAN s2_A6L1f nodes 14904 passes 1962 secs 595.3 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T09:57:36-05:00 s2_A6L1f done
+final_B6L1f newton_step_norm 1.015622790488137e-06 rel 6.202455286272851e-08
+HESSIAN s2_B6L1f nodes 16632 passes 1962 secs 702.3 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T10:09:33-05:00 s2_B6L1f done
+2026-10-28T10:09:33-05:00 P4 S2 DONE

@@ -1,0 +1,147 @@
+s3.cpp sha256 ac17929097eec71131ad6d321759b4a3d620d618e6ac42651fadb7d497b0d629
+s4.cpp sha256 ef247445f6a71b07b5dec7f9aebc7546cae4acb2aea28962120c69aac48c9463
+In file included from C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/core.h:7,
+                 from C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/static/onumm3n2.h:8,
+                 from C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/include/warp_hypad/sensitivity/otilib_scalar.hpp:46,
+                 from C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/include/warp_hypad/sensitivity/otilib_extract.hpp:5,
+                 from C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/s4.cpp:37:
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:87:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   87 | #define _PIMDIRT "%"PRIu64  // Print format of imdir_t
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:88:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   88 | #define _PNDIRT  "%"PRIu64  // Print format of ndir_t
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:89:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   89 | #define _PBASEST "%"PRIu16  // Print format of bases_t
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:90:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   90 | #define _PORDT   "%"PRIu8   // Print format of ord_t
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:91:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   91 | #define _PNDHT   "%"PRIu8   // Print format of ndh_t
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:92:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   92 | #define _PFLAGT  "%"PRIu8   // Print format of flag_t
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:94:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   94 | #define _PUINT64T "%"PRIu64
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:95:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   95 | #define _PUINT32T "%"PRIu32
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:96:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   96 | #define _PUINT16T "%"PRIu16
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:97:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   97 | #define _PUINT8T  "%"PRIu8
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:99:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   99 | #define _PINT64T "%"PRId64
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:100:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  100 | #define _PINT32T "%"PRId32
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:102:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  102 | #define _PINT16T "%"PRId16
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:103:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  103 | #define _PINT8T  "%"PRId8
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:105:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  105 | #define _SUINT64T "%"SCNu64
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:106:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  106 | #define _SUINT32T "%"SCNu32
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:107:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  107 | #define _SUINT16T "%"SCNu16
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:108:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  108 | #define _SUINT8T  "%"SCNu8
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:110:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  110 | #define _SINT64T "%"SCNd64
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:111:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  111 | #define _SINT32T "%"SCNd32
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:113:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  113 | #define _SINT16T "%"SCNd16
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:114:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  114 | #define _SINT8T  "%"SCNd8
+      |                  ^
+In file included from C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/core.h:7,
+                 from C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/static/onumm3n2.h:8,
+                 from C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/include/warp_hypad/sensitivity/otilib_scalar.hpp:46,
+                 from C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/include/warp_hypad/sensitivity/otilib_extract.hpp:5,
+                 from C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study3/driver/s3.cpp:34,
+                 from C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/v2_s3harness.cpp:5:
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:87:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   87 | #define _PIMDIRT "%"PRIu64  // Print format of imdir_t
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:88:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   88 | #define _PNDIRT  "%"PRIu64  // Print format of ndir_t
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:89:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   89 | #define _PBASEST "%"PRIu16  // Print format of bases_t
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:90:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   90 | #define _PORDT   "%"PRIu8   // Print format of ord_t
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:91:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   91 | #define _PNDHT   "%"PRIu8   // Print format of ndh_t
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:92:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   92 | #define _PFLAGT  "%"PRIu8   // Print format of flag_t
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:94:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   94 | #define _PUINT64T "%"PRIu64
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:95:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   95 | #define _PUINT32T "%"PRIu32
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:96:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   96 | #define _PUINT16T "%"PRIu16
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:97:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   97 | #define _PUINT8T  "%"PRIu8
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:99:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+   99 | #define _PINT64T "%"PRId64
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:100:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  100 | #define _PINT32T "%"PRId32
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:102:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  102 | #define _PINT16T "%"PRId16
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:103:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  103 | #define _PINT8T  "%"PRId8
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:105:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  105 | #define _SUINT64T "%"SCNu64
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:106:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  106 | #define _SUINT32T "%"SCNu32
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:107:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  107 | #define _SUINT16T "%"SCNu16
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:108:19: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  108 | #define _SUINT8T  "%"SCNu8
+      |                   ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:110:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  110 | #define _SINT64T "%"SCNd64
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:111:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  111 | #define _SINT32T "%"SCNd32
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:113:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  113 | #define _SINT16T "%"SCNd16
+      |                  ^
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/Enterprise/warp_hypad/external/otilib/include/oti/comm.h:114:18: warning: invalid suffix on literal; C++11 requires a space between literal and string macro [-Wliteral-suffix]
+  114 | #define _SINT8T  "%"SCNd8
+      |                  ^
+g++.exe (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r4) 16.1.0
+built

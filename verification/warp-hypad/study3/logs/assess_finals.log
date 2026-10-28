@@ -1,0 +1,28 @@
+FLOOR (baseline min over D \ Ab): -1.7523250518e-04 at (-2.10000, 1.37081); sample -1.7328056020e-04; starts 64
+baseline seed 1: rho*_D -9.60726526e-04 at (0.00000,2.00134) | sample -9.607231e-04 | est_min -9.610e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 4.634569e-02 | 13.6s
+baseline seed 2: rho*_D -9.60726526e-04 at (0.00000,2.00134) | sample -9.607231e-04 | est_min -9.610e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 4.634569e-02 | 13.7s
+AXI BASELINE: max|rho3D - rho_meridian| 2.351e-18  max|rho| 9.571e-04  ratio 2.457e-15  PASS
+A_4_L1 seed 1: rho*_D -5.71333762e-04 at (0.43942,2.22038) | sample -5.713051e-04 | est_min -5.978e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.982155e-02 | 13.9s
+A_4_L1 seed 2: rho*_D -5.71333762e-04 at (0.43942,2.22038) | sample -5.713051e-04 | est_min -5.978e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.982155e-02 | 13.9s
+AXI C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study3/runs/A_4_L1//y_final.txt: max|rho3D - rho_meridian| 9.859e-15  max|rho| 2.375e-02  ratio 4.151e-13  PASS
+A_4_L2 seed 1: rho*_D -3.07046534e-02 at (0.00080,2.44000) | sample -3.069608e-02 | est_min -3.553e-02 flagged 17 d7 0 | outside-Ab mismatches 0/34266 | E8 1.907217e-02 | 14.1s
+A_4_L2 seed 2: rho*_D -3.07046534e-02 at (0.00080,2.44000) | sample -3.069608e-02 | est_min -3.553e-02 flagged 17 d7 0 | outside-Ab mismatches 0/34266 | E8 1.907217e-02 | 14.1s
+AXI C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study3/runs/A_4_L2//y_final.txt: max|rho3D - rho_meridian| 1.253e-14  max|rho| 2.439e-01  ratio 5.138e-14  PASS
+A_6_L1 seed 1: rho*_D -5.74318137e-04 at (-1.03584,1.94207) | sample -5.731273e-04 | est_min -6.173e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.988743e-02 | 14.1s
+A_6_L1 seed 2: rho*_D -5.74318137e-04 at (-1.03584,1.94207) | sample -5.733766e-04 | est_min -6.173e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.988743e-02 | 14.0s
+AXI C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study3/runs/A_6_L1//y_final.txt: max|rho3D - rho_meridian| 6.363e-15  max|rho| 2.017e-02  ratio 3.154e-13  PASS
+A_6_L2 seed 1: rho*_D -4.54438326e-03 at (0.00043,2.44007) | sample -4.543347e-03 | est_min -5.483e-03 flagged 29 d7 0 | outside-Ab mismatches 0/34266 | E8 1.713855e-02 | 14.3s
+A_6_L2 seed 2: rho*_D -4.54438326e-03 at (0.00043,2.44007) | sample -4.543347e-03 | est_min -5.483e-03 flagged 29 d7 0 | outside-Ab mismatches 0/34266 | E8 1.713855e-02 | 14.1s
+AXI C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study3/runs/A_6_L2//y_final.txt: max|rho3D - rho_meridian| 2.158e-14  max|rho| 2.748e-01  ratio 7.851e-14  PASS
+B_4_L1 seed 1: rho*_D -5.77418971e-04 at (-0.44582,2.22226) | sample -5.770428e-04 | est_min -6.077e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.988159e-02 | 14.1s
+B_4_L1 seed 2: rho*_D -5.77418971e-04 at (-0.44582,2.22226) | sample -5.768629e-04 | est_min -6.077e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.988159e-02 | 13.9s
+AXI C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study3/runs/B_4_L1//y_final.txt: max|rho3D - rho_meridian| 4.848e-15  max|rho| 2.055e-02  ratio 2.359e-13  PASS
+B_4_L2 seed 1: rho*_D -1.01080774e-03 at (0.77537,2.44326) | sample -1.010533e-03 | est_min -1.782e-03 flagged 394 d7 1 | outside-Ab mismatches 0/34266 | E8 1.704882e-02 | 14.5s
+B_4_L2 seed 2: rho*_D -1.01080774e-03 at (0.77537,2.44326) | sample -1.010533e-03 | est_min -1.782e-03 flagged 394 d7 1 | outside-Ab mismatches 0/34266 | E8 1.704882e-02 | 14.4s
+AXI C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study3/runs/B_4_L2//y_final.txt: max|rho3D - rho_meridian| 1.357e-14  max|rho| 1.233e-01  ratio 1.100e-13  PASS
+B_6_L1 seed 1: rho*_D -5.69002991e-04 at (1.03185,1.94128) | sample -5.688373e-04 | est_min -6.111e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.989552e-02 | 14.2s
+B_6_L1 seed 2: rho*_D -5.69002991e-04 at (1.03185,1.94128) | sample -5.685644e-04 | est_min -6.111e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.989552e-02 | 14.0s
+AXI C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study3/runs/B_6_L1//y_final.txt: max|rho3D - rho_meridian| 8.627e-15  max|rho| 2.237e-02  ratio 3.856e-13  PASS
+B_6_L2 seed 1: rho*_D -8.39572696e-04 at (-0.76812,2.44115) | sample -8.394148e-04 | est_min -1.526e-03 flagged 429 d7 1 | outside-Ab mismatches 0/34266 | E8 1.722512e-02 | 14.5s
+B_6_L2 seed 2: rho*_D -8.39572696e-04 at (-0.76812,2.44115) | sample -8.394148e-04 | est_min -1.526e-03 flagged 429 d7 1 | outside-Ab mismatches 0/34266 | E8 1.722512e-02 | 14.5s
+AXI C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study3/runs/B_6_L2//y_final.txt: max|rho3D - rho_meridian| 7.376e-15  max|rho| 1.378e-01  ratio 5.353e-14  PASS

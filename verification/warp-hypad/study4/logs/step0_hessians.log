@@ -1,0 +1,11 @@
+HESSIAN A_4_L2_it84 nodes 6624 passes 1962 secs 267.0 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+HESSIAN B_4_L2 nodes 8688 passes 1962 secs 384.1 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+HESSIAN A_6_L2_it90 nodes 14904 passes 1962 secs 594.7 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+HESSIAN B_6_L2 nodes 18036 passes 1962 secs 765.5 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+HESSIAN A_4_L2 nodes 6624 passes 1962 secs 266.6 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+HESSIAN A_6_L2 nodes 14904 passes 1962 secs 599.5 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+HESSIAN A_4_L1 nodes 6624 passes 1962 secs 271.0 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+HESSIAN A_6_L1 nodes 14904 passes 1962 secs 597.5 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+HESSIAN B_4_L1 nodes 8304 passes 1962 secs 364.4 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+HESSIAN B_6_L1 nodes 16632 passes 1962 secs 692.3 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+STEP0_DONE Tue Oct 27 22:54:19 CDT 2026

@@ -1,0 +1,17 @@
+tag refresh
+nodes 6624
+leaves 414
+base_nodes 6624
+lambda 3.7499999999999997e-09
+R_fwd 0.00010381195974220062
+R_rev 0.00010381195974220051
+R_comp 0.00010381195974220015
+R_ld 0.00010381195974220015
+R_bound 7.633300762284131e-17
+H1a_diag_mismatch 0
+H1a_passgrad_mismatch 0
+H1a_grad_vs_gradient_mismatch 0
+pair_errors 0
+secs 1527.8617965998128
+threads 2
+ld_digits 64

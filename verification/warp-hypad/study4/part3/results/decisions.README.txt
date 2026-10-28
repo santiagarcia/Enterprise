@@ -1,0 +1,18 @@
+Sidecar note for part3/results/decisions.json (Ada, 2026-10-28; REVIEW-vera-part3.md G3). The JSON is not edited.
+
+INVALID fields - do not quote. They were computed by driver/d5w.py with the lambda2-only registered gap baselines
+(PROTOCOL-v4 s8 table, s0 = 84/90) applied to the lambda1 P4 pair. v4 registers no lambda1 gap baselines
+(REPORT-v4.md P3-6.2):
+  D5w.L1_4.licensed                    ("...; gap narrowed against both baselines ...")
+  D5w.L1_4.gap                         ("gap shrinks")
+  D5w.L1_6.gap                         ("not established (baseline-sensitive)")
+  D5w.L1_4.reconstruction_deviation    (true)
+  D5w.L1_6.reconstruction_deviation    (true)
+  The per_W G_hi, G_lo and single_baseline entries under L1_4 and L1_6 are invalid for the same reason.
+
+Also not to be quoted from this file:
+  D1b_limitation (the v3 wording; the registered v4 wording is in v4_decisions.json);
+  D5w.L2_4.per_W["20"] verdict and gap ("B lower", "gap grows"). These are window-level intermediates. The registered
+    combined label is in REPORT-v4.md, "Part 2 corrections" C2.
+
+The registered lambda1 D5w labels are quoted in REPORT-v4.md, "Part 3 corrections" H1 and H2.

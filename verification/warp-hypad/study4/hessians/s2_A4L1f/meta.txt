@@ -1,0 +1,17 @@
+tag s2_A4L1f
+nodes 6624
+leaves 414
+base_nodes 6624
+lambda 3.7499999999999998e-08
+R_fwd 0.00010934083013888846
+R_rev 0.00010934083013888818
+R_comp 0.000109340830138888
+R_ld 0.000109340830138888
+R_bound 8.0398389946651855e-17
+H1a_diag_mismatch 0
+H1a_passgrad_mismatch 0
+H1a_grad_vs_gradient_mismatch 0
+pair_errors 0
+secs 267.41882940009236
+threads 12
+ld_digits 64

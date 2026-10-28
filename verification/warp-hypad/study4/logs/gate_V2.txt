@@ -1,0 +1,5 @@
+A4L2: nodes 6624 R 0x1.b5b85b15d45dap-14 F 0x1.c0d73a42baa48p-14  lines 111
+V2 A4L2 bit-identical (R, F, grad R, grad F)
+B4L2: nodes 8688 R 0x1.ba939e7bbf1c4p-14 F 0x1.c6b4aa2c9dcf4p-14  lines 111
+V2 B4L2 bit-identical (R, F, grad R, grad F)
+R/F decimal 0.00010436061378740012 0.0001070119697420903 study3 trace last: R=0.0001043606138 F=0.0001070119697

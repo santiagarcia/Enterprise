@@ -1,0 +1,1 @@
+ITERATION_LIMIT it=20 nfev=30 ngev=30 nodes=7488 capped=0 last_set_change=19 resets=0 gF=1.233608928e-06 C1tol=7.05099502e-11 F=0.0001195034445 R=0.0001141175071 ynorm=16.94845113 wall_s=184.8033915

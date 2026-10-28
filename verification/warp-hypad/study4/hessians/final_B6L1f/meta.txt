@@ -1,0 +1,17 @@
+tag final_B6L1f
+nodes 16632
+leaves 462
+base_nodes 14904
+lambda 3.7499999999999998e-08
+R_fwd 0.00010963484658398931
+R_rev 0.00010963484658398954
+R_comp 0.00010963484658398933
+R_ld 0.00010963484658398933
+R_bound 2.0243108673082837e-16
+H1a_diag_mismatch 0
+H1a_passgrad_mismatch 0
+H1a_grad_vs_gradient_mismatch 0
+pair_errors 0
+secs 693.20551789971069
+threads 12
+ld_digits 64

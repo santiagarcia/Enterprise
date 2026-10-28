@@ -1,0 +1,53 @@
+# Pre-analysis declarations for resumption under PROTOCOL-v4 (Ada, builder)
+# Written 2026-10-27T23:31:12-05:00, BEFORE driver/fd_checks_v4.py exists or runs, and before any v4 analysis or run.
+# Source: REVIEW-vera-v4.md (sha256 eec44b8471fabf08576b2b9f80ab3ccc272524883741894e8d073686c21b2c06), section 5, "CLEARED TO RESUME UNDER v4".
+# These conditions only tighten gates; they do not edit PROTOCOL-v4.md. Declared in REPORT-v4.md under "Protocol deviations".
+
+R1 (Vera F5). Before fd_checks_v4.py analyses anything, it verifies the SHA-256 of the following inputs against
+   the values recorded in REVIEW-vera-v4.md section 4, and logs the result in logs/gate_H2H3_v4.txt.
+   Any mismatch STOPS the study (no analysis output is used).
+   hessians/A_4_L1/H_R_fwd.bin 7a697703b416f007dc90499c3c980ea3c5a154cd6616b334fe4a7d6781c6c1b1
+   hessians/A_4_L1/y.bin       dfb00f93a87dce39cbefbb03c9dfb2b775577886eb8d0895759ee4c73150bd5a
+   hessians/A_4_L1/meta.txt    41e1b8a93a180630a66c97176d0f4c2c78088346e215af5b4e189ee44276ba82
+   hessians/A_4_L2/H_R_fwd.bin 11a70bae2aa4cd7e48cefcd5e06ba17bfc65f52242b6bdd5f15d3c224285b27a
+   hessians/A_4_L2/y.bin       526ce11b6b5d77108f1f252407e3d257cc956acb65cab4d259f698baec8a8162
+   hessians/A_4_L2/meta.txt    e706826a6682c0955cd40f2808d195b1b6afd4287ee4cb6d466354567259040d
+   hessians/A_6_L2/H_R_fwd.bin 8624a733e390a005b46a831ec7ad7434648f68beacddb6521063782455dad64e
+   hessians/A_6_L2/y.bin       a0afb16db415b3a370634375cca278eec3b3b879fc03cc82cf2caa6ffb0d6d64
+   hessians/A_6_L2/meta.txt    463b2091f413a5a293237ea3ef32e52dcc52fd1997b8d7c07b6abda5745c7190
+   hessians/B_4_L2/H_R_fwd.bin 9b048b6fc38ec921e9f70a98185cec91763547af7f598f8abe8b3caba6f6b8c5
+   hessians/B_4_L2/y.bin       68256a4a8e47a9600b1ca21a0dd1106f7a03afa8e035bb118f356598e7332765
+   hessians/B_4_L2/meta.txt    041740e4f61dd8c6884cc480328cfd63aea4ef869972096c41577174170b0c3a
+   hessians/B_6_L2/H_R_fwd.bin 400b9570a8e8c3921cae43a8bb15e8c32bb531511c3913effcf3e05b55f9aaa8
+   hessians/B_6_L2/y.bin       89a91b9debbd114b6bc2b80ecf06475804234763c5d02997d09b3777f05359ec
+   hessians/B_6_L2/meta.txt    8d23b0d1c9147e3806c4908d330bf8f24d9358df672306afcf0801640aadfbd7
+   hessians/fd/A_4_L1.dirs     2448f82d0d61dfe1bf1a9c885cac982dc1c4c578c409e349b88f965ebd5890dd
+   hessians/fd/A_4_L2.dirs     027f49938231decdcdafaa6bb457cca64e9fb5f2354331a231ffcd91d0287790
+   hessians/fd/A_6_L2.dirs     cb10441fe6b18c691e57c1f85ceaa8235a1672052485b635eac39d5cc3287a4d
+   hessians/fd/B_4_L2.dirs     cb10441fe6b18c691e57c1f85ceaa8235a1672052485b635eac39d5cc3287a4d
+   hessians/fd/B_6_L2.dirs     cb10441fe6b18c691e57c1f85ceaa8235a1672052485b635eac39d5cc3287a4d
+
+R2 (Vera F1). Reading of NV2(c), and applied identically to the slope rules of H2, H3(a) and H3(b):
+   if the error is smallest at the largest step h_1 (no truncation-side pair), the row FAILS its slope gate.
+   It is never a vacuous pass. "Slope not resolvable by the R reference" requires at least one truncation-side
+   pair, with every truncation-side pair failing the resolvability test rho(s_{k+1}) <= e_c(h_k)/30.
+
+R3 (Vera cross-implementation). logs/gate_H2H3_v4.txt must reproduce REVIEW-vera-v4.md section 1 table to the
+   printed digits: e_a, c/|phi'|, e_c, rho(s2) vs e_c(h1)/30 with resolvability status and factor, and pass/fail.
+   Any disagreement is reported and the study STOPS for review. The script prints a side-by-side comparison
+   with Vera's values (hard-coded from her table) and a match flag per item.
+   Vera's printed values (relative quantities; h = 1e-2..1e-5):
+   A_4_L1 e_a 1.28e-4,1.28e-6,1.27e-8,2.05e-8 c 5.0e-3,5.0e-5,8.2e-7,1.1e-6 e_c 5.15e-5,1.13e-6,7.66e-5,7.66e-3 rho(s2)=7.7e-7<=1.7e-6 resolvable 45.5x
+   A_4_L2 e_a 1.23e-3..6.37e-8 c 3.1e-3..4.0e-7 e_c 1.85e-4,3.35e-6,1.47e-4,1.08e-2 rho(s2)=1.5e-6<=6.2e-6 resolvable 55.3x
+   B_4_L2 e_a 1.04e-3..3.42e-8 c 5.9e-4..1.4e-8 e_c 3.26e-4,2.12e-6,1.94e-4,4.12e-2 rho(s2)=4.1e-6<=1.1e-5 resolvable 153.9x
+   A_6_L2 e_a 4.93e-5,4.93e-7,7.12e-9,9.61e-8 c 1.45e-3,1.42e-5,1.16e-7,3.2e-5 e_c 1.67e-5,2.48e-6,9.21e-5,1.00e-1 rho(s2)=1.0e-5>5.6e-7 NOT resolvable
+   B_6_L2 e_a 5.38e-4..5.42e-8 c 1.3e-2..6.6e-6 e_c 2.01e-4,2.81e-6,2.35e-4,5.08e-2 rho(s2)=5.1e-6<=6.7e-6 resolvable 71.6x
+   Richardson ratio at s1: 0.49996, 0.49984, 0.49981, 0.49949, 0.49991 (A_4_L1, A_4_L2, B_4_L2, A_6_L2, B_6_L2)
+   Expected (Vera) outcome: all five rows pass (a), (b), (c) under v4; A_6_L2 (c) "slope not resolvable by the R reference".
+
+Additional builder declarations (before analysis):
+ - Vera's F4: builder reading (ii) of NV2 (rho over k in {3,4}) is LENIENT (it can only exempt pairs), not conservative.
+ - Vera's corrected strength statement (OTI error along v excluded at <~3e-8 by gradient differences and <~1e-7 by
+   R values; two independent lines, not three) will be used in REPORT-v4.md.
+ - Vera's recommendation: NV6 also reports the symmetric value 0.5[F(y+aw)+F(y-aw)]-F(y) (descriptive).
+ - Single-direction coverage limitation (F3) stated next to the H3 result.

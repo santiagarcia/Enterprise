@@ -1,0 +1,811 @@
+{
+ "runs": {
+  "A4L2m": {
+   "run": "A4L2m",
+   "priority": "P1",
+   "form": "A",
+   "density": 4,
+   "lam": "L2",
+   "K": 200,
+   "start": "A_4_L2_it84",
+   "state": "LINESEARCH_FAIL",
+   "iters": 91,
+   "converged": false,
+   "ynorm": 36.4667323169,
+   "F": 0.000106302071781,
+   "gF": 9.06227824506e-13,
+   "tolC1": 2.91504242435e-11,
+   "C1": "1",
+   "C2": "0",
+   "precision_limited_final": 0,
+   "n_prec_limited": 0,
+   "stalled_iterates": 0,
+   "bfgs_skips": 2,
+   "w_resets": 0,
+   "refreshes": 2,
+   "n_check": 0,
+   "n_outer": 0,
+   "k_chk1": "",
+   "checks": [],
+   "nodes": 6624,
+   "q_inloop0": 2.6689132260203667,
+   "q_inloop_final": 62.618676090661,
+   "q_final": 62.61867609076508,
+   "q_start": 2.6689132260203667,
+   "rE_final": 0.34106907617299476,
+   "label_final": "concentration",
+   "T_label": "concentration along the trajectory",
+   "T_count": 91,
+   "T_first": 1,
+   "T_last": 91,
+   "T_maxq": 127.73848796905187,
+   "T_maxq_it": 30,
+   "T_maxq_assessed": 127.73848796905187,
+   "qrange_last20": [
+    61.51104223274043,
+    63.98063482906268
+   ],
+   "dy_rel": 0.5941746534783011,
+   "dq": 59.94976286474471,
+   "u_w_final": 0.9911895803940376,
+   "u_w_start": 0.74560493314325,
+   "R8_over_Rw": 4.225316949992445,
+   "rate_log10gF_per_it": 0.017519871438034507,
+   "D1b": "n/a (not converged)",
+   "mu_min_over_tau": null,
+   "D4": "fixed-node exploitation (not converged) [descriptive]"
+  },
+  "B4L2": {
+   "run": "B4L2",
+   "priority": "P1",
+   "form": "B",
+   "density": 4,
+   "lam": "L2",
+   "K": 200,
+   "start": "B_4_L2",
+   "state": "ITERATION_LIMIT",
+   "iters": 200,
+   "converged": false,
+   "ynorm": 35.424414523,
+   "F": 0.000106880059339,
+   "gF": 1.57509627748e-08,
+   "tolC1": 3.01712987436e-11,
+   "C1": "0",
+   "C2": "0",
+   "precision_limited_final": 0,
+   "n_prec_limited": 0,
+   "stalled_iterates": 0,
+   "bfgs_skips": 2,
+   "w_resets": 0,
+   "refreshes": 2,
+   "n_check": 1,
+   "n_outer": 1,
+   "k_chk1": "70",
+   "checks": [
+    [
+     70,
+     "SPLIT"
+    ]
+   ],
+   "nodes": 8784,
+   "q_inloop0": 1.0521284850627721,
+   "q_inloop_final": 4.435967411542044,
+   "q_final": 4.435967411552452,
+   "q_start": 1.0521284850627721,
+   "rE_final": 0.6247360915329991,
+   "label_final": "concentration",
+   "T_label": "concentration along the trajectory",
+   "T_count": 194,
+   "T_first": 5,
+   "T_last": 200,
+   "T_maxq": 143.82522167916076,
+   "T_maxq_it": 117,
+   "T_maxq_assessed": 143.82522167916076,
+   "qrange_last20": [
+    4.435967411542044,
+    11.778867489602343
+   ],
+   "dy_rel": 0.581281368261043,
+   "dq": 3.3838389264896804,
+   "u_w_final": 0.849044424078117,
+   "u_w_start": 0.016467157655721005,
+   "R8_over_Rw": 1.0026915680377115,
+   "rate_log10gF_per_it": -0.006760507603626046,
+   "D1b": "n/a (not converged)",
+   "mu_min_over_tau": null,
+   "D4": "fixed-node exploitation (not converged) (start on calibration design) [descriptive]"
+  },
+  "A6L2m": {
+   "run": "A6L2m",
+   "priority": "P1",
+   "form": "A",
+   "density": 6,
+   "lam": "L2",
+   "K": 200,
+   "start": "A_6_L2_it90",
+   "state": "CONVERGED",
+   "iters": 49,
+   "converged": true,
+   "ynorm": 35.0131206148,
+   "F": 0.000106819642983,
+   "gF": 1.96249653293e-12,
+   "tolC1": 3.05084611447e-11,
+   "C1": "1",
+   "C2": "1",
+   "precision_limited_final": 0,
+   "n_prec_limited": 0,
+   "stalled_iterates": 0,
+   "bfgs_skips": 0,
+   "w_resets": 0,
+   "refreshes": 1,
+   "n_check": 0,
+   "n_outer": 0,
+   "k_chk1": "",
+   "checks": [],
+   "nodes": 14904,
+   "q_inloop0": 2.019598702544828,
+   "q_inloop_final": 27.376752733170605,
+   "q_final": 27.376752733170605,
+   "q_start": 2.019598702544828,
+   "rE_final": 0.6191349898814755,
+   "label_final": "concentration",
+   "T_label": "concentration along the trajectory",
+   "T_count": 49,
+   "T_first": 1,
+   "T_last": 49,
+   "T_maxq": 31.044282499596562,
+   "T_maxq_it": 24,
+   "T_maxq_assessed": 31.044282499596562,
+   "qrange_last20": [
+    27.336556704483037,
+    28.2397430365111
+   ],
+   "dy_rel": 0.4960397807225034,
+   "dq": 25.35715403062578,
+   "u_w_final": 0.9772136028596224,
+   "u_w_start": 0.7292140761061479,
+   "R8_over_Rw": 1.0265619768114072,
+   "rate_log10gF_per_it": 0.020189884832781897,
+   "D1b": "strict local minimiser (second-order)",
+   "mu_min_over_tau": 13986.101434582411,
+   "D4": "fixed-node exploitation"
+  },
+  "B6L2": {
+   "run": "B6L2",
+   "priority": "P1",
+   "form": "B",
+   "density": 6,
+   "lam": "L2",
+   "K": 200,
+   "start": "B_6_L2",
+   "state": "LINESEARCH_FAIL",
+   "iters": 56,
+   "converged": false,
+   "ynorm": 35.1857546047,
+   "F": 0.000106850520689,
+   "gF": 2.07311273398e-13,
+   "tolC1": 3.03675512689e-11,
+   "C1": "1",
+   "C2": "0",
+   "precision_limited_final": 0,
+   "n_prec_limited": 0,
+   "stalled_iterates": 0,
+   "bfgs_skips": 0,
+   "w_resets": 0,
+   "refreshes": 2,
+   "n_check": 0,
+   "n_outer": 0,
+   "k_chk1": "",
+   "checks": [],
+   "nodes": 18036,
+   "q_inloop0": 0.8738935308183631,
+   "q_inloop_final": 27.676457378257087,
+   "q_final": 27.676457378257087,
+   "q_start": 0.873893530819404,
+   "rE_final": 0.6185257380956029,
+   "label_final": "concentration",
+   "T_label": "concentration along the trajectory",
+   "T_count": 51,
+   "T_first": 6,
+   "T_last": 56,
+   "T_maxq": 42.140870165273235,
+   "T_maxq_it": 20,
+   "T_maxq_assessed": 42.140870165273235,
+   "qrange_last20": [
+    26.68193645753464,
+    27.893427422446333
+   ],
+   "dy_rel": 0.5309109880218179,
+   "dq": 26.802563847437682,
+   "u_w_final": 0.9764756375746787,
+   "u_w_start": 0.0032197396270914522,
+   "R8_over_Rw": 1.0275407426412326,
+   "rate_log10gF_per_it": 0.0006823401822919437,
+   "D1b": "n/a (not converged)",
+   "mu_min_over_tau": null,
+   "D4": "fixed-node exploitation (not converged) (start on calibration design) [descriptive]"
+  },
+  "A4L2f": {
+   "run": "A4L2f",
+   "priority": "P2",
+   "form": "A",
+   "density": 4,
+   "lam": "L2",
+   "K": 200,
+   "start": "A_4_L2",
+   "state": "CONVERGED",
+   "iters": 72,
+   "converged": true,
+   "ynorm": 36.4667329951,
+   "F": 0.000106302071781,
+   "gF": 1.29579996007e-11,
+   "tolC1": 2.91504237014e-11,
+   "C1": "1",
+   "C2": "1",
+   "precision_limited_final": 0,
+   "n_prec_limited": 0,
+   "stalled_iterates": 0,
+   "bfgs_skips": 0,
+   "w_resets": 0,
+   "refreshes": 2,
+   "n_check": 0,
+   "n_outer": 0,
+   "k_chk1": "",
+   "checks": [],
+   "nodes": 6624,
+   "q_inloop0": 31.95982681735593,
+   "q_inloop_final": 62.61828549792743,
+   "q_final": 62.61828549792743,
+   "q_start": 31.95982681735593,
+   "rE_final": 0.3410702952334942,
+   "label_final": "concentration",
+   "T_label": "concentration along the trajectory",
+   "T_count": 72,
+   "T_first": 1,
+   "T_last": 72,
+   "T_maxq": 106.4091450734025,
+   "T_maxq_it": 41,
+   "T_maxq_assessed": 106.4091450734025,
+   "qrange_last20": [
+    62.48325107586339,
+    66.8224388709134
+   ],
+   "dy_rel": 0.48344477295366267,
+   "dq": 30.658458680571503,
+   "u_w_final": 0.9911895253857782,
+   "u_w_start": 0.9816864087172598,
+   "R8_over_Rw": 4.225288208571137,
+   "rate_log10gF_per_it": -0.0040887973398049905,
+   "D1b": "strict local minimiser (second-order)",
+   "mu_min_over_tau": 16938.628018855554,
+   "D4": "fixed-node exploitation (start on calibration design)"
+  },
+  "A6L2f": {
+   "run": "A6L2f",
+   "priority": "P2",
+   "form": "A",
+   "density": 6,
+   "lam": "L2",
+   "K": 200,
+   "start": "A_6_L2",
+   "state": "CONVERGED",
+   "iters": 66,
+   "converged": true,
+   "ynorm": 35.0131243185,
+   "F": 0.000106819642983,
+   "gF": 3.60851699531e-12,
+   "tolC1": 3.05084579175e-11,
+   "C1": "1",
+   "C2": "1",
+   "precision_limited_final": 0,
+   "n_prec_limited": 0,
+   "stalled_iterates": 0,
+   "bfgs_skips": 1,
+   "w_resets": 0,
+   "refreshes": 1,
+   "n_check": 0,
+   "n_outer": 0,
+   "k_chk1": "",
+   "checks": [],
+   "nodes": 14904,
+   "q_inloop0": 4.730152789837719,
+   "q_inloop_final": 27.37672527010043,
+   "q_final": 27.376725270204517,
+   "q_start": 4.730152789848128,
+   "rE_final": 0.6191350189262474,
+   "label_final": "concentration",
+   "T_label": "concentration along the trajectory",
+   "T_count": 66,
+   "T_first": 1,
+   "T_last": 66,
+   "T_maxq": 32.03999485801644,
+   "T_maxq_it": 29,
+   "T_maxq_assessed": 32.03999485801644,
+   "qrange_last20": [
+    27.1182030434538,
+    27.603613686940086
+   ],
+   "dy_rel": 0.43037108075075375,
+   "dq": 22.64657248035639,
+   "u_w_final": 0.9772136057254838,
+   "u_w_start": 0.8791324430134896,
+   "R8_over_Rw": 1.026561878705893,
+   "rate_log10gF_per_it": 0.006833307889170162,
+   "D1b": "strict local minimiser (second-order)",
+   "mu_min_over_tau": 13985.010375558979,
+   "D4": "fixed-node exploitation (start on calibration design)"
+  },
+  "X4L1fromL2": {
+   "run": "X4L1fromL2",
+   "priority": "P3",
+   "form": "A",
+   "density": 4,
+   "lam": "L1",
+   "K": 150,
+   "start": "A_4_L2",
+   "state": "CONVERGED",
+   "iters": 126,
+   "converged": true,
+   "ynorm": 16.6950320717,
+   "F": 0.000114566905929,
+   "gF": 8.72615736352e-12,
+   "tolC1": 6.86233518074e-11,
+   "C1": "1",
+   "C2": "1",
+   "precision_limited_final": 0,
+   "n_prec_limited": 0,
+   "stalled_iterates": 0,
+   "bfgs_skips": 0,
+   "w_resets": 0,
+   "refreshes": 2,
+   "n_check": 0,
+   "n_outer": 0,
+   "k_chk1": "",
+   "checks": [],
+   "nodes": 6624,
+   "q_inloop0": 31.95982681735593,
+   "q_inloop_final": 0.7227955279908655,
+   "q_final": 0.7227955279908655,
+   "q_start": 31.95982681735593,
+   "rE_final": 0.5753206285179917,
+   "label_final": "none",
+   "T_label": "concentration along the trajectory, not at the final iterate (converged)",
+   "T_count": 10,
+   "T_first": 1,
+   "T_last": 10,
+   "T_maxq": 29.473930960453153,
+   "T_maxq_it": 1,
+   "T_maxq_assessed": NaN,
+   "qrange_last20": [
+    0.7178823122273195,
+    0.726478213039368
+   ],
+   "dy_rel": 0.85634225780851,
+   "dq": -31.237031289365063,
+   "u_w_final": 0.21666283066385458,
+   "u_w_start": 0.9816864087172598,
+   "R8_over_Rw": 1.0014938518511167,
+   "rate_log10gF_per_it": -0.010609140182892262,
+   "D1b": "strict local minimiser (second-order)",
+   "mu_min_over_tau": 94189.68699553613,
+   "D4": "fixed-node exploitation (start on calibration design)"
+  },
+  "X4L2fromL1": {
+   "run": "X4L2fromL1",
+   "priority": "P3",
+   "form": "A",
+   "density": 4,
+   "lam": "L2",
+   "K": 150,
+   "start": "A_4_L1",
+   "state": "LINESEARCH_FAIL",
+   "iters": 65,
+   "converged": false,
+   "ynorm": 36.466733023,
+   "F": 0.000106302071781,
+   "gF": 2.91310438435e-12,
+   "tolC1": 2.91504236791e-11,
+   "C1": "1",
+   "C2": "0",
+   "precision_limited_final": 0,
+   "n_prec_limited": 0,
+   "stalled_iterates": 0,
+   "bfgs_skips": 0,
+   "w_resets": 0,
+   "refreshes": 2,
+   "n_check": 0,
+   "n_outer": 0,
+   "k_chk1": "",
+   "checks": [],
+   "nodes": 6624,
+   "q_inloop0": 0.5946892762883909,
+   "q_inloop_final": 62.61871032683446,
+   "q_final": 62.61871032683446,
+   "q_start": 0.5946892762956771,
+   "rE_final": 0.3410690258382171,
+   "label_final": "concentration",
+   "T_label": "concentration along the trajectory",
+   "T_count": 63,
+   "T_first": 3,
+   "T_last": 65,
+   "T_maxq": 110.90481788987265,
+   "T_maxq_it": 15,
+   "T_maxq_assessed": 110.90481788987265,
+   "qrange_last20": [
+    62.61652704850995,
+    67.11182583263033
+   ],
+   "dy_rel": 1.3816823025488538,
+   "dq": 62.024021050538785,
+   "u_w_final": 0.991189585213611,
+   "u_w_start": 0.045581681564977335,
+   "R8_over_Rw": 4.2253181095839185,
+   "rate_log10gF_per_it": 0.01707205243075883,
+   "D1b": "n/a (not converged)",
+   "mu_min_over_tau": null,
+   "D4": "fixed-node exploitation (not converged) (start on calibration design) [descriptive]"
+  },
+  "A4L1f": {
+   "run": "A4L1f",
+   "priority": "P4",
+   "state": "not run"
+  },
+  "B4L1f": {
+   "run": "B4L1f",
+   "priority": "P4",
+   "state": "not run"
+  },
+  "A6L1f": {
+   "run": "A6L1f",
+   "priority": "P4",
+   "state": "not run"
+  },
+  "B6L1f": {
+   "run": "B6L1f",
+   "priority": "P4",
+   "state": "not run"
+  },
+  "XB4L2fromA": {
+   "run": "XB4L2fromA",
+   "priority": "P5",
+   "form": "B",
+   "density": 4,
+   "lam": "L2",
+   "K": 150,
+   "start": "A_4_L2",
+   "state": "ITERATION_LIMIT",
+   "iters": 150,
+   "converged": false,
+   "ynorm": 39.1263317158,
+   "F": 0.000110372120512,
+   "gF": 4.76865519752e-06,
+   "tolC1": 2.820916648e-11,
+   "C1": "0",
+   "C2": "0",
+   "precision_limited_final": 0,
+   "n_prec_limited": 0,
+   "stalled_iterates": 0,
+   "bfgs_skips": 1,
+   "w_resets": 0,
+   "refreshes": 2,
+   "n_check": 1,
+   "n_outer": 1,
+   "k_chk1": "72",
+   "checks": [
+    [
+     72,
+     "SPLIT"
+    ]
+   ],
+   "nodes": 6912,
+   "q_inloop0": 31.95982681735593,
+   "q_inloop_final": 3.0349377492258394,
+   "q_final": 3.034937749298701,
+   "q_start": 31.95982681735593,
+   "rE_final": 0.6035576963402638,
+   "label_final": "concentration",
+   "T_label": "concentration along the trajectory",
+   "T_count": 150,
+   "T_first": 1,
+   "T_last": 150,
+   "T_maxq": 558.0504887246134,
+   "T_maxq_it": 105,
+   "T_maxq_assessed": 558.0504887246134,
+   "qrange_last20": [
+    1.3366432657028562,
+    10.297403735597491
+   ],
+   "dy_rel": 0.7506803308644708,
+   "dq": -28.924889068057226,
+   "u_w_final": 0.5903727939323745,
+   "u_w_start": 0.9816864087172598,
+   "R8_over_Rw": 1.0022331913134532,
+   "rate_log10gF_per_it": -0.0040887973398049905,
+   "D1b": "n/a (not converged)",
+   "mu_min_over_tau": null,
+   "D4": "fixed-node exploitation (not converged) (start on calibration design) [descriptive]"
+  }
+ },
+ "POST_HOC_D4": "D4 statistic chosen post hoc (study-3 REPORT \u00a76, Noether R5); retro-check on the motivating data is a consistency check, not a validation; P2 starts on the calibration designs (start u_w reported)",
+ "D1b_limitation": "\u03c4_H covers node-sum roundoff only; per-node evaluation error is unmeasured below the H2/H3 resolution (about 1e-4 relative)",
+ "D5w": {
+  "L2_4": {
+   "k_c": 91,
+   "K": 200,
+   "kfA": 91,
+   "kfB": 200,
+   "termA": "LINESEARCH_FAIL",
+   "termB": "ITERATION_LIMIT",
+   "dq0_inloop": 1.6167847409575946,
+   "dq0_archived": 1.617,
+   "reconstruction_deviation": false,
+   "per_W": {
+    "20": {
+     "windows": [
+      [
+       1,
+       20
+      ],
+      [
+       21,
+       40
+      ],
+      [
+       41,
+       60
+      ],
+      [
+       61,
+       80
+      ]
+     ],
+     "delta": [
+      23.388191541830082,
+      60.87661486178221,
+      36.53805821179127,
+      23.845527013115905
+     ],
+     "G_hi": [
+      21.101191541830083,
+      58.58961486178221,
+      34.25105821179127,
+      21.558527013115906
+     ],
+     "G_lo": [
+      21.77119154183008,
+      59.25961486178221,
+      34.92105821179127,
+      22.228527013115905
+     ],
+     "verdict": "B lower",
+     "gap": "gap grows",
+     "single_baseline": {
+      "pre": "gap grows",
+      "point": "gap grows"
+     },
+     "m": 4,
+     "n_ext": 0,
+     "n_after_chk1": 1,
+     "within_0001_of_threshold": [],
+     "maxq_A": [
+      64.3302638112024,
+      127.73848796905187,
+      96.77855290871817,
+      63.98063482906268
+     ],
+     "maxq_B": [
+      59.80172057329038,
+      42.85853689689838,
+      42.315099437776944,
+      42.32353351634219
+     ],
+     "fracA": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "fracB": [
+      0.7,
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    "25": {
+     "windows": [
+      [
+       1,
+       25
+      ],
+      [
+       26,
+       50
+      ],
+      [
+       51,
+       75
+      ]
+     ],
+     "delta": [
+      21.542940217203913,
+      60.24569002938095,
+      16.592131363509367
+     ],
+     "G_hi": [
+      19.269940217203914,
+      57.97269002938095,
+      14.319131363509367
+     ],
+     "G_lo": [
+      19.925940217203912,
+      58.628690029380955,
+      14.975131363509366
+     ],
+     "verdict": "not evaluable (< 4 windows)",
+     "gap": "not evaluable (< 4 windows)",
+     "single_baseline": {
+      "pre": "not evaluable (< 4 windows)",
+      "point": "not evaluable (< 4 windows)"
+     },
+     "m": 3,
+     "n_ext": 0,
+     "n_after_chk1": 1,
+     "within_0001_of_threshold": [],
+     "maxq_A": [
+      86.17634299950619,
+      127.73848796905187,
+      77.37163653187191
+     ],
+     "maxq_B": [
+      59.80172057329038,
+      42.05028435958892,
+      42.32353351634219
+     ],
+     "fracA": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "fracB": [
+      0.76,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "verdict": "not evaluable (< 4 windows)",
+   "gap": "not evaluable (< 4 windows)",
+   "labels": [
+    "(refinement-limited: 1 of 3 windows after the first check)",
+    "(not converged)"
+   ],
+   "n_check_within_kc": 1,
+   "licensed": "no level statement (D5w not evaluable (< 4 windows)) (refinement-limited: 1 of 3 windows after the first check) (not converged)"
+  },
+  "L2_6": {
+   "k_c": 56,
+   "K": 200,
+   "kfA": 49,
+   "kfB": 56,
+   "termA": "CONVERGED",
+   "termB": "LINESEARCH_FAIL",
+   "dq0_inloop": 1.1457051717264648,
+   "dq0_archived": 1.146,
+   "reconstruction_deviation": false,
+   "per_W": {
+    "20": {
+     "windows": [
+      [
+       1,
+       20
+      ],
+      [
+       21,
+       40
+      ]
+     ],
+     "delta": [
+      -11.122048893646348,
+      0.47458901623998884
+     ],
+     "G_hi": [
+      -12.268048893646348,
+      -0.6714109837600111
+     ],
+     "G_lo": [
+      -11.029048893646348,
+      0.5675890162399888
+     ],
+     "verdict": "not evaluable (< 4 windows)",
+     "gap": "not evaluable (< 4 windows)",
+     "single_baseline": {
+      "pre": "not evaluable (< 4 windows)",
+      "point": "not evaluable (< 4 windows)"
+     },
+     "m": 2,
+     "n_ext": 0,
+     "n_after_chk1": 0,
+     "within_0001_of_threshold": [],
+     "maxq_A": [
+      30.81828000854012,
+      31.044282499596562
+     ],
+     "maxq_B": [
+      42.140870165273235,
+      40.432937108889604
+     ],
+     "fracA": [
+      1.0,
+      1.0
+     ],
+     "fracB": [
+      0.75,
+      1.0
+     ]
+    },
+    "25": {
+     "windows": [
+      [
+       1,
+       25
+      ],
+      [
+       26,
+       50
+      ]
+     ],
+     "delta": [
+      -12.805715121266466,
+      0.20387572352717598
+     ],
+     "G_hi": [
+      -13.951715121266467,
+      -0.9421242764728239
+     ],
+     "G_lo": [
+      -12.721715121266467,
+      0.287875723527176
+     ],
+     "verdict": "not evaluable (< 4 windows)",
+     "gap": "not evaluable (< 4 windows)",
+     "single_baseline": {
+      "pre": "not evaluable (< 4 windows)",
+      "point": "not evaluable (< 4 windows)"
+     },
+     "m": 2,
+     "n_ext": 1,
+     "n_after_chk1": 0,
+     "within_0001_of_threshold": [],
+     "maxq_A": [
+      31.044282499596562,
+      29.354106123535928
+     ],
+     "maxq_B": [
+      42.140870165273235,
+      27.893427422446333
+     ],
+     "fracA": [
+      1.0,
+      1.0
+     ],
+     "fracB": [
+      0.8,
+      1.0
+     ]
+    }
+   },
+   "verdict": "not evaluable (< 4 windows)",
+   "gap": "not evaluable (< 4 windows)",
+   "labels": [
+    "(determined by converged final(s))",
+    "(no study-4 refinement check)",
+    "(not converged)"
+   ],
+   "n_check_within_kc": 0,
+   "licensed": "no level statement (D5w not evaluable (< 4 windows)) (determined by converged final(s)) (no study-4 refinement check) (not converged)"
+  },
+  "L1_4": "not run",
+  "L1_6": "not run"
+ }
+}

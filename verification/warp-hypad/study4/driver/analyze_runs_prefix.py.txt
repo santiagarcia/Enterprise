@@ -1,0 +1,196 @@
+"""Study-4 run analysis and decision rules (PROTOCOL-v3 sections 7, 8).
+
+Usage:
+  python -I analyze_runs.py STUDY4_DIR select   # writes results/assess_list.txt (max-q iterate, W=25 window ends, every 25th)
+  python -I analyze_runs.py STUDY4_DIR report   # results/runs.csv, results/decisions.json
+"""
+from __future__ import annotations
+
+import csv
+import json
+import math
+import sys
+from pathlib import Path
+
+import numpy as np
+
+sys.path.insert(0, str(Path(__file__).parent))
+import d5w as D  # noqa: E402
+
+B_REF, E0, FLOOR = -9.60726526e-4, 4.634569e-2, -1.7523250518e-04
+RUNS = {  # id: (form, density, lambda, K, start tag, priority)
+    "A4L2m": ("A", 4, "L2", 200, "A_4_L2_it84", "P1"), "B4L2": ("B", 4, "L2", 200, "B_4_L2", "P1"),
+    "A6L2m": ("A", 6, "L2", 200, "A_6_L2_it90", "P1"), "B6L2": ("B", 6, "L2", 200, "B_6_L2", "P1"),
+    "A4L2f": ("A", 4, "L2", 200, "A_4_L2", "P2"), "A6L2f": ("A", 6, "L2", 200, "A_6_L2", "P2"),
+    "X4L1fromL2": ("A", 4, "L1", 150, "A_4_L2", "P3"), "X4L2fromL1": ("A", 4, "L2", 150, "A_4_L1", "P3"),
+    "A4L1f": ("A", 4, "L1", 150, "A_4_L1", "P4"), "B4L1f": ("B", 4, "L1", 150, "B_4_L1", "P4"),
+    "A6L1f": ("A", 6, "L1", 150, "A_6_L1", "P4"), "B6L1f": ("B", 6, "L1", 150, "B_6_L1", "P4"),
+    "XB4L2fromA": ("B", 4, "L2", 150, "A_4_L2", "P5"),
+}
+CALIB = {"A_4_L1", "A_4_L2", "A_6_L1", "A_6_L2", "B_4_L1", "B_4_L2", "B_6_L1", "B_6_L2"}
+POST_HOC = ("D4 statistic chosen post hoc (study-3 REPORT §6, Noether R5); retro-check on the motivating data is a "
+            "consistency check, not a validation; P2 starts on the calibration designs (start u_w reported)")
+TAU_LIMIT = ("τ_H covers node-sum roundoff only; per-node evaluation error is unmeasured below the H2/H3 resolution "
+             "(about 1e-4 relative)")
+
+
+def trace(root, r):
+    rows = list(csv.DictReader(open(root / "runs" / r / "trace.csv")))
+    return rows
+
+
+def fl(x):
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return float("nan")
+
+
+def term(root, r):
+    t = (root / "runs" / r / "termination.txt").read_text().split()
+    d = {"state": t[0]}
+    for kv in t[1:]:
+        k, _, v = kv.partition("=")
+        d[k] = v
+    return d
+
+
+def load_assess(path):
+    out = {}
+    if not path.exists():
+        return out
+    for ln in path.read_text().splitlines():
+        t = ln.split(",")
+        out[(t[0], int(t[2]))] = t
+    return out
+
+
+def rho_assessed(A, tag):
+    v = [float(A[(tag, s)][3]) for s in (1, 2) if (tag, s) in A]
+    return min(min(v), FLOOR) if v else None
+
+
+def select(root):
+    lines = []
+    for r in RUNS:
+        if not (root / "runs" / r / "termination.txt").exists():
+            continue
+        tr = trace(root, r); q = [fl(x["rhostar_in"]) / B_REF for x in tr]; kf = len(q) - 1
+        its = {int(np.nanargmax(q))} | {k for k in range(25, kf + 1, 25)} | {a + 24 for a in range(1, kf + 1, 25) if a + 24 <= kf}
+        its.discard(0); its.discard(kf)
+        lines += [f"{r} {k}" for k in sorted(its)]
+    (root / "results" / "assess_list.txt").write_text("\n".join(lines) + "\n")
+    print(len(lines), "iterates selected")
+
+
+def hess_summary(root, r):
+    p = root / "hessians" / f"final_{r}" / "summary.csv"
+    if not p.exists():
+        return None
+    rows = list(csv.DictReader(open(p)))
+    return rows[0]
+
+
+def d1b(h):
+    if h is None:
+        return "not computed"
+    nneg, nnz = int(h["n_neg"]), int(h["n_nearzero"])
+    if nneg == 0 and nnz == 0:
+        lab = "strict local minimiser (second-order)"
+        if float(h["mu_min_over_tau"]) < 100:
+            lab += " (marginal)"
+        return lab
+    return f"degenerate or saddle ({nneg} negative, {nnz} near-zero)"
+
+
+def report(root):
+    A = load_assess(root / "assess" / "assess.csv"); S = load_assess(root / "assess" / "starts.csv")
+    It = load_assess(root / "assess" / "iters.csv")
+    recs = {}
+    for r, (form, dens, lam, K, st, pri) in RUNS.items():
+        if not (root / "runs" / r / "termination.txt").exists():
+            recs[r] = dict(run=r, priority=pri, state="not run"); continue
+        tr = trace(root, r); T = term(root, r)
+        q = [fl(x["rhostar_in"]) / B_REF for x in tr]; rE = [1 - fl(x["Eneg_v8"]) / E0 for x in tr]
+        conc = [(a >= 0.10 and b >= 1.05) for a, b in zip(rE, q)]
+        ci = [i for i, c in enumerate(conc) if c and i > 0]
+        valid = [i for i in range(1, len(q)) if rE[i] >= 0.10]
+        km = max(valid, key=lambda i: q[i]) if valid else int(np.nanargmax(q))
+        maxq = q[km]
+        tl = ("concentration along the trajectory" if ci else "marginal along the trajectory" if maxq >= 1.01
+              else "none along the trajectory")
+        conv = T["state"] in D.CONVERGED
+        last = tr[-1]
+        rho_f = rho_assessed(A, r); rho_s = rho_assessed(S, f"start_{st}")
+        qf = rho_f / B_REF if rho_f is not None else None; qs = rho_s / B_REF if rho_s is not None else None
+        rEf = 1 - float(A[(r, 1)][16]) / E0 if (r, 1) in A else None
+        fd = list(csv.DictReader(open(root / "runs" / r / "final_diag.csv")))[0]
+        rmw_f = float(fd["rhomin_w"]); rmw_s = fl(tr[0]["rhomin_w_pre"])
+        uw_f = (rmw_f - rho_f) / abs(rho_f) if rho_f else None
+        uw_s = (rmw_s - rho_s) / abs(rho_s) if rho_s else None
+        lab_f = None
+        if qf is not None:
+            lab_f = "concentration" if (rEf >= 0.10 and qf >= 1.05) else "marginal" if qf >= 1.01 else "none"
+            if tl.startswith("concentration") and lab_f != "concentration":
+                tl = "concentration along the trajectory, not at the final iterate" + (" (converged)" if conv else "")
+        y0 = np.array([float(v) for v in open(root / "runs" / r / "ys.txt").readline().split()])
+        yf = np.loadtxt(root / "runs" / r / "y_final.txt")
+        h = hess_summary(root, r) if conv else None
+        Rw = fl(last["R"]); R8 = float(A[(r, 1)][27]) if (r, 1) in A and A[(r, 1)][27] else None
+        g = [fl(x["gF"]) for x in tr[1:21]]
+        rate = float(np.polyfit(np.arange(1, len(g) + 1), np.log10(g), 1)[0]) if len(g) >= 2 else None
+        oc = list(csv.DictReader(open(root / "runs" / r / "outer.csv")))
+        prec = int(last["prec_limited"]) if last.get("prec_limited") not in (None, "") else None
+        rec = dict(run=r, priority=pri, form=form, density=dens, lam=lam, K=K, start=st, state=T["state"],
+                   iters=int(T["it"]), converged=conv, ynorm=fl(last["ynorm"]), F=fl(last["F"]), gF=fl(last["gF"]),
+                   tolC1=fl(last["tolC1"]), C1=last["C1"], C2=last["C2"], precision_limited_final=prec,
+                   n_prec_limited=sum(int(x["prec_limited"]) for x in tr if x.get("prec_limited")),
+                   stalled_iterates=int(T.get("stalled_iterates", 0)), bfgs_skips=int(T.get("bfgs_skips", 0)),
+                   w_resets=int(T.get("w_resets", 0)), refreshes=int(T.get("refreshes", 0)),
+                   n_check=int(T.get("n_check", 0)), n_outer=int(T.get("n_outer", 0)), k_chk1=T.get("k_chk1", ""),
+                   checks=[(int(o["it"]), o["outcome"]) for o in oc],
+                   nodes=int(T["nodes"]), q_inloop0=q[0], q_inloop_final=q[-1], q_final=qf, q_start=qs, rE_final=rEf,
+                   label_final=lab_f, T_label=tl, T_count=len(ci), T_first=ci[0] if ci else None,
+                   T_last=ci[-1] if ci else None, T_maxq=maxq, T_maxq_it=km,
+                   T_maxq_assessed=(rho_assessed(It, f"{r}@{km}") or float("nan")) / B_REF,
+                   qrange_last20=(min(q[-20:]), max(q[-20:])),
+                   dy_rel=float(np.linalg.norm(yf - y0) / np.linalg.norm(y0)),
+                   dq=(qf - qs) if (qf is not None and qs is not None) else None,
+                   u_w_final=uw_f, u_w_start=uw_s, R8_over_Rw=(R8 / Rw if R8 else None),
+                   rate_log10gF_per_it=rate, D1b=d1b(h) if conv else "n/a (not converged)",
+                   mu_min_over_tau=(float(h["mu_min_over_tau"]) if h else None))
+        # D4
+        if uw_f is not None:
+            d4 = "fixed-node exploitation" if uw_f > 0.10 else "no fixed-node exploitation"
+            if not conv:
+                d4 += " (not converged)"
+            if st in CALIB:
+                d4 += " (start on calibration design)"
+            rec["D4"] = d4 + ("" if (form == "A" and conv) else " [descriptive]")
+        recs[r] = rec
+    dec = dict(runs=recs, POST_HOC_D4=POST_HOC, D1b_limitation=TAU_LIMIT)
+    # D5w (P1 at lambda2; P4 at lambda1)
+    dd = {}
+    for lam, pairs in (("L2", (("A4L2m", "B4L2", 4), ("A6L2m", "B6L2", 6))), ("L1", (("A4L1f", "B4L1f", 4), ("A6L1f", "B6L1f", 6)))):
+        for a, b, dens in pairs:
+            if recs[a].get("state", "not run") == "not run" or recs[b].get("state", "not run") == "not run":
+                dd[f"{lam}_{dens}"] = "not run"; continue
+            qa = [fl(x["rhostar_in"]) / B_REF for x in trace(root, a)]
+            qb = [fl(x["rhostar_in"]) / B_REF for x in trace(root, b)]
+            res = D.d5w(qa, recs[a]["state"], qb, recs[b]["state"], RUNS[a][3], dens,
+                        [k for k, _ in recs[b]["checks"]], recs[b]["state"] in D.CONVERGED and recs[b]["checks"][-1][1] == "PASS"
+                        if recs[b]["checks"] else False)
+            if lam == "L1":
+                res["labels"].append("unequal prior history")
+            dd[f"{lam}_{dens}"] = res
+    dec["D5w"] = dd
+    json.dump(dec, open(root / "results" / "decisions.json", "w"), indent=1, default=str)
+    keys = sorted({k for v in recs.values() for k in v})
+    with open(root / "results" / "runs.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=keys); w.writeheader(); [w.writerow(v) for v in recs.values()]
+    print(json.dumps(dec, indent=1, default=str)[:20000])
+
+
+if __name__ == "__main__":
+    root = Path(sys.argv[1])
+    select(root) if sys.argv[2] == "select" else report(root)

@@ -1,0 +1,17 @@
+tag final_B4L1f
+nodes 8304
+leaves 519
+base_nodes 6624
+lambda 3.7499999999999998e-08
+R_fwd 0.00010953255136195904
+R_rev 0.00010953255136195901
+R_comp 0.00010953255136195876
+R_ld 0.00010953255136195876
+R_bound 1.0096909685656751e-16
+H1a_diag_mismatch 0
+H1a_passgrad_mismatch 0
+H1a_grad_vs_gradient_mismatch 0
+pair_errors 0
+secs 367.01877109985799
+threads 12
+ld_digits 64

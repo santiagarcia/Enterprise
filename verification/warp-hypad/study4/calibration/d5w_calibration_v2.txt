@@ -1,0 +1,43 @@
+L1 4:1 s0=  0 horizon=175 Delta_0(point)=+0.000: D5w not established; gap(point) not established; gap(pre-window) not established
+    W=20 n=8 Delta_w=+0.000 +0.051 +0.005 +0.027 -0.001 -0.001 +0.000 -0.007
+    W=25 n=7 Delta_w=+0.001 +0.020 +0.034 +0.004 +0.003 -0.007 -0.003
+L1 4:1 s0= 20 horizon=175 Delta_0(point)=-0.000: D5w not established; gap(point) not established; gap(pre-window) not established
+    W=20 n=7 Delta_w=+0.051 +0.005 +0.027 -0.001 -0.001 +0.000 -0.007
+    W=25 n=6 Delta_w=+0.054 +0.034 +0.002 +0.004 -0.000 -0.005
+L1 4:1 s0= 40 horizon=175 Delta_0(point)=+0.143: D5w not established; gap(point) gap shrinks; gap(pre-window) not established (window-sensitive)
+    W=20 n=6 Delta_w=+0.005 +0.027 -0.001 -0.001 +0.000 -0.007
+    W=25 n=5 Delta_w=+0.011 +0.007 +0.000 -0.001 -0.006
+L1 4:1 s0= 60 horizon=175 Delta_0(point)=+0.083: D5w not established; gap(point) gap shrinks; gap(pre-window) not established
+    W=20 n=5 Delta_w=+0.027 -0.001 -0.001 +0.000 -0.007
+    W=25 n=4 Delta_w=+0.024 -0.001 -0.001 -0.008
+L1 4:1 s0= 80 horizon=175 Delta_0(point)=+0.027: D5w not established (window-sensitive); gap(point) not established (window-sensitive); gap(pre-window) not established (window-sensitive)
+    W=20 n=4 Delta_w=-0.001 -0.001 +0.000 -0.007
+    W=25 n=3 Delta_w=+0.001 -0.000 -0.007
+L1 4:1 s0= 84 horizon=175 Delta_0(point)=-0.001: D5w not established (window-sensitive); gap(point) not established (window-sensitive); gap(pre-window) not established (window-sensitive) <- registered alignment (B's lambda2 count)
+    W=20 n=4 Delta_w=-0.000 -0.001 -0.002 -0.008
+    W=25 n=3 Delta_w=-0.001 -0.001 -0.008
+L1 4:1 s0=100 horizon=175 Delta_0(point)=+0.073: D5w not evaluable (<4 windows); gap(point) not evaluable (<4 windows); gap(pre-window) not evaluable (<4 windows)
+    W=20 n=3 Delta_w=-0.001 +0.000 -0.007
+    W=25 n=3 Delta_w=+0.003 -0.007 -0.003
+L1 6:1 s0=  0 horizon=194 Delta_0(point)=+0.000: D5w not established; gap(point) not established; gap(pre-window) not established
+    W=20 n=9 Delta_w=+0.000 +0.001 +0.000 +0.032 +0.005 -0.000 -0.003 -0.004 +0.008
+    W=25 n=7 Delta_w=-0.000 -0.007 +0.051 +0.010 -0.001 -0.006 +0.009
+L1 6:1 s0= 20 horizon=194 Delta_0(point)=-0.000: D5w not established; gap(point) not established; gap(pre-window) not established
+    W=20 n=8 Delta_w=+0.001 +0.000 +0.032 +0.005 -0.000 -0.003 -0.004 +0.008
+    W=25 n=6 Delta_w=+0.001 +0.022 +0.017 -0.000 -0.003 +0.007
+L1 6:1 s0= 40 horizon=194 Delta_0(point)=-0.000: D5w not established; gap(point) not established; gap(pre-window) not established
+    W=20 n=7 Delta_w=+0.000 +0.032 +0.005 -0.000 -0.003 -0.004 +0.008
+    W=25 n=6 Delta_w=+0.009 +0.025 -0.001 -0.000 -0.001 +0.005
+L1 6:1 s0= 60 horizon=194 Delta_0(point)=+0.019: D5w not established; gap(point) not established; gap(pre-window) not established
+    W=20 n=6 Delta_w=+0.032 +0.005 -0.000 -0.003 -0.004 +0.008
+    W=25 n=5 Delta_w=+0.031 -0.005 +0.000 -0.004 +0.007
+L1 6:1 s0= 80 horizon=194 Delta_0(point)=+0.026: D5w not established; gap(point) not established; gap(pre-window) not established
+    W=20 n=5 Delta_w=+0.005 -0.000 -0.003 -0.004 +0.008
+    W=25 n=4 Delta_w=+0.000 +0.001 -0.007 +0.009
+L1 6:1 s0= 90 horizon=194 Delta_0(point)=-0.003: D5w not established; gap(point) not established; gap(pre-window) not established <- registered alignment (B's lambda2 count)
+    W=20 n=5 Delta_w=-0.001 +0.002 -0.007 +0.015 +0.004
+    W=25 n=4 Delta_w=-0.001 -0.000 -0.001 +0.005
+L1 6:1 s0=100 horizon=194 Delta_0(point)=+0.012: D5w not established (window-sensitive); gap(point) not established (window-sensitive); gap(pre-window) not established (window-sensitive)
+    W=20 n=4 Delta_w=-0.000 -0.003 -0.004 +0.008
+    W=25 n=3 Delta_w=-0.001 -0.006 +0.009
+SUMMARY: 14 alignments; D5w false positives 0; gap companion false positives: point baseline 2, pre-window baseline 0

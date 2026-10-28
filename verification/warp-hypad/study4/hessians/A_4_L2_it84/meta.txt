@@ -1,0 +1,17 @@
+tag A_4_L2_it84
+nodes 6624
+leaves 414
+base_nodes 6624
+lambda 3.7499999999999997e-09
+R_fwd 0.00010507892999040524
+R_rev 0.00010507892999040502
+R_comp 0.00010507892999040482
+R_ld 0.00010507892999040482
+R_bound 7.7264611744893176e-17
+H1a_diag_mismatch 0
+H1a_passgrad_mismatch 0
+H1a_grad_vs_gradient_mismatch 0
+pair_errors 0
+secs 266.97825550008565
+threads 12
+ld_digits 64

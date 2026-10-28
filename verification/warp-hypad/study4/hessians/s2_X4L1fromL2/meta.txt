@@ -1,0 +1,17 @@
+tag s2_X4L1fromL2
+nodes 6624
+leaves 414
+base_nodes 6624
+lambda 3.7499999999999998e-08
+R_fwd 0.00010934083013889214
+R_rev 0.0001093408301388917
+R_comp 0.00010934083013889164
+R_ld 0.00010934083013889164
+R_bound 8.0398389946654555e-17
+H1a_diag_mismatch 0
+H1a_passgrad_mismatch 0
+H1a_grad_vs_gradient_mismatch 0
+pair_errors 0
+secs 264.18781010014936
+threads 12
+ld_digits 64

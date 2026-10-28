@@ -1,0 +1,17 @@
+tag A_4_L1
+nodes 6624
+leaves 414
+base_nodes 6624
+lambda 3.7499999999999998e-08
+R_fwd 0.0001099129362925342
+R_rev 0.00010991293629253405
+R_comp 0.00010991293629253375
+R_ld 0.00010991293629253375
+R_bound 8.0819060007170545e-17
+H1a_diag_mismatch 0
+H1a_passgrad_mismatch 0
+H1a_grad_vs_gradient_mismatch 0
+pair_errors 0
+secs 271.00495329964906
+threads 12
+ld_digits 64

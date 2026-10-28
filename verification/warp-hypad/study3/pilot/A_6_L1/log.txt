@@ -1,0 +1,4 @@
+it   1 F 1.4989817537e-04 R 1.49898175e-04 |y| 0.000 |gF| 2.486e-05 (tol 1.50e-09) step 2.487e-05 nodes 14904 sp 0 C 001 24s
+it   2 F 1.4911302081e-04 R 1.49112953e-04 |y| 0.060 |gF| 1.034e-05 (tol 1.49e-09) step 6.004e-02 nodes 14904 sp 0 C 001 37s
+it   3 F 1.4894407487e-04 R 1.48943952e-04 |y| 0.081 |gF| 9.694e-06 (tol 1.49e-09) step 2.575e-02 nodes 14904 sp 0 C 001 49s
+TERMINATION ITERATION_LIMIT it=3 nfev=4 wall=49s

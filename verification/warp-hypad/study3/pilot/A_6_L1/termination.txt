@@ -1,0 +1,1 @@
+ITERATION_LIMIT it=3 nfev=4 ngev=4 nodes=14904 capped=0 last_set_change=0 resets=0 gF=9.694310897e-06 C1tol=1.489440749e-09 F=0.0001489440749 R=0.0001489439522 ynorm=0.08087340042 wall_s=49.3837162

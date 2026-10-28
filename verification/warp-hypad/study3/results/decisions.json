@@ -1,0 +1,290 @@
+{
+ "b": -0.000960726525599,
+ "E0": 0.0463456943881,
+ "floor_outside_Ab": -0.00017523250518,
+ "D5": {
+  "L1": {
+   "per_density": {
+    "4": {
+     "rE_levels_reached_by_both": 2,
+     "hits_diff_ge_0.05": 0
+    },
+    "6": {
+     "rE_levels_reached_by_both": 2,
+     "hits_diff_ge_0.05": 0
+    }
+   },
+   "verdict": "not established at matched E_neg progress"
+  },
+  "L2": {
+   "per_density": {
+    "4": {
+     "rE_levels_reached_by_both": 3,
+     "hits_diff_ge_0.05": 0
+    },
+    "6": {
+     "rE_levels_reached_by_both": 3,
+     "hits_diff_ge_0.05": 0
+    }
+   },
+   "verdict": "not established at matched E_neg progress"
+  }
+ },
+ "D3": {
+  "A_L1": "failed (not converged)",
+  "B_L1": "failed (not converged)",
+  "A_L2": "failed (not converged)",
+  "B_L2": "failed (not converged)"
+ },
+ "D2": {},
+ "D4": {
+  "L1": "failed (not converged)",
+  "L2": "failed (not converged)"
+ },
+ "D6": {
+  "A": "not evaluable (not converged)",
+  "B": "not evaluable (not converged)"
+ },
+ "summary": {
+  "A_4_L1": {
+   "term": "WALL_LIMIT",
+   "iters": 245,
+   "T_label": "concentration along the trajectory, not at the final iterate",
+   "T_count": 2,
+   "T_first": 7,
+   "T_last": 8,
+   "T_maxq": 1.422621366645258,
+   "T_maxq_it": 8,
+   "T_maxq_assessed": 1.422621366645258,
+   "qrange_last20": [
+    0.5933920155046808,
+    0.5948700082374355
+   ],
+   "ynorm": 16.7769022684,
+   "F": 0.000115190394725,
+   "R": 0.000109912936293,
+   "pen": 5.27745843234e-06,
+   "q": 0.5946892765438959,
+   "rE": 0.5723108103200736,
+   "rEw": 0.5875781266415298,
+   "underreport_frac": 0.0034394692859069107,
+   "under": "False",
+   "E8": 0.019821552478,
+   "E16": 0.0198376434381,
+   "R4": 0.000109912936293,
+   "R6": 0.000109979221834,
+   "R8": 0.000109994303876,
+   "label_final": "none"
+  },
+  "A_4_L2": {
+   "term": "WALL_LIMIT",
+   "iters": 133,
+   "T_label": "concentration along the trajectory",
+   "T_count": 105,
+   "T_first": 7,
+   "T_last": 133,
+   "T_maxq": 31.959826830695718,
+   "T_maxq_it": 133,
+   "T_maxq_assessed": 31.959826830695718,
+   "qrange_last20": [
+    4.305378600836568,
+    31.959826830695718
+   ],
+   "ynorm": 37.6039427343,
+   "F": 0.000107011969742,
+   "R": 0.000104360613787,
+   "pen": 2.65135595469e-06,
+   "q": 31.959826830695718,
+   "rE": 0.588480184308187,
+   "rEw": 0.6041788448252119,
+   "underreport_frac": 0.01486489761684203,
+   "under": "False",
+   "E8": 0.0190721716127,
+   "E16": 0.0191049464311,
+   "R4": 0.000104360613787,
+   "R6": 0.000115570647348,
+   "R8": 0.000125446486052,
+   "label_final": "concentration"
+  },
+  "A_6_L1": {
+   "term": "WALL_LIMIT",
+   "iters": 229,
+   "T_label": "concentration along the trajectory, not at the final iterate",
+   "T_count": 2,
+   "T_first": 7,
+   "T_last": 8,
+   "T_maxq": 1.4227096163893227,
+   "T_maxq_it": 8,
+   "T_maxq_assessed": 1.4227096163893227,
+   "qrange_last20": [
+    0.5909909308083238,
+    0.5977956488178781
+   ],
+   "ynorm": 16.5352438275,
+   "F": 0.000115199744861,
+   "R": 0.000110073226953,
+   "pen": 5.12651790815e-06,
+   "q": 0.597795648818919,
+   "rE": 0.5708893704912011,
+   "rEw": 0.5861187676066859,
+   "underreport_frac": 0.012987772994173148,
+   "under": "False",
+   "E8": 0.0198874300939,
+   "E16": 0.0198977684098,
+   "R4": 0.000110058154383,
+   "R6": 0.000110073226953,
+   "R8": 0.000110079001867,
+   "label_final": "none"
+  },
+  "A_6_L2": {
+   "term": "WALL_LIMIT",
+   "iters": 126,
+   "T_label": "concentration along the trajectory",
+   "T_count": 47,
+   "T_first": 7,
+   "T_last": 126,
+   "T_maxq": 5.514054664949613,
+   "T_maxq_it": 117,
+   "T_maxq_assessed": 5.514054664960022,
+   "qrange_last20": [
+    2.2234436048678443,
+    5.514054664949613
+   ],
+   "ynorm": 37.5411489087,
+   "F": 0.000107329414716,
+   "R": 0.000104686906226,
+   "pen": 2.6425084901e-06,
+   "q": 4.730152791822458,
+   "rE": 0.6302019134877694,
+   "rEw": 0.6470135685989065,
+   "underreport_frac": 0.019749432389315875,
+   "under": "False",
+   "E8": 0.0171385491028,
+   "E16": 0.0172415015673,
+   "R4": 0.000104502681566,
+   "R6": 0.000104686906226,
+   "R8": 0.000104774113869,
+   "label_final": "concentration"
+  },
+  "B_4_L1": {
+   "term": "WALL_LIMIT",
+   "iters": 175,
+   "T_label": "concentration along the trajectory, not at the final iterate",
+   "T_count": 2,
+   "T_first": 7,
+   "T_last": 8,
+   "T_maxq": 1.422621366645258,
+   "T_maxq_it": 8,
+   "T_maxq_assessed": 1.422621366645258,
+   "qrange_last20": [
+    0.5869114886137239,
+    0.6225205091824754
+   ],
+   "ynorm": 16.5930314099,
+   "F": 0.000115218997587,
+   "R": 0.000110056584623,
+   "pen": 5.16241296321e-06,
+   "q": 0.6010232415244152,
+   "rE": 0.5710153126823165,
+   "rEw": 0.5862480695071886,
+   "underreport_frac": 0.0005953215403065291,
+   "under": "False",
+   "E8": 0.0198815932156,
+   "E16": 0.0198826132602,
+   "R4": 0.000110039254244,
+   "R6": 0.000110055011511,
+   "R8": 0.000110059592467,
+   "label_final": "none"
+  },
+  "B_4_L2": {
+   "term": "WALL_LIMIT",
+   "iters": 84,
+   "T_label": "concentration along the trajectory",
+   "T_count": 13,
+   "T_first": 7,
+   "T_last": 84,
+   "T_maxq": 1.6737965772282553,
+   "T_maxq_it": 73,
+   "T_maxq_assessed": 1.673796577238664,
+   "qrange_last20": [
+    0.7197269134115805,
+    1.6737965772282553
+   ],
+   "ynorm": 39.2720367041,
+   "F": 0.000108410346716,
+   "R": 0.000105518547591,
+   "pen": 2.89179912542e-06,
+   "q": 1.0521284855019226,
+   "rE": 0.6321380683751809,
+   "rEw": 0.6490013735465796,
+   "underreport_frac": 0.016467157655721005,
+   "under": "False",
+   "E8": 0.0170488166601,
+   "E16": 0.0170580428386,
+   "R4": 0.000105343236216,
+   "R6": 0.000105494508113,
+   "R8": 0.000105514893142,
+   "label_final": "concentration"
+  },
+  "B_6_L1": {
+   "term": "WALL_LIMIT",
+   "iters": 194,
+   "T_label": "concentration along the trajectory, not at the final iterate",
+   "T_count": 2,
+   "T_first": 7,
+   "T_last": 8,
+   "T_maxq": 1.4227096163893227,
+   "T_maxq_it": 8,
+   "T_maxq_assessed": 1.4227096163893227,
+   "qrange_last20": [
+    0.5922632259447966,
+    0.6053555046420646
+   ],
+   "ynorm": 16.5001834401,
+   "F": 0.000115205379363,
+   "R": 0.000110100578358,
+   "pen": 5.1048010042e-06,
+   "q": 0.5922632259458375,
+   "rE": 0.5707149066988952,
+   "rEw": 0.5859396497083886,
+   "underreport_frac": 0.009997546325676088,
+   "under": "False",
+   "E8": 0.0198955157395,
+   "E16": 0.0198918180515,
+   "R4": 0.000110108844124,
+   "R6": 0.000110100670704,
+   "R8": 0.000110100737668,
+   "label_final": "none"
+  },
+  "B_6_L2": {
+   "term": "WALL_LIMIT",
+   "iters": 90,
+   "T_label": "concentration along the trajectory, not at the final iterate",
+   "T_count": 20,
+   "T_first": 7,
+   "T_last": 82,
+   "T_maxq": 1.4205313688399532,
+   "T_maxq_it": 8,
+   "T_maxq_assessed": 1.4205313688399532,
+   "qrange_last20": [
+    0.8738935311831196,
+    1.400608834310092
+   ],
+   "ynorm": 38.9039301937,
+   "F": 0.000108099135031,
+   "R": 0.000105261292935,
+   "pen": 2.83784209596e-06,
+   "q": 0.8738935311841606,
+   "rE": 0.628333945517001,
+   "rEw": 0.6450957695597089,
+   "underreport_frac": 0.0032197396270914522,
+   "under": "False",
+   "E8": 0.0172251213755,
+   "E16": 0.0172263612444,
+   "R4": 0.000105145027713,
+   "R6": 0.000105234993521,
+   "R8": 0.000105237691968,
+   "label_final": "none"
+  }
+ }
+}

@@ -1,0 +1,40 @@
+V5b softplus branch jump f', f'' at u=0 (numeric OTI) <= 1e-12 rel PASS  f' 0.000e+00 f'' 0.000e+00 (f'=0.5, f''*4tau=1)
+V5e Neumaier [1,1e100,1,-1e100] = 2                                PASS  got 2
+V5e 1e5-term sequence written (verified exactly with fractions.Fraction by v5_check.py): neumaier -10144.457756628932 forward -10144.320769657243 sum|x| 1.33569e+15
+V5e long double digits 64
+V5c M has 5886 pairwise-distinct independent entries               PASS  5886 entries
+V5c pass schedule covers every pair once (pair_errors = 0)         PASS  pair_errors 0, passes 1962
+V5c H1a on synthetic: 54 diag / grad values bit-identical          PASS  diag 0 grad 0
+V5c every entry of H (fwd) within 1e-12 max|H| of analytic         PASS  max err 4.441e-16 (max|H| 1.557e+00)
+V5c gradient (pass and gradient_ext fwd) within 1e-12 max|g|       PASS  pass 5.329e-15 gradient_ext 5.329e-15
+V5e (ii) H_comp, grad_comp within V5c tolerance                    PASS  H 4.441e-16 g 3.553e-15
+V5c info: rev max err 4.441e-16, ld max err 4.441e-16
+V5c pass gradient bit-identical to gradient_ext (H1a path)         PASS  0 mismatches
+V5a SPD quadratic, W0 = H^-1 (Jacobi path): one step converges     PASS  |g1|/|g0| 3.345e-14, trials 1
+V5a inverse update satisfies secant W+ t = s to 1e-12              PASS  rel err 2.579e-14
+V5a skip rule fires (s.t <= 1e-14|s||t|), W unchanged              PASS  
+V5a skip rule fires for s.t = 0                                    PASS  
+V5a reset rule fires on g.p >= 0 and restores W0                   PASS  
+V5a skip-fraction trigger fires (11/20 skipped)                    PASS  trigger=skip skipfrac 0.55
+V5a skip-fraction trigger silent at 10/20                          PASS  
+V5a gradient-ratio trigger fires (|g_k| > 0.5 |g_k-20|)            PASS  
+V5a not eligible < 20 iterates since last measurement              PASS  
+V5a not eligible < 20 iterates since last set change (B)           PASS  
+V5a eligible exactly 20 iterates after a set change                PASS  
+V5a not eligible after 2 refreshes                                 PASS  
+V5d needed split below both limits -> SPLIT                        PASS  got SPLIT
+V5d resolved candidate -> PASS (C3 true)                           PASS  got PASS
+V5d split needed at depth 6 -> BLOCKED_DEPTH, C3 false             PASS  got BLOCKED_DEPTH
+V5d set at node cap -> BLOCKED_CAP, C3 false                       PASS  got BLOCKED_CAP
+V5d check after a cap refusal is still executed (no persistent flag) PASS  rows 1
+V5d mixed check (one split + one depth refusal) -> SPLIT           PASS  got SPLIT
+V5d refused row re-tested at the next check -> BLOCKED_DEPTH       PASS  got BLOCKED_DEPTH
+V5d candidate outside Dw counted, does not affect C3               PASS  
+V5d SPLIT at outer round 10 -> OUTER_LIMIT                         PASS  OUTER_LIMIT
+V5d SPLIT at outer round 9 -> next inner solve                     PASS  
+V5d after SPLIT with trust < 1e-8 the next inner solve starts at 0.5 PASS  trust 0.5
+V5d PASS -> CONVERGED; PASS after LS limit -> CONVERGED_LS_LIMITED PASS  
+SELFTEST PASS (0 failures)
+V5e(i) n=100000 exact=-10144.457756628932 neumaier=-10144.457756628932 |err|=4.764e-14 bound 2u*sum|x|=2.966e-01 PASS (forward |err|=1.370e-01)
+V5e(ii) e_H^c=1.423e-15 <= |B_H|_F=9.726e-13 PASS; e_H(rev)=1.424e-15; |H_fwd-H_ld|_2=1.423e-15; |H_comp-H_exact|_2=1.811e-15
+V5e-python PASS

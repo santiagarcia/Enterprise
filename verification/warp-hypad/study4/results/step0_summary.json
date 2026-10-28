@@ -1,0 +1,168 @@
+{
+ "gate": {
+  "H1a_all_zero": true,
+  "pair_errors_zero": true,
+  "H1b_gate_pass": true,
+  "cons1_all": true,
+  "cons2_all": true,
+  "reverse_understates": []
+ },
+ "labels": {
+  "lambda1": {
+   "kappa_statement": "not evaluable (no PD final)",
+   "kappa_PD_finals": [],
+   "kappa_all": [
+    [
+     "A_4_L1",
+     "indefinite (1 negative)",
+     37663.71259573209
+    ],
+    [
+     "A_6_L1",
+     "indefinite (1 negative)",
+     71885.13614575495
+    ],
+    [
+     "B_4_L1",
+     "indefinite (1 negative)",
+     18953.244210025703
+    ],
+    [
+     "B_6_L1",
+     "indefinite (2 negative)",
+     12884.831042508024
+    ]
+   ],
+   "I5_statement": "consistent",
+   "mumax_over_lam": [
+    [
+     "A_4_L1",
+     1783.2389992044614
+    ],
+    [
+     "A_6_L1",
+     1724.1367467423668
+    ],
+    [
+     "B_4_L1",
+     1680.2339472237525
+    ],
+    [
+     "B_6_L1",
+     1745.2502682152528
+    ]
+   ]
+  },
+  "lambda2": {
+   "kappa_statement": "not evaluable (no PD final)",
+   "kappa_PD_finals": [],
+   "kappa_all": [
+    [
+     "A_4_L2",
+     "indefinite (2 negative)",
+     136547.95486181887
+    ],
+    [
+     "A_6_L2",
+     "indefinite (2 negative)",
+     13581.53750059394
+    ],
+    [
+     "B_4_L2",
+     "indefinite (7 negative)",
+     118643.86569625312
+    ],
+    [
+     "B_6_L2",
+     "indefinite (3 negative)",
+     57095.77700389552
+    ]
+   ],
+   "I5_statement": "not supported",
+   "mumax_over_lam": [
+    [
+     "A_4_L2",
+     20103.976018454054
+    ],
+    [
+     "A_6_L2",
+     4426.258034649545
+    ],
+    [
+     "B_4_L2",
+     5748.114545437994
+    ],
+    [
+     "B_6_L2",
+     5554.924052007925
+    ]
+   ]
+  }
+ },
+ "H4": [
+  {
+   "design": "A_4_L1",
+   "gamma_last": 43023.3204812,
+   "inv_gamma": 2.324320830692211e-05,
+   "mu_min": -1.7754878067369524e-09,
+   "mu_max": 6.68714624701673e-05,
+   "H4_in_range": true
+  },
+  {
+   "design": "A_4_L2",
+   "gamma_last": 64052.2221248,
+   "inv_gamma": 1.5612260852583534e-05,
+   "mu_min": -1.5926252628754426e-09,
+   "mu_max": 7.538991006920269e-05,
+   "H4_in_range": true
+  },
+  {
+   "design": "A_6_L1",
+   "gamma_last": 49808.7745441,
+   "inv_gamma": 2.007678384286716e-05,
+   "mu_min": -1.849526180496229e-08,
+   "mu_max": 6.465512800283875e-05,
+   "H4_in_range": true
+  },
+  {
+   "design": "A_6_L2",
+   "gamma_last": 90988.3397048,
+   "inv_gamma": 1.0990419247613175e-05,
+   "mu_min": -1.684888199195871e-09,
+   "mu_max": 1.6598467629935794e-05,
+   "H4_in_range": true
+  },
+  {
+   "design": "B_4_L1",
+   "gamma_last": 33276.851176,
+   "inv_gamma": 3.0050920224123314e-05,
+   "mu_min": -7.16727166451495e-09,
+   "mu_max": 6.300877302089071e-05,
+   "H4_in_range": true
+  },
+  {
+   "design": "B_4_L2",
+   "gamma_last": 77306.9561525,
+   "inv_gamma": 1.2935446559651688e-05,
+   "mu_min": -2.0545737586628427e-08,
+   "mu_max": 2.1555429545392476e-05,
+   "H4_in_range": true
+  },
+  {
+   "design": "B_6_L1",
+   "gamma_last": 31841.0206949,
+   "inv_gamma": 3.1406028392807484e-05,
+   "mu_min": -2.3671316683843036e-08,
+   "mu_max": 6.544688505807198e-05,
+   "H4_in_range": true
+  },
+  {
+   "design": "B_6_L2",
+   "gamma_last": 352064.559196,
+   "inv_gamma": 2.8403881443894045e-06,
+   "mu_min": -6.852459893133074e-09,
+   "mu_max": 2.0830965195029717e-05,
+   "H4_in_range": true
+  }
+ ]
+}

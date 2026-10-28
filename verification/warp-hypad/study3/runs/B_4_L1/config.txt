@@ -1,0 +1,18 @@
+form B
+order 4
+sub 1
+start baseline_zero
+lambda 3.75e-08
+kmax 600
+maxfev 3000
+deadline_epoch 1793143585
+diag_every 1
+base_nodes 6624
+tau 0.001
+threads 2
+F = R + lambda/2 |y|^2
+C1' |gradF| <= 1e-5 F / max(|y|,1)
+C2' 10-window 1e-8 since last set change
+STALLED C2' & !C1' for 30 consecutive iterates on one set
+lbfgs m=8 c1=1e-4 trust0=0.5 trustmax=4 trustmin=1e-8 ls_trials=10; pairs kept across set changes;
+post-reset step p = -gamma_last g

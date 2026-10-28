@@ -1,0 +1,8 @@
+A_4_L1 rho*_D=-5.7133e-04 rhomin_w=-5.4529e-04 q=0.595 u_w=4.6% no flag
+A_6_L1 rho*_D=-5.7432e-04 rhomin_w=-5.6517e-04 q=0.598 u_w=1.6% no flag
+B_4_L1 rho*_D=-5.7742e-04 rhomin_w=-5.6904e-04 q=0.601 u_w=1.5% no flag
+B_6_L1 rho*_D=-5.6900e-04 rhomin_w=-5.6331e-04 q=0.592 u_w=1.0% no flag
+A_4_L2 rho*_D=-3.0705e-02 rhomin_w=-5.6231e-04 q=31.960 u_w=98.2% FLAG (>10%)
+A_6_L2 rho*_D=-4.5444e-03 rhomin_w=-5.4927e-04 q=4.730 u_w=87.9% FLAG (>10%)
+B_4_L2 rho*_D=-1.0108e-03 rhomin_w=-9.9416e-04 q=1.052 u_w=1.6% no flag
+B_6_L2 rho*_D=-8.3957e-04 rhomin_w=-8.3687e-04 q=0.874 u_w=0.3% no flag

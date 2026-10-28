@@ -1,0 +1,17 @@
+tag final_A6L2m
+nodes 14904
+leaves 414
+base_nodes 14904
+lambda 3.7499999999999997e-09
+R_fwd 0.00010452104557981078
+R_rev 0.0001045210455798107
+R_comp 0.0001045210455798103
+R_ld 0.0001045210455798103
+R_bound 1.7293690282870423e-16
+H1a_diag_mismatch 0
+H1a_passgrad_mismatch 0
+H1a_grad_vs_gradient_mismatch 0
+pair_errors 0
+secs 592.78921539988369
+threads 12
+ld_digits 64

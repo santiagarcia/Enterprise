@@ -1,0 +1,162 @@
+# gate_H2H3_v4 (PROTOCOL-v4 NV1/NV2 + Vera R1-R3); driver/fd_checks_v4.py sha256 a0c567be4f190977f86d065f522f486510e1a74e8b39cc0900a787e3c8fc8dfa
+R1 A_4_L1/H_R_fwd.bin 7a697703b416f007dc90499c3c980ea3c5a154cd6616b334fe4a7d6781c6c1b1 OK
+R1 A_4_L1/y.bin dfb00f93a87dce39cbefbb03c9dfb2b775577886eb8d0895759ee4c73150bd5a OK
+R1 A_4_L1/meta.txt 41e1b8a93a180630a66c97176d0f4c2c78088346e215af5b4e189ee44276ba82 OK
+R1 A_4_L2/H_R_fwd.bin 11a70bae2aa4cd7e48cefcd5e06ba17bfc65f52242b6bdd5f15d3c224285b27a OK
+R1 A_4_L2/y.bin 526ce11b6b5d77108f1f252407e3d257cc956acb65cab4d259f698baec8a8162 OK
+R1 A_4_L2/meta.txt e706826a6682c0955cd40f2808d195b1b6afd4287ee4cb6d466354567259040d OK
+R1 A_6_L2/H_R_fwd.bin 8624a733e390a005b46a831ec7ad7434648f68beacddb6521063782455dad64e OK
+R1 A_6_L2/y.bin a0afb16db415b3a370634375cca278eec3b3b879fc03cc82cf2caa6ffb0d6d64 OK
+R1 A_6_L2/meta.txt 463b2091f413a5a293237ea3ef32e52dcc52fd1997b8d7c07b6abda5745c7190 OK
+R1 B_4_L2/H_R_fwd.bin 9b048b6fc38ec921e9f70a98185cec91763547af7f598f8abe8b3caba6f6b8c5 OK
+R1 B_4_L2/y.bin 68256a4a8e47a9600b1ca21a0dd1106f7a03afa8e035bb118f356598e7332765 OK
+R1 B_4_L2/meta.txt 041740e4f61dd8c6884cc480328cfd63aea4ef869972096c41577174170b0c3a OK
+R1 B_6_L2/H_R_fwd.bin 400b9570a8e8c3921cae43a8bb15e8c32bb531511c3913effcf3e05b55f9aaa8 OK
+R1 B_6_L2/y.bin 89a91b9debbd114b6bc2b80ecf06475804234763c5d02997d09b3777f05359ec OK
+R1 B_6_L2/meta.txt 8d23b0d1c9147e3806c4908d330bf8f24d9358df672306afcf0801640aadfbd7 OK
+R1 fd/A_4_L1.dirs 2448f82d0d61dfe1bf1a9c885cac982dc1c4c578c409e349b88f965ebd5890dd OK
+R1 fd/A_4_L2.dirs 027f49938231decdcdafaa6bb457cca64e9fb5f2354331a231ffcd91d0287790 OK
+R1 fd/A_6_L2.dirs cb10441fe6b18c691e57c1f85ceaa8235a1672052485b635eac39d5cc3287a4d OK
+R1 fd/B_4_L2.dirs cb10441fe6b18c691e57c1f85ceaa8235a1672052485b635eac39d5cc3287a4d OK
+R1 fd/B_6_L2.dirs cb10441fe6b18c691e57c1f85ceaa8235a1672052485b635eac39d5cc3287a4d OK
+v4s9 fd/A_4_L1.out cb51116fc307d159f03f53b71674e14533987f24b9a9aa110356b18460491c74 OK
+v4s9 fd/A_4_L2.out b2065fa63229fd4ee4d461c58d65f461bdf96701472c1a2627aad0d229d9c2c1 OK
+v4s9 fd/A_6_L2.out c8aa47af91bae5928bcc35521ee5b46ef95bebe993ce3d6c9e99d3ad8e06eaa4 OK
+v4s9 fd/B_4_L2.out 2ac91679e3b548f02a58979239758abea1d9843e3759718a342c09b2409e9c97 OK
+v4s9 fd/B_6_L2.out f6ea3fbf0ab67f4596b64ed885884c0f75c29bfcc419f10d182c29063c6cb1ed OK
+R1 PASS: all 20 pinned inputs match; v4 s9 FD output hashes match.
+
+## H2 (NV1) and H3 (NV2 with R2); h_1..h_4 = 1e-2..1e-5
+gate | design | dir | e | ratios | argmin | slope | strict_desc | best | status
+H2 | A_4_L1 | col0 | 1.491e-05;1.491e-07;9.113e-09;1.471e-07 | 100.0;16.4 | 3 | True | False | 9.113e-09 | PASS
+H2 | A_4_L1 | col36 | 2.078e-03;2.077e-05;2.077e-07;4.345e-09 | 100.1;100.0;47.8 | 4 | True | True | 4.345e-09 | PASS
+H2 | A_4_L1 | col72 | 3.142e-04;3.142e-06;3.147e-08;1.306e-08 | 100.0;99.8;2.4 | 4 | True | True | 1.306e-08 | PASS
+H2 | A_4_L1 | col69 | 4.601e-03;4.595e-05;4.595e-07;6.420e-09 | 100.1;100.0;71.6 | 4 | True | True | 6.420e-09 | PASS
+H2-sym(desc) | A_4_L1 | 0,36 | 1.859e-03;1.848e-05;1.854e-07;2.988e-08 |  |  |  |  | 2.988e-08 | desc
+H2-sym(desc) | A_4_L1 | 0,69 | nan;nan;nan;nan |  |  |  |  | nan | desc
+H2-sym(desc) | A_4_L1 | 0,72 | 3.929e-04;3.929e-06;3.903e-08;1.207e-08 |  |  |  |  | 1.207e-08 | desc
+H2-sym(desc) | A_4_L1 | 36,69 | nan;nan;nan;nan |  |  |  |  | nan | desc
+H2-sym(desc) | A_4_L1 | 36,72 | 4.502e-02;4.503e-04;4.495e-06;8.522e-08 |  |  |  |  | 8.522e-08 | desc
+H2-sym(desc) | A_4_L1 | 69,72 | nan;nan;nan;nan |  |  |  |  | nan | desc
+H2 | A_4_L2 | col0 | 9.078e-06;8.886e-08;3.165e-08;4.783e-07 | 102.2;2.8 | 3 | True | False | 3.165e-08 | PASS
+H2 | A_4_L2 | col36 | 1.589e-03;1.586e-05;1.589e-07;1.659e-08 | 100.2;99.9;9.6 | 4 | True | True | 1.659e-08 | PASS
+H2 | A_4_L2 | col72 | 2.191e-03;2.188e-05;2.188e-07;1.830e-08 | 100.1;100.0;12.0 | 4 | True | True | 1.830e-08 | PASS
+H2 | A_4_L2 | col51 | 1.733e-01;1.731e-03;1.731e-05;1.703e-07 | 100.1;100.0;101.7 | 4 | True | True | 1.703e-07 | PASS
+H2-sym(desc) | A_4_L2 | 0,36 | 2.220e-03;2.220e-05;2.300e-07;3.361e-07 |  |  |  |  | 2.300e-07 | desc
+H2-sym(desc) | A_4_L2 | 0,51 | 1.088e-04;3.365e-04;1.311e-03;1.100e-02 |  |  |  |  | 1.088e-04 | desc
+H2-sym(desc) | A_4_L2 | 0,72 | 1.064e-04;1.004e-06;2.973e-08;1.516e-07 |  |  |  |  | 2.973e-08 | desc
+H2-sym(desc) | A_4_L2 | 36,51 | 1.069e-06;6.736e-06;4.784e-08;5.488e-04 |  |  |  |  | 4.784e-08 | desc
+H2-sym(desc) | A_4_L2 | 36,72 | 5.100e-04;5.104e-06;5.496e-08;3.951e-08 |  |  |  |  | 3.951e-08 | desc
+H2-sym(desc) | A_4_L2 | 51,72 | 4.303e-07;2.021e-05;3.473e-04;4.133e-03 |  |  |  |  | 4.303e-07 | desc
+H3a-Hv | A_4_L1 | v4 | 1.277e-04;1.277e-06;1.273e-08;2.047e-08 | 100.0;100.3 | 3 | True | True | 1.273e-08 | PASS
+H3b-c(abs) | A_4_L1 | v4 | 1.087e-10;1.086e-12;1.783e-14;2.480e-14 | 100.0;60.9 | 3 | True | True | 1.783e-14 rel 8.156e-07 | PASS
+H3c-vHv | A_4_L1 | v4 | 5.149e-05;1.132e-06;7.656e-05;7.661e-03 | 45.5 | 2 | resolvable; slope PASS | False | 1.132e-06 | PASS
+H3-desc | A_4_L1 | v4 | c_rel 5.01e-03;4.97e-05;8.16e-07;1.13e-06 | pg_err 1.030e-04;1.030e-06;9.987e-09;-4.469e-09 | rho(s2..s4) 7.66e-07;7.66e-05;7.66e-03 |  |  |  | Richardson r(s1)=0.49996; |v.y|=0.581 | desc
+H3a-Hv | A_4_L2 | v4 | 1.233e-03;1.233e-05;1.311e-07;6.370e-08 | 100.0;94.1;2.1 | 4 | True | True | 6.370e-08 | PASS
+H3b-c(abs) | A_4_L2 | v4 | 7.173e-11;7.155e-13;9.311e-15;1.025e-13 | 100.2;76.8 | 3 | True | True | 9.311e-15 rel 4.032e-07 | PASS
+H3c-vHv | A_4_L2 | v4 | 1.854e-04;3.353e-06;1.472e-04;1.083e-02 | 55.3 | 2 | resolvable; slope PASS | False | 3.353e-06 | PASS
+H3-desc | A_4_L2 | v4 | c_rel 3.09e-03;3.10e-05;4.03e-07;4.44e-06 | pg_err 3.709e-04;3.709e-06;3.520e-08;5.072e-09 | rho(s2..s4) 1.47e-06;1.47e-04;1.47e-02 |  |  |  | Richardson r(s1)=0.49984; |v.y|=0.877 | desc
+H3a-Hv | B_4_L2 | v4 | 1.036e-03;1.036e-05;1.040e-07;3.415e-08 | 100.0;99.6;3.0 | 4 | True | True | 3.415e-08 | PASS
+H3b-c(abs) | B_4_L2 | v4 | 7.984e-11;7.990e-13;1.844e-15;1.589e-13 | 99.9;433.3 | 3 | True | True | 1.844e-15 rel 1.363e-08 | PASS
+H3c-vHv | B_4_L2 | v4 | 3.259e-04;2.117e-06;1.944e-04;4.117e-02 | 153.9 | 2 | resolvable; slope PASS | False | 2.117e-06 | PASS
+H3-desc | B_4_L2 | v4 | c_rel 5.91e-04;5.90e-06;1.36e-08;1.17e-06 | pg_err 6.521e-04;6.517e-06;6.624e-08;-1.366e-10 | rho(s2..s4) 4.12e-06;4.12e-04;4.12e-02 |  |  |  | Richardson r(s1)=0.49981; |v.y|=0.493 | desc
+H3a-Hv | A_6_L2 | v4 | 4.933e-05;4.933e-07;7.122e-09;9.614e-08 | 100.0;69.3 | 3 | True | True | 7.122e-09 | PASS
+H3b-c(abs) | A_6_L2 | v4 | 7.873e-12;7.660e-14;6.290e-16;1.725e-13 | 102.8;121.8 | 3 | True | True | 6.290e-16 rel 1.162e-07 | PASS
+H3c-vHv | A_6_L2 | v4 | 1.667e-05;2.477e-06;9.206e-05;1.000e-01 | 6.7 | 2 | slope not resolvable by the R reference | False | 2.477e-06 | PASS
+H3-desc | A_6_L2 | v4 | c_rel 1.45e-03;1.42e-05;1.16e-07;3.19e-05 | pg_err 3.337e-05;3.337e-07;2.408e-09;-1.301e-08 | rho(s2..s4) 1.00e-05;1.00e-03;1.00e-01 |  |  |  | Richardson r(s1)=0.49949; |v.y|=0.196 | desc
+H3a-Hv | B_6_L2 | v4 | 5.383e-04;5.378e-06;5.417e-08;8.081e-08 | 100.1;99.3 | 3 | True | True | 5.417e-08 | PASS
+H3b-c(abs) | B_6_L2 | v4 | 4.122e-11;4.115e-13;2.107e-14;2.099e-14 | 100.2;19.5;1.0 | 4 | True | False | 2.099e-14 rel 6.551e-06 | PASS
+H3c-vHv | B_6_L2 | v4 | 2.010e-04;2.807e-06;2.350e-04;5.079e-02 | 71.6 | 2 | resolvable; slope PASS | False | 2.807e-06 | PASS
+H3-desc | B_6_L2 | v4 | c_rel 1.31e-02;1.28e-04;6.58e-06;6.55e-06 | pg_err 4.020e-04;4.016e-06;3.992e-08;9.885e-10 | rho(s2..s4) 5.08e-06;5.08e-04;5.08e-02 |  |  |  | Richardson r(s1)=0.49991; |v.y|=0.455 | desc
+
+## R3: reproduction of REVIEW-vera-v4.md section 1 (mine at full precision | Vera printed | match)
+R3 A_4_L1 e_a(h1): 1.276933e-04 | 1.28e-4 | MATCH
+R3 A_4_L1 e_a(h2): 1.276886e-06 | 1.28e-6 | MATCH
+R3 A_4_L1 e_a(h3): 1.272646e-08 | 1.27e-8 | MATCH
+R3 A_4_L1 e_a(h4): 2.046667e-08 | 2.05e-8 | MATCH
+R3 A_4_L1 c(h1): 5.007611e-03 | 5.0e-3 | MATCH
+R3 A_4_L1 c(h2): 4.969122e-05 | 5.0e-5 | MATCH
+R3 A_4_L1 c(h3): 8.156292e-07 | 8.2e-7 | MATCH
+R3 A_4_L1 c(h4): 1.134386e-06 | 1.1e-6 | MATCH
+R3 A_4_L1 e_c(h1): 5.149085e-05 | 5.15e-5 | MATCH
+R3 A_4_L1 e_c(h2): 1.132341e-06 | 1.13e-6 | MATCH
+R3 A_4_L1 e_c(h3): 7.656387e-05 | 7.66e-5 | MATCH
+R3 A_4_L1 e_c(h4): 7.660847e-03 | 7.66e-3 | MATCH
+R3 A_4_L1 pg(h1): 1.029900e-04 | 1.03e-4 | MATCH
+R3 A_4_L1 pg(h3): 9.987102e-09 | 9.99e-9 | MATCH
+R3 A_4_L1 rho(s2): 7.660847e-07 | 7.7e-7 | MATCH
+R3 A_4_L1 e_c(h1)/30: 1.716362e-06 | 1.7e-6 | MATCH
+R3 A_4_L1 pair(h1,h2) resolvable: True | True | MATCH
+R3 A_4_L1 e_c(h1)/e_c(h2): 4.547292e+01 | 45.5 | MATCH
+R3 A_4_L1 Richardson r(s1): 4.999598e-01 | 0.49996 | MATCH
+R3 A_4_L1 row pass (a,b,c) [Vera: pass]: True | True | MATCH
+R3 A_4_L2 e_a(h1): 1.233408e-03 | 1.23e-3 | MATCH
+R3 A_4_L2 e_a(h4): 6.369783e-08 | 6.37e-8 | MATCH
+R3 A_4_L2 c(h1): 3.091507e-03 | 3.1e-3 | MATCH
+R3 A_4_L2 c(h4): 4.440297e-06 | 4.0e-7 | MISMATCH
+R3 A_4_L2 e_c(h1): 1.853896e-04 | 1.85e-4 | MATCH
+R3 A_4_L2 e_c(h2): 3.353014e-06 | 3.35e-6 | MATCH
+R3 A_4_L2 e_c(h3): 1.472481e-04 | 1.47e-4 | MATCH
+R3 A_4_L2 e_c(h4): 1.082666e-02 | 1.08e-2 | MATCH
+R3 A_4_L2 pg(h3): 3.519813e-08 | 5.1e-9 | MISMATCH
+R3 A_4_L2 rho(s2): 1.472481e-06 | 1.5e-6 | MATCH
+R3 A_4_L2 e_c(h1)/30: 6.179652e-06 | 6.2e-6 | MATCH
+R3 A_4_L2 pair(h1,h2) resolvable: True | True | MATCH
+R3 A_4_L2 e_c(h1)/e_c(h2): 5.529043e+01 | 55.3 | MATCH
+R3 A_4_L2 Richardson r(s1): 4.998354e-01 | 0.49984 | MATCH
+R3 A_4_L2 row pass (a,b,c) [Vera: pass]: True | True | MATCH
+R3 B_4_L2 e_a(h1): 1.036240e-03 | 1.04e-3 | MATCH
+R3 B_4_L2 e_a(h4): 3.414538e-08 | 3.42e-8 | MISMATCH
+R3 B_4_L2 c(h1): 5.905654e-04 | 5.9e-4 | MATCH
+R3 B_4_L2 c(h4): 1.174063e-06 | 1.4e-8 | MISMATCH
+R3 B_4_L2 e_c(h1): 3.259371e-04 | 3.26e-4 | MATCH
+R3 B_4_L2 e_c(h2): 2.117290e-06 | 2.12e-6 | MATCH
+R3 B_4_L2 e_c(h3): 1.944059e-04 | 1.94e-4 | MATCH
+R3 B_4_L2 e_c(h4): 4.117285e-02 | 4.12e-2 | MATCH
+R3 B_4_L2 pg(h3): 6.623610e-08 | 1.4e-10 | MISMATCH
+R3 B_4_L2 rho(s2): 4.117285e-06 | 4.1e-6 | MATCH
+R3 B_4_L2 e_c(h1)/30: 1.086457e-05 | 1.1e-5 | MATCH
+R3 B_4_L2 pair(h1,h2) resolvable: True | True | MATCH
+R3 B_4_L2 e_c(h1)/e_c(h2): 1.539407e+02 | 153.9 | MATCH
+R3 B_4_L2 Richardson r(s1): 4.998131e-01 | 0.49981 | MATCH
+R3 B_4_L2 row pass (a,b,c) [Vera: pass]: True | True | MATCH
+R3 A_6_L2 e_a(h1): 4.932503e-05 | 4.93e-5 | MATCH
+R3 A_6_L2 e_a(h2): 4.932692e-07 | 4.93e-7 | MATCH
+R3 A_6_L2 e_a(h3): 7.122186e-09 | 7.12e-9 | MATCH
+R3 A_6_L2 e_a(h4): 9.613635e-08 | 9.61e-8 | MATCH
+R3 A_6_L2 c(h1): 1.451640e-03 | 1.45e-3 | MATCH
+R3 A_6_L2 c(h2): 1.415495e-05 | 1.42e-5 | MATCH
+R3 A_6_L2 c(h3): 1.162314e-07 | 1.16e-7 | MATCH
+R3 A_6_L2 c(h4): 3.186738e-05 | 3.2e-5 | MATCH
+R3 A_6_L2 e_c(h1): 1.666943e-05 | 1.67e-5 | MATCH
+R3 A_6_L2 e_c(h2): 2.477221e-06 | 2.48e-6 | MATCH
+R3 A_6_L2 e_c(h3): 9.205939e-05 | 9.21e-5 | MATCH
+R3 A_6_L2 e_c(h4): 1.000343e-01 | 1.00e-1 | MATCH
+R3 A_6_L2 pg(h1): 3.337315e-05 | 3.34e-5 | MATCH
+R3 A_6_L2 pg(h2): 3.336628e-07 | 3.34e-7 | MATCH
+R3 A_6_L2 pg(h3): 2.407970e-09 | 2.41e-9 | MATCH
+R3 A_6_L2 pg(h4): -1.300924e-08 | -1.30e-8 | MATCH
+R3 A_6_L2 rho(s2): 1.000343e-05 | 1.0e-5 | MATCH
+R3 A_6_L2 e_c(h1)/30: 5.556478e-07 | 5.6e-7 | MATCH
+R3 A_6_L2 pair(h1,h2) resolvable: False | False | MATCH
+R3 A_6_L2 Richardson r(s1): 4.994863e-01 | 0.49949 | MATCH
+R3 A_6_L2 row pass (a,b,c) [Vera: pass]: True | True | MATCH
+R3 B_6_L2 e_a(h1): 5.383148e-04 | 5.38e-4 | MATCH
+R3 B_6_L2 e_a(h4): 8.081389e-08 | 5.42e-8 | MISMATCH
+R3 B_6_L2 c(h1): 1.311674e-02 | 1.3e-2 | MATCH
+R3 B_6_L2 c(h4): 6.551070e-06 | 6.6e-6 | MATCH
+R3 B_6_L2 e_c(h1): 2.009729e-04 | 2.01e-4 | MATCH
+R3 B_6_L2 e_c(h2): 2.807380e-06 | 2.81e-6 | MATCH
+R3 B_6_L2 e_c(h3): 2.349717e-04 | 2.35e-4 | MATCH
+R3 B_6_L2 e_c(h4): 5.078907e-02 | 5.08e-2 | MATCH
+R3 B_6_L2 pg(h3): 3.991888e-08 | 9.9e-10 | MISMATCH
+R3 B_6_L2 rho(s2): 5.078907e-06 | 5.1e-6 | MATCH
+R3 B_6_L2 e_c(h1)/30: 6.699095e-06 | 6.7e-6 | MATCH
+R3 B_6_L2 pair(h1,h2) resolvable: True | True | MATCH
+R3 B_6_L2 e_c(h1)/e_c(h2): 7.158734e+01 | 71.6 | MATCH
+R3 B_6_L2 Richardson r(s1): 4.999121e-01 | 0.49991 | MATCH
+R3 B_6_L2 row pass (a,b,c) [Vera: pass]: True | True | MATCH
+R3: 79/86 items match; 7 MISMATCH -> STOP for review
+
+Carried over from the v3 execution (v4 s9 step 5; logs not regenerated): H1a PASS, H1b PASS (logs/step0_analysis.txt).
+GATE V4 (H1a, H1b carried; H2 NV1; H3 a, b, c NV2 + R2; R1; R3) under PROTOCOL-v4: STOP (R3 disagreement)

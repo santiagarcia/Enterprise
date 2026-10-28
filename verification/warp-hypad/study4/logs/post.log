@@ -1,0 +1,141 @@
+2026-10-28T06:01:51-05:00 post-run Hessians start
+HESSIAN final_A6L2m nodes 14904 passes 1962 secs 592.8 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T06:11:56-05:00 final_A6L2m done
+HESSIAN final_A4L2f nodes 6624 passes 1962 secs 264.7 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T06:16:26-05:00 final_A4L2f done
+HESSIAN final_A6L2f nodes 14904 passes 1962 secs 592.8 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T06:26:31-05:00 final_A6L2f done
+HESSIAN final_X4L1fromL2 nodes 6624 passes 1962 secs 264.5 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T06:31:01-05:00 final_X4L1fromL2 done
+2026-10-28T06:31:01-05:00 assessment finals start
+A4L2m seed 1: rho*_D -6.01594231e-02 at (0.00000,2.39356) | sample -6.003901e-02 | est_min -6.644e-02 flagged 4 d7 0 | outside-Ab mismatches 0/34266 | E8 3.053861e-02 | 14.2s
+A4L2m seed 2: rho*_D -6.01594231e-02 at (0.00000,2.39356) | sample -6.003901e-02 | est_min -6.644e-02 flagged 4 d7 0 | outside-Ab mismatches 0/34266 | E8 3.053861e-02 | 13.9s
+B4L2 seed 1: rho*_D -4.26175156e-03 at (0.29695,2.40998) | sample -4.251300e-03 | est_min -1.400e-02 flagged 296 d7 1 | outside-Ab mismatches 0/34266 | E8 1.739186e-02 | 14.6s
+B4L2 seed 2: rho*_D -4.26175156e-03 at (0.29695,2.40998) | sample -4.251300e-03 | est_min -1.400e-02 flagged 296 d7 1 | outside-Ab mismatches 0/34266 | E8 1.739186e-02 | 14.4s
+A6L2m seed 1: rho*_D -2.63015725e-02 at (-0.00000,2.39196) | sample -2.619470e-02 | est_min -2.993e-02 flagged 26 d7 0 | outside-Ab mismatches 0/34266 | E8 1.765145e-02 | 14.1s
+A6L2m seed 2: rho*_D -2.63015725e-02 at (-0.00000,2.39196) | sample -2.619470e-02 | est_min -2.993e-02 flagged 26 d7 0 | outside-Ab mismatches 0/34266 | E8 1.765145e-02 | 14.1s
+B6L2 seed 1: rho*_D -2.65895067e-02 at (-0.00010,2.39129) | sample -2.654299e-02 | est_min -3.017e-02 flagged 22 d7 0 | outside-Ab mismatches 0/34266 | E8 1.767969e-02 | 14.1s
+B6L2 seed 2: rho*_D -2.65895067e-02 at (-0.00010,2.39129) | sample -2.654299e-02 | est_min -3.017e-02 flagged 22 d7 0 | outside-Ab mismatches 0/34266 | E8 1.767969e-02 | 14.0s
+A4L2f seed 1: rho*_D -6.01590479e-02 at (0.00000,2.39356) | sample -6.003863e-02 | est_min -6.644e-02 flagged 4 d7 0 | outside-Ab mismatches 0/34266 | E8 3.053855e-02 | 15.0s
+A4L2f seed 2: rho*_D -6.01590479e-02 at (0.00000,2.39356) | sample -6.003863e-02 | est_min -6.644e-02 flagged 4 d7 0 | outside-Ab mismatches 0/34266 | E8 3.053855e-02 | 14.2s
+A6L2f seed 1: rho*_D -2.63015462e-02 at (0.00000,2.39196) | sample -2.619468e-02 | est_min -2.993e-02 flagged 26 d7 0 | outside-Ab mismatches 0/34266 | E8 1.765145e-02 | 14.2s
+A6L2f seed 2: rho*_D -2.63015462e-02 at (0.00000,2.39196) | sample -2.619468e-02 | est_min -2.993e-02 flagged 26 d7 0 | outside-Ab mismatches 0/34266 | E8 1.765145e-02 | 14.2s
+X4L1fromL2 seed 1: rho*_D -6.94408837e-04 at (0.69869,2.35713) | sample -6.913956e-04 | est_min -8.119e-04 flagged 27 d7 1 | outside-Ab mismatches 0/34266 | E8 1.968206e-02 | 13.8s
+X4L1fromL2 seed 2: rho*_D -6.94408837e-04 at (0.69869,2.35713) | sample -6.917251e-04 | est_min -8.119e-04 flagged 26 d7 0 | outside-Ab mismatches 0/34266 | E8 1.968206e-02 | 14.0s
+X4L2fromL1 seed 1: rho*_D -6.01594560e-02 at (-0.00000,2.39356) | sample -6.003904e-02 | est_min -6.644e-02 flagged 4 d7 0 | outside-Ab mismatches 0/34266 | E8 3.053861e-02 | 14.0s
+X4L2fromL1 seed 2: rho*_D -6.01594560e-02 at (0.00000,2.39356) | sample -6.003904e-02 | est_min -6.644e-02 flagged 4 d7 0 | outside-Ab mismatches 0/34266 | E8 3.053861e-02 | 14.0s
+XB4L2fromA seed 1: rho*_D -2.91574520e-03 at (0.98786,1.93639) | sample -2.904000e-03 | est_min -2.826e-02 flagged 211 d7 1 | outside-Ab mismatches 0/34266 | E8 1.837339e-02 | 14.6s
+XB4L2fromA seed 2: rho*_D -2.91574520e-03 at (0.98786,1.93639) | sample -2.904000e-03 | est_min -2.826e-02 flagged 211 d7 1 | outside-Ab mismatches 0/34266 | E8 1.837339e-02 | 14.4s
+2026-10-28T06:35:21-05:00 assessment starts start
+start_A_4_L2_it84 seed 1: rho*_D -2.56409573e-03 at (-1.15043,1.97399) | sample -2.562898e-03 | est_min -3.671e-03 flagged 461 d7 1 | outside-Ab mismatches 0/34266 | E8 1.753956e-02 | 14.4s
+start_A_4_L2_it84 seed 2: rho*_D -2.56409573e-03 at (-1.15043,1.97399) | sample -2.562898e-03 | est_min -3.671e-03 flagged 463 d7 1 | outside-Ab mismatches 0/34266 | E8 1.753956e-02 | 14.6s
+start_A_6_L2_it90 seed 1: rho*_D -1.94028205e-03 at (-0.00009,1.80023) | sample -1.940238e-03 | est_min -2.487e-03 flagged 106 d7 0 | outside-Ab mismatches 0/34266 | E8 1.696727e-02 | 14.0s
+start_A_6_L2_it90 seed 2: rho*_D -1.94028205e-03 at (-0.00009,1.80023) | sample -1.940238e-03 | est_min -2.487e-03 flagged 106 d7 0 | outside-Ab mismatches 0/34266 | E8 1.696727e-02 | 14.2s
+start_A_4_L2 seed 1: rho*_D -3.07046534e-02 at (0.00080,2.44000) | sample -3.069608e-02 | est_min -3.553e-02 flagged 17 d7 0 | outside-Ab mismatches 0/34266 | E8 1.907217e-02 | 13.9s
+start_A_4_L2 seed 2: rho*_D -3.07046534e-02 at (0.00080,2.44000) | sample -3.069608e-02 | est_min -3.553e-02 flagged 17 d7 0 | outside-Ab mismatches 0/34266 | E8 1.907217e-02 | 14.1s
+start_A_6_L2 seed 1: rho*_D -4.54438326e-03 at (0.00043,2.44007) | sample -4.543347e-03 | est_min -5.483e-03 flagged 29 d7 0 | outside-Ab mismatches 0/34266 | E8 1.713855e-02 | 14.0s
+start_A_6_L2 seed 2: rho*_D -4.54438326e-03 at (0.00043,2.44007) | sample -4.543347e-03 | est_min -5.483e-03 flagged 29 d7 0 | outside-Ab mismatches 0/34266 | E8 1.713855e-02 | 13.9s
+start_B_4_L2 seed 1: rho*_D -1.01080774e-03 at (0.77537,2.44326) | sample -1.010533e-03 | est_min -1.782e-03 flagged 394 d7 1 | outside-Ab mismatches 0/34266 | E8 1.704882e-02 | 14.4s
+start_B_4_L2 seed 2: rho*_D -1.01080774e-03 at (0.77537,2.44326) | sample -1.010533e-03 | est_min -1.782e-03 flagged 394 d7 1 | outside-Ab mismatches 0/34266 | E8 1.704882e-02 | 14.5s
+start_B_6_L2 seed 1: rho*_D -8.39572696e-04 at (-0.76812,2.44115) | sample -8.394148e-04 | est_min -1.526e-03 flagged 429 d7 1 | outside-Ab mismatches 0/34266 | E8 1.722512e-02 | 14.4s
+start_B_6_L2 seed 2: rho*_D -8.39572696e-04 at (-0.76812,2.44115) | sample -8.394148e-04 | est_min -1.526e-03 flagged 429 d7 1 | outside-Ab mismatches 0/34266 | E8 1.722512e-02 | 14.4s
+start_A_4_L1 seed 1: rho*_D -5.71333762e-04 at (0.43942,2.22038) | sample -5.713051e-04 | est_min -5.978e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.982155e-02 | 13.9s
+start_A_4_L1 seed 2: rho*_D -5.71333762e-04 at (0.43942,2.22038) | sample -5.713051e-04 | est_min -5.978e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.982155e-02 | 14.1s
+start_A_6_L1 seed 1: rho*_D -5.74318137e-04 at (-1.03584,1.94207) | sample -5.731273e-04 | est_min -6.173e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.988743e-02 | 14.0s
+start_A_6_L1 seed 2: rho*_D -5.74318137e-04 at (-1.03584,1.94207) | sample -5.733766e-04 | est_min -6.173e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.988743e-02 | 14.2s
+start_B_4_L1 seed 1: rho*_D -5.77418971e-04 at (-0.44582,2.22226) | sample -5.770428e-04 | est_min -6.077e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.988159e-02 | 14.2s
+start_B_4_L1 seed 2: rho*_D -5.77418971e-04 at (-0.44582,2.22226) | sample -5.768629e-04 | est_min -6.077e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.988159e-02 | 14.0s
+start_B_6_L1 seed 1: rho*_D -5.69002991e-04 at (1.03185,1.94128) | sample -5.688373e-04 | est_min -6.111e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.989552e-02 | 14.1s
+start_B_6_L1 seed 2: rho*_D -5.69002991e-04 at (1.03185,1.94128) | sample -5.685644e-04 | est_min -6.111e-04 flagged 0 d7 0 | outside-Ab mismatches 0/34266 | E8 1.989552e-02 | 14.0s
+2026-10-28T06:40:09-05:00 POST1 DONE
+2026-10-28T06:40:54-05:00 trajectory assessment start
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 25: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63302 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 30: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63307 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 50: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63312 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 75: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63317 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 25: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63322 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 50: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63327 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 75: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63332 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 100: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63337 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 117: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63342 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 125: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63347 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 150: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63352 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 175: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63358 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 24: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63364 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 25: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63369 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 20: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63376 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 25: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63381 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 50: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63386 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 25: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63391 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 41: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63396 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 50: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63401 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 25: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63406 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 29: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63411 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 50: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63416 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 25: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63421 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 50: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63426 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 75: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63431 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 100: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63436 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 125: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63441 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 15: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63446 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 25: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63452 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 50: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63458 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 25: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63463 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 50: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63468 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 75: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63473 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 100: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63478 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 105: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63483 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 30: 125: arithmetic syntax error: invalid arithmetic operator (error token is "")
+C:/Users/vfn333/Documents/GitHub/pub-feasibility/warp_hypad/study4/driver/assess.sh: line 10: 63488 Segmentation fault         $X assess --y $A/snap/y_${r}_it$k.txt --seed 1 --tag $tag --out $A/iters.csv
+2026-10-28T06:41:05-05:00 S2 Hessians start
+final_A6L2m newton_step_norm 7.307413560548863e-05 rel 2.0870500635858945e-06
+HESSIAN s2_A6L2m nodes 14904 passes 1962 secs 595.4 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T06:51:13-05:00 s2_A6L2m done
+final_A4L2f newton_step_norm 3.3668106330741816e-05 rel 9.232553498909705e-07
+HESSIAN s2_A4L2f nodes 6624 passes 1962 secs 265.1 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T06:55:44-05:00 s2_A4L2f done
+final_A6L2f newton_step_norm 6.371265141407306e-05 rel 1.819679124731175e-06
+HESSIAN s2_A6L2f nodes 14904 passes 1962 secs 592.9 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T07:05:49-05:00 s2_A6L2f done
+final_X4L1fromL2 newton_step_norm 1.2313484016286122e-05 rel 7.3755378027585e-07
+HESSIAN s2_X4L1fromL2 nodes 6624 passes 1962 secs 264.2 H1a diag_mismatch 0 passgrad_mismatch 0 pair_errors 0
+2026-10-28T07:10:19-05:00 s2_X4L1fromL2 done
+2026-10-28T07:10:19-05:00 POST2 DONE
+2026-10-28T07:10:52-05:00 trajectory assessment rerun start
+2026-10-28T07:18:10-05:00 trajectory assessment rerun done
